@@ -1,0 +1,10 @@
+# IDE files
+.ballerina/
+target/
+.idea/
+*.iml
+
+# Ballerina
+*.conf
+*.log
+*.lock
