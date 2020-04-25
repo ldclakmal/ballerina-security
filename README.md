@@ -1,6 +1,6 @@
-# Ballerina TestGrid Suite
+# Ballerina Security Test Suite
 
-This is a resource repository for Ballerina TestGrid Job for authentication and authorization related scenarios.
+This is a Ballerina security test suite which contains authentication and authorization related scenarios.
 
 ```shell
 $ cd ./ballerina-testgrid-suite/src/main/resources/ballerina-security
