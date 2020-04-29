@@ -5,8 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>lk.avix</groupId>
-    <artifactId>ballerina-testgrid-suite</artifactId>
+    <artifactId>ballerina-security-test-suite</artifactId>
     <version>1.0-SNAPSHOT</version>
-
 
 </project>
