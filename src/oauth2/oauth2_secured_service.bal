@@ -1,12 +1,22 @@
+import ballerina/auth;
 import ballerina/http;
 import ballerina/oauth2;
 
+auth:OutboundBasicAuthProvider outboundBasiAuthProvider = new({
+    username: "admin",
+    password: "admin"
+});
+http:BasicAuthHandler outboundBasicAuthHandler = new(outboundBasiAuthProvider);
+
 oauth2:IntrospectionServerConfig introspectionServerConfig = {
-    url: "https://localhost:9191/oauth2/token/introspect",
+    url: "https://localhost:9443/oauth2/introspect",
     clientConfig: {
+        auth: {
+            authHandler: outboundBasicAuthHandler
+        },
         secureSocket: {
            trustStore: {
-               path: "${ballerina.home}/bre/security/ballerinaTruststore.p12",
+               path: "src/oauth2/resources/ballerinaTruststore.p12",
                password: "ballerina"
            }
         }
@@ -15,13 +25,13 @@ oauth2:IntrospectionServerConfig introspectionServerConfig = {
 oauth2:InboundOAuth2Provider inboundOAuth2Provider = new(introspectionServerConfig);
 http:BearerAuthHandler inboundOAuth2Handler = new(inboundOAuth2Provider);
 
-listener http:Listener oAuth2SecuredListener = new(9092, {
+listener http:Listener oAuth2SecuredListener = new(9090, {
     auth: {
         authHandlers: [inboundOAuth2Handler]
     },
     secureSocket: {
         keyStore: {
-            path: "${ballerina.home}/bre/security/ballerinaKeystore.p12",
+            path: "src/oauth2/resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
