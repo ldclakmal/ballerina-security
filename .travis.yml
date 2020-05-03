@@ -1,7 +1,22 @@
-script:
+language: ruby
+os: linux
+dist: xenial
+
+git:
+    quiet: true
+
+services:
+    - docker
+
+before_install:
     - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
+    - docker pull ldclakmal/wso2is-sts:latest
+install:
     - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
     - sudo apt-get install -f
+    - sudo apt-get install jq
+script:
     - ballerina --version
     - ballerina build -c oauth2
-    - ballerina run oauth2
+after_script:
+    - ./scripts/run-tests.sh

@@ -8,3 +8,4 @@ target/
 *.conf
 *.log
 *.lock
+*.lck

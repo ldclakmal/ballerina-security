@@ -1,6 +1,8 @@
 import ballerina/auth;
 import ballerina/http;
+import ballerina/math;
 import ballerina/oauth2;
+import ballerina/system;
 
 auth:OutboundBasicAuthProvider outboundBasiAuthProvider = new({
     username: "admin",
@@ -15,10 +17,7 @@ oauth2:IntrospectionServerConfig introspectionServerConfig = {
             authHandler: outboundBasicAuthHandler
         },
         secureSocket: {
-           trustStore: {
-               path: "src/oauth2/resources/ballerinaTruststore.p12",
-               password: "ballerina"
-           }
+            disable: true
         }
     }
 };
@@ -31,21 +30,32 @@ listener http:Listener oAuth2SecuredListener = new(9090, {
     },
     secureSocket: {
         keyStore: {
-            path: "src/oauth2/resources/ballerinaKeystore.p12",
-            password: "ballerina"
+            path: "src/oauth2/resources/keystore.p12",
+            password: "wso2carbon"
         }
     }
 });
 
 @http:ServiceConfig {
-	basePath: "/hello"
+	basePath: "/orders"
 }
-service oAuth2SecuredService on oAuth2SecuredListener {
+service processOrder on oAuth2SecuredListener {
 
     @http:ResourceConfig {
-	    path: "/sayHello"
+	    path: "/view",
+	    auth: {
+            scopes: ["view-order"]
+        }
 	}
-    resource function oAuth2SecuredResource(http:Caller caller, http:Request req) {
-        checkpanic caller->respond("Successful!");
+    resource function viewOrders(http:Caller caller, http:Request req) {
+        json inventory = {
+            "items": [
+                {
+                    "code": system:uuid(),
+                    "qty" : <int>math:randomInRange(1, 100)
+                }
+            ]
+        };
+        checkpanic caller->respond(inventory);
     }
 }
