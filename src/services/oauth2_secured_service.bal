@@ -30,8 +30,8 @@ listener http:Listener oAuth2SecuredListener = new(9090, {
     },
     secureSocket: {
         keyStore: {
-            path: "src/oauth2/resources/keystore.p12",
-            password: "wso2carbon"
+            path: "src/services/resources/ballerina-keystore.p12",
+            password: "ballerina"
         }
     }
 });
