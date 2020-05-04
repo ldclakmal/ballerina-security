@@ -17,6 +17,6 @@ install:
     - sudo apt-get install jq
 script:
     - ballerina --version
-    - ballerina build -c oauth2
+    - ballerina build -c services
 after_script:
     - ./scripts/run-tests.sh
