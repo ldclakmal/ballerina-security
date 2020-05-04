@@ -17,8 +17,8 @@ install:
     - sudo apt-get install jq
 script:
     - ballerina --version
-    - ballerina build -c services || travis_terminate 1
+    - ballerina build -c auth.oauth2 || travis_terminate 1
 after_script:
-    - ./scripts/run-docker.sh || travis_terminate 1
-    - ./scripts/run-bal.sh || travis_terminate 1
-    - ./scripts/run-tests.sh || travis_terminate 1
+    - ./scripts/auth.oauth2/run-docker.sh || travis_terminate 1
+    - ./scripts/auth.oauth2/run-bal.sh || travis_terminate 1
+    - ./scripts/auth.oauth2/run-tests.sh || travis_terminate 1
