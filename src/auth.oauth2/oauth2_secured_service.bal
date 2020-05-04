@@ -21,12 +21,12 @@ oauth2:IntrospectionServerConfig introspectionServerConfig = {
         }
     }
 };
-oauth2:InboundOAuth2Provider inboundOAuth2Provider = new(introspectionServerConfig);
-http:BearerAuthHandler inboundOAuth2Handler = new(inboundOAuth2Provider);
+oauth2:InboundOAuth2Provider oAuth2Provider = new(introspectionServerConfig);
+http:BearerAuthHandler oAuth2Handler = new(oAuth2Provider);
 
 listener http:Listener listenerEP = new(9090, {
     auth: {
-        authHandlers: [inboundOAuth2Handler]
+        authHandlers: [oAuth2Handler]
     },
     secureSocket: {
         keyStore: {
