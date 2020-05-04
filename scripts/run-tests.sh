@@ -3,15 +3,19 @@ response=$(curl -kv -u gCuMDk_qfue0XUpEDUJZHmH4bZMa:wn3SwVn5xH_PuIf8myf6KJxRN3Aa
           -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
           -d "grant_type=client_credentials&scope=view-order" \
           https://localhost:9443/oauth2/token)
-echo -e "\nToken endpoint response:"
-echo $response
+echo -e "\nToken endpoint response: $response"
 token=$(jq '.access_token' <<< $response)
-echo -e "\nAccess token: " $token
+echo -e "\nAccess token: $token"
+
+if [ -z "$token" ]
+then
+  echo "Failed!"
+  exit 1
+fi
 
 echo -e "\nInvoking Ballerina OAuth2 service:"
 response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders/view)
-echo -e "\nBallerina service response:"
-echo $response
+echo -e "\nBallerina service response: $response"
 
 if [ $(jq '.qty' <<< $response) > 0 ]
 then
