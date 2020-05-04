@@ -1,5 +1,5 @@
 echo -e "\nRequesting access token from token endpoint:"
-response=$(curl -kv -u gCuMDk_qfue0XUpEDUJZHmH4bZMa:wn3SwVn5xH_PuIf8myf6KJxRN3Aa \
+response=$(curl -kv -u dZba2KIfH_nLh3TmdCPPTuveGcka:bp0iumj5rPckX7w2hZLvLawhiAwa \
           -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
           -d "grant_type=client_credentials&scope=view-order" \
           https://localhost:9443/oauth2/token)
