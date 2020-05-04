@@ -24,7 +24,7 @@ oauth2:IntrospectionServerConfig introspectionServerConfig = {
 oauth2:InboundOAuth2Provider inboundOAuth2Provider = new(introspectionServerConfig);
 http:BearerAuthHandler inboundOAuth2Handler = new(inboundOAuth2Provider);
 
-listener http:Listener oAuth2SecuredListener = new(9090, {
+listener http:Listener listenerEP = new(9090, {
     auth: {
         authHandlers: [inboundOAuth2Handler]
     },
@@ -39,7 +39,7 @@ listener http:Listener oAuth2SecuredListener = new(9090, {
 @http:ServiceConfig {
 	basePath: "/orders"
 }
-service processOrder on oAuth2SecuredListener {
+service processOrder on listenerEP {
 
     @http:ResourceConfig {
 	    path: "/view",
