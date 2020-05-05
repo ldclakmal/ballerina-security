@@ -13,10 +13,10 @@ jobs:
   - stage: Secured Services
     name: "JWT"
     before_install:
-      - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
+      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
       - docker pull ldclakmal/wso2is-sts:latest
     install:
-      - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
       - sudo apt-get install -f
       - sudo apt-get install jq
     script:
@@ -27,10 +27,10 @@ jobs:
       - ./scripts/auth.jwt/test.sh || travis_terminate 1
   - name: "OAuth2"
     before_install:
-      - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
+      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
       - docker pull ldclakmal/wso2is-sts:latest
     install:
-      - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
       - sudo apt-get install -f
       - sudo apt-get install jq
     script:
