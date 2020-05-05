@@ -17,7 +17,10 @@ oauth2:IntrospectionServerConfig introspectionServerConfig = {
             authHandler: outboundBasicAuthHandler
         },
         secureSocket: {
-            disable: true
+            trustStore: {
+                path: "src/resources/ballerina-truststore.p12",
+                password: "ballerina"
+            }
         }
     }
 };
