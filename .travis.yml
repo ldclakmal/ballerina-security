@@ -3,39 +3,39 @@ os: linux
 dist: xenial
 
 git:
-    quiet: true
+  quiet: true
 
 services:
-    - docker
+  - docker
 
 jobs:
-    include:
-      - stage: Secured Services
-        name: "JWT"
-        before_install:
-          - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
-          - docker pull ldclakmal/wso2is-sts:latest
-        install:
-          - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
-          - sudo apt-get install -f
-          - sudo apt-get install jq
-        script:
-          - ballerina --version
-          - ballerina build -c auth.jwt || travis_terminate 1
-          - ./scripts/auth.jwt/run-docker.sh || travis_terminate 1
-          - ./scripts/auth.jwt/run-bal.sh || travis_terminate 1
-          - ./scripts/auth.jwt/run-tests.sh || travis_terminate 1
-      - name: "OAuth2"
-        before_install:
-          - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
-          - docker pull ldclakmal/wso2is-sts:latest
-        install:
-          - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
-          - sudo apt-get install -f
-          - sudo apt-get install jq
-        script:
-          - ballerina --version
-          - ballerina build -c auth.oauth2 || travis_terminate 1
-          - ./scripts/auth.oauth2/run-docker.sh || travis_terminate 1
-          - ./scripts/auth.oauth2/run-bal.sh || travis_terminate 1
-          - ./scripts/auth.oauth2/run-tests.sh || travis_terminate 1
+  include:
+  - stage: Secured Services
+    name: "JWT"
+    before_install:
+      - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
+      - docker pull ldclakmal/wso2is-sts:latest
+    install:
+      - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
+      - sudo apt-get install -f
+      - sudo apt-get install jq
+    script:
+      - ballerina --version
+      - ballerina build -c auth.jwt || travis_terminate 1
+      - ./scripts/auth.jwt/run-docker.sh || travis_terminate 1
+      - ./scripts/auth.jwt/run-bal.sh || travis_terminate 1
+      - ./scripts/auth.jwt/run-tests.sh || travis_terminate 1
+  - name: "OAuth2"
+    before_install:
+      - wget https://product-dist.ballerina.io/downloads/1.2.0/ballerina-linux-installer-x64-1.2.0.deb
+      - docker pull ldclakmal/wso2is-sts:latest
+    install:
+      - sudo dpkg -i ballerina-linux-installer-x64-1.2.0.deb
+      - sudo apt-get install -f
+      - sudo apt-get install jq
+    script:
+      - ballerina --version
+      - ballerina build -c auth.oauth2 || travis_terminate 1
+      - ./scripts/auth.oauth2/run-docker.sh || travis_terminate 1
+      - ./scripts/auth.oauth2/run-bal.sh || travis_terminate 1
+      - ./scripts/auth.oauth2/run-tests.sh || travis_terminate 1
