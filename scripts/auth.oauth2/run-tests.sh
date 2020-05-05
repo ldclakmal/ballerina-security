@@ -4,7 +4,7 @@ response=$(curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa
           -d "grant_type=client_credentials&scope=view-order" \
           https://localhost:9443/oauth2/token)
 echo -e "\nToken endpoint response: $response"
-token=$(jq '.access_token' <<< $response)
+token=$(jq -r '.access_token' <<< $response)
 echo -e "\nOAuth2 token: $token"
 
 if [ -z "$token" ]
