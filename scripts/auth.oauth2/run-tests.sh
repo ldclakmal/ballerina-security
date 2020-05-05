@@ -9,7 +9,6 @@ echo -e "\nOAuth2 token: $token"
 
 if [ -z "$token" ]
 then
-  echo "Failed!"
   exit 1
 fi
 
@@ -19,9 +18,7 @@ echo -e "\nBallerina service response: $response"
 
 if [ $(jq '.qty' <<< $response) > 0 ]
 then
-  echo "Success!"
   exit 0
 else
-  echo "Failed!"
   exit 1
 fi
