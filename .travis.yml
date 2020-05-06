@@ -22,7 +22,7 @@ jobs:
       - ballerina build -c auth.basic || travis_terminate 1
       - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
       - ./scripts/auth.basic/test.sh || travis_terminate 1
-  - name: "JWT"
+  - name: "JWT Auth"
     before_install:
       - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
       - docker pull ldclakmal/wso2is-sts:latest
