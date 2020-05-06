@@ -11,7 +11,18 @@ services:
 jobs:
   include:
   - stage: Secured Services
-    name: "JWT"
+    name: "Basic Auth"
+    before_install:
+      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+    install:
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+      - sudo apt-get install -f
+    script:
+      - ballerina --version
+      - ballerina build -c auth.basic || travis_terminate 1
+      - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
+      - ./scripts/auth.basic/test.sh || travis_terminate 1
+  - name: "JWT"
     before_install:
       - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
       - docker pull ldclakmal/wso2is-sts:latest
