@@ -14,10 +14,6 @@ This is an automated Ballerina security test suite which contains authentication
 
 ##### TODO:
 
+- Add test case for JWK secured service (v2.0.0-Preview1)
 - Add test cases for secured clients
-- Add test cases of following pattern for each auth scheme
-  - authn success
-    - authz success
-    - authz failure
-  - authn failure
 - Run the test suite with ballerina daily builds
