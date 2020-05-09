@@ -50,4 +50,22 @@ service processOrder on listenerEP {
         };
         checkpanic caller->respond(inventory);
     }
+
+    @http:ResourceConfig {
+        path: "/add",
+        auth: {
+            scopes: ["add-order"]
+        }
+    }
+    resource function addOrder(http:Caller caller, http:Request req) {
+        json inventory = {
+            "items": [
+                {
+                    "code": system:uuid(),
+                    "qty" : <int>math:randomInRange(1, 100)
+                }
+            ]
+        };
+        checkpanic caller->respond(inventory);
+    }
 }
