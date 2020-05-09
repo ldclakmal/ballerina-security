@@ -50,3 +50,17 @@ jobs:
       - ./scripts/auth.oauth2/docker.sh || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
+  - name: "LDAP Auth"
+    before_install:
+        - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+        - docker pull osixia/openldap:1.3.0
+    install:
+        - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+        - sudo apt-get install -f
+        - sudo apt-get install jq
+    script:
+        - ballerina --version
+        - ballerina build -c auth.ldap || travis_terminate 1
+        - ./scripts/auth.ldap/docker.sh || travis_terminate 1
+        - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
+        - ./scripts/auth.ldap/test.sh || travis_terminate 1
