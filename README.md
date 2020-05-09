@@ -2,8 +2,22 @@
 
 # Ballerina Security Test Suite
 
-This is a automated Ballerina security test suite which contains authentication and authorization related scenarios. These tests run periodically with the latest Ballerina version.
+This is an automated Ballerina security test suite which contains authentication and authorization related scenarios. These tests run periodically with the latest Ballerina version.
 
 - Secured services
-    - JWT secured service
-    - OAuht2 secured service
+    - Basic Auth secured service
+    - JWT Auth secured service
+    - OAuth2 secured service
+    - LDAP Auth secured service
+
+---
+
+##### TODO:
+
+- Add test cases for secured clients
+- Add test cases of following pattern for each auth scheme
+  - authn success
+    - authz success
+    - authz failure
+  - authn failure
+- Run the test suite with ballerina daily builds
