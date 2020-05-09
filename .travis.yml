@@ -18,7 +18,7 @@ jobs:
       - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
       - sudo apt-get install -f
     script:
-      - ballerina --version
+      - ballerina -v
       - ballerina build -c auth.basic || travis_terminate 1
       - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
       - ./scripts/auth.basic/test.sh || travis_terminate 1
@@ -31,7 +31,7 @@ jobs:
       - sudo apt-get install -f
       - sudo apt-get install jq
     script:
-      - ballerina --version
+      - ballerina -v
       - ballerina build -c auth.jwt || travis_terminate 1
       - ./scripts/auth.jwt/docker.sh || travis_terminate 1
       - ./scripts/auth.jwt/ballerina.sh || travis_terminate 1
@@ -45,7 +45,7 @@ jobs:
       - sudo apt-get install -f
       - sudo apt-get install jq
     script:
-      - ballerina --version
+      - ballerina -v
       - ballerina build -c auth.oauth2 || travis_terminate 1
       - ./scripts/auth.oauth2/docker.sh || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
@@ -57,9 +57,8 @@ jobs:
     install:
         - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
         - sudo apt-get install -f
-        - sudo apt-get install jq
     script:
-        - ballerina --version
+        - ballerina -v
         - ballerina build -c auth.ldap || travis_terminate 1
         - ./scripts/auth.ldap/docker.sh || travis_terminate 1
         - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
