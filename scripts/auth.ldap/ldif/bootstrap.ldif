@@ -19,16 +19,16 @@ displayName: Chanaka Lakmal
 mail: ldclakmal@gmail.com
 userpassword: ldclakmal123
 
-dn: uid=johndoe,ou=Users,dc=avix,dc=lk
+dn: uid=janedoe,ou=Users,dc=avix,dc=lk
 changetype: add
 objectClass: inetOrgPerson
 cn: Test Developer
-givenName: John
+givenName: Jane
 sn: Doe
-uid: johndoe
-displayName: John Doe
-mail: johndoe@gmail.com
-userpassword: johndoe123
+uid: janedoe
+displayName: Jane Doe
+mail: janedoe@gmail.com
+userpassword: janedoe123
 
 dn: cn=Admin,ou=Groups,dc=avix,dc=lk
 changetype: add
@@ -41,4 +41,4 @@ changetype: add
 cn: Developer
 objectClass: groupOfNames
 member: uid=ldclakmal,ou=Users,dc=avix,dc=lk
-member: uid=johndoe,ou=Users,dc=avix,dc=lk
+member: uid=janedoe,ou=Users,dc=avix,dc=lk
