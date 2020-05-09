@@ -33,7 +33,7 @@ jobs:
     script:
       - ballerina --version
       - ballerina build -c auth.jwt || travis_terminate 1
-      - ./scripts/common/docker.sh || travis_terminate 1
+      - ./scripts/auth.jwt/docker.sh || travis_terminate 1
       - ./scripts/auth.jwt/ballerina.sh || travis_terminate 1
       - ./scripts/auth.jwt/test.sh || travis_terminate 1
   - name: "OAuth2"
@@ -47,6 +47,6 @@ jobs:
     script:
       - ballerina --version
       - ballerina build -c auth.oauth2 || travis_terminate 1
-      - ./scripts/common/docker.sh || travis_terminate 1
+      - ./scripts/auth.oauth2/docker.sh || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
