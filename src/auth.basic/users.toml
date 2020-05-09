@@ -1,9 +1,13 @@
 [b7a.users]
 
 [b7a.users.alice]
-password="password1"
-scopes="view-order"
+password="alice123"
+scopes="add-order,view-order"
 
 [b7a.users.bob]
-password="password2"
-scopes="place-order,view-order"
+password="bob123"
+scopes="view-order"
+
+[b7a.users.eve]
+password="eve123"
+scopes=""

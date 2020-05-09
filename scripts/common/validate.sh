@@ -4,6 +4,18 @@ assertNotEmpty() {
   fi
 }
 
+assertAuthnFailure() {
+  if [[ $1 != *"Authentication"* ]]; then
+    exit 1
+  fi
+}
+
+assertAuthzFailure() {
+  if [[ $1 != *"Authorization"* ]]; then
+    exit 1
+  fi
+}
+
 assertSuccess() {
   if [[ $1 == *"items"* ]]; then
     exit 0
