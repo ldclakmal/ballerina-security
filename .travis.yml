@@ -13,7 +13,7 @@ jobs:
   - stage: Secured Services
     name: "Basic Auth"
     before_install:
-      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
     install:
       - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
       - sudo apt-get install -f
@@ -24,7 +24,7 @@ jobs:
       - ./scripts/auth.basic/test.sh || travis_terminate 1
   - name: "JWT Auth"
     before_install:
-      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
       - docker pull ldclakmal/wso2is-sts:latest
     install:
       - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
@@ -38,7 +38,7 @@ jobs:
       - ./scripts/auth.jwt/test.sh || travis_terminate 1
   - name: "OAuth2"
     before_install:
-      - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
       - docker pull ldclakmal/wso2is-sts:latest
     install:
       - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
@@ -52,7 +52,7 @@ jobs:
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
   - name: "LDAP Auth"
     before_install:
-        - wget https://product-dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+        - wget ${BALLERINA_INSTALLER_DEB_URL}
         - docker pull osixia/openldap:1.3.0
     install:
         - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
