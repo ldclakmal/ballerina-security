@@ -18,14 +18,35 @@ assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertAuthnFailure $response
 
-echo -e "\nTest2: Authn Success - Authz Failure:"
+echo -e "\nTest2: Authn Failure [Cached]:"
+echo -e "\nInvoking Ballerina OAuth2 service:"
+response=$(curl -kv -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:9090/orders/view)
+assertNotEmpty $response
+echo -e "\nBallerina service response: $response"
+assertAuthnFailure $response
+
+echo -e "\nTest3: Authn Success - Authz Failure:"
 echo -e "\nInvoking Ballerina OAuth2 service:"
 response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders/add)
 assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertAuthzFailure $response
 
-echo -e "\nTest3: Authn Success - Authz Success:"
+echo -e "\nTest4: Authn Success - Authz Failure [Cached]:"
+echo -e "\nInvoking Ballerina OAuth2 service:"
+response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders/add)
+assertNotEmpty $response
+echo -e "\nBallerina service response: $response"
+assertAuthzFailure $response
+
+echo -e "\nTest5: Authn Success - Authz Success:"
+echo -e "\nInvoking Ballerina OAuth2 service:"
+response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders/view)
+assertNotEmpty $response
+echo -e "\nBallerina service response: $response"
+assertSuccess $response
+
+echo -e "\nTest6: Authn Success - Authz Success [Cached]:"
 echo -e "\nInvoking Ballerina OAuth2 service:"
 response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders/view)
 assertNotEmpty $response
