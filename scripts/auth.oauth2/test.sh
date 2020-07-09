@@ -52,3 +52,5 @@ response=$(curl -kv -H "AUTHORIZATION: Bearer $token" https://localhost:9090/ord
 assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertSuccess $response
+
+exit 0

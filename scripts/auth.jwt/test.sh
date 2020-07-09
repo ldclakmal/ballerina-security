@@ -55,3 +55,5 @@ do
   echo -e "\nBallerina service response: $response"
   assertSuccess $response
 done
+
+exit 0

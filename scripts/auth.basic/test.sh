@@ -20,3 +20,5 @@ response=$(curl -kv -u alice:alice123 https://localhost:9090/orders/view)
 assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertSuccess $response
+
+exit 0

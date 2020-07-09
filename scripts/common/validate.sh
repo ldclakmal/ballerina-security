@@ -17,8 +17,7 @@ assertAuthzFailure() {
 }
 
 assertSuccess() {
-  if [[ $1 == *"items"* ]]; then
-    exit 0
+  if [[ $1 != *"items"* ]]; then
+    exit 1
   fi
-  exit 1
 }
