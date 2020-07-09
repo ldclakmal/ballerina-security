@@ -56,8 +56,7 @@ This is an automated Ballerina security test suite which contains authentication
 
 ---
 
-#### TODO:
+### TODO:
 
-- Add test case for JWK secured service (v2.0.0-Preview1)
 - Add test cases for secured clients
 - Run the test suite with ballerina daily builds
