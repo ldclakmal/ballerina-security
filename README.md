@@ -9,7 +9,7 @@ This is an automated Ballerina security test suite which contains authentication
 #### 1. Basic Auth secured service
 
 ##### Prerequisites:
-- [Ballerina](https://ballerina.io) 1.2.0
+- [Ballerina](https://ballerina.io/downloads/) 1.2.6
 
 ##### Steps:
 1. User configurations are defined in `users.toml`
@@ -19,7 +19,7 @@ This is an automated Ballerina security test suite which contains authentication
 #### 2. JWT Auth secured service
 
 ##### Prerequisites:
-- [Ballerina](https://ballerina.io) 1.2.0
+- [Ballerina](https://ballerina.io/downloads/) 1.2.6
 - [ldclakmal/wso2is-sts](https://hub.docker.com/r/ldclakmal/wso2is-sts) latest
 - [jq](https://stedolan.github.io/jq/) 1.6
 
@@ -33,7 +33,7 @@ This is an automated Ballerina security test suite which contains authentication
 #### 3. OAuth2 secured service
 
 ##### Prerequisites:
-- [Ballerina](https://ballerina.io) 1.2.0
+- [Ballerina](https://ballerina.io/downloads/) 1.2.6
 - [ldclakmal/wso2is-sts](https://hub.docker.com/r/ldclakmal/wso2is-sts) latest
 - [jq](https://stedolan.github.io/jq/) 1.6
 
@@ -46,7 +46,7 @@ This is an automated Ballerina security test suite which contains authentication
 #### 4. LDAP Auth secured service
 
 ##### Prerequisites:
-- [Ballerina](https://ballerina.io) 1.2.0
+- [Ballerina](https://ballerina.io/downloads/) 1.2.6
 - [osixia/openldap](https://hub.docker.com/r/osixia/openldap) 1.3.0
 
 ##### Steps:
