@@ -1,6 +1,7 @@
 language: ruby
 os: linux
 dist: xenial
+jdk: openjdk8
 
 git:
   quiet: true
