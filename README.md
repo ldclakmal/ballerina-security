@@ -1,62 +1,39 @@
-[![Build Status](https://travis-ci.com/ldclakmal/ballerina-security-test-suite.svg?branch=master)](https://travis-ci.com/ldclakmal/ballerina-security-test-suite)
+# Ballerina Security Dashboard
 
-# Ballerina Security Test Suite
+## Status
 
-This is an automated Ballerina security test suite which contains authentication and authorization related scenarios. These tests run periodically with the latest Ballerina version.
+### Ballerina Platform
 
-### Secured services
+| Module | Master Build | Daily Build | Latest Tag |
+|---|---|---|---|
+| [ballerina-lang](https://github.com/ballerina-platform/ballerina-lang) | ![Build](https://github.com/ballerina-platform/ballerina-lang/workflows/CI%20Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/ballerina-lang/workflows/Ballerina%20daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-lang) |
+| [ballerina-distribution](https://github.com/ballerina-platform/ballerina-distribution) | ![Build](https://github.com/ballerina-platform/ballerina-distribution/workflows/Ballerina%20Distribution%20Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/ballerina-distribution/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-distribution) |
 
-#### 1. Basic Auth secured service
+### Security Modules
 
-##### Prerequisites:
-- [Ballerina](https://ballerina.io/downloads/) 1.2.6
+| Module | Master Build | Daily Build | Latest Tag | Open Issues | Open PRs |
+|---|---|---|---|---|---|
+| [module-ballerina-auth](https://github.com/ballerina-platform/module-ballerina-auth) | ![Build](https://github.com/ballerina-platform/module-ballerina-auth/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-auth/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-auth) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-auth) |
+| [module-ballerina-jwt](https://github.com/ballerina-platform/module-ballerina-jwt) | ![Build](https://github.com/ballerina-platform/module-ballerina-jwt/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-jwt/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-jwt) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-jwt) |
+| [module-ballerina-oauth2](https://github.com/ballerina-platform/module-ballerina-oauth2) | ![Build](https://github.com/ballerina-platform/module-ballerina-oauth2/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-oauth2/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-oauth2) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-oauth2) |
+| [module-ballerina-ldap](https://github.com/ballerina-platform/module-ballerina-ldap) | ![Build](https://github.com/ballerina-platform/module-ballerina-ldap/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-ldap/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-ldap) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-ldap) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-ldap) |
+| [module-ballerina-crypto](https://github.com/ballerina-platform/module-ballerina-crypto) | ![Build](https://github.com/ballerina-platform/module-ballerina-crypto/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-crypto/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-crypto) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-crypto) |
+| [module-ballerina-encoding](https://github.com/ballerina-platform/module-ballerina-encoding) | ![Build](https://github.com/ballerina-platform/module-ballerina-encoding/workflows/Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/module-ballerina-encoding/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-encoding) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/module-ballerina-encoding) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-encoding) |
 
-##### Steps:
-1. User configurations are defined in `users.toml`
-2. Ballerina service is secured with Basic Auth by the configured users.
-3. CURL client send requests to Ballerina service.
-    
-#### 2. JWT Auth secured service
+## BBEs
 
-##### Prerequisites:
-- [Ballerina](https://ballerina.io/downloads/) 1.2.6
-- [ldclakmal/wso2is-sts](https://hub.docker.com/r/ldclakmal/wso2is-sts) latest
-- [jq](https://stedolan.github.io/jq/) 1.6
+#### Language concepts -> Security
 
-##### Steps:
-1. Service providers are defined in WSO2 IS STS.
-2. Ballerina service is secured with JWT Auth. Inbound tokens are validated by Ballerina with the use of configurations
- provided by WSO2 IS STS.
-3. CURL client send request to WSO2 IS STS and get the JWT.
-4. CURL client send requests to Ballerina service with the received JWT.
+- [crypto](https://ballerina.io/swan-lake/learn/by-example/crypto.html)
+- [jwt-issue-validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html)
+- [url-encode-decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
 
-#### 3. OAuth2 secured service
+#### Working over the networks -> Access Control
 
-##### Prerequisites:
-- [Ballerina](https://ballerina.io/downloads/) 1.2.6
-- [ldclakmal/wso2is-sts](https://hub.docker.com/r/ldclakmal/wso2is-sts) latest
-- [jq](https://stedolan.github.io/jq/) 1.6
-
-##### Steps:
-1. Service providers are defined in WSO2 IS STS.
-2. Ballerina service is secured with OAuth2. Inbound tokens are validated with the WSO2 IS STS introspection endpoint.
-3. CURL client send request to WSO2 IS STS and get the OAuth2 token.
-4. CURL client send requests to Ballerina service with the received OAuth2 token.
-
-#### 4. LDAP Auth secured service
-
-##### Prerequisites:
-- [Ballerina](https://ballerina.io/downloads/) 1.2.6
-- [osixia/openldap](https://hub.docker.com/r/osixia/openldap) 1.3.0
-
-##### Steps:
-1. User configurations are provided to OpenLDAP server with `.ldif`
-2. Ballerina service is secured with LDAP Auth. Inbound tokens are validated with the OpenLDAP server.
-3. CURL client send requests to Ballerina service.
-
----
-
-### TODO:
-
-- Add test cases for secured clients
-- Run the test suite with ballerina daily builds
+- [secured-service-with-basic-auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-basic-auth.html)
+- [secured-service-with-jwt-auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-jwt-auth.html)
+- [secured-service-with-oauth2](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-oauth2.html)
+- [secured-service-with-ldap](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-ldap.html)
+- [secured-client-with-basic-auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-basic-auth.html)
+- [secured-client-with-jwt-auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-jwt-auth.html)
+- [secured-client-with-oauth2](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2.html)
