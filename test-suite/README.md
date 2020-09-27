@@ -53,10 +53,3 @@ This is an automated Ballerina security test suite which contains authentication
 1. User configurations are provided to OpenLDAP server with `.ldif`
 2. Ballerina service is secured with LDAP Auth. Inbound tokens are validated with the OpenLDAP server.
 3. CURL client send requests to Ballerina service.
-
----
-
-### TODO:
-
-- Add test cases for secured clients
-- Run the test suite with ballerina daily builds
