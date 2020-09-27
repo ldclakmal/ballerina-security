@@ -11,6 +11,18 @@ services:
 
 jobs:
   include:
+  - stage: Utility Libraries
+    name: "Crypto"
+    before_install:
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
+    install:
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+      - sudo apt-get install -f
+    script:
+      - ballerina -v
+      - cd test-suite
+      - ./scripts/crypto/setup.sh || travis_terminate 1
+      - ballerina build -c crypto || travis_terminate 1
   - stage: Secured Services
     name: "Basic Auth"
     before_install:
