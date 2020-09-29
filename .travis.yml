@@ -6,6 +6,11 @@ jdk: openjdk8
 git:
   quiet: true
 
+env:
+  global:
+    - BALLERINA_INSTALLER_DEB=ballerina-linux-installer-x64-${BALLERINA_VERSION}.deb
+    - BALLERINA_INSTALLER_DEB_URL=https://dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+
 services:
   - docker
 
