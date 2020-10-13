@@ -1,6 +1,4 @@
-# Ballerina Security Dashboard
-
-## Status
+## Dashboard
 
 #### Ballerina Platform
 
@@ -36,7 +34,7 @@
 
 ---
 
-## BBEs
+### BBEs
 
 #### Language concepts -> Security
 
@@ -56,6 +54,6 @@
 
 ---
 
-## Resources
+### Resources
 
-1. https://ballerina.io/learn/writing-secure-ballerina-code/
+1. [Writing Secure Ballerina Code](https://ballerina.io/learn/writing-secure-ballerina-code/)
