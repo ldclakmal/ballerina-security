@@ -28,29 +28,29 @@ jobs:
       - cd test-suite
       - ballerina build -a -c --skip-tests || travis_terminate 1
   - stage: Test
-    name: "Crypto"
-    before_install:
-      - wget ${BALLERINA_INSTALLER_DEB_URL}
-    install:
-      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-      - sudo apt-get install -f
-    script:
-      - ballerina -v
-      - cd test-suite
-      - ./scripts/crypto/setup.sh || travis_terminate 1
-      - ballerina build -c crypto || travis_terminate 1
-  - name: "Encoding"
-    before_install:
-      - wget ${BALLERINA_INSTALLER_DEB_URL}
-    install:
-      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-      - sudo apt-get install -f
-    script:
-      - ballerina -v
-      - cd test-suite
-      - ./scripts/encoding/setup.sh || travis_terminate 1
-      - ballerina build -c encoding || travis_terminate 1
-  - name: "Basic Auth"
+#    name: "Crypto"
+#    before_install:
+#      - wget ${BALLERINA_INSTALLER_DEB_URL}
+#    install:
+#      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+#      - sudo apt-get install -f
+#    script:
+#      - ballerina -v
+#      - cd test-suite
+#      - ./scripts/crypto/setup.sh || travis_terminate 1
+#      - ballerina build -c crypto || travis_terminate 1
+#  - name: "Encoding"
+#    before_install:
+#      - wget ${BALLERINA_INSTALLER_DEB_URL}
+#    install:
+#      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+#      - sudo apt-get install -f
+#    script:
+#      - ballerina -v
+#      - cd test-suite
+#      - ./scripts/encoding/setup.sh || travis_terminate 1
+#      - ballerina build -c encoding || travis_terminate 1
+    name: "Basic Auth"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
     install:
