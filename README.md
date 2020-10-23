@@ -2,10 +2,10 @@
 
 #### Ballerina Platform
 
-| Module | Master Build | Daily Build | Latest Release Tag |
-|---|---|---|---|
-| [ballerina-lang](https://github.com/ballerina-platform/ballerina-lang) | ![Build](https://github.com/ballerina-platform/ballerina-lang/workflows/CI%20Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/ballerina-lang/workflows/Ballerina%20daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-lang) |
-| [ballerina-distribution](https://github.com/ballerina-platform/ballerina-distribution) | ![Build](https://github.com/ballerina-platform/ballerina-distribution/workflows/Ballerina%20Distribution%20Build/badge.svg) | ![Daily build](https://github.com/ballerina-platform/ballerina-distribution/workflows/Daily%20build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-distribution) |
+| Module | Master Build | Latest Release | Last Commit | Open Issues | Open PRs |
+|---|---|---|---|---|---|
+| [ballerina-lang](https://github.com/ballerina-platform/ballerina-lang) | ![Build](https://github.com/ballerina-platform/ballerina-lang/workflows/CI%20Build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-lang?label=) | ![GitHub last commit](https://img.shields.io/github/last-commit/ballerina-platform/ballerina-lang.svg?label=) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-lang?label=) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/ballerina-lang?label=) |
+| [ballerina-distribution](https://github.com/ballerina-platform/ballerina-distribution) | ![Build](https://github.com/ballerina-platform/ballerina-distribution/workflows/Ballerina%20Distribution%20Build/badge.svg) | ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/ballerina-platform/ballerina-distribution?label=) | ![GitHub last commit](https://img.shields.io/github/last-commit/ballerina-platform/ballerina-distribution.svg?label=) | ![GitHub issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-distribution?label=) | ![GitHub pull requests](https://img.shields.io/github/issues-pr/ballerina-platform/ballerina-distribution?label=)
 
 #### Security Modules
 
