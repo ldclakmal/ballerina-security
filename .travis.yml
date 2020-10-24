@@ -9,7 +9,7 @@ git:
 env:
   global:
     - BALLERINA_INSTALLER_DEB=ballerina-linux-installer-x64-${BALLERINA_VERSION}.deb
-    - BALLERINA_INSTALLER_DEB_URL=https://dist.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
+    - BALLERINA_INSTALLER_DEB_URL=http://dist-dev.ballerina.io/downloads/${BALLERINA_VERSION}/${BALLERINA_INSTALLER_DEB}
 
 services:
   - docker
