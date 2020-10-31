@@ -38,3 +38,5 @@
 ### Resources
 
 - [Writing Secure Ballerina Code](https://ballerina.io/learn/writing-secure-ballerina-code/)
+- [Research Comparison on Ballerina Security Features/APIs](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
+- [Ballerina Authn/Authz Design - Swan Lake Release](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
