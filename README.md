@@ -7,6 +7,7 @@
 
   gtag('config', 'UA-69533863-9');
 </script>
+<link rel="shortcut icon" type="image/png" href="favicon.png">
 
 ## Dashboard
 
