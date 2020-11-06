@@ -32,26 +32,6 @@
 
 ---
 
-## Ballerina By Examples (BBEs)
-
-#### Language concepts -> Security
-
-- [crypto](https://ballerina.io/swan-lake/learn/by-example/crypto.html) | 
-[jwt-issue-validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html) |
-[url-encode-decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
-
-#### Working over the networks -> Access Control
-
-- [secured-service-with-basic-auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-basic-auth.html) |
-[secured-service-with-jwt-auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-jwt-auth.html) |
-[secured-service-with-oauth2](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-oauth2.html) |
-[secured-service-with-ldap](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-ldap.html) 
-- [secured-client-with-basic-auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-basic-auth.html) |
-[secured-client-with-jwt-auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-jwt-auth.html) |
-[secured-client-with-oauth2](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2.html)
-
----
-
 ## Resources
 
 #### Guides
@@ -95,3 +75,20 @@
 - [RFC 7517 - JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
 - [RFC 7516 - JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
 - [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
+
+#### Ballerina by Examples (BBEs)
+
+###### Language concepts -> Security
+
+- [Crypto](https://ballerina.io/swan-lake/learn/by-example/crypto.html)
+- [JWT Issue/Validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html)
+- [URL Encode/Decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
+
+###### Working over the networks -> Access Control
+- [Secured Service with Basic Auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-basic-auth.html)
+- [Secured Service with JWT Auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-jwt-auth.html)
+- [Secured Service with OAuth2](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-oauth2.html)
+- [Secured Service with LDAP](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-ldap.html) 
+- [Secured Client with Basic Auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-basic-auth.html)
+- [Secured Client with JWT Auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-jwt-auth.html)
+- [Secured Client with OAuth2](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2.html)
