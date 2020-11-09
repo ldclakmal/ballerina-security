@@ -74,6 +74,7 @@
 - [RFC 7518 - JSON Web Algorithms (JWA)](https://tools.ietf.org/html/rfc7518)
 - [RFC 7517 - JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
 - [RFC 7516 - JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
+- [RFC 7515 - JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
 - [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 
 #### Ballerina by Examples (BBEs)
