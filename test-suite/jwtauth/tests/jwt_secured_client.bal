@@ -11,7 +11,7 @@ jwt:OutboundJwtAuthProvider outboundJwtAuthProvider = new({
         keyAlias: "wso2carbon",
         keyPassword: "wso2carbon",
         keyStore: {
-            path: "src/resources/wso2-keystore.p12",
+            path: "resources/wso2-keystore.p12",
             password: "wso2carbon"
         }
     }
@@ -24,7 +24,7 @@ http:Client clientEP = new("https://localhost:9090", {
     },
     secureSocket: {
         trustStore: {
-            path: "src/resources/ballerina-truststore.p12",
+            path: "resources/ballerina-truststore.p12",
             password: "ballerina"
         }
     }

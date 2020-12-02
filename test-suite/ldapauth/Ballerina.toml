@@ -1,0 +1,4 @@
+[package]
+org = "ldclakmal"
+name = "ldapauth"
+version = "1.0.0"

@@ -12,7 +12,7 @@ listener http:Listener listenerEP = new(9090, config = {
     },
     secureSocket: {
         keyStore: {
-            path: "src/resources/ballerina-keystore.p12",
+            path: "resources/ballerina-keystore.p12",
             password: "ballerina"
         }
     }

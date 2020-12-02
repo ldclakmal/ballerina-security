@@ -9,7 +9,7 @@ jwt:InboundJwtAuthProvider jwtAuthProvider = new({
     trustStoreConfig: {
         certificateAlias: "wso2carbon",
         trustStore: {
-            path: "src/resources/wso2-truststore.p12",
+            path: "resources/wso2-truststore.p12",
             password: "wso2carbon"
         }
     }
@@ -22,7 +22,7 @@ listener http:Listener jwtListenerEP = new(9090, config = {
     },
     secureSocket: {
         keyStore: {
-            path: "src/resources/ballerina-keystore.p12",
+            path: "resources/ballerina-keystore.p12",
             password: "ballerina"
         }
     }
@@ -36,7 +36,7 @@ jwt:InboundJwtAuthProvider jwkAuthProvider = new({
         clientConfig: {
             secureSocket: {
                 trustStore: {
-                    path: "src/resources/ballerina-truststore.p12",
+                    path: "resources/ballerina-truststore.p12",
                     password: "ballerina"
                 }
             }
@@ -51,7 +51,7 @@ listener http:Listener jwkListenerEP = new(9091, config = {
     },
     secureSocket: {
         keyStore: {
-            path: "src/resources/ballerina-keystore.p12",
+            path: "resources/ballerina-keystore.p12",
             password: "ballerina"
         }
     }

@@ -8,17 +8,14 @@ auth:OutboundBasicAuthProvider outboundBasiAuthProvider = new({
     username: "admin",
     password: "admin"
 });
-http:BasicAuthHandler outboundBasicAuthHandler = new(outboundBasiAuthProvider);
 
 oauth2:IntrospectionServerConfig introspectionServerConfig = {
     url: "https://localhost:9443/oauth2/introspect",
     clientConfig: {
-        auth: {
-            authHandler: outboundBasicAuthHandler
-        },
+        customHeaders: {"Authorization": "Basic " + check outboundBasiAuthProvider.generateToken()},
         secureSocket: {
             trustStore: {
-                path: "src/resources/ballerina-truststore.p12",
+                path: "resources/ballerina-truststore.p12",
                 password: "ballerina"
             }
         }
@@ -33,7 +30,7 @@ listener http:Listener listenerEP = new(9090, {
     },
     secureSocket: {
         keyStore: {
-            path: "src/resources/ballerina-keystore.p12",
+            path: "resources/ballerina-keystore.p12",
             password: "ballerina"
         }
     }

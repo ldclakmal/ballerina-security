@@ -1,0 +1,4 @@
+[package]
+org = "ldclakmal"
+name = "basicauth"
+version = "1.0.0"

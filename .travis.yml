@@ -1,7 +1,7 @@
 language: ruby
 os: linux
 dist: xenial
-jdk: openjdk8
+jdk: openjdk11
 
 git:
   quiet: true
@@ -16,17 +16,17 @@ services:
 
 jobs:
   include:
-  - stage: Build
-    name: "ballerina build -c --skip-tests"
-    before_install:
-      - wget ${BALLERINA_INSTALLER_DEB_URL}
-    install:
-      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-      - sudo apt-get install -f
-    script:
-      - ballerina -v
-      - cd test-suite
-      - ballerina build -c --skip-tests || travis_terminate 1
+#  - stage: Build
+#    name: "ballerina build -c --skip-tests"
+#    before_install:
+#      - wget ${BALLERINA_INSTALLER_DEB_URL}
+#    install:
+#      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+#      - sudo apt-get install -f
+#    script:
+#      - ballerina -v
+#      - cd test-suite
+#      - ballerina build -c --skip-tests || travis_terminate 1
   - stage: Test
     name: "Crypto"
     before_install:
@@ -59,7 +59,7 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ballerina build -c auth.basic --b7a.config.file=src/auth.basic/users.toml || travis_terminate 1
+      - ballerina build -c basicauth --b7a.config.file=basicauth/users.toml || travis_terminate 1
       - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
       - ./scripts/auth.basic/test.sh || travis_terminate 1
   - name: "JWT Auth"
@@ -73,7 +73,7 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ballerina build -c auth.jwt || travis_terminate 1
+      - ballerina build -c jwtauth || travis_terminate 1
       - ./scripts/auth.jwt/docker.sh || travis_terminate 1
       - ./scripts/auth.jwt/ballerina.sh || travis_terminate 1
       - ./scripts/auth.jwt/test.sh || travis_terminate 1
@@ -89,7 +89,7 @@ jobs:
       - ballerina -v
       - cd test-suite
       - ./scripts/auth.oauth2/docker.sh || travis_terminate 1
-      - ballerina build -c auth.oauth2 || travis_terminate 1
+      - ballerina build -c oauth2 || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
   - name: "LDAP Auth"
@@ -103,6 +103,6 @@ jobs:
         - ballerina -v
         - cd test-suite
         - ./scripts/auth.ldap/docker.sh || travis_terminate 1
-        - ballerina build -c auth.ldap || travis_terminate 1
+        - ballerina build -c ldapauth || travis_terminate 1
         - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
         - ./scripts/auth.ldap/test.sh || travis_terminate 1

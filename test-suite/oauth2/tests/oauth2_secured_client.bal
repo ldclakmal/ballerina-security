@@ -10,7 +10,7 @@ oauth2:OutboundOAuth2Provider outboundOAuth2Provider = new({
     clientConfig: {
         secureSocket: {
             trustStore: {
-                path: "src/resources/wso2-truststore.p12",
+                path: "resources/wso2-truststore.p12",
                 password: "wso2carbon"
             }
         }
@@ -24,7 +24,7 @@ http:Client clientEP = new("https://localhost:9090", {
     },
     secureSocket: {
         trustStore: {
-            path: "src/resources/ballerina-truststore.p12",
+            path: "resources/ballerina-truststore.p12",
             password: "ballerina"
         }
     }

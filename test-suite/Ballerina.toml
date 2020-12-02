@@ -1,7 +1,0 @@
-[project]
-org-name = "ldclakmal"
-version = "1.0.0"
-authors = ["Chanaka Lakmal"]
-keywords = ["security", "basic-auth", "jwt-auth", "oauth2", "ldap-auth"]
-repository = "https://github.com/ldclakmal/ballerina-security-dashboard"
-license = ["Apache-2.0"]
