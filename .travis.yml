@@ -17,7 +17,7 @@ services:
 jobs:
   include:
   - stage: Build
-    name: "ballerina build -a -c --skip-tests"
+    name: "ballerina build -c --skip-tests"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
     install:
@@ -26,7 +26,7 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ballerina build -a -c --skip-tests || travis_terminate 1
+      - ballerina build -c --skip-tests || travis_terminate 1
   - stage: Test
     name: "Crypto"
     before_install:
