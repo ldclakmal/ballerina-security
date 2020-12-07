@@ -1,36 +1,14 @@
+import ballerina/auth;
 import ballerina/http;
-import ballerina/ldap;
 import ballerina/math;
 import ballerina/system;
 
-ldap:LdapConnectionConfig ldapConfig = {
-    domainName: "avix.lk",
-    connectionURL: "ldap://localhost:389",
-    connectionName: "cn=admin,dc=avix,dc=lk",
-    connectionPassword: "avix123",
-    userSearchBase: "ou=Users,dc=avix,dc=lk",
-    userEntryObjectClass: "inetOrgPerson",
-    userNameAttribute: "uid",
-    userNameSearchFilter: "(&(objectClass=inetOrgPerson)(uid=?))",
-    userNameListFilter: "(objectClass=inetOrgPerson)",
-    groupSearchBase: ["ou=Groups,dc=avix,dc=lk"],
-    groupEntryObjectClass: "groupOfNames",
-    groupNameAttribute: "cn",
-    groupNameSearchFilter: "(&(objectClass=groupOfNames)(cn=?))",
-    groupNameListFilter: "(objectClass=groupOfNames)",
-    membershipAttribute: "member",
-    userRolesCacheEnabled: true,
-    connectionPoolingEnabled: false,
-    connectionTimeoutInMillis: 5000,
-    readTimeoutInMillis: 60000,
-    retryAttempts: 3
-};
-ldap:InboundLdapAuthProvider ldapAuthProvider = new(ldapConfig, "openldap-server");
-http:BasicAuthHandler ldapAuthHandler = new(ldapAuthProvider);
+auth:InboundBasicAuthProvider basicAuthProvider = new;
+http:BasicAuthHandler basicAuthUserStoreHandler = new(basicAuthProvider);
 
 listener http:Listener listenerEP = new(9090, {
     auth: {
-        authHandlers: [ldapAuthHandler]
+        authHandlers: [basicAuthUserStoreHandler]
     },
     secureSocket: {
         keyStore: {
@@ -48,7 +26,7 @@ service processOrder on listenerEP {
     @http:ResourceConfig {
 	    path: "/view",
 	    auth: {
-            scopes: ["Developer"]
+            scopes: ["view-order"]
         }
 	}
     resource function viewOrders(http:Caller caller, http:Request req) {
@@ -66,7 +44,7 @@ service processOrder on listenerEP {
     @http:ResourceConfig {
         path: "/add",
         auth: {
-            scopes: ["Admin"]
+            scopes: ["add-order"]
         }
     }
     resource function addOrder(http:Caller caller, http:Request req) {

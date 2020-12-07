@@ -1,3 +1,3 @@
 echo -e "\nStarting Ballerina LDAP service:"
-ballerina run ldapauth &
+ballerina run packages/ldap &
 sleep 10s

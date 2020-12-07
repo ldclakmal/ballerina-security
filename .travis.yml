@@ -27,7 +27,7 @@ jobs:
       - ballerina -v
       - cd test-suite
       - ./scripts/crypto/setup.sh || travis_terminate 1
-      - ballerina build -c crypto || travis_terminate 1
+      - ballerina build -c packages/crypto || travis_terminate 1
   - name: "Encoding"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
@@ -38,7 +38,7 @@ jobs:
       - ballerina -v
       - cd test-suite
       - ./scripts/encoding/setup.sh || travis_terminate 1
-      - ballerina build -c encoding || travis_terminate 1
+      - ballerina build -c packages/encoding || travis_terminate 1
   - stage: Auth Test
     name: "Basic Auth - File Store"
     before_install:
@@ -49,9 +49,9 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ballerina build -c basicauth --b7a.config.file=basicauth/users.toml || travis_terminate 1
-      - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
-      - ./scripts/auth.basic/test.sh || travis_terminate 1
+      - ballerina build -c packages/auth --b7a.config.file=packages/auth/users.toml || travis_terminate 1
+      - ./scripts/auth.basic.userstore/ballerina.sh || travis_terminate 1
+      - ./scripts/auth.basic.userstore/test.sh || travis_terminate 1
   - name: "Basic Auth - LDAP Store"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
@@ -62,10 +62,10 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ./scripts/auth.ldap/docker.sh || travis_terminate 1
-      - ballerina build -c ldapauth || travis_terminate 1
-      - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
-      - ./scripts/auth.ldap/test.sh || travis_terminate 1
+      - ./scripts/auth.basic.ldap/docker.sh || travis_terminate 1
+      - ballerina build -c packages/ldap || travis_terminate 1
+      - ./scripts/auth.basic.ldap/ballerina.sh || travis_terminate 1
+      - ./scripts/auth.basic.ldap/test.sh || travis_terminate 1
   - name: "JWT Auth"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
@@ -77,7 +77,7 @@ jobs:
     script:
       - ballerina -v
       - cd test-suite
-      - ballerina build -c jwtauth || travis_terminate 1
+      - ballerina build -c packages/jwt || travis_terminate 1
       - ./scripts/auth.jwt/docker.sh || travis_terminate 1
       - ./scripts/auth.jwt/ballerina.sh || travis_terminate 1
       - ./scripts/auth.jwt/test.sh || travis_terminate 1
@@ -93,6 +93,6 @@ jobs:
       - ballerina -v
       - cd test-suite
       - ./scripts/auth.oauth2/docker.sh || travis_terminate 1
-      - ballerina build -c oauth2 || travis_terminate 1
+      - ballerina build -c packages/oauth2 || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1

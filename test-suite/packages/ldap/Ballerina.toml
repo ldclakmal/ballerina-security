@@ -1,4 +1,4 @@
 [package]
 org = "ldclakmal"
-name = "jwtauth"
+name = "ldap"
 version = "1.0.0"

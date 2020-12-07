@@ -3,8 +3,8 @@ import ballerina/http;
 import ballerina/test;
 
 auth:OutboundBasicAuthProvider outboundBasicAuthProvider = new({
-    username: "janedoe",
-    password: "janedoe123"
+    username: "alice",
+    password: "alice123"
 });
 http:BasicAuthHandler outboundBasicAuthHandler = new(outboundBasicAuthProvider);
 
@@ -21,7 +21,7 @@ http:Client clientEP = new("https://localhost:9090", {
 });
 
 @test:Config {}
-public function testLdapAuthSuccess() {
+public function testBasicAuthUserStoreSuccess() {
     var response = clientEP->get("/orders/view");
     if (response is http:Response) {
         var result = response.getJsonPayload();
