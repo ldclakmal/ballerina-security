@@ -16,7 +16,7 @@ services:
 
 jobs:
   include:
-  - stage: Test
+  - stage: BBE
     name: "Crypto"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
@@ -39,7 +39,8 @@ jobs:
       - cd test-suite
       - ./scripts/encoding/setup.sh || travis_terminate 1
       - ballerina build -c encoding || travis_terminate 1
-  - name: "Basic Auth"
+  - stage: Auth Test
+    name: "Basic Auth"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
     install:
