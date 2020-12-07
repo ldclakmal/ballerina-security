@@ -16,17 +16,6 @@ services:
 
 jobs:
   include:
-#  - stage: Build
-#    name: "ballerina build -c --skip-tests"
-#    before_install:
-#      - wget ${BALLERINA_INSTALLER_DEB_URL}
-#    install:
-#      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-#      - sudo apt-get install -f
-#    script:
-#      - ballerina -v
-#      - cd test-suite
-#      - ballerina build -c --skip-tests || travis_terminate 1
   - stage: Test
     name: "Crypto"
     before_install:
@@ -94,15 +83,15 @@ jobs:
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
   - name: "LDAP Auth"
     before_install:
-        - wget ${BALLERINA_INSTALLER_DEB_URL}
-        - docker pull osixia/openldap:1.3.0
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
+      - docker pull osixia/openldap:1.3.0
     install:
-        - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-        - sudo apt-get install -f
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+      - sudo apt-get install -f
     script:
-        - ballerina -v
-        - cd test-suite
-        - ./scripts/auth.ldap/docker.sh || travis_terminate 1
-        - ballerina build -c ldapauth || travis_terminate 1
-        - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
-        - ./scripts/auth.ldap/test.sh || travis_terminate 1
+      - ballerina -v
+      - cd test-suite
+      - ./scripts/auth.ldap/docker.sh || travis_terminate 1
+      - ballerina build -c ldapauth || travis_terminate 1
+      - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
+      - ./scripts/auth.ldap/test.sh || travis_terminate 1
