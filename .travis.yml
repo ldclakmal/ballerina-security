@@ -40,7 +40,7 @@ jobs:
       - ./scripts/encoding/setup.sh || travis_terminate 1
       - ballerina build -c encoding || travis_terminate 1
   - stage: Auth Test
-    name: "Basic Auth"
+    name: "Basic Auth - File Store"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
     install:
@@ -52,6 +52,20 @@ jobs:
       - ballerina build -c basicauth --b7a.config.file=basicauth/users.toml || travis_terminate 1
       - ./scripts/auth.basic/ballerina.sh || travis_terminate 1
       - ./scripts/auth.basic/test.sh || travis_terminate 1
+  - name: "Basic Auth - LDAP Store"
+    before_install:
+      - wget ${BALLERINA_INSTALLER_DEB_URL}
+      - docker pull osixia/openldap:1.3.0
+    install:
+      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
+      - sudo apt-get install -f
+    script:
+      - ballerina -v
+      - cd test-suite
+      - ./scripts/auth.ldap/docker.sh || travis_terminate 1
+      - ballerina build -c ldapauth || travis_terminate 1
+      - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
+      - ./scripts/auth.ldap/test.sh || travis_terminate 1
   - name: "JWT Auth"
     before_install:
       - wget ${BALLERINA_INSTALLER_DEB_URL}
@@ -82,17 +96,3 @@ jobs:
       - ballerina build -c oauth2 || travis_terminate 1
       - ./scripts/auth.oauth2/ballerina.sh || travis_terminate 1
       - ./scripts/auth.oauth2/test.sh || travis_terminate 1
-  - name: "LDAP Auth"
-    before_install:
-      - wget ${BALLERINA_INSTALLER_DEB_URL}
-      - docker pull osixia/openldap:1.3.0
-    install:
-      - sudo dpkg -i ${BALLERINA_INSTALLER_DEB}
-      - sudo apt-get install -f
-    script:
-      - ballerina -v
-      - cd test-suite
-      - ./scripts/auth.ldap/docker.sh || travis_terminate 1
-      - ballerina build -c ldapauth || travis_terminate 1
-      - ./scripts/auth.ldap/ballerina.sh || travis_terminate 1
-      - ./scripts/auth.ldap/test.sh || travis_terminate 1
