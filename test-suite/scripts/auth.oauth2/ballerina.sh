@@ -1,3 +1,3 @@
 echo -e "\nStarting Ballerina OAuth2 service:"
-ballerina run packages/oauth2 &
+bal run packages/oauth2 &
 sleep 10s
