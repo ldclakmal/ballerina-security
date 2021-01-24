@@ -1,20 +1,14 @@
-import ballerina/auth;
 import ballerina/http;
 import ballerina/test;
 
-auth:OutboundBasicAuthProvider outboundBasicAuthProvider = new({
-    username: "janedoe",
-    password: "janedoe123"
-});
-http:BasicAuthHandler outboundBasicAuthHandler = new(outboundBasicAuthProvider);
-
 http:Client clientEP = new("https://localhost:9090", {
     auth: {
-        authHandler: outboundBasicAuthHandler
+        username: "janedoe",
+        password: "janedoe123"
     },
     secureSocket: {
         trustStore: {
-            path: "resources/ballerina-truststore.p12",
+            path: "../resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }

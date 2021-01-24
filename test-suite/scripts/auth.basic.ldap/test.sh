@@ -1,4 +1,4 @@
-source scripts/common/validate.sh
+source ../scripts/common/validate.sh
 
 echo -e "\nTest1: Authn Failure:"
 echo -e "\nInvoking Ballerina LDAP Auth service:"
