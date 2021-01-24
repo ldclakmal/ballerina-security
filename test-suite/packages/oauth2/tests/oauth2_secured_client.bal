@@ -1,30 +1,24 @@
 import ballerina/http;
-import ballerina/oauth2;
 import ballerina/test;
-
-oauth2:OutboundOAuth2Provider outboundOAuth2Provider = new({
-    tokenUrl: "https://localhost:9443/oauth2/token",
-    clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
-    clientSecret: "PJz0UhTJMrHOo68QQNpvnqAY_3Aa",
-    scopes: ["view-order"],
-    clientConfig: {
-        secureSocket: {
-            trustStore: {
-                path: "resources/wso2-truststore.p12",
-                password: "wso2carbon"
-            }
-        }
-    }
-});
-http:BearerAuthHandler outboundOAuth2Handler = new(outboundOAuth2Provider);
 
 http:Client clientEP = new("https://localhost:9090", {
     auth: {
-        authHandler: outboundOAuth2Handler
+        tokenUrl: "https://localhost:9443/oauth2/token",
+        clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
+        clientSecret: "PJz0UhTJMrHOo68QQNpvnqAY_3Aa",
+        scopes: ["view-order"],
+        clientConfig: {
+            secureSocket: {
+                trustStore: {
+                    path: ".../resources/wso2Truststore.p12",
+                    password: "wso2carbon"
+                }
+            }
+        }
     },
     secureSocket: {
         trustStore: {
-            path: "resources/ballerina-truststore.p12",
+            path: "../resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }

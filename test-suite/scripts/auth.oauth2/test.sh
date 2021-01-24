@@ -1,4 +1,4 @@
-source scripts/common/validate.sh
+source ../scripts/common/validate.sh
 
 echo -e "\nRequesting access token from token endpoint:"
 response=$(curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
