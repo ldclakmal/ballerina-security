@@ -1,3 +1,3 @@
 echo -e "\nStarting Ballerina JWT service:"
-bal run packages/jwt &
+bal run jwt &
 sleep 10s

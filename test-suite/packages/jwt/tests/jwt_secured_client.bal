@@ -1,30 +1,24 @@
 import ballerina/http;
-import ballerina/jwt;
 import ballerina/test;
-
-jwt:OutboundJwtAuthProvider outboundJwtAuthProvider = new({
-    username: "wso2is",
-    issuer: "wso2is",
-    audience: ["3VTwFk7u1i366wzmvpJ_LZlfAV4a"],
-    customClaims: {"scope": "view-order"},
-    keyStoreConfig: {
-        keyAlias: "wso2carbon",
-        keyPassword: "wso2carbon",
-        keyStore: {
-            path: "resources/wso2-keystore.p12",
-            password: "wso2carbon"
-        }
-    }
-});
-http:BearerAuthHandler outboundJwtAuthHandler = new(outboundJwtAuthProvider);
 
 http:Client clientEP = new("https://localhost:9090", {
     auth: {
-        authHandler: outboundJwtAuthHandler
+        username: "wso2is",
+        issuer: "wso2is",
+        audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+        customClaims: {"scope": "view-order"},
+        keyStoreConfig: {
+            keyAlias: "wso2carbon",
+            keyPassword: "wso2carbon",
+            keyStore: {
+                path: "../resources/wso2Keystore.p12",
+                password: "wso2carbon"
+            }
+        }
     },
     secureSocket: {
         trustStore: {
-            path: "resources/ballerina-truststore.p12",
+            path: "../resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }

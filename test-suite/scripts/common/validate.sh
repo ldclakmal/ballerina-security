@@ -5,19 +5,19 @@ assertNotEmpty() {
 }
 
 assertAuthnFailure() {
-  if [[ $1 != *"Authentication"* ]]; then
+  if [[ $2 != "401" ]]; then
     exit 1
   fi
 }
 
 assertAuthzFailure() {
-  if [[ $1 != *"Authorization"* ]]; then
+  if [[ $2 != "403" ]]; then
     exit 1
   fi
 }
 
 assertSuccess() {
-  if [[ $1 != *"items"* ]]; then
+  if [[ $2 != "200" ]]; then
     exit 1
   fi
 }

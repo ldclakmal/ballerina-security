@@ -1,100 +1,120 @@
 import ballerina/http;
-import ballerina/jwt;
-import ballerina/math;
-import ballerina/system;
-
-jwt:InboundJwtAuthProvider jwtAuthProvider = new({
-    issuer: "wso2is",
-    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-    trustStoreConfig: {
-        certificateAlias: "wso2carbon",
-        trustStore: {
-            path: "resources/wso2-truststore.p12",
-            password: "wso2carbon"
-        }
-    }
-});
-http:BearerAuthHandler jwtAuthHandler = new(jwtAuthProvider);
+import ballerina/random;
+import ballerina/uuid;
 
 listener http:Listener jwtListenerEP = new(9090, config = {
-    auth: {
-        authHandlers: [jwtAuthHandler]
-    },
     secureSocket: {
         keyStore: {
-            path: "resources/ballerina-keystore.p12",
+            path: "../resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
 });
-
-jwt:InboundJwtAuthProvider jwkAuthProvider = new({
-    issuer: "wso2is",
-    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-    jwksConfig: {
-        url: "https://localhost:9443/oauth2/jwks",
-        clientConfig: {
-            secureSocket: {
-                trustStore: {
-                    path: "resources/ballerina-truststore.p12",
-                    password: "ballerina"
-                }
-            }
-        }
-    }
-});
-http:BearerAuthHandler jwkAuthHandler = new(jwkAuthProvider);
 
 listener http:Listener jwkListenerEP = new(9091, config = {
-    auth: {
-        authHandlers: [jwkAuthHandler]
-    },
     secureSocket: {
         keyStore: {
-            path: "resources/ballerina-keystore.p12",
+            path: "../resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
 });
 
-@http:ServiceConfig {
-	basePath: "/orders"
-}
-service processOrder on jwtListenerEP, jwkListenerEP {
+service /orders on jwtListenerEP, jwkListenerEP {
 
     @http:ResourceConfig {
-	    path: "/view",
-	    auth: {
-            scopes: ["view-order"]
-        }
+	    auth: [
+	        {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    trustStoreConfig: {
+                        certificateAlias: "wso2carbon",
+                        trustStore: {
+                            path: "../resources/wso2Truststore.p12",
+                            password: "wso2carbon"
+                        }
+                    }
+                },
+                scopes: ["view-order"]
+            },
+            {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    jwksConfig: {
+                        url: "https://localhost:9443/oauth2/jwks",
+                        clientConfig: {
+                            secureSocket: {
+                                trustStore: {
+                                    path: "../resources/ballerinaTruststore.p12",
+                                    password: "ballerina"
+                                }
+                            }
+                        }
+                    }
+                },
+                scopes: ["view-order"]
+            }
+        ]
 	}
-    resource function viewOrders(http:Caller caller, http:Request req) {
+    resource function get view() returns json {
         json inventory = {
             "items": [
                 {
-                    "code": system:uuid(),
-                    "qty" : <int>math:randomInRange(1, 100)
+                    "code": uuid:createType4AsString(),
+                    "qty" : checkpanic random:createIntInRange(1, 100)
                 }
             ]
         };
-        checkpanic caller->respond(inventory);
+        return inventory;
     }
 
     @http:ResourceConfig {
-        path: "/add",
-        auth: {
-            scopes: ["add-order"]
-        }
+        auth: [
+            {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    trustStoreConfig: {
+                        certificateAlias: "wso2carbon",
+                        trustStore: {
+                            path: "../resources/wso2Truststore.p12",
+                            password: "wso2carbon"
+                        }
+                    }
+                },
+                scopes: ["add-order"]
+            },
+            {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    jwksConfig: {
+                        url: "https://localhost:9443/oauth2/jwks",
+                        clientConfig: {
+                            secureSocket: {
+                                trustStore: {
+                                    path: "../resources/ballerinaTruststore.p12",
+                                    password: "ballerina"
+                                }
+                            }
+                        }
+                    }
+                },
+                scopes: ["add-order"]
+            }
+        ]
     }
-    resource function addOrder(http:Caller caller, http:Request req) {
+    resource function get add() returns json {
         json inventory = {
             "items": [
                 {
-                    "code": system:uuid(),
-                    "qty" : <int>math:randomInRange(1, 100)
+                    "code": uuid:createType4AsString(),
+                    "qty" : checkpanic random:createIntInRange(1, 100)
                 }
             ]
         };
-        checkpanic caller->respond(inventory);
+        return inventory;
     }
 }
