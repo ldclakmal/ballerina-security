@@ -1,4 +1,12 @@
-source ../scripts/common/validate.sh
+source scripts/validate.sh
+
+echo -e "\nStarting WSO2IS STS:"
+docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &
+sleep 90s
+
+echo -e "\nStarting Ballerina OAuth2 service:"
+bal run packages/oauth2 &
+sleep 10s
 
 echo -e "\nRequesting access token from token endpoint:"
 response=$(curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \

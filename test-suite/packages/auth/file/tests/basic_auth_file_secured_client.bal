@@ -3,12 +3,12 @@ import ballerina/test;
 
 http:Client clientEP = new("https://localhost:9090", {
     auth: {
-        username: "janedoe",
-        password: "janedoe123"
+        username: "alice",
+        password: "alice123"
     },
     secureSocket: {
         trustStore: {
-            path: "../resources/ballerinaTruststore.p12",
+            path: "resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }

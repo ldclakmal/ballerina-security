@@ -5,7 +5,7 @@ import ballerina/uuid;
 listener http:Listener jwtListenerEP = new(9090, config = {
     secureSocket: {
         keyStore: {
-            path: "../resources/ballerinaKeystore.p12",
+            path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
@@ -14,7 +14,7 @@ listener http:Listener jwtListenerEP = new(9090, config = {
 listener http:Listener jwkListenerEP = new(9091, config = {
     secureSocket: {
         keyStore: {
-            path: "../resources/ballerinaKeystore.p12",
+            path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
@@ -31,7 +31,7 @@ service /orders on jwtListenerEP, jwkListenerEP {
                     trustStoreConfig: {
                         certificateAlias: "wso2carbon",
                         trustStore: {
-                            path: "../resources/wso2Truststore.p12",
+                            path: "resources/wso2Truststore.p12",
                             password: "wso2carbon"
                         }
                     }
@@ -47,7 +47,7 @@ service /orders on jwtListenerEP, jwkListenerEP {
                         clientConfig: {
                             secureSocket: {
                                 trustStore: {
-                                    path: "../resources/ballerinaTruststore.p12",
+                                    path: "resources/ballerinaTruststore.p12",
                                     password: "ballerina"
                                 }
                             }
@@ -79,7 +79,7 @@ service /orders on jwtListenerEP, jwkListenerEP {
                     trustStoreConfig: {
                         certificateAlias: "wso2carbon",
                         trustStore: {
-                            path: "../resources/wso2Truststore.p12",
+                            path: "resources/wso2Truststore.p12",
                             password: "wso2carbon"
                         }
                     }
@@ -95,7 +95,7 @@ service /orders on jwtListenerEP, jwkListenerEP {
                         clientConfig: {
                             secureSocket: {
                                 trustStore: {
-                                    path: "../resources/ballerinaTruststore.p12",
+                                    path: "resources/ballerinaTruststore.p12",
                                     password: "ballerina"
                                 }
                             }

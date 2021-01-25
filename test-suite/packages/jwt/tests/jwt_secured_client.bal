@@ -11,14 +11,14 @@ http:Client clientEP = new("https://localhost:9090", {
             keyAlias: "wso2carbon",
             keyPassword: "wso2carbon",
             keyStore: {
-                path: "../resources/wso2Keystore.p12",
+                path: "resources/wso2Keystore.p12",
                 password: "wso2carbon"
             }
         }
     },
     secureSocket: {
         trustStore: {
-            path: "../resources/ballerinaTruststore.p12",
+            path: "resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }

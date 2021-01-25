@@ -1,4 +1,4 @@
 [package]
 org = "ldclakmal"
-name = "ldap"
+name = "auth"
 version = "1.0.0"

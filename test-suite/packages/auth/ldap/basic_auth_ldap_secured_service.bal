@@ -5,7 +5,7 @@ import ballerina/uuid;
 listener http:Listener listenerEP = new(9090, {
     secureSocket: {
         keyStore: {
-            path: "../resources/ballerinaKeystore.p12",
+            path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }

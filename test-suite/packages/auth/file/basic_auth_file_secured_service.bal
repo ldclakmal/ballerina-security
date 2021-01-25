@@ -16,17 +16,9 @@ service /orders on listenerEP {
     @http:ResourceConfig {
 	    auth: [
 	        {
-                oauth2IntrospectionConfig: {
-                    url: "https://localhost:9443/oauth2/introspect",
-                    clientConfig: {
-                        customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
-                        secureSocket: {
-                            trustStore: {
-                                path: "resources/ballerinaTruststore.p12",
-                                password: "ballerina"
-                            }
-                        }
-                    }
+                fileUserStoreConfig: {
+                    tableName: "b7a.users",
+                    scopeKey: "scopes"
                 },
                 scopes: ["view-order"]
             }
@@ -46,18 +38,10 @@ service /orders on listenerEP {
 
     @http:ResourceConfig {
         auth: [
-            {
-                oauth2IntrospectionConfig: {
-                    url: "https://localhost:9443/oauth2/introspect",
-                    clientConfig: {
-                        customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
-                        secureSocket: {
-                            trustStore: {
-                                path: "resources/ballerinaTruststore.p12",
-                                password: "ballerina"
-                            }
-                        }
-                    }
+	        {
+                fileUserStoreConfig: {
+                    tableName: "b7a.users",
+                    scopeKey: "scopes"
                 },
                 scopes: ["add-order"]
             }
