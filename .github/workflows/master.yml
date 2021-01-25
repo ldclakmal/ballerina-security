@@ -73,9 +73,9 @@ jobs:
       - name: Test
         working-directory: test-suite/packages
         run: |
-          ../scripts/auth.basic.ldap/docker.sh
-          ../scripts/auth.basic.ldap/ballerina.sh
-          ../scripts/auth.basic.ldap/test.sh
+          ../scripts/auth/ldap/docker.sh
+          ../scripts/auth/ldap/ballerina.sh
+          ../scripts/auth/ldap/test.sh
   jwt:
     name: JWT Auth
     runs-on: ubuntu-latest
@@ -98,9 +98,9 @@ jobs:
       - name: Test
         working-directory: test-suite/packages
         run: |
-          ../scripts/auth.jwt/docker.sh
-          ../scripts/auth.jwt/ballerina.sh
-          ../scripts/auth.jwt/test.sh
+          ../scripts/jwt/docker.sh
+          ../scripts/jwt/ballerina.sh
+          ../scripts/jwt/test.sh
   oauth2:
     name: OAuth2
     runs-on: ubuntu-latest
@@ -123,6 +123,6 @@ jobs:
       - name: Test
         working-directory: test-suite/packages
         run: |
-          ../scripts/auth.jwt/docker.sh
-          ../scripts/auth.jwt/ballerina.sh
-          ../scripts/auth.jwt/test.sh
+          ../scripts/oauth2/docker.sh
+          ../scripts/oauth2/ballerina.sh
+          ../scripts/oauth2/test.sh
