@@ -28,11 +28,13 @@ service /orders on jwtListenerEP, jwkListenerEP {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-                    trustStoreConfig: {
-                        certificateAlias: "wso2carbon",
-                        trustStore: {
-                            path: "resources/wso2Truststore.p12",
-                            password: "wso2carbon"
+                    signatureConfig: {
+                        trustStoreConfig: {
+                            certAlias: "wso2carbon",
+                            trustStore: {
+                                path: "resources/wso2Truststore.p12",
+                                password: "wso2carbon"
+                            }
                         }
                     }
                 },
@@ -42,13 +44,15 @@ service /orders on jwtListenerEP, jwkListenerEP {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-                    jwksConfig: {
-                        url: "https://localhost:9443/oauth2/jwks",
-                        clientConfig: {
-                            secureSocket: {
-                                trustStore: {
-                                    path: "resources/ballerinaTruststore.p12",
-                                    password: "ballerina"
+                    signatureConfig: {
+                        jwksConfig: {
+                            url: "https://localhost:9443/oauth2/jwks",
+                            clientConfig: {
+                                secureSocket: {
+                                    trustStore: {
+                                        path: "resources/ballerinaTruststore.p12",
+                                        password: "ballerina"
+                                    }
                                 }
                             }
                         }
@@ -76,11 +80,13 @@ service /orders on jwtListenerEP, jwkListenerEP {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-                    trustStoreConfig: {
-                        certificateAlias: "wso2carbon",
-                        trustStore: {
-                            path: "resources/wso2Truststore.p12",
-                            password: "wso2carbon"
+                    signatureConfig: {
+                        trustStoreConfig: {
+                            certAlias: "wso2carbon",
+                            trustStore: {
+                                path: "resources/wso2Truststore.p12",
+                                password: "wso2carbon"
+                            }
                         }
                     }
                 },
@@ -90,13 +96,15 @@ service /orders on jwtListenerEP, jwkListenerEP {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
-                    jwksConfig: {
-                        url: "https://localhost:9443/oauth2/jwks",
-                        clientConfig: {
-                            secureSocket: {
-                                trustStore: {
-                                    path: "resources/ballerinaTruststore.p12",
-                                    password: "ballerina"
+                    signatureConfig: {
+                        jwksConfig: {
+                            url: "https://localhost:9443/oauth2/jwks",
+                            clientConfig: {
+                                secureSocket: {
+                                    trustStore: {
+                                        path: "resources/ballerinaTruststore.p12",
+                                        password: "ballerina"
+                                    }
                                 }
                             }
                         }
