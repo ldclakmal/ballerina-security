@@ -6,7 +6,7 @@ on:
 
 jobs:
   crypto:
-    name: Crypto - BBE
+    name: BBE - Crypto
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -29,7 +29,7 @@ jobs:
         run: |
           scripts/bbe_crypto.sh
   encoding:
-    name: Encoding - BBE
+    name: BBE - Encoding
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -52,7 +52,7 @@ jobs:
         run: |
           scripts/bbe_encoding.sh
 #  auth-file:
-#    name: Basic Auth - File
+#    name: Test - Basic Auth - File
 #    runs-on: ubuntu-latest
 #    env:
 #      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -76,7 +76,7 @@ jobs:
 #        run: |
 #          scripts/test_basic_auth_file.sh
   auth-ldap:
-    name: Basic Auth - LDAP
+    name: Test - Basic Auth - LDAP
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -100,7 +100,7 @@ jobs:
         run: |
           scripts/test_basic_auth_ldap.sh
   jwt:
-    name: JWT Auth
+    name: Test - JWT Auth
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -124,7 +124,7 @@ jobs:
         run: |
           scripts/test_jwt_auth.sh
   oauth2:
-    name: OAuth2
+    name: Test - OAuth2
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
