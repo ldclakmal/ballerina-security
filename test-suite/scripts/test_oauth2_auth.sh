@@ -5,7 +5,7 @@ docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &
 sleep 90s
 
 echo -e "\nStarting Ballerina OAuth2 service:"
-bal run packages/oauth2 &
+bal run packages/test.auth.oauth2 &
 sleep 10s
 
 echo -e "\nRequesting access token from token endpoint:"

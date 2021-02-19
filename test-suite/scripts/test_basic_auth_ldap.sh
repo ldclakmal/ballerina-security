@@ -5,7 +5,7 @@ docker-compose -f scripts/resources/docker-compose.yml up &
 sleep 30s
 
 echo -e "\nStarting Ballerina LDAP service:"
-bal run packages/auth/ldap &
+bal run packages/test.auth.basic/ldap &
 sleep 10s
 
 echo -e "\nTest1: Authn Failure:"

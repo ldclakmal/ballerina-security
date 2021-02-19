@@ -27,7 +27,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/crypto_test.sh
+          scripts/bbe_crypto.sh
   encoding:
     name: Encoding - BBE
     runs-on: ubuntu-latest
@@ -50,7 +50,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/encoding_test.sh
+          scripts/bbe_encoding.sh
 #  auth-file:
 #    name: Basic Auth - File
 #    runs-on: ubuntu-latest
@@ -74,7 +74,7 @@ jobs:
 #      - name: Test
 #        working-directory: test-suite
 #        run: |
-#          scripts/auth_file_test.sh
+#          scripts/test_basic_auth_file.sh
   auth-ldap:
     name: Basic Auth - LDAP
     runs-on: ubuntu-latest
@@ -98,7 +98,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/auth_ldap_test.sh
+          scripts/test_basic_auth_ldap.sh
   jwt:
     name: JWT Auth
     runs-on: ubuntu-latest
@@ -122,7 +122,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/jwt_test.sh
+          scripts/test_jwt_auth.sh
   oauth2:
     name: OAuth2
     runs-on: ubuntu-latest
@@ -146,4 +146,4 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/oauth2_test.sh
+          scripts/test_oauth2_auth.sh
