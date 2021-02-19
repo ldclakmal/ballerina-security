@@ -23,21 +23,21 @@ for port in 9090 9091
 do
   echo -e "\nTest1: Authn Failure:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:$port/orders/view)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:$port/orders$port/view)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertAuthnFailure $response
 
   echo -e "\nTest2: Authn Success - Authz Failure:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders/add)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders$port/add)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertAuthzFailure $response
 
   echo -e "\nTest3: Authn Success - Authz Success:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders/view)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders$port/view)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertSuccess $response
