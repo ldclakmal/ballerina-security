@@ -51,7 +51,30 @@ jobs:
         working-directory: test-suite
         run: |
           scripts/bbe_encoding.sh
-#  auth-file:
+  jwt:
+    name: BBE - JWT Issue/Validate
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite
+        run: |
+          scripts/bbe_jwt.sh
+#  test-basic-auth-file:
 #    name: Test - Basic Auth - File
 #    runs-on: ubuntu-latest
 #    env:
@@ -75,7 +98,7 @@ jobs:
 #        working-directory: test-suite
 #        run: |
 #          scripts/test_basic_auth_file.sh
-  auth-ldap:
+  test-basic-auth-ldap:
     name: Test - Basic Auth - LDAP
     runs-on: ubuntu-latest
     env:
@@ -99,7 +122,7 @@ jobs:
         working-directory: test-suite
         run: |
           scripts/test_basic_auth_ldap.sh
-  jwt:
+  test-jwt-auth:
     name: Test - JWT Auth
     runs-on: ubuntu-latest
     env:
@@ -123,7 +146,7 @@ jobs:
         working-directory: test-suite
         run: |
           scripts/test_jwt_auth.sh
-  oauth2:
+  test-oauth2-auth:
     name: Test - OAuth2
     runs-on: ubuntu-latest
     env:
