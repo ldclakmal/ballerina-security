@@ -9,6 +9,8 @@
 </script>
 <link rel="shortcut icon" type="image/png" href="favicon.png?v=1.0">
 
+![Ballerina](./img/ballerina-cover.png)
+
 ## Dashboard
 
 #### Security Modules
