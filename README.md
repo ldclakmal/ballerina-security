@@ -7,7 +7,7 @@
 
   gtag('config', 'UA-69533863-9');
 </script>
-<link rel="shortcut icon" type="image/png" href="favicon.png?v=1.0">
+<link rel="shortcut icon" type="image/png" href="img/favicon.png?v=1.0">
 
 ![Ballerina](./img/ballerina-cover.png)
 
