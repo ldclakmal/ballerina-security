@@ -1,4 +1,4 @@
-![Test Security Modules](https://github.com/ldclakmal/ballerina-security-dashboard/workflows/Test%20Security%20Modules/badge.svg)
+![Test Suite](https://github.com/ldclakmal/ballerina-security/workflows/Test%20Suite/badge.svg)
 
 # Ballerina Security Test Suite
 

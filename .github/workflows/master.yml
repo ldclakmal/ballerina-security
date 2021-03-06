@@ -1,4 +1,4 @@
-name: Test Security Modules
+name: Test Suite
 
 on:
   push:
