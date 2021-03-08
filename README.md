@@ -135,6 +135,3 @@
 [task]: https://github.com/ballerina-platform/module-ballerina-task
 [time]: https://github.com/ballerina-platform/module-ballerina-time
 [uuid]: https://github.com/ballerina-platform/module-ballerina-uuid
-
----
-> Source: [https://github.com/ldclakmal/ballerina-security](https://github.com/ldclakmal/ballerina-security)
