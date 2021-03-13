@@ -1,7 +1,7 @@
 source scripts/validate.sh
 
 echo -e "\nStarting Ballerina Basic Auth service:"
-bal run packages/test.auth.basic/file --b7a.config.file=packages/test.auth.basic/file/users.toml &
+bal run packages/test.auth.basic/file &
 sleep 10s
 
 echo -e "\nTest1: Authn Failure:"

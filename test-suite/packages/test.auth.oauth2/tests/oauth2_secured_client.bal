@@ -9,7 +9,7 @@ http:Client clientEP = new("https://localhost:9090", {
         scopes: ["view-order"],
         clientConfig: {
             secureSocket: {
-                trustStore: {
+                cert: {
                     path: ".resources/wso2Truststore.p12",
                     password: "wso2carbon"
                 }
@@ -17,7 +17,7 @@ http:Client clientEP = new("https://localhost:9090", {
         }
     },
     secureSocket: {
-        trustStore: {
+        cert: {
             path: "resources/ballerinaTruststore.p12",
             password: "ballerina"
         }

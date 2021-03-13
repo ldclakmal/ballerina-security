@@ -7,7 +7,7 @@ http:Client clientEP = new("https://localhost:9090", {
         password: "alice123"
     },
     secureSocket: {
-        trustStore: {
+        cert: {
             path: "resources/ballerinaTruststore.p12",
             password: "ballerina"
         }

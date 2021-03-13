@@ -73,15 +73,16 @@
 - [URL Encode/Decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
 
 ###### Working over the networks -> Access Control
-- [Secured Service with Basic Auth LDAP User Store](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-basic-auth-ldap-user-store.html)
-- [Secured Service with JWT Auth](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-jwt-auth.html)
-- [Secured Service with OAuth2](https://ballerina.io/swan-lake/learn/by-example/secured-service-with-oauth2.html)
-- [Secured Client with Basic Auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-basic-auth.html)
-- [Secured Client with Bearer Token Auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-bearer-token-auth.html)
-- [Secured Client with Self Signed JWT Auth](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-self-signed-jwt-auth.html)
-- [Secured Client with OAuth2 Client Credentials Grant Type](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2-client-credentials-grant-type.html)
-- [Secured Client with OAuth2 Password Grant Type](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2-password-grant-type.html)
-- [Secured Client with OAuth2 Direct Token Type](https://ballerina.io/swan-lake/learn/by-example/secured-client-with-oauth2-direct-token-type.html)
+- [HTTP Service with Basic Auth File User Store](https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-file-user-store.html)
+- [HTTP Service with Basic Auth LDAP User Store](https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-ldap-user-store.html)
+- [HTTP Service with JWT Auth](https://ballerina.io/swan-lake/learn/by-example/http-service-with-jwt-auth.html)
+- [HTTP Service with OAuth2](https://ballerina.io/swan-lake/learn/by-example/http-service-with-oauth2.html)
+- [HTTP Client with Basic Auth](https://ballerina.io/swan-lake/learn/by-example/http-client-with-basic-auth.html)
+- [HTTP Client with Bearer Token Auth](https://ballerina.io/swan-lake/learn/by-example/http-client-with-bearer-token-auth.html)
+- [HTTP Client with Self Signed JWT Auth](https://ballerina.io/swan-lake/learn/by-example/http-client-with-self-signed-jwt-auth.html)
+- [HTTP Client with OAuth2 Client Credentials Grant Type](https://ballerina.io/swan-lake/learn/by-example/http-client-with-oauth2-client-credentials-grant-type.html)
+- [HTTP Client with OAuth2 Password Grant Type](https://ballerina.io/swan-lake/learn/by-example/http-client-with-oauth2-password-grant-type.html)
+- [HTTP Client with OAuth2 Direct Token Type](https://ballerina.io/swan-lake/learn/by-example/http-client-with-oauth2-direct-token-type.html)
 
 --- 
 ## Ballerina Security Dashboard

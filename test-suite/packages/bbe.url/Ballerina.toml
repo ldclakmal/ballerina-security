@@ -1,4 +1,4 @@
 [package]
 org = "ldclakmal"
-name = "encoding"
+name = "url"
 version = "1.0.0"

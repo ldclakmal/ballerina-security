@@ -4,7 +4,7 @@ import ballerina/uuid;
 
 listener http:Listener jwtListenerEP = new(9090, config = {
     secureSocket: {
-        keyStore: {
+        key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
@@ -100,7 +100,7 @@ service /orders9091 on jwkListenerEP {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    trustStore: {
+                                    cert: {
                                         path: "resources/ballerinaTruststore.p12",
                                         password: "ballerina"
                                     }
@@ -136,7 +136,7 @@ service /orders9091 on jwkListenerEP {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    trustStore: {
+                                    cert: {
                                         path: "resources/ballerinaTruststore.p12",
                                         password: "ballerina"
                                     }

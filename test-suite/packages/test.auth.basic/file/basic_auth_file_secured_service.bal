@@ -4,7 +4,7 @@ import ballerina/uuid;
 
 listener http:Listener listenerEP = new(9090, {
     secureSocket: {
-        keyStore: {
+        key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
@@ -16,10 +16,7 @@ service /orders on listenerEP {
     @http:ResourceConfig {
 	    auth: [
 	        {
-                fileUserStoreConfig: {
-                    tableName: "b7a.users",
-                    scopeKey: "scopes"
-                },
+                fileUserStoreConfig: {},
                 scopes: ["view-order"]
             }
         ]
@@ -39,10 +36,7 @@ service /orders on listenerEP {
     @http:ResourceConfig {
         auth: [
 	        {
-                fileUserStoreConfig: {
-                    tableName: "b7a.users",
-                    scopeKey: "scopes"
-                },
+                fileUserStoreConfig: {},
                 scopes: ["add-order"]
             }
         ]
