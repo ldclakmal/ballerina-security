@@ -6,7 +6,17 @@ This is an automated Ballerina security test suite which contains authentication
 
 ### Secured services
 
-#### 1. Basic Auth - LDAP user store
+#### 1. Basic Auth - File user store
+
+##### Prerequisites:
+- [Ballerina](https://ballerina.io/downloads/)
+
+##### Steps:
+1. User configurations are defined in `Config.toml`
+2. Ballerina service is secured with Basic Auth with file user store.
+3. CURL client send requests to Ballerina service.
+
+#### 2. Basic Auth - LDAP user store
 
 ##### Prerequisites:
 - [Ballerina](https://ballerina.io/downloads/)
@@ -15,16 +25,6 @@ This is an automated Ballerina security test suite which contains authentication
 ##### Steps:
 1. User configurations are provided to OpenLDAP server with `.ldif`
 2. Ballerina service is secured with Basic Auth with LDAP user store. Inbound tokens are validated with the OpenLDAP server.
-3. CURL client send requests to Ballerina service.
-
-#### 2. Basic Auth - File user store
-
-##### Prerequisites:
-- [Ballerina](https://ballerina.io/downloads/)
-
-##### Steps:
-1. User configurations are defined in `users.toml`
-2. Ballerina service is secured with Basic Auth with File user store.
 3. CURL client send requests to Ballerina service.
     
 #### 3. JWT Auth
