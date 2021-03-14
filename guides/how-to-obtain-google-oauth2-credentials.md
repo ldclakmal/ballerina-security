@@ -15,6 +15,7 @@
 10. On the left side of the window, under **Step 1 - Select & authorize APIs**, select the required Google API scopes, and then click **Authorize APIs**.
 11. When you receive your _Authorization Code_, click **Exchange _Authorization Code_ for tokens** to obtain the _Refresh Token_ and _Access token_.
 ---
+
 ### Now you have obtained the followings:
 - Authorization Code
 - Refresh Token
