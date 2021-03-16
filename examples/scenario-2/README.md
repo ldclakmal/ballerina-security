@@ -48,4 +48,4 @@ User `Jane`, the admin, connects to `Admin Microservice` through the REST API of
 6. _Ballerina Inventory Gateway_ issues a self-signed JWT signed by inventory microservice's private key. Calls the JWT secured **gRPC API** of _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ using that JWT.
 7. _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ validates the received JWT's signature with inventory microservice's public key. The microservice trusts the inventory microservice as an issuer (`iss`).
 
-> If successful, `Alice` should get a success responses from `Inventory Microservice`. If not, a 401 or 403 response.
+> If successful, `Bob` should get a success responses from `Electronics Microservice` or `Fashions Microservice`. If not, a 401 or 403 response.
