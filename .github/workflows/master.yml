@@ -28,8 +28,8 @@ jobs:
         working-directory: test-suite
         run: |
           scripts/bbe_crypto.sh
-  encoding:
-    name: BBE - Encoding
+  url:
+    name: BBE - URL
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
@@ -50,7 +50,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/bbe_encoding.sh
+          scripts/bbe_url.sh
   jwt:
     name: BBE - JWT Issue/Validate
     runs-on: ubuntu-latest

@@ -80,7 +80,7 @@ service /orders9090 on jwtListenerEP {
 
 listener http:Listener jwkListenerEP = new(9091, config = {
     secureSocket: {
-        keyStore: {
+        key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
