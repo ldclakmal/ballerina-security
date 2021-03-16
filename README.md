@@ -15,15 +15,19 @@
 
 #### Guides & Documentations
 
-- [Authentication and Authorization - Swan Lake](https://ballerina.io/swan-lake/learn/security/authentication-and-authorization/)
-- [Authentication and Authorization - 1.2.x](https://ballerina.io/1.2/learn/writing-secure-ballerina-code/)
+- [Ballerina Authentication and Authorization Design - Swan Lake Version](https://ballerina.io/swan-lake/learn/security/authentication-and-authorization/)
+- [Ballerina Authentication and Authorization Design - 1.2.x Version](https://ballerina.io/1.2/learn/writing-secure-ballerina-code/)
+- [How to obtain Google OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html)
+- [How to obtain Salesforce OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-salesforce-oauth2-credentials.html)
+- [How to obtain Twilio Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html)
+- [Private/Public Keys & Digital Certificates](https://ldclakmal.me/ballerina-security/guides/private-public-keys-and-digital-certificates.html)
 
 #### Research & Design
 
-- 2021 Feb - [[Re-Design] Ballerina SecureSocket API](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
-- 2020 Nov - [[Design] Ballerina Authn/Authz - Swan Lake Release](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
-- 2020 Oct - [[Research] Comparison on Ballerina Security Features/APIs](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
-- 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
+- 2021 Feb - [Re-Design of Ballerina SecureSocket API - Swan Lake Version](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
+- 2020 Nov - [Design of Ballerina Authentication & Authorization Framework - Swan Lake Version](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
+- 2020 Oct - [Research Comparison on Ballerina Security Features/APIs with Different Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
+- 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design - First Draft (0.970.0)](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
 
 #### Discussions [ballerina-dev@googlegroups.com]
 
@@ -36,6 +40,9 @@
 
 #### GitHub Pull Requests
 
+- 2021 Mar - [Redesign HTTP listener/client SecureSocket API](https://github.com/ballerina-platform/module-ballerina-http/pull/255)
+- 2021 Mar - [Add cert file and mTLS support for JDK11 client of OAuth2 module](https://github.com/ballerina-platform/module-ballerina-oauth2/pull/98)
+- 2021 Mar - [Add cert file and mTLS support for JDK11 client of JWT module](https://github.com/ballerina-platform/module-ballerina-jwt/pull/137)
 - 2021 Feb - [Extend private key/public cert support for JWT signature generation/validation](https://github.com/ballerina-platform/module-ballerina-jwt/pull/109)
 - 2021 Feb - [Add support to decode private/public keys from key/cert files](https://github.com/ballerina-platform/module-ballerina-crypto/pull/61)
 - 2021 Jan - [Implement Declarative Auth Design](https://github.com/ballerina-platform/module-ballerina-http/pull/155)
@@ -68,9 +75,9 @@
 
 ###### Language concepts -> Security
 
-- [Crypto](https://ballerina.io/swan-lake/learn/by-example/crypto.html)
-- [JWT Issue/Validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html)
-- [URL Encode/Decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
+- [Cryptographic Operations](https://ballerina.io/swan-lake/learn/by-example/crypto.html)
+- [JWT Issue & Validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html)
+- [URL Encode & Decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
 
 ###### Working over the networks -> Access Control
 - [HTTP Service with Basic Auth File User Store](https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-file-user-store.html)
