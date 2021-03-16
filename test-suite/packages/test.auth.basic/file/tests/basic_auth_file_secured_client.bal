@@ -15,7 +15,7 @@ http:Client clientEP = new("https://localhost:9090", {
 });
 
 @test:Config {}
-public function testBasicAuthLdapSuccess() {
+public function testBasicAuthFileSuccess() {
     var response = clientEP->get("/orders/view");
     if (response is http:Response) {
         var result = response.getJsonPayload();
