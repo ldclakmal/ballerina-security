@@ -4,7 +4,7 @@ import ballerina/uuid;
 
 listener http:Listener listenerEP = new(9090, {
     secureSocket: {
-        keyStore: {
+        key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
@@ -34,8 +34,8 @@ service /orders on listenerEP {
                     membershipAttribute: "member",
                     userRolesCacheEnabled: true,
                     connectionPoolingEnabled: false,
-                    connectionTimeoutInMillis: 5000,
-                    readTimeoutInMillis: 60000
+                    connectionTimeout: 5,
+                    readTimeout: 60
                 },
                 scopes: ["Developer"]
             }
@@ -74,8 +74,8 @@ service /orders on listenerEP {
                     membershipAttribute: "member",
                     userRolesCacheEnabled: true,
                     connectionPoolingEnabled: false,
-                    connectionTimeoutInMillis: 5000,
-                    readTimeoutInMillis: 60000
+                    connectionTimeout: 5,
+                    readTimeout: 60
                 },
                 scopes: ["Admin"]
             }
