@@ -4,6 +4,9 @@ echo -e "\nStarting OpenLDAP Server:"
 docker-compose -f scripts/resources/docker-compose.yml up &
 sleep 30s
 
+echo -e "\nBuilding Ballerina Basic Auth service package:"
+bal build packages/test.auth.basic/ldap
+
 echo -e "\nStarting Ballerina LDAP service:"
 bal run packages/test.auth.basic/ldap &
 sleep 10s

@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/test;
 
-http:Client clientEP = new("https://localhost:9090", {
+http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
         username: "alice",
         password: "alice123"

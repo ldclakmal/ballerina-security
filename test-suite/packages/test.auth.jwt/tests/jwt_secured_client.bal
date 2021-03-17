@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/test;
 
-http:Client clientEP = new("https://localhost:9090", {
+http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
         username: "wso2is",
         issuer: "wso2is",
@@ -28,7 +28,7 @@ http:Client clientEP = new("https://localhost:9090", {
 
 @test:Config {}
 public function testJwtAuthSuccess() {
-    var response = clientEP->get("/orders/view");
+    var response = clientEP->get("/orders1/view");
     if (response is http:Response) {
         var result = response.getJsonPayload();
         test:assertTrue(result is json);

@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/test;
 
-http:Client clientEP = new("https://localhost:9090", {
+http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
         tokenUrl: "https://localhost:9443/oauth2/token",
         clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
@@ -10,7 +10,7 @@ http:Client clientEP = new("https://localhost:9090", {
         clientConfig: {
             secureSocket: {
                 cert: {
-                    path: ".resources/wso2Truststore.p12",
+                    path: "resources/wso2Truststore.p12",
                     password: "wso2carbon"
                 }
             }

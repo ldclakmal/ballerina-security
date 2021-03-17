@@ -4,6 +4,9 @@ echo -e "\nStarting WSO2IS STS:"
 docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &
 sleep 90s
 
+echo -e "\nBuilding Ballerina OAuth2 service package:"
+bal build packages/test.auth.oauth2
+
 echo -e "\nStarting Ballerina OAuth2 service:"
 bal run packages/test.auth.oauth2 &
 sleep 10s
