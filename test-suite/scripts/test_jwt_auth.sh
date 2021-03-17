@@ -19,25 +19,25 @@ token=$(jq -r '.access_token' <<< $response)
 assertNotEmpty $token
 echo -e "\nJWT: $token"
 
-for port in 9090 9091
+for id in 1 2 3
 do
   echo -e "\nTest1: Authn Failure:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:$port/orders$port/view)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:9090/orders$id/view)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertAuthnFailure $response
 
   echo -e "\nTest2: Authn Success - Authz Failure:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders$port/add)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders$id/add)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertAuthzFailure $response
 
   echo -e "\nTest3: Authn Success - Authz Success:"
   echo -e "\nInvoking Ballerina JWT service:"
-  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:$port/orders$port/view)
+  response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders$id/view)
   assertNotEmpty $response
   echo -e "\nBallerina service response: $response"
   assertSuccess $response

@@ -11,7 +11,8 @@ listener http:Listener jwtListenerEP = new(9090, config = {
     }
 });
 
-service /orders9090 on jwtListenerEP {
+// Signature is validated with truststore.
+service /orders1 on jwtListenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -78,16 +79,64 @@ service /orders9090 on jwtListenerEP {
     }
 }
 
-listener http:Listener jwkListenerEP = new(9091, config = {
-    secureSocket: {
-        key: {
-            path: "resources/ballerinaKeystore.p12",
-            password: "ballerina"
-        }
-    }
-});
+// Signature is validated with public cert file.
+service /orders2 on jwtListenerEP {
 
-service /orders9091 on jwkListenerEP {
+    @http:ResourceConfig {
+	    auth: [
+            {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    signatureConfig: {
+                        certFile: "resources/wso2Public.crt"
+                    }
+                },
+                scopes: ["view-order"]
+            }
+        ]
+	}
+    resource function get view() returns json {
+        json inventory = {
+            "items": [
+                {
+                    "code": uuid:createType4AsString(),
+                    "qty" : checkpanic random:createIntInRange(1, 100)
+                }
+            ]
+        };
+        return inventory;
+    }
+
+    @http:ResourceConfig {
+        auth: [
+            {
+                jwtValidatorConfig: {
+                    issuer: "wso2is",
+                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    signatureConfig: {
+                        certFile: "resources/wso2Public.crt"
+                    }
+                },
+                scopes: ["add-order"]
+            }
+        ]
+    }
+    resource function get add() returns json {
+        json inventory = {
+            "items": [
+                {
+                    "code": uuid:createType4AsString(),
+                    "qty" : checkpanic random:createIntInRange(1, 100)
+                }
+            ]
+        };
+        return inventory;
+    }
+}
+
+// Signature is validated with JWKS endpoint.
+service /orders3 on jwtListenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -161,4 +210,3 @@ service /orders9091 on jwkListenerEP {
         return inventory;
     }
 }
-
