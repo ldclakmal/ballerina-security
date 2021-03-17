@@ -52,7 +52,7 @@ jobs:
         run: |
           scripts/bbe_url.sh
   jwt:
-    name: BBE - JWT Issue/Validate
+    name: BBE - JWT
     runs-on: ubuntu-latest
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
