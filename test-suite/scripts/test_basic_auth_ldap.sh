@@ -1,10 +1,10 @@
 source scripts/validate.sh
 
-echo -e "\nStarting OpenLDAP Server:"
+echo -e "\n--- Starting OpenLDAP Server ---"
 docker-compose -f scripts/resources/docker-compose.yml up &
 sleep 30s
 
-echo -e "\nStarting Ballerina LDAP service:"
+echo -e "\n--- Starting Ballerina Basic Auth - LDAP service ---"
 bal run packages/test.auth.basic/ldap &
 sleep 10s
 

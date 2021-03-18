@@ -2,7 +2,7 @@ source scripts/validate.sh
 
 export BALCONFIGFILE=packages/test.auth.basic/file/Config.toml
 
-echo -e "\nStarting Ballerina Basic Auth service:"
+echo -e "\n--- Starting Ballerina Basic Auth - File service ---"
 bal run packages/test.auth.basic/file &
 sleep 10s
 
