@@ -1,5 +1,4 @@
 import ballerina/http;
-import ballerina/test;
 
 http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
@@ -26,13 +25,23 @@ http:Client clientEP = checkpanic new("https://localhost:9090", {
     }
 });
 
-@test:Config {}
-public function testJwtAuthSuccess() {
-    var response = clientEP->get("/orders1/view");
-    if (response is http:Response) {
-        var result = response.getJsonPayload();
-        test:assertTrue(result is json);
-    } else {
-        test:assertFail("Failed to call the endpoint.");
+listener http:Listener apiEP = new(8080, config = {
+    secureSocket: {
+        key: {
+            path: "resources/ballerinaKeystore.p12",
+            password: "ballerina"
+        }
+    }
+});
+
+service /api on apiEP {
+    resource function get [int id]/[string api]() returns http:Response|http:InternalServerError {
+        var response = clientEP->get("/orders" + id.toString() + "/" + api);
+        if (response is http:Response) {
+            return response;
+        } else {
+            http:InternalServerError err = { body: response.toString() };
+            return err;
+        }
     }
 }
