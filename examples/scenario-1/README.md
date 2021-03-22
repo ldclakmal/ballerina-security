@@ -9,9 +9,10 @@ Simple inventory management system, with 2 secured microservices, and a secured 
 ### Resources
 
 - User Jane (admin) & Alice (customer)
-- OAuth 2.0 Authorization Server (STS)
 - API Gateway
 - Admin and Inventory Microservices
+- OAuth 2.0 Authorization Server (STS) [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
+- LDAP User Store [Reference: [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)]
 
 ### Steps
 

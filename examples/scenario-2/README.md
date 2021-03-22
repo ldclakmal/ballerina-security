@@ -11,9 +11,10 @@ User `Jane`, the admin, connects to `Admin Microservice` through the REST API of
 ### Resources
 
 - User Jane (admin), Alice (customer) and Bob (customer)
-- OAuth 2.0 Authorization Server (STS)
 - API Gateway
 - Admin, Inventory, Electronics and Fashions Microservices
+- OAuth 2.0 Authorization Server (STS) [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
+- LDAP User Store [Reference: [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)]
 
 ### Steps
 
