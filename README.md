@@ -16,9 +16,12 @@ The examples, use-cases, demos, resources related to microservices security patt
 ![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)
 ![followers](https://img.shields.io/github/followers/ldclakmal?style=social)
 
-## Ballerina Security Resources
+### Examples
 
-#### Guides & Documentations
+- [Simple inventory management system](https://ldclakmal.me/ballerina-security/examples/scenario-1/)
+- [Extended inventory management system](https://ldclakmal.me/ballerina-security/examples/scenario-2/)
+
+### Guides & Documentations
 
 - [Ballerina Authentication and Authorization Design - Swan Lake Version](https://ballerina.io/swan-lake/learn/security/authentication-and-authorization/)
 - [Ballerina Authentication and Authorization Design - 1.2.x Version](https://ballerina.io/1.2/learn/writing-secure-ballerina-code/)
@@ -26,15 +29,16 @@ The examples, use-cases, demos, resources related to microservices security patt
 - [How to obtain Salesforce OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-salesforce-oauth2-credentials.html)
 - [How to obtain Twilio Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html)
 - [Private/Public Keys & Digital Certificates](https://ldclakmal.me/ballerina-security/guides/private-public-keys-and-digital-certificates.html)
+- [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)
 
-#### Research & Design
+### Research & Design
 
 - 2021 Feb - [Re-Design of Ballerina SecureSocket API - Swan Lake Version](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
 - 2020 Nov - [Design of Ballerina Authentication & Authorization Framework - Swan Lake Version](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
 - 2020 Oct - [Research Comparison on Ballerina Security Features/APIs with Different Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
 - 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design - First Draft (0.970.0)](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
 
-#### Discussions [ballerina-dev@googlegroups.com]
+### Discussions [ballerina-dev@googlegroups.com]
 
 - 2020 Apr - [Support JWT Signature Validation with JWKs](https://groups.google.com/g/ballerina-dev/c/lk3QnvBeT0c/m/b_Apt5wGBgAJ)
 - 2019 Aug - [Redundant APIs for Encoding/Decoding](https://groups.google.com/g/ballerina-dev/c/sbASEwIl44k/m/0YlP3IcXFwAJ)
@@ -43,7 +47,7 @@ The examples, use-cases, demos, resources related to microservices security patt
 - 2019 May - [Ballerina Inbound Authentication](https://groups.google.com/g/ballerina-dev/c/U3-GY9Q49eQ/m/HAcrWb-qAgAJ)
 - 2018 Apr - [Securely invoking an HTTP endpoint with AuthConfig](https://groups.google.com/g/ballerina-dev/c/1q657E_wegQ/m/fjFkg9YnAgAJ)
 
-#### GitHub Pull Requests
+### GitHub Pull Requests
 
 - 2021 Mar - [Redesign HTTP listener/client SecureSocket API](https://github.com/ballerina-platform/module-ballerina-http/pull/255)
 - 2021 Mar - [Add cert file and mTLS support for JDK11 client of OAuth2 module](https://github.com/ballerina-platform/module-ballerina-oauth2/pull/98)
@@ -65,7 +69,7 @@ The examples, use-cases, demos, resources related to microservices security patt
 - 2019 May - [Improve HTTP secure client for OAuth2 grant types](https://github.com/ballerina-platform/ballerina-lang/pull/14419)
 - 2019 May - [Refactor inbound authentication with custom provider and handlers](https://github.com/ballerina-platform/ballerina-lang/pull/15056)
 
-#### Specifications
+### Specifications
 
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://tools.ietf.org/html/rfc8693)
 - [RFC 7662 - OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662)
@@ -76,15 +80,15 @@ The examples, use-cases, demos, resources related to microservices security patt
 - [RFC 7515 - JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
 - [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 
-#### Ballerina by Examples (BBEs)
+### Ballerina by Examples (BBEs)
 
-###### Language concepts -> Security
+##### Language concepts -> Security
 
 - [Cryptographic Operations](https://ballerina.io/swan-lake/learn/by-example/crypto.html)
 - [JWT Issue & Validate](https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html)
 - [URL Encode & Decode](https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html)
 
-###### Working over the networks -> Access Control
+##### Working over the networks -> Access Control
 - [HTTP Service with Basic Auth File User Store](https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-file-user-store.html)
 - [HTTP Service with Basic Auth LDAP User Store](https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-ldap-user-store.html)
 - [HTTP Service with JWT Auth](https://ballerina.io/swan-lake/learn/by-example/http-service-with-jwt-auth.html)
