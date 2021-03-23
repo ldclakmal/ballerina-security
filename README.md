@@ -13,8 +13,8 @@ The examples, use-cases, demos, resources related to microservices security patt
 
 ![repo](./img/github.png) [https://github.com/ldclakmal/ballerina-security](https://github.com/ldclakmal/ballerina-security)
 
-![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)
-![followers](https://img.shields.io/github/followers/ldclakmal?style=social)
+[![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)](https://github.com/ldclakmal/ballerina-security)
+[![followers](https://img.shields.io/github/followers/ldclakmal?style=social)](https://github.com/ldclakmal)
 
 ### Examples
 
