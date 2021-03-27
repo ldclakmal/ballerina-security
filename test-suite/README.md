@@ -1,4 +1,5 @@
-![Test Suite](https://github.com/ldclakmal/ballerina-security/workflows/Test%20Suite/badge.svg)
+![BBE](https://github.com/ldclakmal/ballerina-security/workflows/BBE/badge.svg)
+![Integration](https://github.com/ldclakmal/ballerina-security/workflows/Integration/badge.svg)
 
 # Ballerina Security Test Suite
 
