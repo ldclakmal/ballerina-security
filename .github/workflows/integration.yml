@@ -2,6 +2,10 @@ name: Integration
 
 on:
   push:
+    paths-ignore:
+      - '**.md'
+      - '**.png'
+      - '**.jpg'
   workflow_dispatch:
 
 jobs:
