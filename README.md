@@ -9,6 +9,8 @@
 </script>
 <link rel="shortcut icon" type="image/png" href="img/favicon.png?v=1.0">
 
+![Ballerina Security](./img/ballerina-security.png)
+
 The examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open source programming language and platform for cloud-era application programmers to easily write software that just works.
 
 ![repo](./img/github.png) [https://github.com/ldclakmal/ballerina-security](https://github.com/ldclakmal/ballerina-security)
