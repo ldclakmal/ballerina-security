@@ -1,5 +1,5 @@
-![BBE](https://github.com/ldclakmal/ballerina-security/workflows/BBE/badge.svg)
-![Integration](https://github.com/ldclakmal/ballerina-security/workflows/Integration/badge.svg)
+[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
+[![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
 
 # Ballerina Security Test Suite
 
