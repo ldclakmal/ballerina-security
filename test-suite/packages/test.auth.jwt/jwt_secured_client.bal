@@ -2,7 +2,7 @@ import ballerina/http;
 
 http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
-        username: "wso2is",
+        username: "ballerina",
         issuer: "wso2is",
         audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
         customClaims: {"scope": "view-order"},
