@@ -9,8 +9,8 @@ HelloWorldClient ep = check new("https://localhost:9090", {
 
 public function main() returns error? {
     grpc:JwtIssuerConfig config = {
-        username: "wso2",
-        issuer: "ballerina",
+        username: "ballerina",
+        issuer: "wso2",
         audience: ["ballerina", "ballerina.org", "ballerina.io"],
         keyId: "5a0b754-895f-4279-8843-b745e11a57e9",
         jwtId: "JlbmMiOiJBMTI4Q0JDLUhTMjU2In",

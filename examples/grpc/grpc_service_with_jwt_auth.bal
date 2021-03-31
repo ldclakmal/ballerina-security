@@ -11,7 +11,7 @@ listener grpc:Listener securedEP = new(9090, config = {
 });
 
 grpc:ListenerJwtAuthHandler handler = new({
-    issuer: "ballerina",
+    issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
         certFile: "../resources/public.crt"

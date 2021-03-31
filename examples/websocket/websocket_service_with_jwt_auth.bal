@@ -13,7 +13,7 @@ listener websocket:Listener securedEP = new(9090, config = {
 });
 
 http:ListenerJwtAuthHandler handler = new({
-    issuer: "ballerina",
+    issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
         certFile: "../resources/public.crt"
