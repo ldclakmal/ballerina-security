@@ -1,4 +1,4 @@
-# Ballerina Security Examples
+# Ballerina Security Scenarios
 
 This directory contains the real-world scenarios written by [Ballerina](https://ballerina.io) programming language.
 
