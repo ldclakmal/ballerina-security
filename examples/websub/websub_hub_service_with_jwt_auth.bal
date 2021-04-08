@@ -27,9 +27,9 @@ service /websubhub on securedHub {
         if (auth is string) {
             return error websubhub:TopicRegistrationError(auth);
         }
-        log:printInfo("Topic '" + msg.topic + "'registered.");
+        log:printInfo("Registered topic: '" + msg.topic + "'.");
         websubhub:TopicRegistrationSuccess result = {
-            body: "Topic '" + msg.topic + "'registered."
+            body: "Registered topic: '" + msg.topic + "'."
         };
         return result;
     }
