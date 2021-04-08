@@ -11,16 +11,6 @@ listener websub:Listener securedSubscriber = new(8080, config = {
     }
 });
 
-
-http:ListenerJwtAuthHandler handler = new({
-    issuer: "wso2",
-    audience: "ballerina",
-    signatureConfig: {
-        certFile: "../resources/public.crt"
-    },
-    scopeKey: "scp"
-});
-
 @websub:SubscriberServiceConfig {
     target: [
         "https://localhost:9090/websubhub", "Ballerina"
