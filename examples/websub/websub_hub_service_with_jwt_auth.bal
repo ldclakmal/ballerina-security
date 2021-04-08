@@ -4,12 +4,12 @@ import ballerina/log;
 import ballerina/websubhub;
 
 listener websubhub:Listener securedHub = new(9090, config = {
-    secureSocket: {
-        key: {
-            certFile: "../resources/public.crt",
-            keyFile: "../resources/private.key"
-        }
-    }
+    //secureSocket: {
+    //    key: {
+    //        certFile: "../resources/public.crt",
+    //        keyFile: "../resources/private.key"
+    //    }
+    //}
 });
 
 http:ListenerJwtAuthHandler handler = new({
@@ -46,16 +46,49 @@ service /websubhub on securedHub {
         return result;
     }
 
+    // Internal call from Hub itself
+    remote function onSubscriptionValidation(websubhub:Subscription msg) {
+        log:printInfo("Subscription validated for topic: '" + msg.hubTopic + "'.");
+    }
+
+    // Internal call from Hub itself
+    remote function onSubscriptionIntentVerified(websubhub:VerifiedSubscription msg) {
+        log:printInfo("Subscription intent verified: '" + msg.verificationSuccess.toString() + "', for topic: '" + msg.hubTopic + "'.");
+        saveSubscriber(msg);
+    }
+
     remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Request req) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(req);
         if (auth is string) {
             return error websubhub:UpdateMessageError(auth);
         }
-        log:printInfo("Message updated for message type: '" + msg.msgType.toString() + "', topic: '" + msg.hubTopic + "'.");
-        websubhub:SubscriptionAccepted result = {
-            body: "Message updated for message type: '" + msg.msgType.toString() + "', topic: '" + msg.hubTopic + "'."
-        };
-        return result;
+        log:printInfo("Message updated for message type: '" + msg.msgType.toString() + "', topic: '" + msg.hubTopic +
+                        "', content-type: '" + msg.contentType + "', content: '" + msg.content.toString() + "'.");
+        websubhub:Subscription[] subscribers = retrieveSubscribers(msg.hubTopic);
+        foreach websubhub:Subscription sub in subscribers {
+            log:printInfo("Subscriber found with callback URL: '" + sub.hubCallback + "'");
+            websubhub:HubClient|error clientEP = new(sub, {
+                //secureSocket: {
+                //    cert: "../resources/public.crt"
+                //}
+            });
+            if (clientEP is error) {
+                log:printError("Error occurred while initializing the hub client.", 'error = clientEP);
+            } else {
+                websubhub:ContentDistributionMessage distributionMsg = {
+                    content: msg.content.toString()
+                };
+                websubhub:ContentDistributionSuccess|websubhub:SubscriptionDeletedError|error? response = clientEP->notifyContentDistribution(distributionMsg);
+                if (response is websubhub:ContentDistributionSuccess) {
+                    log:printInfo("Successfully notified the content to subscriber.");
+                } else if (response is websubhub:SubscriptionDeletedError) {
+                    log:printError("Subscription deleted error occurred while notifying the content to subscriber.");
+                } else if (response is error) {
+                    log:printError("Error occurred while notifying the content to subscriber.", 'error = response);
+                }
+            }
+        }
+        return websubhub:ACKNOWLEDGEMENT;
     }
 }
 
@@ -73,4 +106,24 @@ function doAuth(http:Request req) returns string? {
         return errorMsg;
     }
     return;
+}
+
+map<websubhub:Subscription[]> subscribersMap = {};
+
+function saveSubscriber(websubhub:Subscription subscriber) {
+    if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        subscribersMap.get(subscriber.hubTopic).push(subscriber);
+    } else {
+        websubhub:Subscription[] subscribersArray = [];
+        subscribersArray.push(subscriber);
+        subscribersMap[subscriber.hubTopic] = subscribersArray;
+    }
+}
+
+function isTopicAvailable(string topic) returns boolean {
+    return subscribersMap.hasKey(topic);
+}
+
+function retrieveSubscribers(string topic) returns websubhub:Subscription[] {
+    return subscribersMap.get(topic).clone();
 }

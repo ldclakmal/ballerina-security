@@ -2,7 +2,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new ("https://localhost:9090/websubhub", {
+    websubhub:PublisherClient publsherClient = check new ("http://localhost:9090/websubhub", {
         auth: {
             username: "ballerina",
             issuer: "wso2",
@@ -16,10 +16,10 @@ public function main() returns error? {
                     keyFile: "../resources/private.key"
                 }
             }
-        },
-        secureSocket: {
-            cert: "../resources/public.crt"
         }
+        //secureSocket: {
+        //    cert: "../resources/public.crt"
+        //}
     });
 
     websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient->registerTopic("Ballerina");
@@ -29,16 +29,8 @@ public function main() returns error? {
         log:printError("Topic registration failed!.", 'error = registrationResponse);
     }
 
-
-    websubhub:Acknowledgement|websubhub:UpdateMessageError notifyResponse = publsherClient->notifyUpdate("Ballerina");
-    if (notifyResponse is websubhub:Acknowledgement) {
-        log:printInfo("Notify update successful. Body: '" + notifyResponse.body.toString() + "'.");
-    } else {
-        log:printError("Notify update failed!.", 'error = notifyResponse);
-    }
-
-    map<string> params = { event: "Swan Lake GA Released!"};
-    websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient->publishUpdate("Ballerina", params);
+    string payload = "Swan Lake GA Released!";
+    websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient->publishUpdate("Ballerina", payload);
     if (publishResponse is websubhub:Acknowledgement) {
         log:printInfo("Publish update successful. Body: '" + publishResponse.body.toString() + "'.");
     } else {

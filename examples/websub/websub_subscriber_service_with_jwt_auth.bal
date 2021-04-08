@@ -1,20 +1,20 @@
-import ballerina/http;
 import ballerina/log;
 import ballerina/websub;
 
 listener websub:Listener securedSubscriber = new(8080, config = {
-    secureSocket: {
-        key: {
-            certFile: "../resources/public.crt",
-            keyFile: "../resources/private.key"
-        }
-    }
+    //secureSocket: {
+    //    key: {
+    //        certFile: "../resources/public.crt",
+    //        keyFile: "../resources/private.key"
+    //    }
+    //}
 });
 
 @websub:SubscriberServiceConfig {
     target: [
-        "https://localhost:9090/websubhub", "Ballerina"
+        "http://localhost:9090/websubhub", "Ballerina"
     ],
+    callback: "http://localhost:8080/subscriber",
     secret: "b745e11a57e9",
     httpConfig: {
         auth: {
@@ -38,9 +38,9 @@ listener websub:Listener securedSubscriber = new(8080, config = {
 }
 service /subscriber on securedSubscriber {
     remote function onEventNotification(websub:ContentDistributionMessage event) returns websub:Acknowledgement {
-        log:printInfo("Event notified. Content: '" + event.content.toString() + "'.");
+        log:printInfo("Event notified with content: '" + event.content.toString() + "'.");
         websub:Acknowledgement result = {
-            body: { message: "Event notified. Content: '" + event.content.toString() + "'." }
+            body: { message: "Event notified with content: '" + event.content.toString() + "'." }
         };
         return result;
     }
