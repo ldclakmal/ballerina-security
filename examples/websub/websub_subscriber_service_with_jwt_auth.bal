@@ -1,14 +1,14 @@
 import ballerina/log;
 import ballerina/websub;
 
-listener websub:Listener securedSubscriber = new(8080, config = {
-    //secureSocket: {
+listener websub:Listener securedSubscriber = new(8080
+    //secureSocket = {
     //    key: {
     //        certFile: "../resources/public.crt",
     //        keyFile: "../resources/private.key"
     //    }
     //}
-});
+);
 
 @websub:SubscriberServiceConfig {
     target: [

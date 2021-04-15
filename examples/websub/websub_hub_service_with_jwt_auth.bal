@@ -3,14 +3,14 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websubhub;
 
-listener websubhub:Listener securedHub = new(9090, config = {
-    //secureSocket: {
+listener websubhub:Listener securedHub = new(9090
+    //secureSocket = {
     //    key: {
     //        certFile: "../resources/public.crt",
     //        keyFile: "../resources/private.key"
     //    }
     //}
-});
+);
 
 http:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",

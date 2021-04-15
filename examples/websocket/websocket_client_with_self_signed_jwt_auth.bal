@@ -1,8 +1,8 @@
 import ballerina/log;
 import ballerina/websocket;
 
-websocket:Client wsClient = check new("wss://localhost:9090/foo/bar", {
-    auth: {
+websocket:Client wsClient = check new("wss://localhost:9090/foo/bar",
+    auth = {
         username: "ballerina",
         issuer: "wso2",
         audience: ["ballerina", "ballerina.org", "ballerina.io"],
@@ -16,10 +16,10 @@ websocket:Client wsClient = check new("wss://localhost:9090/foo/bar", {
             }
         }
     },
-    secureSocket: {
+    secureSocket = {
         cert: "../resources/public.crt"
     }
-});
+);
 
 public function main() returns error? {
     _ = check wsClient->writeTextMessage("Hello, World!");

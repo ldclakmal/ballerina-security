@@ -1,14 +1,14 @@
 import ballerina/grpc;
 import ballerina/log;
 
-HelloWorldClient ep = check new("https://localhost:9090", {
-    secureSocket: {
+HelloWorldClient ep = check new("https://localhost:9090",
+    secureSocket = {
         cert: "../resources/public.crt"
     }
-});
+);
 
 public function main() returns error? {
-    grpc:JwtIssuerConfig config = {
+    grpc:ClientSelfSignedJwtAuthHandler handler = new({
         username: "ballerina",
         issuer: "wso2",
         audience: ["ballerina", "ballerina.org", "ballerina.io"],
@@ -21,8 +21,7 @@ public function main() returns error? {
                 keyFile: "../resources/private.key"
             }
         }
-    };
-    grpc:ClientSelfSignedJwtAuthHandler handler = new(config);
+    });
     map<string|string[]> headers = {};
     headers = check handler.enrich(headers);
     ContextString requestMessage = { content: "Ballerina", headers: headers };

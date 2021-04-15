@@ -3,14 +3,14 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websocket;
 
-listener websocket:Listener securedEP = new(9090, config = {
-   secureSocket: {
+listener websocket:Listener securedEP = new(9090,
+   secureSocket = {
        key: {
            certFile: "../resources/public.crt",
            keyFile: "../resources/private.key"
        }
    }
-});
+);
 
 http:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",
