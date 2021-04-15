@@ -23,7 +23,7 @@ http:Client clientEP = checkpanic new("https://localhost:9090", {
     }
 });
 
-listener http:Listener apiEP = new(8080, config = {
+listener http:Listener apiEP = new(8080, {
     secureSocket: {
         key: {
             path: "resources/ballerinaKeystore.p12",
