@@ -20,8 +20,15 @@ The examples, use-cases, demos, resources related to microservices security patt
 
 ### Examples
 
-- [Simple inventory management system](https://ldclakmal.me/ballerina-security/examples/scenario-1/)
-- [Extended inventory management system](https://ldclakmal.me/ballerina-security/examples/scenario-2/)
+- [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
+- [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/grpc)
+- [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
+- [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websub)
+
+### Scenarios
+
+- [Simple inventory management system](https://ldclakmal.me/ballerina-security/scenarios/scenario-1/)
+- [Extended inventory management system](https://ldclakmal.me/ballerina-security/scenarios/scenario-2/)
 
 ### Guides & Documentations
 
