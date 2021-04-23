@@ -4,7 +4,7 @@
 
 ### Description
 
-Extended inventory management system, with 4 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server.
+Advanced inventory management system, with 4 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server.
 
 User `Jane`, the admin, connects to `Admin Microservice` through the REST API of API gateway using HTTPS for management purposes. User `Alice`, a customer, connects to `Inventory Microservice` through the REST API of API gateway using HTTPS for purchasing items. User `Bob`, another customer, connects to `Inventory Microservice` through the GraphQL API of API gateway using HTTPS for searching items. `Electronic` and `Fashions` microservices are connected to `Inventory Microservice` and can be accessed via gRPC APIs. All the HTTP, GraphQL, gRPC APIs are authenticated with different types of authentication mechanisms such as basic auth, JWT auth, OAuth2 etc. and secured with TLS as well.
 

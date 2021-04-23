@@ -1,13 +1,13 @@
-[[auth.users]]
+[[ballerina.auth.users]]
 username="alice"
 password="alice123"
 scopes=["add-order","view-order"]
 
-[[auth.users]]
+[[ballerina.auth.users]]
 username="bob"
 password="bob123"
 scopes=["view-order"]
 
-[[auth.users]]
+[[ballerina.auth.users]]
 username="eve"
 password="eve123"

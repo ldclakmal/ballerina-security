@@ -4,7 +4,9 @@
 
 ### Description
 
-Simple inventory management system, with 2 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server. User `Jane`, the admin, connects to `Admin Microservice` through the REST API of API gateway using HTTPS for management purposes. User `Alice`, a customer, connects to `Inventory Microservice` through the REST API of API gateway using HTTPS for purchasing items. All the APIs are authenticated with different types of authentication mechanisms such as basic auth, JWT auth, OAuth2 etc. and secured with TLS as well.
+Simple inventory management system, with 2 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server.
+
+User `Jane`, the admin, connects to `Admin Microservice` through the REST API of API gateway using HTTPS for management purposes. User `Alice`, a customer, connects to `Inventory Microservice` through the REST API of API gateway using HTTPS for purchasing items. All the APIs are authenticated with different types of authentication mechanisms such as basic auth, JWT auth, OAuth2 etc. and secured with TLS as well.
 
 ### Resources
 
