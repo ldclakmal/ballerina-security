@@ -1,20 +1,20 @@
 import ballerina/log;
 import ballerina/websub;
 
-listener websub:Listener securedSubscriber = new(8080
-    //secureSocket = {
-    //    key: {
-    //        certFile: "../resources/public.crt",
-    //        keyFile: "../resources/private.key"
-    //    }
-    //}
+listener websub:Listener securedSubscriber = new(8080,
+    secureSocket = {
+        key: {
+            certFile: "../resources/public.crt",
+            keyFile: "../resources/private.key"
+        }
+    }
 );
 
 @websub:SubscriberServiceConfig {
     target: [
-        "http://localhost:9090/websubhub", "Ballerina"
+        "https://localhost:9090/websubhub", "Ballerina"
     ],
-    callback: "http://localhost:8080/subscriber",
+    callback: "https://localhost:8080/subscriber",
     secret: "b745e11a57e9",
     httpConfig: {
         auth: {

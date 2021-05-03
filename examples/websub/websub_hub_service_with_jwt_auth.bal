@@ -3,13 +3,13 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websubhub;
 
-listener websubhub:Listener securedHub = new(9090
-    //secureSocket = {
-    //    key: {
-    //        certFile: "../resources/public.crt",
-    //        keyFile: "../resources/private.key"
-    //    }
-    //}
+listener websubhub:Listener securedHub = new(9090,
+    secureSocket = {
+        key: {
+            certFile: "../resources/public.crt",
+            keyFile: "../resources/private.key"
+        }
+    }
 );
 
 http:ListenerJwtAuthHandler handler = new({
@@ -21,6 +21,13 @@ http:ListenerJwtAuthHandler handler = new({
     scopeKey: "scp"
 });
 
+@websubhub:ServiceConfig {
+    webHookConfig: {
+        secureSocket: {
+            cert: "../resources/public.crt"
+        }
+    }
+}
 service /websubhub on securedHub {
     remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Request req) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(req);
@@ -30,6 +37,18 @@ service /websubhub on securedHub {
         log:printInfo("Registered topic: '" + msg.topic + "'.");
         websubhub:TopicRegistrationSuccess result = {
             body: "Registered topic: '" + msg.topic + "'."
+        };
+        return result;
+    }
+
+    remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Request req) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
+        string? auth = doAuth(req);
+        if (auth is string) {
+            return error websubhub:TopicDeregistrationError(auth);
+        }
+        log:printInfo("Deregistered topic: '" + msg.topic + "'.");
+        websubhub:TopicDeregistrationSuccess result = {
+            body: "Deregistered topic: '" + msg.topic + "'."
         };
         return result;
     }
@@ -54,7 +73,12 @@ service /websubhub on securedHub {
     // Internal call from Hub itself
     remote function onSubscriptionIntentVerified(websubhub:VerifiedSubscription msg) {
         log:printInfo("Subscription intent verified: '" + msg.verificationSuccess.toString() + "', for topic: '" + msg.hubTopic + "'.");
-        saveSubscriber(msg);
+        addSubscriber(msg);
+    }
+
+    remote function onUnsubscriptionIntentVerified(websubhub:VerifiedUnsubscription msg) {
+        log:printInfo("Unsubscription intent verified: '" + msg.verificationSuccess.toString() + "', for topic: '" + msg.hubTopic + "'.");
+        removeSubscriber(msg);
     }
 
     remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Request req) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
@@ -68,9 +92,9 @@ service /websubhub on securedHub {
         foreach websubhub:Subscription sub in subscribers {
             log:printInfo("Subscriber found with callback URL: '" + sub.hubCallback + "'");
             websubhub:HubClient|error clientEP = new(sub, {
-                //secureSocket: {
-                //    cert: "../resources/public.crt"
-                //}
+                secureSocket: {
+                    cert: "../resources/public.crt"
+                }
             });
             if (clientEP is error) {
                 log:printError("Error occurred while initializing the hub client.", 'error = clientEP);
@@ -110,12 +134,27 @@ function doAuth(http:Request req) returns string? {
 
 map<websubhub:Subscription[]> subscribersMap = {};
 
-function saveSubscriber(websubhub:Subscription subscriber) {
+function addSubscriber(websubhub:Subscription subscriber) {
     if (subscribersMap.hasKey(subscriber.hubTopic)) {
         subscribersMap.get(subscriber.hubTopic).push(subscriber);
     } else {
         websubhub:Subscription[] subscribersArray = [];
         subscribersArray.push(subscriber);
+        subscribersMap[subscriber.hubTopic] = subscribersArray;
+    }
+}
+
+function removeSubscriber(websubhub:Unsubscription subscriber) {
+    if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
+        int i = 0;
+        foreach websubhub:Subscription sub in subscribersArray {
+            if (sub.hubCallback == subscriber.hubCallback) {
+                break;
+            }
+            i = i + 1;
+        }
+        _ = subscribersArray.remove(i);
         subscribersMap[subscriber.hubTopic] = subscribersArray;
     }
 }

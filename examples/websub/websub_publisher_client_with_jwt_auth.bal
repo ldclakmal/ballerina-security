@@ -2,7 +2,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new("http://localhost:9090/websubhub",
+    websubhub:PublisherClient publsherClient = check new("https://localhost:9090/websubhub",
         auth = {
             username: "ballerina",
             issuer: "wso2",
@@ -16,10 +16,10 @@ public function main() returns error? {
                     keyFile: "../resources/private.key"
                 }
             }
+        },
+        secureSocket = {
+            cert: "../resources/public.crt"
         }
-        //secureSocket = {
-        //    cert: "../resources/public.crt"
-        //}
     );
 
     websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient->registerTopic("Ballerina");
