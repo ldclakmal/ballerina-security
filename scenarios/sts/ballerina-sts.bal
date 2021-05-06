@@ -2,6 +2,10 @@ import ballerina/http;
 import ballerina/regex;
 import ballerina/uuid;
 
+// Default values of mock authorization server.
+const int SERVER_PORT = 9090;
+const int TOKEN_VALIDITY_PERIOD = 2;
+
 // Values that the grant_type parameter can hold.
 const GRANT_TYPE_CLIENT_CREDENTIALS = "client_credentials";
 const GRANT_TYPE_PASSWORD = "password";
@@ -32,7 +36,7 @@ string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
 
 // The mock authorization server, which is capable of issuing access-tokens with related to the grant type and
 // also of refreshing the already-issued access-tokens. Also, capable of introspection the access-tokens.
-listener http:Listener sts = new(9090, {
+listener http:Listener sts = new(SERVER_PORT, {
     secureSocket: {
         key: {
             certFile: "./cert/public.crt",
@@ -129,7 +133,7 @@ service /oauth2 on sts {
                             if (param.endsWith("==")) {
                                 refreshToken += "==";
                             }
-                        } else if (param.includes("scope")) {
+                        } else if (param.includes("scope=")) {
                             scopes = regex:split(param, "=")[1];
                         }
                     }
@@ -225,7 +229,7 @@ function prepareTokenResponse(string grantType, string username, string password
         json response = {
             "access_token": accessToken,
             "token_type": "example",
-            "expires_in": 2,
+            "expires_in": TOKEN_VALIDITY_PERIOD,
             "scope": "read write dolphin",
             "example_parameter": "example_value"
         };
@@ -240,7 +244,7 @@ function prepareTokenResponse(string grantType, string username, string password
                 "access_token": accessToken,
                 "refresh_token": refreshToken,
                 "token_type": "example",
-                "expires_in": 2,
+                "expires_in": TOKEN_VALIDITY_PERIOD,
                 "scope": "read write dolphin",
                 "example_parameter": "example_value"
             };
@@ -263,7 +267,7 @@ function prepareRefreshResponse(string grantType, string refreshToken) returns j
                     "access_token": accessToken,
                     "refresh_token": updatedRefreshToken,
                     "token_type": "example",
-                    "expires_in": 2,
+                    "expires_in": TOKEN_VALIDITY_PERIOD,
                     "scope": "read write dolphin",
                     "example_parameter": "example_value"
                 };
@@ -284,7 +288,7 @@ function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) 
                 "client_id": "l238j323ds-23ij4",
                 "username": "jdoe",
                 "token_type": "token_type",
-                "exp": 2,
+                "exp": TOKEN_VALIDITY_PERIOD,
                 "iat": 1419350238,
                 "nbf": 1419350238,
                 "sub": "Z5O3upPC88QrAjx00dis",
