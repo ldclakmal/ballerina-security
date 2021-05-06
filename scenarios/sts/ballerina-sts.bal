@@ -17,25 +17,11 @@ const string PASSWORD = "admin";
 const string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
 const string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
-// Error responses. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-final readonly & http:Unauthorized INVALID_CLIENT = {
-    body: "invalid_client"
-};
-final readonly & http:Unauthorized UNAUTHORIZED_CLIENT = {
-    body: "unauthorized_client"
-};
-final readonly & http:BadRequest INVALID_REQUEST = {
-    body: "invalid_request"
-};
-final readonly & http:BadRequest INVALID_GRANT = {
-    body: "invalid_grant"
-};
-
 string[] accessTokenStore = ["56ede317-4511-44b4-8579-a08f094ee8c5"];
 string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
 
-// The mock authorization server, which is capable of issuing access-tokens with related to the grant type and
-// also of refreshing the already-issued access-tokens. Also, capable of introspection the access-tokens.
+// The mock authorization server, which is capable of issuing access tokens with related to the grant type and
+// also of refreshing the already-issued access tokens. Also, capable of introspection the access tokens.
 listener http:Listener sts = new(SERVER_PORT, {
     secureSocket: {
         key: {
@@ -80,9 +66,11 @@ service /oauth2 on sts {
                     }
                     return prepareTokenResponse(grantType, username, password, refreshToken, scopes);
                 }
-                return INVALID_REQUEST;
+                string description = "The request is malformed and failed to retrieve the text payload.";
+                return createInvalidRequest(description);
             }
-            return INVALID_CLIENT;
+            string description = "Client authentication failed due to unknown client.";
+            return createInvalidClient(description);
         } else {
             var payload = req.getTextPayload();
             if (payload is string) {
@@ -120,39 +108,48 @@ service /oauth2 on sts {
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
                         return prepareTokenResponse(grantType, username, password, refreshToken, scopes);
                     }
-                    return INVALID_CLIENT;
+                    string description = "Client authentication failed since no client authentication included.";
+                    return createInvalidClient(description);
                 }
-                return INVALID_CLIENT;
+                string description = "Client authentication failed due to unknown client.";
+                return createInvalidClient(description);
             }
-            return INVALID_REQUEST;
+            string description = "The request is malformed and failed to retrieve the text payload.";
+            return createInvalidRequest(description);
         }
     }
 
     resource function post introspect(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
-        if (authorizationHeader is string && isAuthorizedIntrospectionClient(authorizationHeader)) {
-            var payload = req.getTextPayload();
-            if (payload is string) {
-                string[] params = regex:split(payload, "&");
-                string token = "";
-                string tokenTypeHint = "";
-                foreach string param in params {
-                    if (param.includes("token=")) {
-                        token = regex:split(param, "=")[1];
-                        // If the access token contains the `=` symbol, then it is required to concatenate all the parts of the value since
-                        // the `split` function breaks all those into separate parts.
-                        if (param.endsWith("==")) {
-                            token += "==";
+        if (authorizationHeader is string) {
+            if (isAuthorizedIntrospectionClient(authorizationHeader)) {
+                var payload = req.getTextPayload();
+                if (payload is string) {
+                    string[] params = regex:split(payload, "&");
+                    string token = "";
+                    string tokenTypeHint = "";
+                    foreach string param in params {
+                        if (param.includes("token=")) {
+                            token = regex:split(param, "=")[1];
+                            // If the access token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                            // the `split` function breaks all those into separate parts.
+                            if (param.endsWith("==")) {
+                                token += "==";
+                            }
+                        } else if (param.includes("token_type_hint=")) {
+                            tokenTypeHint = regex:split(param, "=")[1];
                         }
-                    } else if (param.includes("token_type_hint=")) {
-                        tokenTypeHint = regex:split(param, "=")[1];
                     }
+                    return prepareIntrospectionResponse(token, tokenTypeHint);
                 }
-                return prepareIntrospectionResponse(token, tokenTypeHint);
+                string description = "The request is malformed and failed to retrieve the text payload.";
+                return createInvalidRequest(description);
             }
-            return INVALID_REQUEST;
+            string description = "Client authentication failed due to unknown client.";
+            return createInvalidClient(description);
         }
-        return INVALID_CLIENT;
+        string description = "Client authentication failed since no client authentication included.";
+        return createInvalidClient(description);
     }
 
     // This JWKs endpoint respond with a JSON object that represents a set of JWKs.
@@ -206,7 +203,8 @@ function prepareTokenResponse(string grantType, string username, string password
             }
             return response;
         }
-        return UNAUTHORIZED_CLIENT;
+        string description = "The authenticated client is not authorized to use password grant type.";
+        return createUnauthorizedClient(description);
     } else if (grantType == GRANT_TYPE_REFRESH_TOKEN) {
         foreach string token in refreshTokenStore {
             if (token == refreshToken) {
@@ -227,9 +225,11 @@ function prepareTokenResponse(string grantType, string username, string password
                 return response;
             }
         }
-        return INVALID_GRANT;
+        string description = "The provided refresh token is invalid, expired or revoked.";
+        return createInvalidGrant(description);
     }
-    return INVALID_GRANT;
+    string description = "The authorization grant type is not supported by the authorization server.";
+    return createUnsupportedGrant(description);
 }
 
 function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) returns json {
@@ -277,4 +277,35 @@ function addToAccessTokenStore(string accessToken) {
 function addToRefreshTokenStore(string refreshToken) {
     int index = refreshTokenStore.length();
     refreshTokenStore[index] = refreshToken;
+}
+
+// Error responses. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+function createInvalidClient(string description) returns http:Unauthorized {
+    return {
+        body: { "error": "invalid_client", "error_description": description }
+    };
+}
+
+function createUnauthorizedClient(string description) returns http:Unauthorized {
+    return {
+        body: { "error": "unauthorized_client", "error_description": description }
+    };
+}
+
+function createInvalidRequest(string description) returns http:BadRequest {
+    return {
+        body: { "error": "invalid_request", "error_description": description }
+    };
+}
+
+function createInvalidGrant(string description) returns http:BadRequest {
+    return {
+        body: { "error": "invalid_grant", "error_description": description }
+    };
+}
+
+function createUnsupportedGrant(string description) returns http:BadRequest {
+    return {
+        body: { "error": "unsupported_grant_type", "error_description": description }
+    };
 }
