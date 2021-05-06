@@ -4,7 +4,7 @@ import ballerina/uuid;
 
 // Default values of mock authorization server.
 final configurable int SERVER_PORT = 9445;
-final configurable int TOKEN_VALIDITY_PERIOD = 2;   // in seconds
+final configurable int TOKEN_VALIDITY_PERIOD = 2; // in seconds
 
 // Credentials of the mock authorization server.
 final configurable string USERNAME = "admin";
@@ -156,31 +156,29 @@ service /oauth2 on sts {
     // https://tools.ietf.org/html/rfc7517#section-5
     resource function get jwks() returns json {
         json jwks = {
-          "keys": [
-            {
-              "kty": "EC",
-              "crv": "P-256",
-              "x": "MKBCTNIcKUSDii11ySs3526iDZ8AiTo7Tu6KPAqv7D4",
-              "y": "4Etl6SRW2YiLUrN5vfvVHuhp7x8PxltmWWlbbM4IFyM",
-              "use": "enc",
-              "kid": "1"
+            "keys": [{
+                "kty": "EC",
+                "crv": "P-256",
+                "x": "MKBCTNIcKUSDii11ySs3526iDZ8AiTo7Tu6KPAqv7D4",
+                "y": "4Etl6SRW2YiLUrN5vfvVHuhp7x8PxltmWWlbbM4IFyM",
+                "use": "enc",
+                "kid": "1"
             },
             {
-              "kty": "RSA",
-              "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMstn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbISD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqbw0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
-              "e": "AQAB",
-              "alg": "RS256",
-              "kid": "2011-04-29"
+                "kty": "RSA",
+                "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMstn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbISD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqbw0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
+                "e": "AQAB",
+                "alg": "RS256",
+                "kid": "2011-04-29"
             },
             {
-              "kty": "RSA",
-              "e": "AQAB",
-              "use": "sig",
-              "kid": "NTAxZmMxNDMyZDg3MTU1ZGM0MzEzODJhZWI4NDNlZDU1OGFkNjFiMQ",
-              "alg": "RS256",
-              "n": "AIFcoun1YlS4mShJ8OfcczYtZXGIes_XWZ7oPhfYCqhSIJnXD3vqrUu4GXNY2E41jAm8dd7BS5GajR3g1GnaZrSqN0w3bjpdbKjOnM98l2-i9-JP5XoedJsyDzZmml8Xd7zkKCuDqZIDtZ99poevrZKd7Gx5n2Kg0K5FStbZmDbTyX30gi0_griIZyVCXKOzdLp2sfskmTeu_wF_vrCaagIQCGSc60Yurnjd0RQiMWA10jL8axJjnZ-IDgtKNQK_buQafTedrKqhmzdceozSot231I9dth7uXvmPSjpn23IYUIpdj_NXCIt9FSoMg5-Q3lhLg6GK3nZOPuqgGa8TMPs="
-            }
-          ]
+                "kty": "RSA",
+                "e": "AQAB",
+                "use": "sig",
+                "kid": "NTAxZmMxNDMyZDg3MTU1ZGM0MzEzODJhZWI4NDNlZDU1OGFkNjFiMQ",
+                "alg": "RS256",
+                "n": "AIFcoun1YlS4mShJ8OfcczYtZXGIes_XWZ7oPhfYCqhSIJnXD3vqrUu4GXNY2E41jAm8dd7BS5GajR3g1GnaZrSqN0w3bjpdbKjOnM98l2-i9-JP5XoedJsyDzZmml8Xd7zkKCuDqZIDtZ99poevrZKd7Gx5n2Kg0K5FStbZmDbTyX30gi0_griIZyVCXKOzdLp2sfskmTeu_wF_vrCaagIQCGSc60Yurnjd0RQiMWA10jL8axJjnZ-IDgtKNQK_buQafTedrKqhmzdceozSot231I9dth7uXvmPSjpn23IYUIpdj_NXCIt9FSoMg5-Q3lhLg6GK3nZOPuqgGa8TMPs="
+            }]
         };
         return jwks;
     }
@@ -197,7 +195,7 @@ function prepareTokenResponse(string grantType, string username, string password
             "example_parameter": "example_value"
         };
         if (scopes != "") {
-            return checkpanic response.mergeJson({ "scope": scopes });
+            return checkpanic response.mergeJson({"scope": scopes});
         }
         return response;
     } else if (grantType == GRANT_TYPE_PASSWORD) {
@@ -214,7 +212,7 @@ function prepareTokenResponse(string grantType, string username, string password
                 "example_parameter": "example_value"
             };
             if (scopes != "") {
-                return checkpanic response.mergeJson({ "scope": scopes });
+                return checkpanic response.mergeJson({"scope": scopes});
             }
             return response;
         }
@@ -235,7 +233,7 @@ function prepareTokenResponse(string grantType, string username, string password
                     "example_parameter": "example_value"
                 };
                 if (scopes != "") {
-                    return checkpanic response.mergeJson({ "scope": scopes });
+                    return checkpanic response.mergeJson({"scope": scopes});
                 }
                 return response;
             }
@@ -268,7 +266,7 @@ function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) 
             return response;
         }
     }
-    json response = { "active": false };
+    json response = {"active": false};
     return response;
 }
 
@@ -297,30 +295,45 @@ function addToRefreshTokenStore(string refreshToken) {
 // Error responses. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
 function createInvalidClient(string description) returns http:Unauthorized {
     return {
-        body: { "error": "invalid_client", "error_description": description }
+        body: {
+            "error": "invalid_client",
+            "error_description": description
+        }
     };
 }
 
 function createUnauthorizedClient(string description) returns http:Unauthorized {
     return {
-        body: { "error": "unauthorized_client", "error_description": description }
+        body: {
+            "error": "unauthorized_client",
+            "error_description": description
+        }
     };
 }
 
 function createInvalidRequest(string description) returns http:BadRequest {
     return {
-        body: { "error": "invalid_request", "error_description": description }
+        body: {
+            "error": "invalid_request",
+            "error_description": description
+        }
     };
 }
 
 function createInvalidGrant(string description) returns http:BadRequest {
     return {
-        body: { "error": "invalid_grant", "error_description": description }
+        body: {
+            "error": "invalid_grant",
+            "error_description": description
+        }
     };
 }
 
 function createUnsupportedGrant(string description) returns http:BadRequest {
     return {
-        body: { "error": "unsupported_grant_type", "error_description": description }
+        body: {
+            "error": "unsupported_grant_type",
+            "error_description": description
+        }
     };
 }
