@@ -1,8 +1,8 @@
 import ballerina/http;
 import ballerina/log;
 
-http:Client securedEP = check new("https://localhost:9090", {
-    auth: {
+http:Client securedEP = check new("https://localhost:9090",
+    auth = {
         refreshUrl: "https://localhost:9090/oauth2/token/refresh",
         refreshToken: "tGzv3JOkF0XG5Qx2TlKWIA",
         clientId: "s6BhdRkqt3",
@@ -14,10 +14,10 @@ http:Client securedEP = check new("https://localhost:9090", {
             }
         }
     },
-    secureSocket: {
+    secureSocket = {
         cert: "../resources/public.crt"
     }
-});
+);
 
 public function main() returns error? {
     http:Response response = check securedEP->get("/foo/bar");

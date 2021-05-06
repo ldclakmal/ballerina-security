@@ -2,14 +2,14 @@ import ballerina/http;
 import ballerina/random;
 import ballerina/uuid;
 
-listener http:Listener jwtListenerEP = new(9090, {
-    secureSocket: {
+listener http:Listener jwtListenerEP = new(9090,
+    secureSocket = {
         key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
-});
+);
 
 // Signature is validated with truststore.
 service /orders1 on jwtListenerEP {

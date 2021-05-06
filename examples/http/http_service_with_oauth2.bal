@@ -1,19 +1,19 @@
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090, {
-    secureSocket: {
+listener http:Listener securedEP = new(9090,
+    secureSocket = {
         key: {
             certFile: "../resources/public.crt",
             keyFile: "../resources/private.key"
         }
     }
-});
+);
 
 @http:ServiceConfig {
     auth: [
         {
             oauth2IntrospectionConfig: {
-                url: "https://localhost:9999/oauth2/token/introspect",
+                url: "https://localhost:9445/oauth2/introspect",
                 tokenTypeHint: "access_token",
                 scopeKey: "scp",
                 clientConfig: {

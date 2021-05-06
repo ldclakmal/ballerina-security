@@ -1,7 +1,7 @@
 import ballerina/http;
 
-http:Client clientEP = checkpanic new("https://localhost:9090", {
-    auth: {
+http:Client clientEP = checkpanic new("https://localhost:9090",
+    auth = {
         username: "ballerina",
         issuer: "wso2is",
         audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
@@ -17,22 +17,22 @@ http:Client clientEP = checkpanic new("https://localhost:9090", {
             }
         }
     },
-    secureSocket: {
+    secureSocket = {
         cert: {
             path: "resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }
-});
+);
 
-listener http:Listener apiEP = new(8080, {
-    secureSocket: {
+listener http:Listener apiEP = new(8080,
+    secureSocket = {
         key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
-});
+);
 
 service /api on apiEP {
     resource function get [int id]/[string api]() returns http:Response|http:InternalServerError {
