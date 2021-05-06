@@ -70,7 +70,7 @@ service /oauth2 on sts {
                             password = regex:split(param, "=")[1];
                         }
                     }
-                    return prepareTokenResponse(grantType, username, password);
+                    return prepareTokenResponse(grantType, username, password, scopes);
                 }
                 return INVALID_REQUEST;
             }
@@ -102,7 +102,7 @@ service /oauth2 on sts {
                         }
                     }
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
-                        return prepareTokenResponse(grantType, username, password);
+                        return prepareTokenResponse(grantType, username, password, scopes);
                     }
                     return INVALID_CLIENT;
                 }
@@ -137,7 +137,7 @@ service /oauth2 on sts {
                             scopes = regex:split(param, "=")[1];
                         }
                     }
-                    return prepareRefreshResponse(grantType, refreshToken);
+                    return prepareRefreshResponse(grantType, refreshToken, scopes);
                 }
                 return INVALID_REQUEST;
             }
@@ -171,7 +171,7 @@ service /oauth2 on sts {
                         }
                     }
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
-                        return prepareRefreshResponse(grantType, refreshToken);
+                        return prepareRefreshResponse(grantType, refreshToken, scopes);
                     }
                     return INVALID_CLIENT;
                 }
@@ -222,7 +222,7 @@ service /oauth2 on sts {
     }
 }
 
-function prepareTokenResponse(string grantType, string username, string password) returns json|http:Unauthorized|http:BadRequest {
+function prepareTokenResponse(string grantType, string username, string password, string scopes) returns json|http:Unauthorized|http:BadRequest {
     if (grantType == GRANT_TYPE_CLIENT_CREDENTIALS) {
         string accessToken = uuid:createType4AsString();
         addToAccessTokenStore(accessToken);
@@ -230,9 +230,11 @@ function prepareTokenResponse(string grantType, string username, string password
             "access_token": accessToken,
             "token_type": "example",
             "expires_in": TOKEN_VALIDITY_PERIOD,
-            "scope": "read write dolphin",
             "example_parameter": "example_value"
         };
+        if (scopes != "") {
+            return checkpanic response.mergeJson({ "scope": scopes });
+        }
         return response;
     } else if (grantType == GRANT_TYPE_PASSWORD) {
         if (username == USERNAME && password == PASSWORD) {
@@ -245,9 +247,11 @@ function prepareTokenResponse(string grantType, string username, string password
                 "refresh_token": refreshToken,
                 "token_type": "example",
                 "expires_in": TOKEN_VALIDITY_PERIOD,
-                "scope": "read write dolphin",
                 "example_parameter": "example_value"
             };
+            if (scopes != "") {
+                return checkpanic response.mergeJson({ "scope": scopes });
+            }
             return response;
         }
         return UNAUTHORIZED_CLIENT;
@@ -255,7 +259,7 @@ function prepareTokenResponse(string grantType, string username, string password
     return INVALID_GRANT;
 }
 
-function prepareRefreshResponse(string grantType, string refreshToken) returns json|http:BadRequest {
+function prepareRefreshResponse(string grantType, string refreshToken, string scopes) returns json|http:BadRequest {
     if (grantType == GRANT_TYPE_REFRESH_TOKEN) {
         foreach string token in refreshTokenStore {
             if (token == refreshToken) {
@@ -268,9 +272,11 @@ function prepareRefreshResponse(string grantType, string refreshToken) returns j
                     "refresh_token": updatedRefreshToken,
                     "token_type": "example",
                     "expires_in": TOKEN_VALIDITY_PERIOD,
-                    "scope": "read write dolphin",
                     "example_parameter": "example_value"
                 };
+                if (scopes != "") {
+                    return checkpanic response.mergeJson({ "scope": scopes });
+                }
                 return response;
             }
         }
