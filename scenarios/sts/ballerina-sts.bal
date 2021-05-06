@@ -51,7 +51,7 @@ service /oauth2 on sts {
     resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
         if (authorizationHeader is string) {
-            if (isAuthorizedClient(authorizationHeader)) {
+            if (isAuthorizedTokenClient(authorizationHeader)) {
                 var payload = req.getTextPayload();
                 if (payload is string) {
                     string[] params = regex:split(payload, "&");
@@ -116,7 +116,7 @@ service /oauth2 on sts {
     resource function post token/refresh(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
         if (authorizationHeader is string) {
-            if (isAuthorizedClient(authorizationHeader)) {
+            if (isAuthorizedTokenClient(authorizationHeader)) {
                 var payload = req.getTextPayload();
                 if (payload is string) {
                     string[] params = regex:split(payload, "&");
@@ -183,7 +183,7 @@ service /oauth2 on sts {
 
     resource function post token/introspect(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
-        if (authorizationHeader is string && isAuthorizedClient(authorizationHeader)) {
+        if (authorizationHeader is string && isAuthorizedIntrospectionClient(authorizationHeader)) {
             var payload = req.getTextPayload();
             if (payload is string) {
                 string[] params = regex:split(payload, "&");
@@ -310,9 +310,15 @@ function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) 
     return response;
 }
 
-function isAuthorizedClient(string authorizationHeader) returns boolean {
+function isAuthorizedTokenClient(string authorizationHeader) returns boolean {
     string clientIdSecret = CLIENT_ID + ":" + CLIENT_SECRET;
     string expectedAuthorizationHeader = "Basic " + clientIdSecret.toBytes().toBase64();
+    return authorizationHeader == expectedAuthorizationHeader;
+}
+
+function isAuthorizedIntrospectionClient(string authorizationHeader) returns boolean {
+    string usernamePassword = USERNAME + ":" + PASSWORD;
+    string expectedAuthorizationHeader = "Basic " + usernamePassword.toBytes().toBase64();
     return authorizationHeader == expectedAuthorizationHeader;
 }
 
