@@ -3,19 +3,19 @@ import ballerina/regex;
 import ballerina/uuid;
 
 // Default values of mock authorization server.
-const int SERVER_PORT = 9090;
-const int TOKEN_VALIDITY_PERIOD = 2;
+final configurable int SERVER_PORT = 9445;
+final configurable int TOKEN_VALIDITY_PERIOD = 2;   // in seconds
+
+// Credentials of the mock authorization server.
+final configurable string USERNAME = "admin";
+final configurable string PASSWORD = "admin";
+final configurable string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
+final configurable string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
 // Values that the grant_type parameter can hold.
 const GRANT_TYPE_CLIENT_CREDENTIALS = "client_credentials";
 const GRANT_TYPE_PASSWORD = "password";
 const GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
-
-// Credentials of the mock authorization server.
-const string USERNAME = "admin";
-const string PASSWORD = "admin";
-const string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
-const string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
 string[] accessTokenStore = ["56ede317-4511-44b4-8579-a08f094ee8c5"];
 string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
