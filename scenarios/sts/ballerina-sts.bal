@@ -13,11 +13,19 @@ const string PASSWORD = "admin";
 const string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
 const string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
-// Payloads of the error responses.
-const string INVALID_CLIENT = "invalid_client";
-const string INVALID_REQUEST = "invalid_request";
-const string INVALID_GRANT = "invalid_grant";
-const string UNAUTHORIZED_CLIENT = "unauthorized_client";
+// Error responses. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+final readonly & http:Unauthorized INVALID_CLIENT = {
+    body: "invalid_client"
+};
+final readonly & http:Unauthorized UNAUTHORIZED_CLIENT = {
+    body: "unauthorized_client"
+};
+final readonly & http:BadRequest INVALID_REQUEST = {
+    body: "invalid_request"
+};
+final readonly & http:BadRequest INVALID_GRANT = {
+    body: "invalid_grant"
+};
 
 string[] accessTokenStore = ["56ede317-4511-44b4-8579-a08f094ee8c5"];
 string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
@@ -59,20 +67,10 @@ service /oauth2 on sts {
                         }
                     }
                     return prepareTokenResponse(grantType, username, password);
-                } else {
-                    // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                    http:BadRequest badRequest = {
-                        body: INVALID_REQUEST
-                    };
-                    return badRequest;
                 }
-            } else {
-                // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                http:Unauthorized unauthorized = {
-                    body: INVALID_CLIENT
-                };
-                return unauthorized;
+                return INVALID_REQUEST;
             }
+            return INVALID_CLIENT;
         } else {
             var payload = req.getTextPayload();
             if (payload is string) {
@@ -101,27 +99,12 @@ service /oauth2 on sts {
                     }
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
                         return prepareTokenResponse(grantType, username, password);
-                    } else {
-                        // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                        http:Unauthorized unauthorized = {
-                            body: INVALID_CLIENT
-                        };
-                        return unauthorized;
                     }
-                } else {
-                    // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                    http:Unauthorized unauthorized = {
-                        body: INVALID_CLIENT
-                    };
-                    return unauthorized;
+                    return INVALID_CLIENT;
                 }
-            } else {
-                // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                http:BadRequest badRequest = {
-                    body: INVALID_REQUEST
-                };
-                return badRequest;
+                return INVALID_CLIENT;
             }
+            return INVALID_REQUEST;
         }
     }
 
@@ -151,20 +134,10 @@ service /oauth2 on sts {
                         }
                     }
                     return prepareRefreshResponse(grantType, refreshToken);
-                } else {
-                    // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                    http:BadRequest badRequest = {
-                        body: INVALID_REQUEST
-                    };
-                    return badRequest;
                 }
-            } else {
-                // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                http:Unauthorized unauthorized = {
-                    body: INVALID_CLIENT
-                };
-                return unauthorized;
+                return INVALID_REQUEST;
             }
+            return INVALID_CLIENT;
         } else {
             var payload = req.getTextPayload();
             if (payload is string) {
@@ -195,27 +168,12 @@ service /oauth2 on sts {
                     }
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
                         return prepareRefreshResponse(grantType, refreshToken);
-                    } else {
-                        // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                        http:Unauthorized unauthorized = {
-                            body: INVALID_CLIENT
-                        };
-                        return unauthorized;
                     }
-                } else {
-                    // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                    http:Unauthorized unauthorized = {
-                        body: INVALID_CLIENT
-                    };
-                    return unauthorized;
+                    return INVALID_CLIENT;
                 }
-            } else {
-                // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                http:BadRequest badRequest = {
-                    body: INVALID_REQUEST
-                };
-                return badRequest;
+                return INVALID_CLIENT;
             }
+            return INVALID_REQUEST;
         }
     }
 
@@ -235,20 +193,10 @@ service /oauth2 on sts {
                     }
                 }
                 return prepareIntrospectionResponse(token, tokenTypeHint);
-            } else {
-                // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-                http:BadRequest badRequest = {
-                    body: INVALID_REQUEST
-                };
-                return badRequest;
             }
-        } else {
-            // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-            http:Unauthorized unauthorized = {
-                body: INVALID_CLIENT
-            };
-            return unauthorized;
+            return INVALID_REQUEST;
         }
+        return INVALID_CLIENT;
     }
 
     // This JWKs endpoint respond with a JSON object that represents a set of JWKs.
@@ -297,20 +245,10 @@ function prepareTokenResponse(string grantType, string username, string password
                 "example_parameter": "example_value"
             };
             return response;
-        } else {
-            // Unauthorized client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-            http:Unauthorized unauthorized = {
-                body: UNAUTHORIZED_CLIENT
-            };
-            return unauthorized;
         }
-    } else {
-        // Invalid `grant_type`. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-        http:BadRequest badRequest = {
-            body: INVALID_GRANT
-        };
-        return badRequest;
+        return UNAUTHORIZED_CLIENT;
     }
+    return INVALID_GRANT;
 }
 
 function prepareRefreshResponse(string grantType, string refreshToken) returns json|http:BadRequest {
@@ -332,18 +270,9 @@ function prepareRefreshResponse(string grantType, string refreshToken) returns j
                 return response;
             }
         }
-        // Invalid `grant_type`. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-        http:BadRequest badRequest = {
-            body: INVALID_GRANT
-        };
-        return badRequest;
-    } else {
-        // Invalid `grant_type`. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-        http:BadRequest badRequest = {
-            body: INVALID_GRANT
-        };
-        return badRequest;
+        return INVALID_GRANT;
     }
+    return INVALID_GRANT;
 }
 
 function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) returns json {
