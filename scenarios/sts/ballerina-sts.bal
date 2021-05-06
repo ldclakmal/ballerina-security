@@ -261,7 +261,8 @@ function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) 
                 "aud": "https://protected.example.net/resource",
                 "iss": "https://server.example.com/",
                 "jti": "JlbmMiOiJBMTI4Q0JDLUhTMjU2In",
-                "extension_field": "twenty-seven"
+                "extension_field": "twenty-seven",
+                "scp": "admin"
             };
             return response;
         }
