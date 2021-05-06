@@ -2,14 +2,14 @@ import ballerina/http;
 import ballerina/random;
 import ballerina/uuid;
 
-listener http:Listener listenerEP = new(9090, {
-    secureSocket: {
+listener http:Listener listenerEP = new(9090,
+    secureSocket = {
         key: {
             path: "resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
-});
+);
 
 service /orders on listenerEP {
 
