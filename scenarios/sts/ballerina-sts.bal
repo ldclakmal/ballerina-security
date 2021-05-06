@@ -8,8 +8,8 @@ const GRANT_TYPE_PASSWORD = "password";
 const GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
 
 // Credentials of the mock authorization server.
-const string USERNAME = "johndoe";
-const string PASSWORD = "A3ddj3w";
+const string USERNAME = "admin";
+const string PASSWORD = "admin";
 const string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
 const string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
@@ -19,8 +19,8 @@ const string INVALID_REQUEST = "invalid_request";
 const string INVALID_GRANT = "invalid_grant";
 const string UNAUTHORIZED_CLIENT = "unauthorized_client";
 
-string[] accessTokenStore = [];
-string[] refreshTokenStore = [];
+string[] accessTokenStore = ["56ede317-4511-44b4-8579-a08f094ee8c5"];
+string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
 
 // The mock authorization server, which is capable of issuing access-tokens with related to the grant type and
 // also of refreshing the already-issued access-tokens. Also, capable of introspection the access-tokens.
@@ -38,26 +38,83 @@ service /oauth2 on sts {
     // This issues an access token with reference to the received grant type.
     resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
-        if (authorizationHeader is string && isAuthorizedClient(authorizationHeader)) {
+        if (authorizationHeader is string) {
+            if (isAuthorizedClient(authorizationHeader)) {
+                var payload = req.getTextPayload();
+                if (payload is string) {
+                    string[] params = regex:split(payload, "&");
+                    string grantType = "";
+                    string scopes = "";
+                    string username = "";
+                    string password = "";
+                    foreach string param in params {
+                        if (param.includes("grant_type=")) {
+                            grantType = regex:split(param, "=")[1];
+                        } else if (param.includes("scope=")) {
+                            scopes = regex:split(param, "=")[1];
+                        } else if (param.includes("username=")) {
+                            username = regex:split(param, "=")[1];
+                        } else if (param.includes("password=")) {
+                            password = regex:split(param, "=")[1];
+                        }
+                    }
+                    return prepareTokenResponse(grantType, username, password);
+                } else {
+                    // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                    http:BadRequest badRequest = {
+                        body: INVALID_REQUEST
+                    };
+                    return badRequest;
+                }
+            } else {
+                // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                http:Unauthorized unauthorized = {
+                    body: INVALID_CLIENT
+                };
+                return unauthorized;
+            }
+        } else {
             var payload = req.getTextPayload();
             if (payload is string) {
-                string[] params = regex:split(payload, "&");
-                string grantType = "";
-                string scopes = "";
-                string username = "";
-                string password = "";
-                foreach string param in params {
-                    if (param.includes("grant_type")) {
-                        grantType = regex:split(param, "=")[1];
-                    } else if (param.includes("scope")) {
-                        scopes = regex:split(param, "=")[1];
-                    } else if (param.includes("username")) {
-                        username = regex:split(param, "=")[1];
-                    } else if (param.includes("password")) {
-                        password = regex:split(param, "=")[1];
+                if (payload.includes("client_id") && payload.includes("client_secret")) {
+                    string[] params = regex:split(payload, "&");
+                    string grantType = "";
+                    string scopes = "";
+                    string username = "";
+                    string password = "";
+                    string clientId = "";
+                    string clientSecret = "";
+                    foreach string param in params {
+                        if (param.includes("grant_type=")) {
+                            grantType = regex:split(param, "=")[1];
+                        } else if (param.includes("scope=")) {
+                            scopes = regex:split(param, "=")[1];
+                        } else if (param.includes("username=")) {
+                            username = regex:split(param, "=")[1];
+                        } else if (param.includes("password=")) {
+                            password = regex:split(param, "=")[1];
+                        } else if (param.includes("client_id=")) {
+                            clientId = regex:split(param, "=")[1];
+                        } else if (param.includes("client_secret=")) {
+                            clientSecret = regex:split(param, "=")[1];
+                        }
                     }
+                    if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
+                        return prepareTokenResponse(grantType, username, password);
+                    } else {
+                        // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                        http:Unauthorized unauthorized = {
+                            body: INVALID_CLIENT
+                        };
+                        return unauthorized;
+                    }
+                } else {
+                    // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                    http:Unauthorized unauthorized = {
+                        body: INVALID_CLIENT
+                    };
+                    return unauthorized;
                 }
-                return prepareTokenResponse(grantType, username, password);
             } else {
                 // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
                 http:BadRequest badRequest = {
@@ -65,40 +122,93 @@ service /oauth2 on sts {
                 };
                 return badRequest;
             }
-        } else {
-            // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-            http:Unauthorized unauthorized = {
-                body: INVALID_CLIENT
-            };
-            return unauthorized;
         }
     }
 
     // This refreshes the access token but does not issue a new refresh token.
     resource function post token/refresh(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
-        if (authorizationHeader is string && isAuthorizedClient(authorizationHeader)) {
+        if (authorizationHeader is string) {
+            if (isAuthorizedClient(authorizationHeader)) {
+                var payload = req.getTextPayload();
+                if (payload is string) {
+                    string[] params = regex:split(payload, "&");
+                    string grantType = "";
+                    string refreshToken = "";
+                    string scopes = "";
+                    foreach string param in params {
+                        if (param.includes("grant_type=")) {
+                            grantType = regex:split(param, "=")[1];
+                        } else if (param.includes("refresh_token=")) {
+                            refreshToken = regex:split(param, "=")[1];
+                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                            // the `split` function breaks all those into separate parts.
+                            if (param.endsWith("==")) {
+                                refreshToken += "==";
+                            }
+                        } else if (param.includes("scope")) {
+                            scopes = regex:split(param, "=")[1];
+                        }
+                    }
+                    return prepareRefreshResponse(grantType, refreshToken);
+                } else {
+                    // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                    http:BadRequest badRequest = {
+                        body: INVALID_REQUEST
+                    };
+                    return badRequest;
+                }
+            } else {
+                // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                http:Unauthorized unauthorized = {
+                    body: INVALID_CLIENT
+                };
+                return unauthorized;
+            }
+        } else {
             var payload = req.getTextPayload();
             if (payload is string) {
-                string[] params = regex:split(payload, "&");
-                string grantType = "";
-                string refreshToken = "";
-                string scopes = "";
-                foreach string param in params {
-                    if (param.includes("grant_type")) {
-                        grantType = regex:split(param, "=")[1];
-                    } else if (param.includes("refresh_token")) {
-                        refreshToken = regex:split(param, "=")[1];
-                        // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
-                        // the `split` function breaks all those into separate parts.
-                        if (param.endsWith("==")) {
-                            refreshToken += "==";
+                if (payload.includes("client_id") && payload.includes("client_secret")) {
+                    string[] params = regex:split(payload, "&");
+                    string grantType = "";
+                    string refreshToken = "";
+                    string scopes = "";
+                    string clientId = "";
+                    string clientSecret = "";
+                    foreach string param in params {
+                        if (param.includes("grant_type=")) {
+                            grantType = regex:split(param, "=")[1];
+                        } else if (param.includes("refresh_token=")) {
+                            refreshToken = regex:split(param, "=")[1];
+                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                            // the `split` function breaks all those into separate parts.
+                            if (param.endsWith("==")) {
+                                refreshToken += "==";
+                            }
+                        } else if (param.includes("scope=")) {
+                            scopes = regex:split(param, "=")[1];
+                        } else if (param.includes("client_id=")) {
+                            clientId = regex:split(param, "=")[1];
+                        } else if (param.includes("client_secret=")) {
+                            clientSecret = regex:split(param, "=")[1];
                         }
-                    } else if (param.includes("scope")) {
-                        scopes = regex:split(param, "=")[1];
                     }
+                    if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
+                        return prepareRefreshResponse(grantType, refreshToken);
+                    } else {
+                        // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                        http:Unauthorized unauthorized = {
+                            body: INVALID_CLIENT
+                        };
+                        return unauthorized;
+                    }
+                } else {
+                    // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
+                    http:Unauthorized unauthorized = {
+                        body: INVALID_CLIENT
+                    };
+                    return unauthorized;
                 }
-                return prepareRefreshResponse(grantType, refreshToken);
             } else {
                 // Invalid request. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
                 http:BadRequest badRequest = {
@@ -106,12 +216,6 @@ service /oauth2 on sts {
                 };
                 return badRequest;
             }
-        } else {
-            // Invalid client. (Refer: https://tools.ietf.org/html/rfc6749#section-5.2)
-            http:Unauthorized unauthorized = {
-                body: INVALID_CLIENT
-            };
-            return unauthorized;
         }
     }
 
@@ -124,9 +228,9 @@ service /oauth2 on sts {
                 string token = "";
                 string tokenTypeHint = "";
                 foreach string param in params {
-                    if (param.includes("token")) {
+                    if (param.includes("token=")) {
                         token = regex:split(param, "=")[1];
-                    } else if (param.includes("token_type_hint")) {
+                    } else if (param.includes("token_type_hint=")) {
                         tokenTypeHint = regex:split(param, "=")[1];
                     }
                 }
@@ -173,7 +277,7 @@ function prepareTokenResponse(string grantType, string username, string password
         json response = {
             "access_token": accessToken,
             "token_type": "example",
-            "expires_in": 3600,
+            "expires_in": 2,
             "scope": "read write dolphin",
             "example_parameter": "example_value"
         };
@@ -188,7 +292,7 @@ function prepareTokenResponse(string grantType, string username, string password
                 "access_token": accessToken,
                 "refresh_token": refreshToken,
                 "token_type": "example",
-                "expires_in": 3600,
+                "expires_in": 2,
                 "scope": "read write dolphin",
                 "example_parameter": "example_value"
             };
@@ -221,7 +325,7 @@ function prepareRefreshResponse(string grantType, string refreshToken) returns j
                     "access_token": accessToken,
                     "refresh_token": updatedRefreshToken,
                     "token_type": "example",
-                    "expires_in": 3600,
+                    "expires_in": 2,
                     "scope": "read write dolphin",
                     "example_parameter": "example_value"
                 };
@@ -242,7 +346,7 @@ function prepareRefreshResponse(string grantType, string refreshToken) returns j
     }
 }
 
-function prepareIntrospectionResponse(string grantType, string accessToken) returns json {
+function prepareIntrospectionResponse(string accessToken, string tokenTypeHint) returns json {
     foreach string token in accessTokenStore {
         if (token == accessToken) {
             json response = {
