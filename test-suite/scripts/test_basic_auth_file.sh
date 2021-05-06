@@ -31,14 +31,14 @@ assertAuthnFailure $response
 
 echo -e "\nListener Test-2: Authn Success - Authz Failure:"
 echo -e "\nInvoking Ballerina Basic Auth - File service:"
-response=$(curl -k -i -u bob:bob123 https://localhost:9090/orders/add)
+response=$(curl -k -i -u bob:bob@123 https://localhost:9090/orders/add)
 assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertAuthzFailure $response
 
 echo -e "\nListener Test-3: Authn Success - Authz Success:"
 echo -e "\nInvoking Ballerina Basic Auth - File service:"
-response=$(curl -k -i -u alice:alice123 https://localhost:9090/orders/view)
+response=$(curl -k -i -u alice:alice@123 https://localhost:9090/orders/view)
 assertNotEmpty $response
 echo -e "\nBallerina service response: $response"
 assertSuccess $response

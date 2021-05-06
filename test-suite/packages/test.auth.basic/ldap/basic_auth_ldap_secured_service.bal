@@ -37,7 +37,7 @@ service /orders on listenerEP {
                     connectionTimeout: 5,
                     readTimeout: 60
                 },
-                scopes: ["Developer"]
+                scopes: ["developer"]
             }
         ]
 	}
@@ -77,7 +77,7 @@ service /orders on listenerEP {
                     connectionTimeout: 5,
                     readTimeout: 60
                 },
-                scopes: ["Admin"]
+                scopes: ["admin"]
             }
         ]
     }

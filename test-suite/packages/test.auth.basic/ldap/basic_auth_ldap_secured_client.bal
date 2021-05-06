@@ -3,7 +3,7 @@ import ballerina/http;
 http:Client clientEP = checkpanic new("https://localhost:9090", {
     auth: {
         username: "alice",
-        password: "alice123"
+        password: "alice@123"
     },
     secureSocket: {
         cert: {
