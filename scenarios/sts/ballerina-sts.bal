@@ -47,7 +47,7 @@ listener http:Listener sts = new(SERVER_PORT, {
 
 service /oauth2 on sts {
 
-    // This issues an access token with reference to the received grant type.
+    // This issues an access token with reference to the received grant type (client credentials, password and refresh token grant type).
     resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
         if (authorizationHeader is string) {
@@ -59,6 +59,7 @@ service /oauth2 on sts {
                     string scopes = "";
                     string username = "";
                     string password = "";
+                    string refreshToken = "";
                     foreach string param in params {
                         if (param.includes("grant_type=")) {
                             grantType = regex:split(param, "=")[1];
@@ -68,9 +69,16 @@ service /oauth2 on sts {
                             username = regex:split(param, "=")[1];
                         } else if (param.includes("password=")) {
                             password = regex:split(param, "=")[1];
+                        } else if (param.includes("refresh_token=")) {
+                            refreshToken = regex:split(param, "=")[1];
+                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                            // the `split` function breaks all those into separate parts.
+                            if (param.endsWith("==")) {
+                                refreshToken += "==";
+                            }
                         }
                     }
-                    return prepareTokenResponse(grantType, username, password, scopes);
+                    return prepareTokenResponse(grantType, username, password, refreshToken, scopes);
                 }
                 return INVALID_REQUEST;
             }
@@ -86,6 +94,7 @@ service /oauth2 on sts {
                     string password = "";
                     string clientId = "";
                     string clientSecret = "";
+                    string refreshToken = "";
                     foreach string param in params {
                         if (param.includes("grant_type=")) {
                             grantType = regex:split(param, "=")[1];
@@ -99,10 +108,17 @@ service /oauth2 on sts {
                             clientId = regex:split(param, "=")[1];
                         } else if (param.includes("client_secret=")) {
                             clientSecret = regex:split(param, "=")[1];
+                        } else if (param.includes("refresh_token=")) {
+                            refreshToken = regex:split(param, "=")[1];
+                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                            // the `split` function breaks all those into separate parts.
+                            if (param.endsWith("==")) {
+                                refreshToken += "==";
+                            }
                         }
                     }
                     if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
-                        return prepareTokenResponse(grantType, username, password, scopes);
+                        return prepareTokenResponse(grantType, username, password, refreshToken, scopes);
                     }
                     return INVALID_CLIENT;
                 }
@@ -112,76 +128,7 @@ service /oauth2 on sts {
         }
     }
 
-    // This refreshes the access token but does not issue a new refresh token.
-    resource function post token/refresh(http:Request req) returns json|http:Unauthorized|http:BadRequest {
-        var authorizationHeader = req.getHeader("Authorization");
-        if (authorizationHeader is string) {
-            if (isAuthorizedTokenClient(authorizationHeader)) {
-                var payload = req.getTextPayload();
-                if (payload is string) {
-                    string[] params = regex:split(payload, "&");
-                    string grantType = "";
-                    string refreshToken = "";
-                    string scopes = "";
-                    foreach string param in params {
-                        if (param.includes("grant_type=")) {
-                            grantType = regex:split(param, "=")[1];
-                        } else if (param.includes("refresh_token=")) {
-                            refreshToken = regex:split(param, "=")[1];
-                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
-                            // the `split` function breaks all those into separate parts.
-                            if (param.endsWith("==")) {
-                                refreshToken += "==";
-                            }
-                        } else if (param.includes("scope=")) {
-                            scopes = regex:split(param, "=")[1];
-                        }
-                    }
-                    return prepareRefreshResponse(grantType, refreshToken, scopes);
-                }
-                return INVALID_REQUEST;
-            }
-            return INVALID_CLIENT;
-        } else {
-            var payload = req.getTextPayload();
-            if (payload is string) {
-                if (payload.includes("client_id") && payload.includes("client_secret")) {
-                    string[] params = regex:split(payload, "&");
-                    string grantType = "";
-                    string refreshToken = "";
-                    string scopes = "";
-                    string clientId = "";
-                    string clientSecret = "";
-                    foreach string param in params {
-                        if (param.includes("grant_type=")) {
-                            grantType = regex:split(param, "=")[1];
-                        } else if (param.includes("refresh_token=")) {
-                            refreshToken = regex:split(param, "=")[1];
-                            // If the refresh token contains the `=` symbol, then it is required to concatenate all the parts of the value since
-                            // the `split` function breaks all those into separate parts.
-                            if (param.endsWith("==")) {
-                                refreshToken += "==";
-                            }
-                        } else if (param.includes("scope=")) {
-                            scopes = regex:split(param, "=")[1];
-                        } else if (param.includes("client_id=")) {
-                            clientId = regex:split(param, "=")[1];
-                        } else if (param.includes("client_secret=")) {
-                            clientSecret = regex:split(param, "=")[1];
-                        }
-                    }
-                    if (clientId == CLIENT_ID && clientSecret == CLIENT_SECRET) {
-                        return prepareRefreshResponse(grantType, refreshToken, scopes);
-                    }
-                    return INVALID_CLIENT;
-                }
-                return INVALID_CLIENT;
-            }
-            return INVALID_REQUEST;
-        }
-    }
-
-    resource function post token/introspect(http:Request req) returns json|http:Unauthorized|http:BadRequest {
+    resource function post introspect(http:Request req) returns json|http:Unauthorized|http:BadRequest {
         var authorizationHeader = req.getHeader("Authorization");
         if (authorizationHeader is string && isAuthorizedIntrospectionClient(authorizationHeader)) {
             var payload = req.getTextPayload();
@@ -192,6 +139,11 @@ service /oauth2 on sts {
                 foreach string param in params {
                     if (param.includes("token=")) {
                         token = regex:split(param, "=")[1];
+                        // If the access token contains the `=` symbol, then it is required to concatenate all the parts of the value since
+                        // the `split` function breaks all those into separate parts.
+                        if (param.endsWith("==")) {
+                            token += "==";
+                        }
                     } else if (param.includes("token_type_hint=")) {
                         tokenTypeHint = regex:split(param, "=")[1];
                     }
@@ -222,12 +174,12 @@ service /oauth2 on sts {
     }
 }
 
-function prepareTokenResponse(string grantType, string username, string password, string scopes) returns json|http:Unauthorized|http:BadRequest {
+function prepareTokenResponse(string grantType, string username, string password, string refreshToken, string scopes) returns json|http:Unauthorized|http:BadRequest {
     if (grantType == GRANT_TYPE_CLIENT_CREDENTIALS) {
-        string accessToken = uuid:createType4AsString();
-        addToAccessTokenStore(accessToken);
+        string newAccessToken = uuid:createType4AsString();
+        addToAccessTokenStore(newAccessToken);
         json response = {
-            "access_token": accessToken,
+            "access_token": newAccessToken,
             "token_type": "example",
             "expires_in": TOKEN_VALIDITY_PERIOD,
             "example_parameter": "example_value"
@@ -238,13 +190,13 @@ function prepareTokenResponse(string grantType, string username, string password
         return response;
     } else if (grantType == GRANT_TYPE_PASSWORD) {
         if (username == USERNAME && password == PASSWORD) {
-            string accessToken = uuid:createType4AsString();
-            addToAccessTokenStore(accessToken);
-            string refreshToken = uuid:createType4AsString();
-            addToRefreshTokenStore(refreshToken);
+            string newAccessToken = uuid:createType4AsString();
+            addToAccessTokenStore(newAccessToken);
+            string newRefreshToken = uuid:createType4AsString();
+            addToRefreshTokenStore(newRefreshToken);
             json response = {
-                "access_token": accessToken,
-                "refresh_token": refreshToken,
+                "access_token": newAccessToken,
+                "refresh_token": newRefreshToken,
                 "token_type": "example",
                 "expires_in": TOKEN_VALIDITY_PERIOD,
                 "example_parameter": "example_value"
@@ -255,21 +207,16 @@ function prepareTokenResponse(string grantType, string username, string password
             return response;
         }
         return UNAUTHORIZED_CLIENT;
-    }
-    return INVALID_GRANT;
-}
-
-function prepareRefreshResponse(string grantType, string refreshToken, string scopes) returns json|http:BadRequest {
-    if (grantType == GRANT_TYPE_REFRESH_TOKEN) {
+    } else if (grantType == GRANT_TYPE_REFRESH_TOKEN) {
         foreach string token in refreshTokenStore {
             if (token == refreshToken) {
-                string accessToken = uuid:createType4AsString();
-                addToAccessTokenStore(accessToken);
-                string updatedRefreshToken = uuid:createType4AsString();
-                addToRefreshTokenStore(updatedRefreshToken);
+                string newAccessToken = uuid:createType4AsString();
+                addToAccessTokenStore(newAccessToken);
+                string newRefreshToken = uuid:createType4AsString();
+                addToRefreshTokenStore(newRefreshToken);
                 json response = {
-                    "access_token": accessToken,
-                    "refresh_token": updatedRefreshToken,
+                    "access_token": newAccessToken,
+                    "refresh_token": newRefreshToken,
                     "token_type": "example",
                     "expires_in": TOKEN_VALIDITY_PERIOD,
                     "example_parameter": "example_value"
