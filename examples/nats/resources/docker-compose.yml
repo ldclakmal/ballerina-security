@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nats-server:
+    image: nats:latest
+    container_name: nats-server
+    hostname: localhost
+    command: "--tls --tlscert /cert/server.crt --tlskey /key/server.key --tlscacert /cert/ca.crt --tlsverify"
+    volumes:
+      - "./cert/server.crt:/cert/server.crt"
+      - "./key/server.key:/key/server.key"
+      - "./cert/ca.crt:/cert/ca.crt"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
+
+# https://docs.nats.io/nats-server/configuration/securing_nats/tls
