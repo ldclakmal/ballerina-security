@@ -4,8 +4,8 @@ import ballerina/jwt;
 listener grpc:Listener securedEP = new(9090,
     secureSocket = {
         key: {
-            certFile: "../resources/public.crt",
-            keyFile: "../resources/private.key"
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
         }
     }
 );
@@ -14,7 +14,7 @@ grpc:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
-        certFile: "../resources/public.crt"
+        certFile: "./resources/public.crt"
     },
     scopeKey: "scp"
 });

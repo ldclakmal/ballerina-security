@@ -12,12 +12,12 @@ websocket:Client wsClient = check new("wss://localhost:9090/foo/bar",
         expTime: 3600,
         signatureConfig: {
             config: {
-                keyFile: "../resources/private.key"
+                keyFile: "./resources/private.key"
             }
         }
     },
     secureSocket = {
-        cert: "../resources/public.crt"
+        cert: "./resources/public.crt"
     }
 );
 

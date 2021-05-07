@@ -3,7 +3,7 @@ import ballerina/log;
 
 HelloWorldClient ep = check new("https://localhost:9090",
     secureSocket = {
-        cert: "../resources/public.crt"
+        cert: "./resources/public.crt"
     }
 );
 
@@ -18,7 +18,7 @@ public function main() returns error? {
         expTime: 3600,
         signatureConfig: {
             config: {
-                keyFile: "../resources/private.key"
+                keyFile: "./resources/private.key"
             }
         }
     });

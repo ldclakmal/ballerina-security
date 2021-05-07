@@ -6,8 +6,8 @@ import ballerina/websocket;
 listener websocket:Listener securedEP = new(9090,
    secureSocket = {
        key: {
-           certFile: "../resources/public.crt",
-           keyFile: "../resources/private.key"
+           certFile: "./resources/public.crt",
+           keyFile: "./resources/private.key"
        }
    }
 );
@@ -16,7 +16,7 @@ http:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
-        certFile: "../resources/public.crt"
+        certFile: "./resources/public.crt"
     },
     scopeKey: "scp"
 });

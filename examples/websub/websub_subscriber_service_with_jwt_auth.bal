@@ -4,8 +4,8 @@ import ballerina/websub;
 listener websub:Listener securedSubscriber = new(8080,
     secureSocket = {
         key: {
-            certFile: "../resources/public.crt",
-            keyFile: "../resources/private.key"
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
         }
     }
 );
@@ -27,12 +27,12 @@ listener websub:Listener securedSubscriber = new(8080,
             expTime: 3600,
             signatureConfig: {
                 config: {
-                    keyFile: "../resources/private.key"
+                    keyFile: "./resources/private.key"
                 }
             }
         },
         secureSocket: {
-            cert: "../resources/public.crt"
+            cert: "./resources/public.crt"
         }
     }
 }

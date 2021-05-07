@@ -6,8 +6,8 @@ import ballerina/websubhub;
 listener websubhub:Listener securedHub = new(9090,
     secureSocket = {
         key: {
-            certFile: "../resources/public.crt",
-            keyFile: "../resources/private.key"
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
         }
     }
 );
@@ -16,7 +16,7 @@ http:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
-        certFile: "../resources/public.crt"
+        certFile: "./resources/public.crt"
     },
     scopeKey: "scp"
 });
@@ -24,7 +24,7 @@ http:ListenerJwtAuthHandler handler = new({
 @websubhub:ServiceConfig {
     webHookConfig: {
         secureSocket: {
-            cert: "../resources/public.crt"
+            cert: "./resources/public.crt"
         }
     }
 }
@@ -93,7 +93,7 @@ service /websubhub on securedHub {
             log:printInfo("Subscriber found with callback URL: '" + sub.hubCallback + "'");
             websubhub:HubClient|error clientEP = new(sub, {
                 secureSocket: {
-                    cert: "../resources/public.crt"
+                    cert: "./resources/public.crt"
                 }
             });
             if (clientEP is error) {
