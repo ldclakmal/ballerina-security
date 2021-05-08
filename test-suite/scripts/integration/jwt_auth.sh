@@ -5,7 +5,7 @@ docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &
 sleep 90s
 
 echo -e "\n--- Starting Ballerina JWT service ---"
-bal run packages/test.auth.jwt &
+bal run packages/integration/jwt-auth &
 sleep 10s
 
 echo -e "\n--- Testing Client ---"

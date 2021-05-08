@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  basic-auth-file:
+  basic-auth-file-store:
     name: Basic Auth - File
     runs-on: ubuntu-latest
     env:
@@ -32,8 +32,8 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/test_basic_auth_file.sh
-  basic-auth-ldap:
+          scripts/integration/basic_auth_file_store.sh
+  basic-auth-ldap-store:
     name: Basic Auth - LDAP
     runs-on: ubuntu-latest
     env:
@@ -56,7 +56,7 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/test_basic_auth_ldap.sh
+          scripts/integration/basic_auth_ldap_store.sh
   jwt-auth:
     name: JWT Auth
     runs-on: ubuntu-latest
@@ -80,8 +80,8 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/test_jwt_auth.sh
-  oauth2-auth:
+          scripts/integration/jwt_auth.sh
+  oauth2:
     name: OAuth2
     runs-on: ubuntu-latest
     env:
@@ -104,4 +104,4 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/test_oauth2_auth.sh
+          scripts/integration/oauth2.sh
