@@ -31,6 +31,8 @@ OpenSSL is a very useful open-source command-line toolkit for working with X.509
 References:
 - https://www.sslshopper.com/article-most-common-openssl-commands.html
 - https://www.sslshopper.com/ssl-certificate-tools.html
+- https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs
+- https://blog.devolutions.net/2020/07/tutorial-how-to-generate-secure-self-signed-server-and-client-certificates-with-openssl
 
 ## Keytool
 
