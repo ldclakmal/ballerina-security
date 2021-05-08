@@ -18,17 +18,22 @@ The examples, use-cases, demos, resources related to microservices security patt
 [![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)](https://github.com/ldclakmal/ballerina-security)
 [![followers](https://img.shields.io/github/followers/ldclakmal?style=social)](https://github.com/ldclakmal)
 
-### Examples
+### Project Structure
 
-- [HTTP client and service examples secured with different auth mechanisms](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
-- [gRPC client and service examples secured with JWT auth mechanism](https://github.com/ldclakmal/ballerina-security/tree/master/examples/grpc)
-- [WebSocket client and service examples secured with JWT auth mechanism](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
-- [WebSub hub, publisher and subscriber examples secured with JWT auth mechanism](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websub)
+#### [Test Suite](./test-suite)
 
-### Scenarios
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios and Ballerina by examples (BBEs). These tests run on demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions).
 
-- [Simple inventory management system](https://ldclakmal.me/ballerina-security/scenarios/scenario-1/)
-- [Advanced inventory management system](https://ldclakmal.me/ballerina-security/scenarios/scenario-2/)
+[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
+[![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
+
+#### [Examples](./examples)
+
+This section demonstrates the examples with authentication and authorization for different transport protocols supported by Ballerina. The client and servers are secured with different auth protocols.
+
+#### [Scenarios](./scenarios)
+
+This section demonstrates the real-world scenarios which has authentication and authorization requirements and how that can be supported with Ballerina.
 
 ### Guides & Documentations
 

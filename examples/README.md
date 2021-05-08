@@ -1,9 +1,9 @@
 # Ballerina Security Examples
 
-This directory contains the example scenarios written by [Ballerina](https://ballerina.io) programming language for different protocols supported.
+This section demonstrates the examples with authentication and authorization for different transport protocols supported by Ballerina. The client and servers are secured with different auth protocols.
 
-1. [HTTP](./http)
-2. [gRPC](./grpc)
-3. [WebSocket](./websocket)
-4. [WebSub](./websub)
-5. [NATS](./nats)
+1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
+2. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/grpc)
+3. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
+4. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websub)
+5. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/nats)

@@ -3,7 +3,45 @@
 
 # Ballerina Security Test Suite
 
-This is an automated Ballerina security test suite which contains authentication and authorization related scenarios. These tests run on demand with the provided Ballerina version.
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios and Ballerina by examples (BBEs). These tests run on demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions).
+
+### Directory Structure
+
+```shell
+test-suite
+|
+|__ packages
+|   |__ bbe
+|   |   |__ access-control
+|   |   |   |__ basic-auth-file-store
+|   |   |   |__ basic-auth-ldap-store
+|   |   |   |__ jwt-auth
+|   |   |   |__ oauth2-bearer-token
+|   |   |   |__ oauth2-client-credentials-grant
+|   |   |   |__ oauth2-password-grant
+|   |   |   |__ oauth2-refresh-token-grant
+|   |   |
+|   |   |__ security
+|   |   |   |__ crypto
+|   |   |   |__ url
+|   |   |   |__ jwt
+|   |
+|   |__ integration
+|   |   |__ basic-auth-file-store
+|   |   |__ basic-auth-ldap-store
+|   |   |__ jwt-auth
+|   |   |__ oauth2
+|   |   
+|   |__ resources
+|
+|__ scripts
+    |__ bbe
+    |   |__ access-control
+    |   |__ security
+    |
+    |__ integration
+    |__ resources
+```
 
 ### Secured services
 
@@ -14,7 +52,7 @@ This is an automated Ballerina security test suite which contains authentication
 
 ##### Steps:
 1. User configurations are defined in `Config.toml`
-2. Ballerina service is secured with Basic Auth with file user store.
+2. Ballerina service is secured with Basic Auth with file user store. Inbound tokens are validated with the user store configured in `Config.toml`.
 3. CURL client send requests to Ballerina service.
 
 #### 2. Basic Auth - LDAP user store
@@ -25,7 +63,7 @@ This is an automated Ballerina security test suite which contains authentication
 
 ##### Steps:
 1. User configurations are provided to OpenLDAP server with `.ldif`
-2. Ballerina service is secured with Basic Auth with LDAP user store. Inbound tokens are validated with the OpenLDAP server.
+2. Ballerina service is secured with Basic Auth with LDAP user store. Inbound tokens are validated with the user store defined in OpenLDAP server.
 3. CURL client send requests to Ballerina service.
     
 #### 3. JWT Auth
@@ -37,8 +75,7 @@ This is an automated Ballerina security test suite which contains authentication
 
 ##### Steps:
 1. Service providers are defined in WSO2 IS STS.
-2. Ballerina service is secured with JWT Auth. Inbound tokens are validated by Ballerina with the use of configurations
- provided by WSO2 IS STS.
+2. Ballerina service is secured with JWT Auth. Inbound tokens are validated by Ballerina with the use of configurations provided by WSO2 IS STS.
 3. CURL client send request to WSO2 IS STS and get the JWT.
 4. CURL client send requests to Ballerina service with the received JWT.
 
