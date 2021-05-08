@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  crypto:
+  security-crypto:
     name: Cryptographic Operations
     runs-on: ubuntu-latest
     env:
@@ -32,8 +32,8 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/bbe_crypto.sh
-  url:
+          scripts/bbe_security_crypto.sh
+  security-url:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
     env:
@@ -55,8 +55,8 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/bbe_url.sh
-  jwt:
+          scripts/bbe_security_url.sh
+  security-jwt:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
     env:
@@ -78,4 +78,4 @@ jobs:
       - name: Test
         working-directory: test-suite
         run: |
-          scripts/bbe_jwt.sh
+          scripts/bbe_security_jwt.sh
