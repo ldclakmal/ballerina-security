@@ -5,7 +5,7 @@ import ballerina/uuid;
 listener http:Listener listenerEP = new(9090,
     secureSocket = {
         key: {
-            path: "resources/ballerinaKeystore.p12",
+            path: "packages/resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
@@ -22,7 +22,7 @@ service /orders on listenerEP {
                         customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                         secureSocket: {
                             cert: {
-                                path: "resources/ballerinaTruststore.p12",
+                                path: "packages/resources/ballerinaTruststore.p12",
                                 password: "ballerina"
                             }
                         }
@@ -53,7 +53,7 @@ service /orders on listenerEP {
                         customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                         secureSocket: {
                             cert: {
-                                path: "resources/ballerinaTruststore.p12",
+                                path: "packages/resources/ballerinaTruststore.p12",
                                 password: "ballerina"
                             }
                         }

@@ -9,7 +9,7 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
         clientConfig: {
             secureSocket: {
                 cert: {
-                    path: "resources/wso2Truststore.p12",
+                    path: "packages/resources/wso2Truststore.p12",
                     password: "wso2carbon"
                 }
             }
@@ -17,7 +17,7 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
     },
     secureSocket = {
         cert: {
-            path: "resources/ballerinaTruststore.p12",
+            path: "packages/resources/ballerinaTruststore.p12",
             password: "ballerina"
         }
     }
@@ -26,7 +26,7 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
 listener http:Listener apiEP = new(8080,
     secureSocket = {
         key: {
-            path: "resources/ballerinaKeystore.p12",
+            path: "packages/resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }

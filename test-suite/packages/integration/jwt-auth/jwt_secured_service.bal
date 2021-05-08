@@ -5,7 +5,7 @@ import ballerina/uuid;
 listener http:Listener jwtListenerEP = new(9090,
     secureSocket = {
         key: {
-            path: "resources/ballerinaKeystore.p12",
+            path: "packages/resources/ballerinaKeystore.p12",
             password: "ballerina"
         }
     }
@@ -24,7 +24,7 @@ service /orders1 on jwtListenerEP {
                         trustStoreConfig: {
                             certAlias: "wso2carbon",
                             trustStore: {
-                                path: "resources/wso2Truststore.p12",
+                                path: "packages/resources/wso2Truststore.p12",
                                 password: "wso2carbon"
                             }
                         }
@@ -56,7 +56,7 @@ service /orders1 on jwtListenerEP {
                         trustStoreConfig: {
                             certAlias: "wso2carbon",
                             trustStore: {
-                                path: "resources/wso2Truststore.p12",
+                                path: "packages/resources/wso2Truststore.p12",
                                 password: "wso2carbon"
                             }
                         }
@@ -89,7 +89,7 @@ service /orders2 on jwtListenerEP {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "packages/resources/wso2Public.crt"
                     }
                 },
                 scopes: ["view-order"]
@@ -115,7 +115,7 @@ service /orders2 on jwtListenerEP {
                     issuer: "wso2is",
                     audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "packages/resources/wso2Public.crt"
                     }
                 },
                 scopes: ["add-order"]
@@ -150,7 +150,7 @@ service /orders3 on jwtListenerEP {
                             clientConfig: {
                                 secureSocket: {
                                     cert: {
-                                        path: "resources/ballerinaTruststore.p12",
+                                        path: "packages/resources/ballerinaTruststore.p12",
                                         password: "ballerina"
                                     }
                                 }
@@ -186,7 +186,7 @@ service /orders3 on jwtListenerEP {
                             clientConfig: {
                                 secureSocket: {
                                     cert: {
-                                        path: "resources/ballerinaTruststore.p12",
+                                        path: "packages/resources/ballerinaTruststore.p12",
                                         password: "ballerina"
                                     }
                                 }
