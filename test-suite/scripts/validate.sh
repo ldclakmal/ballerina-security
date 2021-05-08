@@ -21,3 +21,9 @@ assertSuccess() {
     exit 1
   fi
 }
+
+assertStatusCode() {
+  if [[ ${12} != "\"200\"" ]]; then
+    exit 1
+  fi
+}
