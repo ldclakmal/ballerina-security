@@ -15,7 +15,7 @@ The examples, use-cases, demos, resources related to microservices security patt
 
 [![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)](https://github.com/ldclakmal/ballerina-security)
 [![followers](https://img.shields.io/github/followers/ldclakmal?style=social)](https://github.com/ldclakmal)
-![Twitter Follow](https://img.shields.io/twitter/follow/ldclakmal92?label=Follow&style=social)
+[![twitter](https://img.shields.io/twitter/follow/ldclakmal92?label=Follow&style=social)](https://twitter.com/ldclakmal92)
 
 ### Project Structure
 
@@ -28,11 +28,11 @@ This section demonstrates an automated Ballerina security test-suite which conta
 
 #### [Examples](./examples)
 
-This section demonstrates the examples with authentication and authorization for different transport protocols supported by Ballerina. The client and servers are secured with different auth protocols.
+This section demonstrates the examples with authentication and authorization for different transport protocols supported by Ballerina. The client and servers are secured with different auth protocols. Refer to the [examples](./examples).
 
 #### [Scenarios](./scenarios)
 
-This section demonstrates the real-world scenarios which has authentication and authorization requirements and how that can be supported with Ballerina.
+This section demonstrates the real-world scenarios which has authentication and authorization requirements and how that can be supported with Ballerina. Refer to the [scenarios](./scenarios).
 
 ### Guides & Documentations
 
