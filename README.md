@@ -13,10 +13,9 @@
 
 The examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open source programming language and platform for cloud-era application programmers to easily write software that just works.
 
-![repo](./img/github.png) [https://github.com/ldclakmal/ballerina-security](https://github.com/ldclakmal/ballerina-security)
-
 [![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)](https://github.com/ldclakmal/ballerina-security)
 [![followers](https://img.shields.io/github/followers/ldclakmal?style=social)](https://github.com/ldclakmal)
+![Twitter Follow](https://img.shields.io/twitter/follow/ldclakmal92?label=Follow&style=social)
 
 ### Project Structure
 
