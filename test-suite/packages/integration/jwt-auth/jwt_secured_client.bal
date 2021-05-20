@@ -36,7 +36,7 @@ listener http:Listener apiEP = new(8080,
 
 service /api on apiEP {
     resource function get [int id]/[string api]() returns http:Response|http:InternalServerError {
-        var response = clientEP->get("/orders" + id.toString() + "/" + api);
+        http:Response|http:ClientError response = clientEP->get("/orders" + id.toString() + "/" + api);
         if (response is http:Response) {
             return response;
         } else {
