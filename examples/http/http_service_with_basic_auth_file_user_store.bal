@@ -13,7 +13,7 @@ listener http:Listener securedEP = new(9090,
     auth: [
         {
             fileUserStoreConfig: {},
-            scopes: ["hello"]
+            scopes: ["admin"]
         }
     ]
 }

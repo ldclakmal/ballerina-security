@@ -29,7 +29,7 @@ service "HelloWorld" on securedEP {
         if (authn is grpc:UnauthenticatedError) {
             return authn;
         } else {
-            grpc:PermissionDeniedError? authz = handler.authorize(authn, "hello");
+            grpc:PermissionDeniedError? authz = handler.authorize(authn, "admin");
             if (authz is grpc:PermissionDeniedError) {
                 return authz;
             }

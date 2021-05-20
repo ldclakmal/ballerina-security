@@ -3,10 +3,10 @@ import ballerina/log;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
-        tokenUrl: "https://localhost:9090/oauth2/token",
-        clientId: "s6BhdRkqt3",
-        clientSecret: "7Fjfp0ZBr1KtDRbnfVdmIw",
-        scopes: ["hello"],
+        tokenUrl: "https://localhost:9445/oauth2/token",
+        clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
+        clientSecret: "PJz0UhTJMrHOo68QQNpvnqAY_3Aa",
+        scopes: ["admin"],
         clientConfig: {
             secureSocket: {
                 cert: "./resources/public.crt"

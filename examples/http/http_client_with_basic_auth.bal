@@ -3,8 +3,8 @@ import ballerina/log;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
-        username: "alice",
-        password: "123"
+        username: "ldclakmal",
+        password: "ldclakmal@123"
     },
     secureSocket = {
         cert: "./resources/public.crt"

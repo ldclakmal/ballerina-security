@@ -3,14 +3,14 @@ import ballerina/log;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
-        tokenUrl: "https://localhost:9090/oauth2/token",
+        tokenUrl: "https://localhost:9445/oauth2/token",
         username: "admin",
-        password: "123",
-        clientId: "s6BhdRkqt3",
-        clientSecret: "7Fjfp0ZBr1KtDRbnfVdmIw",
-        scopes: ["hello"],
+        password: "admin",
+        clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
+        clientSecret: "PJz0UhTJMrHOo68QQNpvnqAY_3Aa",
+        scopes: ["admin"],
         refreshConfig: {
-            refreshUrl: "https://localhost:9090/oauth2/token/refresh",
+            refreshUrl: "https://localhost:9445/oauth2/token",
             scopes: ["hello"],
             clientConfig: {
                 secureSocket: {

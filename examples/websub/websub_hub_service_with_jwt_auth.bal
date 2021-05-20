@@ -123,9 +123,9 @@ function doAuth(http:Request req) returns string? {
         log:printError(errorMsg);
         return errorMsg;
     }
-    http:Forbidden? authz = handler.authorize(<jwt:Payload>authn, "hello");
+    http:Forbidden? authz = handler.authorize(<jwt:Payload>authn, "admin");
     if (authz is http:Forbidden) {
-        string errorMsg = "Failed to authorize the request for the scope key: 'scp' and value: 'hello'.";
+        string errorMsg = "Failed to authorize the request for the scope key: 'scp' and value: 'admin'.";
         log:printError(errorMsg);
         return errorMsg;
     }

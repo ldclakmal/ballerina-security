@@ -20,7 +20,7 @@ listener http:Listener securedEP = new(9090,
                 },
                 scopeKey: "scp"
             },
-            scopes: ["hello"]
+            scopes: ["admin"]
         }
     ]
 }

@@ -17,12 +17,13 @@ listener http:Listener securedEP = new(9090,
                 tokenTypeHint: "access_token",
                 scopeKey: "scp",
                 clientConfig: {
+                    customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                     secureSocket: {
                         cert: "./resources/public.crt"
                     }
                 }
             },
-            scopes: ["hello"]
+            scopes: ["admin"]
         }
     ]
 }

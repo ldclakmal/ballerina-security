@@ -29,7 +29,7 @@ service /foo on securedEP {
             log:printError(errorMsg);
             return error websocket:AuthError(errorMsg);
         }
-        http:Forbidden? authz = handler.authorize(<jwt:Payload>authn, "hello");
+        http:Forbidden? authz = handler.authorize(<jwt:Payload>authn, "admin");
         if (authz is http:Forbidden) {
             string errorMsg = "Failed to authorize the request for the scope key: 'scp' and value: 'hello'.";
             log:printError(errorMsg);
