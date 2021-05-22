@@ -4,10 +4,10 @@ assertNotEmpty() {
   fi
 }
 
-assertTextPayload() {
-  if [[ "${1} ${2}" != "Hello, World!" ]]; then
-    echo "Expected: 'Hello, World!'"
-    echo "Actual: '${1} ${2}'"
+assertEquals() {
+  if [[ $1 != $2 ]]; then
+    echo "Expected: '$2'"
+    echo "Actual: '$1'"
     exit 1
   fi
 }
