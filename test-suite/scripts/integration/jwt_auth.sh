@@ -16,14 +16,14 @@ do
   response=$(curl -k -i https://localhost:8080/api/$id/add)
   assertNotEmpty "$response"
   echo -e "\nBallerina client response: $response"
-  assertForbidden "$response"
+  assertForbidden "$(echo "${response}" | head -1 | tr -d '\r')"
 
   echo -e "\nClient Test-$id.2: Authn Success - Authz Success:"
   echo -e "\nInvoking Ballerina JWT client:"
   response=$(curl -k -i https://localhost:8080/api/$id/view)
   assertNotEmpty "$response"
   echo -e "\nBallerina client response: $response"
-  assertOK "$response"
+  assertOK "$(echo "${response}" | head -1 | tr -d '\r')"
 done
 
 echo -e "\n--- Testing Listener ---"
@@ -45,21 +45,21 @@ do
   response=$(curl -k -i -H "AUTHORIZATION: Bearer InvalidToken" https://localhost:9090/orders$id/view)
   assertNotEmpty "$response"
   echo -e "\nBallerina service response: $response"
-  assertUnauthorized "$response"
+  assertUnauthorized "$(echo "${response}" | head -1 | tr -d '\r')"
 
   echo -e "\nListener Test-$id.2: Authn Success - Authz Failure:"
   echo -e "\nInvoking Ballerina JWT service:"
   response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders$id/add)
   assertNotEmpty "$response"
   echo -e "\nBallerina service response: $response"
-  assertForbidden "$response"
+  assertForbidden "$(echo "${response}" | head -1 | tr -d '\r')"
 
   echo -e "\nListener Test$id.3: Authn Success - Authz Success:"
   echo -e "\nInvoking Ballerina JWT service:"
   response=$(curl -k -i -H "AUTHORIZATION: Bearer $token" https://localhost:9090/orders$id/view)
   assertNotEmpty "$response"
   echo -e "\nBallerina service response: $response"
-  assertOK "$response"
+  assertOK "$(echo "${response}" | head -1 | tr -d '\r')"
 done
 
 exit 0
