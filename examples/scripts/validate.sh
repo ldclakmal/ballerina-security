@@ -11,11 +11,3 @@ assertTextPayload() {
     exit 1
   fi
 }
-
-assertJsonPayload() {
-  if [[ "${1} ${2}" != "{\"data\":{\"bar\":\"Hello, World!\"}}" ]]; then
-    echo "Expected: '{\"data\":{\"bar\":\"Hello, World!\"}}'"
-    echo "Actual: '${1} ${2}'"
-    exit 1
-  fi
-}
