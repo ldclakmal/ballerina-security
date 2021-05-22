@@ -1,3 +1,4 @@
+import ballerina/io;
 import ballerina/log;
 import ballerina/websubhub;
 
@@ -24,7 +25,7 @@ public function main() returns error? {
 
     websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient->registerTopic("Ballerina");
     if (registrationResponse is websubhub:TopicRegistrationSuccess) {
-        log:printInfo("Topic registration successful. Body: '" + registrationResponse.body.toString() + "'.");
+        io:println("Topic registration successful.");
     } else {
         log:printError("Topic registration failed!.", 'error = registrationResponse);
     }
@@ -32,7 +33,7 @@ public function main() returns error? {
     string payload = "Swan Lake GA Released!";
     websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient->publishUpdate("Ballerina", payload);
     if (publishResponse is websubhub:Acknowledgement) {
-        log:printInfo("Publish update successful. Body: '" + publishResponse.body.toString() + "'.");
+        io:println("Publish update successful.");
     } else {
         log:printError("Publish update failed!.", 'error = publishResponse);
     }

@@ -1,5 +1,5 @@
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -12,5 +12,5 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     http:Response response = check securedEP->get("/foo/bar");
-    log:printInfo(response.statusCode.toString());
+    io:println(check response.getTextPayload());
 }
