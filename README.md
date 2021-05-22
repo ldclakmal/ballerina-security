@@ -23,11 +23,11 @@ Ballerina Security is based on the 5 [standard library][stdlib] modules which ar
 
 | Module | Status | Issues & PRs | Docs & Package | BBEs |
 |---|---|---|---|---|
-| [**auth**][auth] | [![tag](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=)][auth-tags] <br/> [![build](https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg)][auth-build] <br/> [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg)][auth-codecov] | [![issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/auth.svg?label=Issues)][auth-issues] <br/> [![pulls](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-auth?label=PRs)][auth-pulls] | [![Auth API Docs][ballerina-docs-logo]][auth-docs] <br/> [![Auth Package][ballerina-central-logo]][auth-package] | [HTTP Service with Basic Auth File User Store][bbe-service-basic-auth-file] <br/> [HTTP Service with Basic Auth LDAP User Store][bbe-service-basic-auth-ldap] <br/> [HTTP Client with Basic Auth][bbe-client-basic-auth] |
-| [**jwt**][jwt] | [![tag](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=)][jwt-tags] <br/> [![build](https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg)][jwt-build] <br/> [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg)][jwt-codecov] | [![issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/jwt.svg?label=Issues)][jwt-issues] <br/> [![pulls](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-jwt?label=PRs)][jwt-pulls] | [![JWT API Docs][ballerina-docs-logo]][jwt-docs] <br/> [![JWT Package][ballerina-central-logo]][jwt-package] | [JWT Issue & Validate][bbe-jwt] <br/> [HTTP Service with JWT Auth][bbe-service-jwt-auth] <br/> [HTTP Client with Bearer Token Auth][bbe-client-bearer-token-auth] <br/> [HTTP Client with Self Signed JWT Auth][bbe-client-self-signed-jwt-auth] |
-| [**oauth2**][oauth2] | [![tag](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=)][oauth2-tags] <br/> [![build](https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg)][oauth2-build] <br/> [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg)][oauth2-codecov] | [![issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/oauth2.svg?label=Issues)][oauth2-issues] <br/> [![pulls](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-oauth2?label=PRs)][oauth2-pulls] | [![OAuth2 API Docs][ballerina-docs-logo]][oauth2-docs] <br/> [![OAuth2 Package][ballerina-central-logo]][oauth2-package] | [HTTP Service with OAuth2][bbe-service-oauth2] <br/> [HTTP Client with OAuth2 Client Credentials Grant Type][bbe-client-oauth2-client-credentials-grant] <br/> [HTTP Client with OAuth2 Password Grant Type][bbe-client-oauth2-password-grant] <br/> [HTTP Client with OAuth2 Direct Token Type][bbe-client-oauth2-refresh-token-grant] |
-| [**crypto**][crypto] | [![tag](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto?label=)][crypto-tags] <br/> [![build](https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml/badge.svg)][crypto-build] <br/> [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerina-crypto/branch/master/graph/badge.svg)][crypto-codecov] | [![issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/crypto.svg?label=Issues)][crypto-issues] <br/> [![pulls](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-crypto?label=PRs)][crypto-pulls] | [![Crypto API Docs][ballerina-docs-logo]][crypto-docs] <br/> [![Crypto Package][ballerina-central-logo]][crypto-package] | [Cryptographic Operations][bbe-crypto] |
-| [**url**][url] | [![tag](https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-url?label=)][url-tags] <br/> [![build](https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml/badge.svg)][url-build] <br/> [![codecov](https://codecov.io/gh/ballerina-platform/module-ballerina-url/branch/master/graph/badge.svg)][url-codecov] | [![issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/url.svg?label=Issues)][url-issues] <br/> [![pulls](https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-url?label=PRs)][url-pulls] | [![URL API Docs][ballerina-docs-logo]][url-docs] <br/> [![URL Package][ballerina-central-logo]][url-package] | [URL Encode & Decode][bbe-url] |
+| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] <br/> [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov] | [![issues][auth-badge-issues]][auth-issues] <br/> [![pulls][auth-badge-pulls]][auth-pulls] | [![docs][ballerina-docs-logo]][auth-docs] <br/> [![package][ballerina-central-logo]][auth-package] | [HTTP Service with Basic Auth File User Store][bbe-service-basic-auth-file] <br/> [HTTP Service with Basic Auth LDAP User Store][bbe-service-basic-auth-ldap] <br/> [HTTP Client with Basic Auth][bbe-client-basic-auth] |
+| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] <br/> [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov] | [![issues][jwt-badge-issues]][jwt-issues] <br/> [![pulls][jwt-badge-pulls]][jwt-pulls] | [![docs][ballerina-docs-logo]][jwt-docs] <br/> [![package][ballerina-central-logo]][jwt-package] | [JWT Issue & Validate][bbe-jwt-issue-validate] <br/> [HTTP Service with JWT Auth][bbe-service-jwt-auth] <br/> [HTTP Client with Bearer Token Auth][bbe-client-bearer-token-auth] <br/> [HTTP Client with Self Signed JWT Auth][bbe-client-self-signed-jwt-auth] |
+| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] <br/> [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [![issues][oauth2-badge-issues]][oauth2-issues] <br/> [![pulls][oauth2-badge-pulls]][oauth2-pulls] | [![docs][ballerina-docs-logo]][oauth2-docs] <br/> [![package][ballerina-central-logo]][oauth2-package] | [HTTP Service with OAuth2][bbe-service-oauth2] <br/> [HTTP Client with OAuth2 Client Credentials Grant Type][bbe-client-oauth2-client-credentials-grant] <br/> [HTTP Client with OAuth2 Password Grant Type][bbe-client-oauth2-password-grant] <br/> [HTTP Client with OAuth2 Direct Token Type][bbe-client-oauth2-refresh-token-grant] |
+| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] <br/> [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![issues][crypto-badge-issues]][crypto-issues] <br/> [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] | [Cryptographic Operations][bbe-cryptogrphy] |
+| [**url**][url] | [![tag][url-badge-tags]][url-tags] <br/> [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [![issues][url-badge-issues]][url-issues] <br/> [![pulls][url-badge-pulls]][url-pulls] | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package] | [URL Encode & Decode][bbe-url-encode-decode] |
 
 ## Test Suite
 
@@ -118,6 +118,11 @@ This section demonstrates the real-world scenarios which have authentication and
 [auth-pulls]: https://github.com/ballerina-platform/module-ballerina-auth/pulls
 [auth-docs]: https://docs.central.ballerina.io/ballerina/auth/latest
 [auth-package]: https://swanlake.central.ballerina.io/ballerina/auth
+[auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
+[auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
+[auth-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg
+[auth-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/auth.svg?label=Issues
+[auth-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-auth?label=PRs
 
 [jwt]: https://github.com/ballerina-platform/module-ballerina-jwt
 [jwt-tags]: https://github.com/ballerina-platform/module-ballerina-jwt/tags
@@ -127,6 +132,11 @@ This section demonstrates the real-world scenarios which have authentication and
 [jwt-pulls]: https://github.com/ballerina-platform/module-ballerina-jwt/pulls
 [jwt-docs]: https://docs.central.ballerina.io/ballerina/jwt/latest
 [jwt-package]: https://swanlake.central.ballerina.io/ballerina/jwt
+[jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
+[jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
+[jwt-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg
+[jwt-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/jwt.svg?label=Issues
+[jwt-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-jwt?label=PRs
 
 [oauth2]: https://github.com/ballerina-platform/module-ballerina-oauth2
 [oauth2-tags]: https://github.com/ballerina-platform/module-ballerina-oauth2/tags
@@ -136,6 +146,11 @@ This section demonstrates the real-world scenarios which have authentication and
 [oauth2-pulls]: https://github.com/ballerina-platform/module-ballerina-oauth2/pulls
 [oauth2-docs]: https://docs.central.ballerina.io/ballerina/oauth2/latest
 [oauth2-package]: https://swanlake.central.ballerina.io/ballerina/oauth2
+[oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
+[oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
+[oauth2-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg
+[oauth2-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/oauth2.svg?label=Issues
+[oauth2-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-oauth2?label=PRs
 
 [crypto]: https://github.com/ballerina-platform/module-ballerina-crypto
 [crypto-tags]: https://github.com/ballerina-platform/module-ballerina-crypto/tags
@@ -145,6 +160,11 @@ This section demonstrates the real-world scenarios which have authentication and
 [crypto-pulls]: https://github.com/ballerina-platform/module-ballerina-crypto/pulls
 [crypto-docs]: https://docs.central.ballerina.io/ballerina/crypto/latest
 [crypto-package]: https://swanlake.central.ballerina.io/ballerina/crypto
+[crypto-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto?label=
+[crypto-badge-build]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml/badge.svg
+[crypto-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-crypto/branch/master/graph/badge.svg
+[crypto-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/crypto.svg?label=Issues
+[crypto-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-crypto?label=PRs
 
 [url]: https://github.com/ballerina-platform/module-ballerina-url
 [url-tags]: https://github.com/ballerina-platform/module-ballerina-url/tags
@@ -154,6 +174,11 @@ This section demonstrates the real-world scenarios which have authentication and
 [url-pulls]: https://github.com/ballerina-platform/module-ballerina-url/pulls
 [url-docs]: https://docs.central.ballerina.io/ballerina/url/latest
 [url-package]: https://swanlake.central.ballerina.io/ballerina/url
+[url-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-url?label=
+[url-badge-build]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml/badge.svg
+[url-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-url/branch/master/graph/badge.svg
+[url-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/url.svg?label=Issues
+[url-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-url?label=PRs
 
 [stdlib]: https://github.com/ballerina-platform/ballerina-standard-library
 [http]: https://github.com/ballerina-platform/module-ballerina-http
@@ -162,9 +187,9 @@ This section demonstrates the real-world scenarios which have authentication and
 [websub]: https://github.com/ballerina-platform/module-ballerina-websub
 [graphql]: https://github.com/ballerina-platform/module-ballerina-graphql
 
-[bbe-crypto]: https://ballerina.io/swan-lake/learn/by-example/crypto.html
-[bbe-jwt]: https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html
-[bbe-url]: https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html
+[bbe-cryptography]: https://ballerina.io/swan-lake/learn/by-example/crypto.html
+[bbe-jwt-issue-validate]: https://ballerina.io/swan-lake/learn/by-example/jwt-issue-validate.html
+[bbe-url-encode-decode]: https://ballerina.io/swan-lake/learn/by-example/url-encode-decode.html
 [bbe-service-basic-auth-file]: https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-file-user-store.html
 [bbe-service-basic-auth-ldap]: https://ballerina.io/swan-lake/learn/by-example/http-service-with-basic-auth-ldap-user-store.html]
 [bbe-service-jwt-auth]: https://ballerina.io/swan-lake/learn/by-example/http-service-with-jwt-auth.html
