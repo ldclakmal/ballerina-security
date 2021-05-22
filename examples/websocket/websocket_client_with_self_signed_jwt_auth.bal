@@ -1,4 +1,4 @@
-import ballerina/log;
+import ballerina/io;
 import ballerina/websocket;
 
 websocket:Client wsClient = check new("wss://localhost:9090/foo/bar",
@@ -24,5 +24,5 @@ websocket:Client wsClient = check new("wss://localhost:9090/foo/bar",
 public function main() returns error? {
     _ = check wsClient->writeTextMessage("Hello, World!");
     string response = check wsClient->readTextMessage();
-    log:printInfo(response);
+    io:println(response);
 }
