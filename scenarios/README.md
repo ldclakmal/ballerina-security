@@ -1,6 +1,6 @@
 # Ballerina Security Scenarios
 
-This section demonstrates the real-world scenarios which has authentication and authorization requirements and how that can be supported with Ballerina.
+This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
 ### [Ballerina Secure Token Service (STS)](./sts)
 

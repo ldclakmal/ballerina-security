@@ -31,7 +31,7 @@ Ballerina Security is based on the 5 [standard library][stdlib] modules which ar
 
 ## Test Suite
 
-This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios and Ballerina by examples (BBEs). These tests run on demand with the provided Ballerina version in GitHub secrets. Refer to the [test suite](./test-suite).
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios and Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [test suite](./test-suite).
 
 [![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 [![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
@@ -42,7 +42,7 @@ This section demonstrates the examples with authentication and authorization for
 
 ## Scenarios
 
-This section demonstrates the real-world scenarios which has authentication and authorization requirements and how that can be supported with Ballerina. Refer to the [scenarios](./scenarios).
+This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina. Refer to the [scenarios](./scenarios).
 
 ## Guides & Documentations
 

@@ -9,16 +9,16 @@ $ docker container rm <container-id>
 Now, you need to create `.ldif` with user data. Refer to [bootstrap.ldif](./resources/ldap/bootstrap.ldif) for a sample.
 > Reference: https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system
 
-Now, create `docker-compose.yml` file with required env variables, ports, volumes etc. Refer to [docker-compose.yml](./resources/ldap/docker-compose.yml) for a sample.
+Now, create `docker-compose.yml` file with required env variables, ports, volumes, etc. Refer to [docker-compose.yml](./resources/ldap/docker-compose.yml) for a sample.
 
-Now, execute following command to start the Docker container.
+Now, execute the following command to start the Docker container.
 ```bash
 $ docker-compose up
 ```
 
-**NOTE:** Since, we have named the container as `openldap-server` in `docker-compose.yml` file the following commands will refer that name.
+**NOTE:** Since we have named the container as `openldap-server` in `docker-compose.yml` file the following commands will refer to that name.
 
-Execute following commands with `ldapsearch` to query the DIT and lookup entries.
+Execute the following commands with `ldapsearch` to query the DIT and lookup entries.
 ```bash
 $ docker exec openldap-server ldapsearch -x -H ldap://localhost -D "cn=admin,dc=avix,dc=lk" -w avix123 -b "dc=avix,dc=lk"
 $ docker exec openldap-server ldapsearch -x -H ldap://localhost -D "cn=admin,dc=avix,dc=lk" -w avix123 -b "dc=avix,dc=lk" -s one -LLL dn
@@ -39,7 +39,7 @@ $ docker exec openldap-server ldapadd -x -H ldap://localhost -D "cn=admin,dc=avi
 ---
 **NOTE:** Experimental stage.
 
-Alternative way to start the container without `docker-compose.yml`.
+An alternative way to start the container without `docker-compose.yml`.
 ```bash
 docker run -p 389:389 -p 636:636 --name openldap-server --env LDAP_ORGANISATION="AVIX" \
     --env LDAP_DOMAIN="avix.lk" --env LDAP_ADMIN_PASSWORD="avix123" --env LDAP_BASE_DN="dc=avix,dc=lk" \
@@ -49,7 +49,7 @@ docker run -p 389:389 -p 636:636 --name openldap-server --env LDAP_ORGANISATION=
 
 ---
 # References
-1. https://github.com/osixia/docker-openldap
-2. https://ldap.com/basic-ldap-concepts
-3. https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system
-4. https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities
+1. [https://github.com/osixia/docker-openldap](https://github.com/osixia/docker-openldap)
+2. [https://ldap.com/basic-ldap-concepts](https://ldap.com/basic-ldap-concepts)
+3. [https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system](https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system)
+4. [https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities](https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities)
