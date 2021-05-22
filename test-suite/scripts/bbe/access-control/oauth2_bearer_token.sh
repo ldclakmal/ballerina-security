@@ -14,5 +14,5 @@ echo -e "\n--- Testing BBE ---"
 bal run packages/bbe/access-control/oauth2-bearer-token/http_service_with_oauth2.bal &
 sleep 10s
 response=$(bal run packages/bbe/access-control/oauth2-bearer-token/http_client_with_bearer_token_auth.bal 2>&1 | tail -n 1)
-assertNotEmpty $response
+assertNotEmpty "$response"
 assertStatusCode $response

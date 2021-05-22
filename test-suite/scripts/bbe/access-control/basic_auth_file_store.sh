@@ -13,5 +13,5 @@ echo -e "\n--- Testing BBE ---"
 bal run packages/bbe/access-control/basic-auth-file-store/http_service_with_basic_auth_file_user_store.bal &
 sleep 10s
 response=$(bal run packages/bbe/access-control/basic-auth-file-store/http_client_with_basic_auth.bal 2>&1 | tail -n 1)
-assertNotEmpty $response
+assertNotEmpty "$response"
 assertStatusCode $response

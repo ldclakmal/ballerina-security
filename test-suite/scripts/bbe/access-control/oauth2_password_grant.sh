@@ -14,5 +14,5 @@ echo -e "\n--- Testing BBE ---"
 bal run packages/bbe/access-control/oauth2-password-grant/http_service_with_oauth2.bal &
 sleep 10s
 response=$(bal run packages/bbe/access-control/oauth2-password-grant/http_client_with_oauth2_password_grant_type.bal 2>&1 | tail -n 1)
-assertNotEmpty $response
+assertNotEmpty "$response"
 assertStatusCode $response
