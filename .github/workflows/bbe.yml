@@ -29,9 +29,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/security
         run: |
-          scripts/bbe/security/crypto.sh
+          scripts/crypto.sh
   security-url:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
@@ -52,9 +52,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/security
         run: |
-          scripts/bbe/security/url.sh
+          scripts/url.sh
   security-jwt:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
@@ -75,9 +75,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/security
         run: |
-          scripts/bbe/security/jwt.sh
+          scripts/jwt.sh
   access-control-basic-auth-file-store:
     name: HTTP - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -98,9 +98,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/basic_auth_file_store.sh
+          scripts/basic_auth_file_store.sh
   access-control-basic-auth-ldap-store:
     name: HTTP - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -121,9 +121,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/basic_auth_ldap_store.sh
+          scripts/basic_auth_ldap_store.sh
   access-control-jwt-auth:
     name: HTTP - JWT Auth
     runs-on: ubuntu-latest
@@ -144,9 +144,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/jwt_auth.sh
+          scripts/jwt_auth.sh
   access-control-oauth-bearer-token:
     name: HTTP - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -167,9 +167,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/oauth2_bearer_token.sh
+          scripts/oauth2_bearer_token.sh
   access-control-oauth-client-credentials-grant:
     name: HTTP - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -190,9 +190,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/oauth2_client_credentials_grant.sh
+          scripts/oauth2_client_credentials_grant.sh
   access-control-oauth-password-grant:
     name: HTTP - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -213,9 +213,9 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/oauth2_password_grant.sh
+          scripts/oauth2_password_grant.sh
   access-control-oauth-refresh-token-grant:
     name: HTTP - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -236,6 +236,6 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite
+        working-directory: test-suite/bbe/access-control
         run: |
-          scripts/bbe/access-control/oauth2_refresh_token_grant.sh
+          scripts/oauth2_refresh_token_grant.sh
