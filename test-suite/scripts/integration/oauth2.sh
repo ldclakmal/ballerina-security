@@ -1,4 +1,4 @@
-source scripts/validate.sh
+source scripts/assert.sh
 
 echo -e "\n--- Starting WSO2IS STS ---"
 docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &

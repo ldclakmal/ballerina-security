@@ -1,4 +1,4 @@
-source scripts/validate.sh
+source scripts/assert.sh
 
 export BAL_CONFIG_FILES=packages/integration/basic-auth-file-store/Config.toml
 

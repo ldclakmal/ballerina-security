@@ -1,4 +1,4 @@
-source scripts/validate.sh
+source scripts/assert.sh
 
 echo -e "\n--- Starting OpenLDAP Server ---"
 docker-compose -f scripts/resources/docker-compose.yml up &

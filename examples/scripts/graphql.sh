@@ -1,4 +1,4 @@
-source ../scripts/validate.sh
+source ../scripts/assert.sh
 
 bal run graphql_service_with_jwt_auth.bal &
 sleep 10s

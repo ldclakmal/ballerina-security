@@ -1,4 +1,4 @@
-source scripts/validate.sh
+source scripts/assert.sh
 
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-service-with-oauth2/http_service_with_oauth2.bal > packages/bbe/access-control/oauth2-bearer-token/http_service_with_oauth2.bal
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-with-bearer-token-auth/http_client_with_bearer_token_auth.bal > packages/bbe/access-control/oauth2-bearer-token/http_client_with_bearer_token_auth.bal
