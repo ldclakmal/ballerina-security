@@ -15,9 +15,7 @@
 
 Ballerina Security is based on the 5 [standard library][stdlib] modules which are [Auth][auth], [JWT][jwt], [OAuth2][oauth2], [Crypto][crypto], and [URL][url]. These modules provide the authentication and authorization framework for all the microservices which are written with different protocols like [HTTP][http], [gRPC][grpc], [WebSocket][websocket], [WebSub][websub], [GraphQL][graphql], etc.
 
-[![stars](https://img.shields.io/github/stars/ldclakmal/ballerina-security?style=social)](https://github.com/ldclakmal/ballerina-security)
-[![followers](https://img.shields.io/github/followers/ldclakmal?style=social)](https://github.com/ldclakmal)
-[![twitter](https://img.shields.io/twitter/follow/ldclakmal92?label=Follow&style=social)](https://twitter.com/ldclakmal92)
+GitHub Source: [https://github.com/ldclakmal/ballerina-security](https://github.com/ldclakmal/ballerina-security) <br/><br/>
 
 ## Dashboard
 
