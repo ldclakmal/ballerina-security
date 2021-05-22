@@ -10,9 +10,9 @@ This section demonstrates an automated Ballerina security test-suite which conta
 ```shell
 test-suite
 |
-|__ packages
-|   |__ bbe
-|   |   |__ access-control
+|__ bbe
+|   |__ access-control
+|   |   |__ packages
 |   |   |   |__ basic-auth-file-store
 |   |   |   |__ basic-auth-ldap-store
 |   |   |   |__ jwt-auth
@@ -20,27 +20,26 @@ test-suite
 |   |   |   |__ oauth2-client-credentials-grant
 |   |   |   |__ oauth2-password-grant
 |   |   |   |__ oauth2-refresh-token-grant
-|   |   |
-|   |   |__ security
-|   |   |   |__ crypto
-|   |   |   |__ url
-|   |   |   |__ jwt
+|   |   |__ scripts
+|   |   |__ resources
 |   |
-|   |__ integration
-|   |   |__ basic-auth-file-store
-|   |   |__ basic-auth-ldap-store
-|   |   |__ jwt-auth
-|   |   |__ oauth2
-|   |   
-|   |__ resources
+|   |__ security
+|       |__ packages
+|       |   |__ crypto
+|       |   |__ url
+|       |   |__ jwt
+|       |__ scripts
+|       |__ resources
 |
-|__ scripts
-    |__ bbe
-    |   |__ access-control
-    |   |__ security
-    |
-    |__ integration
+|__ integration
+    |__ packages
+    |   |__ basic-auth-file-store
+    |   |__ basic-auth-ldap-store
+    |   |__ jwt-auth
+    |   |__ oauth2
+    |__ scripts
     |__ resources
+
 ```
 
 ### Secured services
