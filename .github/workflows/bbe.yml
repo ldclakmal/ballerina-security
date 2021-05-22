@@ -22,7 +22,6 @@ jobs:
         with:
           java-version: 11
       - name: Download Ballerina
-        # run: wget https://dist.ballerina.io/downloads/swan-lake-alpha3/ballerina-linux-installer-x64-swan-lake-alpha3.deb
         run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
       - name: Install Ballerina
         run: |
