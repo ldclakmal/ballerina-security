@@ -1,5 +1,5 @@
 import ballerina/grpc;
-import ballerina/log;
+import ballerina/io;
 
 HelloWorldClient ep = check new("https://localhost:9090",
     secureSocket = {
@@ -26,7 +26,7 @@ public function main() returns error? {
     headers = check handler.enrich(headers);
     ContextString requestMessage = { content: "Ballerina", headers: headers };
     ContextString result = check ep->fooContext(requestMessage);
-    log:printInfo(result.content);
+    io:println(result.content);
 }
 
 
