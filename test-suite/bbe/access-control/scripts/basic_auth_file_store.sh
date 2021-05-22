@@ -6,8 +6,8 @@ curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution
 
 export BAL_CONFIG_FILES=packages/basic-auth-file-store/Config.toml
 
-sed -i 's+../resource/path/to+packages/resources+g' packages/basic-auth-file-store/http_service_with_basic_auth_file_user_store.bal
-sed -i 's+../resource/path/to+packages/resources+g' packages/basic-auth-file-store/http_client_with_basic_auth.bal
+sed -i 's+../resource/path/to+resources+g' packages/basic-auth-file-store/http_service_with_basic_auth_file_user_store.bal
+sed -i 's+../resource/path/to+resources+g' packages/basic-auth-file-store/http_client_with_basic_auth.bal
 
 echo -e "\n--- Testing BBE ---"
 bal run packages/basic-auth-file-store/http_service_with_basic_auth_file_user_store.bal &
