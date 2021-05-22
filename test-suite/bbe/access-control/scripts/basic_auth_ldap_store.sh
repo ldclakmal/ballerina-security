@@ -7,7 +7,7 @@ sed -i 's+../resource/path/to+resources+g' packages/basic-auth-ldap-store/http_s
 sed -i 's+../resource/path/to+resources+g' packages/basic-auth-ldap-store/http_client_with_basic_auth.bal
 
 echo -e "\n--- Starting OpenLDAP Server ---"
-docker-compose -f scripts/resources/docker-compose.yml up &
+docker-compose -f resources/docker-compose.yml up &
 sleep 30s
 
 echo -e "\n--- Testing BBE ---"
