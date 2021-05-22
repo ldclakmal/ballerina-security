@@ -5,13 +5,13 @@ assertNotEmpty() {
 }
 
 assertTextPayload() {
-  if [[ "${1} ${2}" != "\"Hello, World!\"" ]]; then
+  if [[ "${1} ${2}" != "Hello, World!" ]]; then
     exit 1
   fi
 }
 
 assertJsonPayload() {
-  if [[ ${1} != "\"{\"data\":{\"bar\":\"Hello, World!\"}}\"" ]]; then
+  if [[ ${1} != "{\"data\":{\"bar\":\"Hello, World!\"}}" ]]; then
     exit 1
   fi
 }
