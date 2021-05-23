@@ -15,4 +15,4 @@ bal run packages/basic-auth-ldap-store/http_service_with_basic_auth_ldap_user_st
 sleep 10s
 response=$(bal run packages/basic-auth-ldap-store/http_client_with_basic_auth.bal 2>&1 | tail -n 1)
 assertNotEmpty "$response"
-assertStatusCode $response
+assertEquals "$response" "Hello, World!"

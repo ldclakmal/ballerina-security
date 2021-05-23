@@ -11,4 +11,4 @@ bal run packages/jwt-auth/http_service_with_jwt_auth.bal &
 sleep 10s
 response=$(bal run packages/jwt-auth/http_client_with_self_signed_jwt_auth.bal 2>&1 | tail -n 1)
 assertNotEmpty "$response"
-assertStatusCode $response
+assertEquals "$response" "Hello, World!"

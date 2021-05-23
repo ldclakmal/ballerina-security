@@ -4,10 +4,10 @@ assertNotEmpty() {
   fi
 }
 
-assertStatusCode() {
-  if [[ ${12} != "\"200\"" ]]; then
-    echo "Expected: '\"200\"'"
-    echo "Actual: '${12}'"
+assertEquals() {
+  if [[ $1 != $2 ]]; then
+    echo "Expected: '$2'"
+    echo "Actual: '$1'"
     exit 1
   fi
 }

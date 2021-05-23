@@ -15,4 +15,4 @@ bal run packages/oauth2-client-credentials-grant/http_service_with_oauth2.bal &
 sleep 10s
 response=$(bal run packages/oauth2-client-credentials-grant/http_client_with_oauth2_client_credentials_grant_type.bal 2>&1 | tail -n 1)
 assertNotEmpty "$response"
-assertStatusCode $response
+assertEquals "$response" "Hello, World!"
