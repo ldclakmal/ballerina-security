@@ -29,7 +29,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/security
+        working-directory: test-suite/bbe
         run: |
           scripts/crypto.sh
   security-url:
@@ -52,7 +52,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/security
+        working-directory: test-suite/bbe
         run: |
           scripts/url.sh
   security-jwt:
@@ -75,7 +75,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/security
+        working-directory: test-suite/bbe
         run: |
           scripts/jwt.sh
   access-control-basic-auth-file-store:
@@ -98,7 +98,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/basic_auth_file_store.sh
   access-control-basic-auth-ldap-store:
@@ -121,7 +121,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/basic_auth_ldap_store.sh
   access-control-jwt-auth:
@@ -144,7 +144,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/jwt_auth.sh
   access-control-oauth-bearer-token:
@@ -167,7 +167,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/oauth2_bearer_token.sh
   access-control-oauth-client-credentials-grant:
@@ -190,7 +190,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/oauth2_client_credentials_grant.sh
   access-control-oauth-password-grant:
@@ -213,7 +213,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/oauth2_password_grant.sh
   access-control-oauth-refresh-token-grant:
@@ -236,6 +236,6 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe/access-control
+        working-directory: test-suite/bbe
         run: |
           scripts/oauth2_refresh_token_grant.sh
