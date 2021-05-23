@@ -11,25 +11,8 @@ This section demonstrates an automated Ballerina security test-suite which conta
 test-suite
 |
 |__ bbe
-|   |__ access-control
-|   |   |__ packages
-|   |   |   |__ basic-auth-file-store
-|   |   |   |__ basic-auth-ldap-store
-|   |   |   |__ jwt-auth
-|   |   |   |__ oauth2-bearer-token
-|   |   |   |__ oauth2-client-credentials-grant
-|   |   |   |__ oauth2-password-grant
-|   |   |   |__ oauth2-refresh-token-grant
-|   |   |__ scripts
-|   |   |__ resources
-|   |
-|   |__ security
-|       |__ packages
-|       |   |__ crypto
-|       |   |__ url
-|       |   |__ jwt
-|       |__ scripts
-|       |__ resources
+|   |__ scripts
+|   |__ resources
 |
 |__ integration
     |__ packages
@@ -42,9 +25,30 @@ test-suite
 
 ```
 
-### Secured services
+## BBE Tests
 
-#### 1. Basic Auth - File user store
+The following BBEs are tested and output is verified.
+
+### Security
+- Cryptographic Operations
+- JWT Issue/Validate
+- URL Encode/Decode Operations
+
+### Access Control
+- HTTP Service with Basic Auth File User Store
+- HTTP Service with Basic Auth LDAP User Store
+- HTTP Service with JWT Auth
+- HTTP Service with OAuth2
+- HTTP Client with Basic Auth
+- HTTP Client with Bearer Token Auth
+- HTTP Client with Self Signed JWT Auth
+- HTTP Client with OAuth2 Client Credentials Grant Type
+- HTTP Client with OAuth2 Password Grant Type
+- HTTP Client with OAuth2 Refresh Token Grant Type
+
+## Integration Tests
+
+### Basic Auth - File user store
 
 ##### Prerequisites:
 - [Ballerina](https://ballerina.io/downloads/)
@@ -54,7 +58,7 @@ test-suite
 2. Ballerina service is secured with Basic Auth with file user store. Inbound tokens are validated with the user store configured in `Config.toml`.
 3. CURL client sends requests to Ballerina service.
 
-#### 2. Basic Auth - LDAP user store
+### Basic Auth - LDAP user store
 
 ##### Prerequisites:
 - [Ballerina](https://ballerina.io/downloads/)
@@ -65,7 +69,7 @@ test-suite
 2. Ballerina service is secured with Basic Auth with LDAP user store. Inbound tokens are validated with the user store defined in the OpenLDAP server.
 3. CURL client sends requests to Ballerina service.
     
-#### 3. JWT Auth
+### JWT Auth
 
 ##### Prerequisites:
 - [Ballerina](https://ballerina.io/downloads/)
@@ -78,7 +82,7 @@ test-suite
 3. CURL client sends a request to WSO2 IS STS and gets the JWT.
 4. CURL client sends requests to Ballerina service with the received JWT.
 
-#### 4. OAuth2
+### OAuth2
 
 ##### Prerequisites:
 - [Ballerina](https://ballerina.io/downloads/)
