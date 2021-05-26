@@ -49,7 +49,7 @@ docker run -p 389:389 -p 636:636 --name openldap-server --env LDAP_ORGANISATION=
 
 ---
 # References
-1. [https://github.com/osixia/docker-openldap](https://github.com/osixia/docker-openldap)
-2. [https://ldap.com/basic-ldap-concepts](https://ldap.com/basic-ldap-concepts)
-3. [https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system](https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system)
-4. [https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities](https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities)
+1. <https://github.com/osixia/docker-openldap>
+2. <https://ldap.com/basic-ldap-concepts>
+3. <https://www.digitalocean.com/community/tutorials/how-to-use-ldif-files-to-make-changes-to-an-openldap-system>>
+4. <https://www.digitalocean.com/community/tutorials/how-to-manage-and-use-ldap-servers-with-openldap-utilities>

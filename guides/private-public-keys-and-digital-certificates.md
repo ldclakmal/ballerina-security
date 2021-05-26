@@ -15,9 +15,9 @@ The followings are standards that govern the use of particular cryptographic pri
 > NOTE: Since most systems, today need to support multiple algorithms, and wish to be able to adapt to new algorithms as they are developed, PKCS8 is preferred for private keys, and a similar any-algorithm scheme defined by X.509 for public keys. Also, PKCS12/PFX is often preferred to both.
 
 References:
-1. [https://www.misterpki.com/](https://www.misterpki.com/)
-2. [https://tls.mbed.org/kb/cryptography/asn1-key-structures-in-der-and-pem](https://tls.mbed.org/kb/cryptography/asn1-key-structures-in-der-and-pem)
-3. [https://www.cryptosys.net/pki/rsakeyformats.html](https://www.cryptosys.net/pki/rsakeyformats.html)
+1. <https://www.misterpki.com/>>
+2. <https://tls.mbed.org/kb/cryptography/asn1-key-structures-in-der-and-pem>
+3. <https://www.cryptosys.net/pki/rsakeyformats.html>
 
 ## Open SSL
 
@@ -29,10 +29,10 @@ OpenSSL is a very useful open-source command-line toolkit for working with X.509
 - Generate a private key & self-signed certificate: `openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out public.crt`
 
 References:
-1. [https://www.sslshopper.com/article-most-common-openssl-commands.html](https://www.sslshopper.com/article-most-common-openssl-commands.html)
-2. [https://www.sslshopper.com/ssl-certificate-tools.html](https://www.sslshopper.com/ssl-certificate-tools.html)
-3. [https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs](https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs)
-4. [https://blog.devolutions.net/2020/07/tutorial-how-to-generate-secure-self-signed-server-and-client-certificates-with-openssl](https://blog.devolutions.net/2020/07/tutorial-how-to-generate-secure-self-signed-server-and-client-certificates-with-openssl)
+1. <https://www.sslshopper.com/article-most-common-openssl-commands.html>
+2. <https://www.sslshopper.com/ssl-certificate-tools.html>
+3. <https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs>
+4. <https://blog.devolutions.net/2020/07/tutorial-how-to-generate-secure-self-signed-server-and-client-certificates-with-openssl>
 
 ## Keytool
 
@@ -44,7 +44,7 @@ Java Keytool is a key and certificate management utility. It allows users to man
 - Export a certificate from a 'keystore': `keytool -export -alias foo -file mycert.crt -keystore keystore.p12 -rfc`
 
 References:
-1. [https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html](https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html)
+1. <https://www.sslshopper.com/article-most-common-java-keytool-keystore-commands.html>
 
 ## GPG Keys
 

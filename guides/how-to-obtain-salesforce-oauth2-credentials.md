@@ -1,7 +1,7 @@
 # How to obtain Salesforce Developer OAuth2 Credentials
 
 ## Create an SF account
-[https://developer.salesforce.com/signup](https://developer.salesforce.com/signup)
+<https://developer.salesforce.com/signup>
 
 ## How to get the access token
 
