@@ -1,8 +1,8 @@
 source scripts/assert.sh
 
 mkdir oauth2
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/new-examples/http-service-oauth2/http_service_oauth2.bal -o oauth2/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/new-examples/http-client-oauth2-password-grant-type/http_client_oauth2_password_grant_type.bal -o oauth2/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/examples/http-service-oauth2/http_service_oauth2.bal -o oauth2/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/examples/http-client-oauth2-password-grant-type/http_client_oauth2_password_grant_type.bal -o oauth2/client.bal
 
 sed -i 's+../resource/path/to+resources+g' oauth2/service.bal
 sed -i 's+../resource/path/to+resources+g' oauth2/client.bal
