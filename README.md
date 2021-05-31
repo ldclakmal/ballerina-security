@@ -1,14 +1,3 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-69533863-9"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-69533863-9');
-</script>
-<link rel="shortcut icon" type="image/png" href="img/favicon.png?v=1.0">
-
 ![Ballerina-Security](./img/ballerina-security.png)
 
 **Ballerina Security** contains the examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language and platform for cloud-era application programmers to easily write software that just works.

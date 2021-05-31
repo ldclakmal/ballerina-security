@@ -9,7 +9,7 @@ listener graphql:Listener securedEP = new(9090,
    }
 );
 
-@graphql:ServiceConfiguration {
+@graphql:ServiceConfig {
     auth: [
         {
             jwtValidatorConfig: {
