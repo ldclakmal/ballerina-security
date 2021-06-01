@@ -23,6 +23,6 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json payload = { "query": "{ bar }" };
-    http:Response response = check securedEP->post("/foo", payload, "application/json");
+    http:Response response = check securedEP->post("/foo", payload);
     io:println((check response.getJsonPayload()).toString());
 }
