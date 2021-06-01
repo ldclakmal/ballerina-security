@@ -1,9 +1,9 @@
 source scripts/assert.sh
 
 mkdir auth
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/examples/http-service-basic-auth-file-user-store/http_service_basic_auth_file_user_store.bal -o auth/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/examples/http-client-basic-auth/http_client_basic_auth.bal -o auth/client.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/bbe-revamp/examples/http-service-basic-auth-file-user-store/Config.toml -o auth/Config.toml
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-service-basic-auth-file-user-store/http_service_basic_auth_file_user_store.bal -o auth/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-basic-auth/http_client_basic_auth.bal -o auth/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-service-basic-auth-file-user-store/Config.toml -o auth/Config.toml
 
 export BAL_CONFIG_FILES=auth/Config.toml
 
