@@ -22,29 +22,18 @@ test-suite
     |   |__ oauth2
     |__ scripts
     |__ resources
-
 ```
 
 ## BBE Tests
 
 The following BBEs are tested and output is verified.
 
-### Security
-- Cryptographic Operations
-- JWT Issue/Validate
-- URL Encode/Decode Operations
-
-### Access Control
-- HTTP Service with Basic Auth File User Store
-- HTTP Service with Basic Auth LDAP User Store
-- HTTP Service with JWT Auth
-- HTTP Service with OAuth2
-- HTTP Client with Basic Auth
-- HTTP Client with Bearer Token Auth
-- HTTP Client with Self Signed JWT Auth
-- HTTP Client with OAuth2 Client Credentials Grant Type
-- HTTP Client with OAuth2 Password Grant Type
-- HTTP Client with OAuth2 Refresh Token Grant Type
+| Category | BBE |
+|---|---|
+| REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service with JWT Auth][bbe-http-service-jwt-auth] <br/> [Service with OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client with Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client with Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client with OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client with OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client with OAuth2 Direct Token Type][bbe-http-client-oauth2-refresh-token-grant] |
+| GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service with JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service with OAuth2][bbe-graphql-service-oauth2] |
+| Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
+| URL | [URL Encode & Decode][bbe-url-encode-decode] |
 
 ## Integration Tests
 
@@ -94,3 +83,27 @@ The following BBEs are tested and output is verified.
 2. Ballerina service is secured with OAuth2. Inbound tokens are validated with the WSO2 IS STS introspection endpoint.
 3. CURL client sends a request to WSO2 IS STS and gets the OAuth2 token.
 4. CURL client sends requests to Ballerina service with the received OAuth2 token.
+
+[bbe-cryptography]: https://ballerina.io/learn/by-example/security-crypto.html
+[bbe-jwt-issue-validate]: https://ballerina.io/learn/by-example/security-jwt-issue-validate.html
+[bbe-url-encode-decode]: https://ballerina.io/learn/by-example/url-encode-decode.html
+[bbe-http-service-ssl-tls]: https://ballerina.io/learn/by-example/http-service-ssl-tls.html
+[bbe-http-service-mutual-ssl]: https://ballerina.io/learn/by-example/http-service-mutual-ssl.html
+[bbe-http-service-basic-auth-file]: https://ballerina.io/learn/by-example/http-service-basic-auth-file-user-store.html
+[bbe-http-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/http-service-basic-auth-ldap-user-store.html]
+[bbe-http-service-jwt-auth]: https://ballerina.io/learn/by-example/http-service-jwt-auth.html
+[bbe-http-service-oauth2]: https://ballerina.io/learn/by-example/http-service-oauth2.html
+[bbe-http-client-ssl-tls]: https://ballerina.io/learn/by-example/http-client-ssl-tls.html
+[bbe-http-client-mutual-ssl]: https://ballerina.io/learn/by-example/http-client-mutual-ssl.html
+[bbe-http-client-basic-auth]: https://ballerina.io/learn/by-example/http-client-basic-auth.html
+[bbe-http-client-bearer-token-auth]: https://ballerina.io/learn/by-example/http-client-bearer-token-auth.html
+[bbe-http-client-self-signed-jwt-auth]: https://ballerina.io/learn/by-example/http-client-self-signed-jwt-auth.html
+[bbe-http-client-oauth2-client-credentials-grant]: https://ballerina.io/learn/by-example/http-client-oauth2-client-credentials-grant-type.html
+[bbe-http-client-oauth2-password-grant]: https://ballerina.io/learn/by-example/http-client-oauth2-password-grant-type.html
+[bbe-http-client-oauth2-refresh-token-grant]: https://ballerina.io/learn/by-example/http-client-oauth2-direct-token-type.html
+[bbe-graphql-service-ssl-tls]: https://ballerina.io/learn/by-example/graphql-service-ssl-tls.html
+[bbe-graphql-service-mutual-ssl]: https://ballerina.io/learn/by-example/graphql-service-mutual-ssl.html
+[bbe-graphql-service-basic-auth-file]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-file-user-store.html
+[bbe-graphql-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-ldap-user-store.html]
+[bbe-graphql-service-jwt-auth]: https://ballerina.io/learn/by-example/graphql-service-jwt-auth.html
+[bbe-graphql-service-oauth2]: https://ballerina.io/learn/by-example/graphql-service-oauth2.html
