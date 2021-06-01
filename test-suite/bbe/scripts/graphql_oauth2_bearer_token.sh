@@ -6,7 +6,7 @@ curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution
 
 sed -i 's+../resource/path/to+resources+g' oauth2/service.bal
 sed -i 's+../resource/path/to+resources+g' oauth2/client.bal
-sed -i 's+http:Response response = check securedEP->get("/foo/bar");+http:Response response = check securedEP->post("/graphql", { "query": "{ greeting }" }, "application/json");+g' oauth2/client.bal
+sed -i 's+http:Response response = check securedEP->get("/foo/bar");+http:Response response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' oauth2/client.bal
 sed -i 's+io:println(check response.getTextPayload());+io:println((check response.getJsonPayload()).toString());+g' oauth2/client.bal
 
 echo -e "\n--- Starting Ballerina STS ---"
