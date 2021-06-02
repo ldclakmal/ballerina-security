@@ -6,7 +6,7 @@ Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and val
 
 ### How to run
 
-To run this in a local machine, we need to have [Ballerina Swan Lake Alpha 5](https://ballerina.io/downloads/) installed.
+To run this in a local machine, we need to have [Ballerina Swan Lake Beta 1](https://ballerina.io/downloads/) installed.
 
 - Run as a container: `$ docker run -p 9090:9090 ldclakmal/ballerina-sts`
 - Run using source code: `$ bal run ballerina-sts.bal`

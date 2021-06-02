@@ -3,14 +3,14 @@ import ballerina/regex;
 import ballerina/uuid;
 
 // Default values of mock authorization server.
-final configurable int SERVER_PORT = 9445;
-final configurable int TOKEN_VALIDITY_PERIOD = 2; // in seconds
+configurable int SERVER_PORT = 9445;
+configurable int TOKEN_VALIDITY_PERIOD = 2; // in seconds
 
 // Credentials of the mock authorization server.
-final configurable string USERNAME = "admin";
-final configurable string PASSWORD = "admin";
-final configurable string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
-final configurable string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
+configurable string USERNAME = "admin";
+configurable string PASSWORD = "admin";
+configurable string CLIENT_ID = "FlfJYKBD2c925h4lkycqNZlC2l4a";
+configurable string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 
 // Values that the grant_type parameter can hold.
 const GRANT_TYPE_CLIENT_CREDENTIALS = "client_credentials";
