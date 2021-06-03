@@ -125,7 +125,7 @@ This section demonstrates the real-world scenarios which have authentication and
 [auth-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fauth
 [auth-pulls]: https://github.com/ballerina-platform/module-ballerina-auth/pulls
 [auth-docs]: https://docs.central.ballerina.io/ballerina/auth/latest
-[auth-package]: https://swanlake.central.ballerina.io/ballerina/auth
+[auth-package]: https://central.ballerina.io/ballerina/auth
 [auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
 [auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
 [auth-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg
@@ -139,7 +139,7 @@ This section demonstrates the real-world scenarios which have authentication and
 [jwt-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fjwt
 [jwt-pulls]: https://github.com/ballerina-platform/module-ballerina-jwt/pulls
 [jwt-docs]: https://docs.central.ballerina.io/ballerina/jwt/latest
-[jwt-package]: https://swanlake.central.ballerina.io/ballerina/jwt
+[jwt-package]: https://central.ballerina.io/ballerina/jwt
 [jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
 [jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
 [jwt-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg
@@ -153,7 +153,7 @@ This section demonstrates the real-world scenarios which have authentication and
 [oauth2-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Foauth2
 [oauth2-pulls]: https://github.com/ballerina-platform/module-ballerina-oauth2/pulls
 [oauth2-docs]: https://docs.central.ballerina.io/ballerina/oauth2/latest
-[oauth2-package]: https://swanlake.central.ballerina.io/ballerina/oauth2
+[oauth2-package]: https://central.ballerina.io/ballerina/oauth2
 [oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
 [oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
 [oauth2-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg
@@ -167,7 +167,7 @@ This section demonstrates the real-world scenarios which have authentication and
 [crypto-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fcrypto
 [crypto-pulls]: https://github.com/ballerina-platform/module-ballerina-crypto/pulls
 [crypto-docs]: https://docs.central.ballerina.io/ballerina/crypto/latest
-[crypto-package]: https://swanlake.central.ballerina.io/ballerina/crypto
+[crypto-package]: https://central.ballerina.io/ballerina/crypto
 [crypto-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto?label=
 [crypto-badge-build]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml/badge.svg
 [crypto-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-crypto/branch/master/graph/badge.svg
@@ -181,7 +181,7 @@ This section demonstrates the real-world scenarios which have authentication and
 [url-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Furl
 [url-pulls]: https://github.com/ballerina-platform/module-ballerina-url/pulls
 [url-docs]: https://docs.central.ballerina.io/ballerina/url/latest
-[url-package]: https://swanlake.central.ballerina.io/ballerina/url
+[url-package]: https://central.ballerina.io/ballerina/url
 [url-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-url?label=
 [url-badge-build]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml/badge.svg
 [url-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-url/branch/master/graph/badge.svg
