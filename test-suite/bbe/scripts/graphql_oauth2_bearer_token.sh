@@ -6,8 +6,8 @@ curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution
 
 sed -i 's+../resource/path/to+resources+g' oauth2/service.bal
 sed -i 's+../resource/path/to+resources+g' oauth2/client.bal
-sed -i 's+http:Response response = check securedEP->get("/foo/bar");+http:Response response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' oauth2/client.bal
-sed -i 's+io:println(check response.getTextPayload());+io:println((check response.getJsonPayload()).toString());+g' oauth2/client.bal
+sed -i 's+http:Response response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' oauth2/client.bal
+sed -i 's+io:println(check response.getTextPayload());+io:println(response);+g' oauth2/client.bal
 
 echo -e "\n--- Starting Ballerina STS ---"
 docker run --rm -p 9445:9445 --name ballerina-sts ldclakmal/ballerina-sts:latest &

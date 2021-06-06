@@ -15,8 +15,8 @@ sleep 10s
 
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-ssl-tls/http_client_ssl_tls.bal -o ssl/client.bal
 sed -i 's+../resource/path/to+resources+g' ssl/client.bal
-sed -i 's+http:Response response = check securedEP->get("/foo/bar");+http:Response response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' ssl/client.bal
-sed -i 's+io:println(check response.getTextPayload());+io:println((check response.getJsonPayload()).toString());+g' ssl/client.bal
+sed -i 's+http:Response response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' ssl/client.bal
+sed -i 's+io:println(check response.getTextPayload());+io:println(response);+g' ssl/client.bal
 rm ssl/Ballerina.toml
 bal run ssl/service.bal &
 sleep 10s
