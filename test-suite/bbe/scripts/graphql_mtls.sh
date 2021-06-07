@@ -15,8 +15,7 @@ sleep 10s
 
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-mutual-ssl/http_client_mutual_ssl.bal -o mtls/client.bal
 sed -i 's+../resource/path/to+resources+g' mtls/client.bal
-sed -i 's+http:Response response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' mtls/client.bal
-sed -i 's+io:println(check response.getTextPayload());+io:println(response);+g' mtls/client.bal
+sed -i 's+string response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' mtls/client.bal
 rm mtls/Ballerina.toml
 bal run mtls/service.bal &
 sleep 10s

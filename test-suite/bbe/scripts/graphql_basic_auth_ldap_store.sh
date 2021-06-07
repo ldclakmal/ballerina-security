@@ -6,8 +6,7 @@ curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution
 
 sed -i 's+../resource/path/to+resources+g' auth/service.bal
 sed -i 's+../resource/path/to+resources+g' auth/client.bal
-sed -i 's+http:Response response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' auth/client.bal
-sed -i 's+io:println(check response.getTextPayload());+io:println(response);+g' auth/client.bal
+sed -i 's+string response = check securedEP->get("/foo/bar");+json response = check securedEP->post("/graphql", { "query": "{ greeting }" });+g' auth/client.bal
 
 echo -e "\n--- Starting OpenLDAP Server ---"
 docker-compose -f resources/docker-compose.yml up &
