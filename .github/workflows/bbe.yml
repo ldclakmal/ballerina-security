@@ -423,3 +423,210 @@ jobs:
         working-directory: test-suite/bbe
         run: |
           scripts/graphql_oauth2_bearer_token.sh
+  websocket-ssl-tls:
+    name: WebSocket - SSL/TLS
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_ssl_tls.sh
+  websocket-mtls:
+    name: WebSocket - mTLS
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_mtls.sh
+  websocket-basic-auth-file-store:
+    name: WebSocket - Basic Auth (File)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_basic_auth_file_store.sh
+  websocket-basic-auth-ldap-store:
+    name: WebSocket - Basic Auth (LDAP)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_basic_auth_ldap_store.sh
+  websocket-jwt-auth:
+    name: WebSocket - JWT Auth
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_jwt_auth.sh
+  websocket-oauth-bearer-token:
+    name: WebSocket - OAuth2 (Bearer Token)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_oauth2_bearer_token.sh
+  websocket-oauth-client-credentials-grant:
+    name: WebSocket - OAuth2 (Client Credentials Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_oauth2_client_credentials_grant.sh
+  websocket-oauth-password-grant:
+    name: WebSocket - OAuth2 (Password Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_oauth2_password_grant.sh
+  websocket-oauth-refresh-token-grant:
+    name: WebSocket - OAuth2 (Refresh Token Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: test-suite/bbe
+        run: |
+          scripts/websocket_oauth2_refresh_token_grant.sh
