@@ -64,6 +64,7 @@ This section demonstrates the real-world scenarios which have authentication and
 
 ## GitHub Pull Requests
 
+- 2021 Jun - [Implement declarative auth design for upgrade service](https://github.com/ballerina-platform/module-ballerina-websocket/pull/216)
 - 2021 May - [Implement declarative auth design for GraphQL service](https://github.com/ballerina-platform/module-ballerina-graphql/pull/210)
 - 2021 Mar - [Redesign HTTP listener/client SecureSocket API](https://github.com/ballerina-platform/module-ballerina-http/pull/255)
 - 2021 Mar - [Add cert file and mTLS support for JDK11 client of OAuth2 module](https://github.com/ballerina-platform/module-ballerina-oauth2/pull/98)
