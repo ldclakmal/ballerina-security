@@ -6,8 +6,8 @@ echo '[package]
 org = "ldclakmal"
 name = "mtls"
 version = "1.0.0"' > mtls/Ballerina.toml
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-mutual-ssl/websocket_service_mutual_ssl.bal -o mtls/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-mutual-ssl/websocket_client_mutual_ssl.bal -o mtls/client.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-service-mutual-ssl/websocket_service_mutual_ssl.bal -o mtls/service.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-client-mutual-ssl/websocket_client_mutual_ssl.bal -o mtls/client.bal
 
 sed -i 's+../resource/path/to+resources+g' mtls/service.bal
 sed -i 's+../resource/path/to+resources+g' mtls/client.bal

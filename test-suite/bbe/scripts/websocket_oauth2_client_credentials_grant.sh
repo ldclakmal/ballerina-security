@@ -1,8 +1,8 @@
 source scripts/assert.sh
 
 mkdir oauth2
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-oauth2/websocket_service_oauth2.bal -o oauth2/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-oauth2-client-credentials-grant-type/websocket_client_oauth2_client_credentials_grant_type.bal -o oauth2/client.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-service-oauth2/websocket_service_oauth2.bal -o oauth2/service.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-client-oauth2-client-credentials-grant-type/websocket_client_oauth2_client_credentials_grant_type.bal -o oauth2/client.bal
 
 sed -i 's+../resource/path/to+resources+g' oauth2/service.bal
 sed -i 's+../resource/path/to+resources+g' oauth2/client.bal

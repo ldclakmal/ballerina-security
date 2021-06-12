@@ -7,6 +7,15 @@ on:
       - '**.png'
       - '**.jpg'
   workflow_dispatch:
+    inputs:
+      organization:
+        description: 'GitHub organization of the `ballerina-distribution` repository'
+        required: false
+        default: 'ballerina-platform'
+      branch:
+        description: 'GitHub branch of the `ballerina-distribution` repository'
+        required: false
+        default: 'master'
 
 jobs:
   crypto:
@@ -31,7 +40,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/crypto.sh
+          scripts/crypto.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   jwt:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
@@ -54,7 +63,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/jwt.sh
+          scripts/jwt.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   url:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
@@ -77,7 +86,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/url.sh
+          scripts/url.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-ssl-tls:
     name: HTTP - SSL/TLS
     runs-on: ubuntu-latest
@@ -100,7 +109,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_ssl_tls.sh
+          scripts/http_ssl_tls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-mtls:
     name: HTTP - mTLS
     runs-on: ubuntu-latest
@@ -123,7 +132,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_mtls.sh
+          scripts/http_mtls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-basic-auth-file-store:
     name: HTTP - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -146,7 +155,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_basic_auth_file_store.sh
+          scripts/http_basic_auth_file_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-basic-auth-ldap-store:
     name: HTTP - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -169,7 +178,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_basic_auth_ldap_store.sh
+          scripts/http_basic_auth_ldap_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-jwt-auth:
     name: HTTP - JWT Auth
     runs-on: ubuntu-latest
@@ -192,7 +201,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_jwt_auth.sh
+          scripts/http_jwt_auth.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-oauth-bearer-token:
     name: HTTP - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -215,7 +224,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_oauth2_bearer_token.sh
+          scripts/http_oauth2_bearer_token.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-oauth-client-credentials-grant:
     name: HTTP - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -238,7 +247,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_oauth2_client_credentials_grant.sh
+          scripts/http_oauth2_client_credentials_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-oauth-password-grant:
     name: HTTP - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -261,7 +270,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_oauth2_password_grant.sh
+          scripts/http_oauth2_password_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   http-oauth-refresh-token-grant:
     name: HTTP - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -284,7 +293,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/http_oauth2_refresh_token_grant.sh
+          scripts/http_oauth2_refresh_token_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-ssl-tls:
     name: GraphQL - SSL/TLS
     runs-on: ubuntu-latest
@@ -307,7 +316,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_ssl_tls.sh
+          scripts/graphql_ssl_tls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-mtls:
     name: GraphQL - mTLS
     runs-on: ubuntu-latest
@@ -330,7 +339,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_mtls.sh
+          scripts/graphql_mtls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-basic-auth-file-store:
     name: GraphQL - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -353,7 +362,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_basic_auth_file_store.sh
+          scripts/graphql_basic_auth_file_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-basic-auth-ldap-store:
     name: GraphQL - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -376,7 +385,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_basic_auth_ldap_store.sh
+          scripts/graphql_basic_auth_ldap_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-jwt-auth:
     name: GraphQL - JWT Auth
     runs-on: ubuntu-latest
@@ -399,7 +408,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_jwt_auth.sh
+          scripts/graphql_jwt_auth.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   graphql-oauth-bearer-token:
     name: GraphQL - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -422,7 +431,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/graphql_oauth2_bearer_token.sh
+          scripts/graphql_oauth2_bearer_token.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-ssl-tls:
     name: WebSocket - SSL/TLS
     runs-on: ubuntu-latest
@@ -445,7 +454,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_ssl_tls.sh
+          scripts/websocket_ssl_tls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-mtls:
     name: WebSocket - mTLS
     runs-on: ubuntu-latest
@@ -468,7 +477,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_mtls.sh
+          scripts/websocket_mtls.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-basic-auth-file-store:
     name: WebSocket - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -491,7 +500,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_basic_auth_file_store.sh
+          scripts/websocket_basic_auth_file_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-basic-auth-ldap-store:
     name: WebSocket - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -514,7 +523,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_basic_auth_ldap_store.sh
+          scripts/websocket_basic_auth_ldap_store.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-jwt-auth:
     name: WebSocket - JWT Auth
     runs-on: ubuntu-latest
@@ -537,7 +546,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_jwt_auth.sh
+          scripts/websocket_jwt_auth.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-oauth-bearer-token:
     name: WebSocket - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -560,7 +569,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_oauth2_bearer_token.sh
+          scripts/websocket_oauth2_bearer_token.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-oauth-client-credentials-grant:
     name: WebSocket - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -583,7 +592,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_oauth2_client_credentials_grant.sh
+          scripts/websocket_oauth2_client_credentials_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-oauth-password-grant:
     name: WebSocket - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -606,7 +615,7 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_oauth2_password_grant.sh
+          scripts/websocket_oauth2_password_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}
   websocket-oauth-refresh-token-grant:
     name: WebSocket - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -629,4 +638,4 @@ jobs:
       - name: Test
         working-directory: test-suite/bbe
         run: |
-          scripts/websocket_oauth2_refresh_token_grant.sh
+          scripts/websocket_oauth2_refresh_token_grant.sh ${{github.event.inputs.organization}} ${{github.event.inputs.branch}}

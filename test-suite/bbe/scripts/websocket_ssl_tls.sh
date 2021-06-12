@@ -6,8 +6,8 @@ echo '[package]
 org = "ldclakmal"
 name = "ssl"
 version = "1.0.0"' > ssl/Ballerina.toml
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-ssl-tls/websocket_service_ssl_tls.bal -o ssl/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-ssl-tls/websocket_client_ssl_tls.bal -o ssl/client.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-service-ssl-tls/websocket_service_ssl_tls.bal -o ssl/service.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-client-ssl-tls/websocket_client_ssl_tls.bal -o ssl/client.bal
 
 sed -i 's+../resource/path/to+resources+g' ssl/service.bal
 sed -i 's+../resource/path/to+resources+g' ssl/client.bal

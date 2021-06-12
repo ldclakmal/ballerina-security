@@ -1,9 +1,9 @@
 source scripts/assert.sh
 
 mkdir auth
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-basic-auth-file-user-store/websocket_service_basic_auth_file_user_store.bal -o auth/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o auth/client.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-basic-auth-file-user-store/Config.toml -o auth/Config.toml
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-service-basic-auth-file-user-store/websocket_service_basic_auth_file_user_store.bal -o auth/service.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o auth/client.bal
+curl https://raw.githubusercontent.com/${1}/ballerina-distribution/${2}/examples/websocket-service-basic-auth-file-user-store/Config.toml -o auth/Config.toml
 
 export BAL_CONFIG_FILES=auth/Config.toml
 
