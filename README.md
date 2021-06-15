@@ -2,11 +2,11 @@
 
 **Ballerina Security** repository contains the examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
-Ballerina Security is based on the 5 [standard library][stdlib] modules which are [Auth][auth], [JWT][jwt], [OAuth2][oauth2], [Crypto][crypto], and [URL][url].
+## Summary
 
-The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms.
+Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
 
-The [Auth][auth], [JWT][jwt], [OAuth2][oauth2] modules provide the authentication and authorization framework for all the microservices which are written with different protocols like [HTTP][http], [gRPC][grpc], [WebSocket][websocket], [WebSub][websub], [GraphQL][graphql], etc.
+The [NATS][nats], [STAN][stan], [RabbitMQ][rabbitmq], [Kafka][kafka], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
 
 ## Dashboard
 
@@ -30,7 +30,7 @@ This section demonstrates the current status of the security modules of the Ball
 
 ## Examples
 
-This section demonstrates the examples with authentication and authorization for different transport protocols supported by Ballerina. The client and servers are secured with different auth protocols. Refer to the [examples](./examples) page for more information.
+This section demonstrates the examples with authentication and authorization for different protocols supported by Ballerina. They are [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], [WebSub][websub], [NATS][nats], [STAN][stan], [RabbitMQ][rabbitmq], [Kafka][kafka], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp]. Refer to the [examples](./examples) page for more information.
 
 [![Examples](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
@@ -194,6 +194,14 @@ This section demonstrates an automated Ballerina security test-suite which conta
 [websocket]: https://github.com/ballerina-platform/module-ballerina-websocket
 [websub]: https://github.com/ballerina-platform/module-ballerina-websub
 [graphql]: https://github.com/ballerina-platform/module-ballerina-graphql
+[nats]: https://github.com/ballerina-platform/module-ballerinax-nats
+[stan]: https://github.com/ballerina-platform/module-ballerinax-stan
+[rabbitmq]: https://github.com/ballerina-platform/module-ballerinax-rabbitmq
+[kafka]: https://github.com/ballerina-platform/module-ballerinax-kafka
+[email]: https://github.com/ballerina-platform/module-ballerina-email
+[ftp]: https://github.com/ballerina-platform/module-ballerina-ftp
+[tcp]: https://github.com/ballerina-platform/module-ballerina-tcp
+[udp]: https://github.com/ballerina-platform/module-ballerina-udp
 
 [bbe-cryptography]: https://ballerina.io/learn/by-example/security-crypto.html
 [bbe-jwt-issue-validate]: https://ballerina.io/learn/by-example/security-jwt-issue-validate.html
