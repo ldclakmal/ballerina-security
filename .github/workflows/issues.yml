@@ -32,7 +32,7 @@ jobs:
           git config --global user.email ${{ secrets.BOT_EMAIL }}
           git clone https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_TOKEN }}@github.com/ldclakmal/ballerina-security.git
           cd ballerina-security
-          git checkout dev
+          git checkout master
       - name: Update dashboard
         env:
           packageUser: ${{ secrets.BOT_USERNAME }}
@@ -54,7 +54,7 @@ jobs:
               git add .
               git commit -m "[Automated] Update security status dashboard"
               curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
-              bin/hub push origin dev
+              bin/hub push origin master
           else
               echo "No changes to commit"
           fi
