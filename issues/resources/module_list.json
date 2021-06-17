@@ -1,0 +1,61 @@
+{
+    "modules": [
+        {
+            "name": "module-ballerina-crypto"
+        },
+        {
+            "name": "module-ballerina-url"
+        },
+        {
+            "name": "module-ballerina-auth"
+        },
+        {
+            "name": "module-ballerina-jwt"
+        },
+        {
+            "name": "module-ballerina-oauth2"
+        },
+        {
+            "name": "module-ballerina-http"
+        },
+        {
+            "name": "module-ballerina-websocket"
+        },
+        {
+            "name": "module-ballerina-graphql"
+        },
+        {
+            "name": "module-ballerina-grpc"
+        },
+        {
+            "name": "module-ballerina-websub"
+        },
+        {
+            "name": "module-ballerina-websubhub"
+        },
+        {
+            "name": "module-ballerinax-nats"
+        },
+        {
+            "name": "module-ballerinax-stan"
+        },
+        {
+            "name": "module-ballerinax-rabbitmq"
+        },
+        {
+            "name": "module-ballerinax-kafka"
+        },
+        {
+            "name": "module-ballerina-email"
+        },
+        {
+            "name": "module-ballerina-ftp"
+        },
+        {
+            "name": "module-ballerina-tcp"
+        },
+        {
+            "name": "module-ballerina-udp"
+        }
+    ]
+}
