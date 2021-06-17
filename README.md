@@ -1,4 +1,4 @@
-[![Ballerina-Security](./img/ballerina-security.png)](https://github.com/ldclakmal/ballerina-security)
+[![Ballerina-Security](./images/ballerina-security.png)](https://github.com/ldclakmal/ballerina-security)
 
 **Ballerina Security** repository contains the examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
@@ -248,6 +248,6 @@ This section summarizes the issues related to the security aspects of Ballerina 
 [bbe-websocket-client-oauth2-password-grant]: https://ballerina.io/learn/by-example/websocket-client-oauth2-password-grant-type.html
 [bbe-websocket-client-oauth2-refresh-token-grant]: https://ballerina.io/learn/by-example/websocket-client-oauth2-refresh-token-grant-type.html
 
-[ballerina-central-logo]: ./img/ballerina-central-logo.svg
-[ballerina-docs-logo]: ./img/ballerina-docs-logo.svg
-[ballerina-bbe-logo]: ./img/ballerina-bbe-logo.svg
+[ballerina-central-logo]: ./images/ballerina-central-logo.svg
+[ballerina-docs-logo]: ./images/ballerina-docs-logo.svg
+[ballerina-bbe-logo]: ./images/ballerina-bbe-logo.svg
