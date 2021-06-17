@@ -2,10 +2,8 @@ name: Integration
 
 on:
   push:
-    paths-ignore:
-      - '**.md'
-      - '**.png'
-      - '**.jpg'
+    paths:
+      - 'test-suite/integration/**'
   workflow_dispatch:
 
 jobs:

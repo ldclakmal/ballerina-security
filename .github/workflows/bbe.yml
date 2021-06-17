@@ -2,10 +2,8 @@ name: BBE
 
 on:
   push:
-    paths-ignore:
-      - '**.md'
-      - '**.png'
-      - '**.jpg'
+    paths:
+      - 'test-suite/bbe/**'
   workflow_dispatch:
     inputs:
       organization:

@@ -2,10 +2,8 @@ name: Examples
 
 on:
   push:
-    paths-ignore:
-      - '**.md'
-      - '**.png'
-      - '**.jpg'
+    paths:
+      - 'examples/**'
   workflow_dispatch:
 
 jobs:
