@@ -45,6 +45,10 @@ This section demonstrates an automated Ballerina security test-suite which conta
 [![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 [![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
 
+## Issues
+
+This section summarizes the issues related to the security aspects of Ballerina standard libraries. These issues are further categorized as bugs, improvements, new features, and tasks. Refer to the [issues](./issues) page for more information.
+
 ---
 > The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
 
