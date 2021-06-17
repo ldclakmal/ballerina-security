@@ -1,0 +1,60 @@
+name: Issues Dashboard
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'issues/**'
+  schedule:
+    - cron: '30 8,20 * * *' # Run everyday at 8.30 AM and 8.30 PM
+
+jobs:
+  dashboard:
+    name: Update Security Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+      - name: Install Python packages
+        run: |
+          pip install requests
+          pip install networkx
+          pip install retry
+          pip install PyGithub
+          pip install semver
+      - name : Configure GitHub
+        env:
+          GITHUB_TOKEN: ${{ secrets.BALLERINA_BOT_TOKEN }}
+        run: |
+          git config --global user.name ${{ secrets.BOT_USERNAME }}
+          git config --global user.email ${{ secrets.BOT_EMAIL }}
+          git clone https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_TOKEN }}@github.com/ldclakmal/ballerina-security.git
+          cd ballerina-security
+          git checkout master
+      - name: Update dashboard
+        env:
+          packageUser: ${{ secrets.BOT_USERNAME }}
+          packagePAT: ${{ secrets.BOT_TOKEN }}
+        run: |
+          cd ballerina-security
+          ls
+          python ./issues/scripts/update_dashboard.py
+      - name : Commit files
+        id: commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          cd ballerina-security
+          git update-index -q --refresh
+          if ! git diff-index --quiet HEAD --;then
+              echo ::set-output name=changes::true
+              git remote set-url origin https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_TOKEN }}@github.com/ldclakmal/ballerina-security.git
+              git add .
+              git commit -m "[Automated] Update security status dashboard"
+              curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
+              bin/hub push origin master
+          else
+              echo "No changes to commit"
+          fi
