@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nats-streaming:
+    image: nats-streaming:latest
+    container_name: nats-streaming-server
+    command: "-c /server.conf -DV -SDV"
+    volumes:
+      - "./server.conf:/server.conf"
+      - "./cert/server.crt:/cert/server.crt"
+      - "./key/server.key:/key/server.key"
+      - "./cert/client.crt:/cert/client.crt"
+      - "./key/client.key:/key/client.key"
+      - "./cert/ca.crt:/cert/ca.crt"
+    ports:
+      - "4222:4222"
+      - "8222:8222"
