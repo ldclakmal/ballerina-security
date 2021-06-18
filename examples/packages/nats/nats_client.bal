@@ -1,6 +1,12 @@
+import ballerina/io;
 import ballerinax/nats;
 
 nats:Client securedEP = check new("nats://localhost:4222",
+    auth = {
+        username: "alice",
+        password: "alice@123"
+        //token: "s3cr3t"
+    },
     secureSocket = {
         cert: {
             path: "./resources/keystore/truststore.p12",
@@ -22,5 +28,6 @@ public function main() returns error? {
         content: message.toBytes(),
         subject: "demo.security"
     });
+    io:println("Publish message successful.");
     check securedEP.close();
 }

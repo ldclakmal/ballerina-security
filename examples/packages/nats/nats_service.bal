@@ -5,6 +5,7 @@ listener nats:Listener securedEP = new("nats://localhost:4222",
     auth = {
         username: "alice",
         password: "alice@123"
+        //token: "s3cr3t"
     },
     secureSocket = {
         cert: {
@@ -32,6 +33,3 @@ service nats:Service on securedEP {
         }
     }
 }
-
-// https://github.com/docker-library/docs/tree/master/nats
-// https://docs.nats.io/nats-server/configuration/securing_nats/tls
