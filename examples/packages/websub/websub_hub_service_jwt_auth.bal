@@ -29,8 +29,8 @@ http:ListenerJwtAuthHandler handler = new({
     }
 }
 service /websubhub on securedHub {
-    remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Request req) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
-        string? auth = doAuth(req);
+    remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
+        string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:TopicRegistrationError(auth);
         }
@@ -41,8 +41,8 @@ service /websubhub on securedHub {
         return result;
     }
 
-    remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Request req) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
-        string? auth = doAuth(req);
+    remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
+        string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:TopicDeregistrationError(auth);
         }
@@ -53,8 +53,8 @@ service /websubhub on securedHub {
         return result;
     }
 
-    remote function onSubscription(websubhub:Subscription msg, http:Request req) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
-        string? auth = doAuth(req);
+    remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
+        string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:InternalSubscriptionError(auth);
         }
@@ -81,8 +81,8 @@ service /websubhub on securedHub {
         removeSubscriber(msg);
     }
 
-    remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Request req) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
-        string? auth = doAuth(req);
+    remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
+        string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:UpdateMessageError(auth);
         }
@@ -116,8 +116,8 @@ service /websubhub on securedHub {
     }
 }
 
-function doAuth(http:Request req) returns string? {
-    jwt:Payload|http:Unauthorized authn = handler.authenticate(req);
+function doAuth(http:Headers headers) returns string? {
+    jwt:Payload|http:Unauthorized authn = handler.authenticate(headers);
     if (authn is http:Unauthorized) {
         string errorMsg = "Failed to authenticate the request. " + <string>authn?.body;
         log:printError(errorMsg);
