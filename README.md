@@ -22,9 +22,9 @@ This section demonstrates the current status of the security modules of the Ball
 
 ## BBEs
 
-This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [bbes](./bbes)  page for more information.
+This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [BBEs](./bbes) page for more information.
 
-[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
+[![BBEs](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 
 | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|
@@ -48,7 +48,7 @@ This section demonstrates the real-world scenarios which have authentication and
 
 This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [integrations](./integrations) page for more information.
 
-[![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
+[![Integrations](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
 
 ## Issues
 

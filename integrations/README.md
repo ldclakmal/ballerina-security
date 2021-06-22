@@ -1,8 +1,8 @@
-[![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
+[![Integrations](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
 
 # Ballerina Security - Integrations
 
-This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions).
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml).
 
 ### Directory Structure
 

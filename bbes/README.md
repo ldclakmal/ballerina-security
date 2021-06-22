@@ -1,8 +1,8 @@
-[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
+[![BBEs](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 
 # Ballerina Security - BBEs
 
-This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions).
+This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [workflow](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
 
 ### Directory Structure
 
