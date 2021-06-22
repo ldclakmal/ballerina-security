@@ -122,3 +122,26 @@ jobs:
         working-directory: examples/packages/graphql
         run: |
           ../../scripts/graphql.sh
+  nats:
+    name: NATS
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: examples/packages/nats
+        run: |
+          ../../scripts/nats.sh
