@@ -3,7 +3,7 @@ name: Integration
 on:
   push:
     paths:
-      - 'test-suite/integration/**'
+      - 'integrations/**'
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: test-suite/integration
+        working-directory: integrations
         run: |
           scripts/basic_auth_file_store.sh
   basic-auth-ldap-store:
@@ -52,7 +52,7 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: test-suite/integration
+        working-directory: integrations
         run: |
           scripts/basic_auth_ldap_store.sh
   jwt-auth:
@@ -76,7 +76,7 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: test-suite/integration
+        working-directory: integrations
         run: |
           scripts/jwt_auth.sh
   oauth2:
@@ -100,6 +100,6 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: test-suite/integration
+        working-directory: integrations
         run: |
           scripts/oauth2.sh

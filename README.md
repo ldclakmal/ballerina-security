@@ -20,6 +20,12 @@ This section demonstrates the current status of the security modules of the Ball
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![issues][crypto-badge-issues]][crypto-issues] <br/> [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [![issues][url-badge-issues]][url-issues] <br/> [![pulls][url-badge-pulls]][url-pulls] | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package] |
 
+## BBEs
+
+This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [bbes](./bbes)  page for more information.
+
+[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
+
 | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|
 | REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-http-service-jwt-auth] <br/> [Service - OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-http-client-oauth2-refresh-token-grant] |
@@ -38,11 +44,10 @@ This section demonstrates the examples with authentication and authorization for
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina. Refer to the [scenarios](./scenarios) page for more information.
 
-## Test Suite
+## Integrations
 
-This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios and Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [test suite](./test-suite) page for more information.
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [integrations](./integrations) page for more information.
 
-[![BBE](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 [![Integration](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
 
 ## Issues

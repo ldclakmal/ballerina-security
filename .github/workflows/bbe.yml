@@ -3,7 +3,7 @@ name: BBE
 on:
   push:
     paths:
-      - 'test-suite/bbe/**'
+      - 'bbes/**'
   workflow_dispatch:
     inputs:
       organization:
@@ -36,7 +36,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/crypto.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   jwt:
@@ -59,7 +59,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/jwt.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   url:
@@ -82,7 +82,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/url.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-ssl-tls:
@@ -105,7 +105,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-mtls:
@@ -128,7 +128,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-basic-auth-file-store:
@@ -151,7 +151,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-basic-auth-ldap-store:
@@ -174,7 +174,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-jwt-auth:
@@ -197,7 +197,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-oauth-bearer-token:
@@ -220,7 +220,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-oauth-client-credentials-grant:
@@ -243,7 +243,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-oauth-password-grant:
@@ -266,7 +266,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   http-oauth-refresh-token-grant:
@@ -289,7 +289,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/http_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-ssl-tls:
@@ -312,7 +312,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-mtls:
@@ -335,7 +335,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-basic-auth-file-store:
@@ -358,7 +358,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-basic-auth-ldap-store:
@@ -381,7 +381,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-jwt-auth:
@@ -404,7 +404,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   graphql-oauth-bearer-token:
@@ -427,7 +427,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/graphql_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-ssl-tls:
@@ -450,7 +450,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-mtls:
@@ -473,7 +473,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-basic-auth-file-store:
@@ -496,7 +496,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-basic-auth-ldap-store:
@@ -519,7 +519,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-jwt-auth:
@@ -542,7 +542,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-oauth-bearer-token:
@@ -565,7 +565,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-oauth-client-credentials-grant:
@@ -588,7 +588,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-oauth-password-grant:
@@ -611,7 +611,7 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
   websocket-oauth-refresh-token-grant:
@@ -634,6 +634,6 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: test-suite/bbe
+        working-directory: bbes
         run: |
           scripts/websocket_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
