@@ -3,7 +3,7 @@ services:
   nats-streaming:
     image: nats-streaming:latest
     container_name: nats-streaming-server
-    command: "-c /server.conf -DV -SDV"
+    command: "-c /server.conf"
     volumes:
       - "./server.conf:/server.conf"
       - "./cert/server.crt:/cert/server.crt"
