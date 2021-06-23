@@ -1,10 +1,8 @@
 import json
 import os
-import re
 import sys
 import urllib.request
 
-import networkx as nx
 from retry import retry
 
 HTTP_REQUEST_RETRIES = 3
@@ -68,8 +66,10 @@ def update_dashboard(module_details_json):
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
             updated_readme_file += "[![Total Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Security%20Issues)](https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-            + get_query_for_all_issues_by_type("Bug") + ")](" + get_link_for_all_issues_by_type("Bug") + ")\n"
+            updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
+                                   + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
+                                   + get_query_by_type("Bug") + ")](" + get_link_by_type("Bug") + ")"
+            updated_readme_file += "\n"
             updated_readme_file += "| Module | Issues | Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|\n"
             break
@@ -77,15 +77,15 @@ def update_dashboard(module_details_json):
     for module in module_details_json['modules']:
         row = ("|[" + module['name'].split('-')[-1] + "](" + BALLERINA_ORG_URL + module['name'] + ")| " +
                "[![Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_all_issue_query(module) + ")](" + get_all_issue_link(module) + ")| " +
+               + get_query_by_module(module) + ")](" + get_link_by_module(module) + ")| " +
                "[![Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query(module, "Bug") + ")](" + get_link(module, "Bug") + ")| " +
+               + get_query_by_module_and_type(module, "Bug") + ")](" + get_link_by_module_and_type(module, "Bug") + ")| " +
                "[![Improvements](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query(module, "Improvement") + ")](" + get_link(module, "Improvement") + ")| " +
+               + get_query_by_module_and_type(module, "Improvement") + ")](" + get_link_by_module_and_type(module, "Improvement") + ")| " +
                "[![NewFeatures](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query(module, "NewFeature") + ")](" + get_link(module, "NewFeature") + ")| " +
+               + get_query_by_module_and_type(module, "NewFeature") + ")](" + get_link_by_module_and_type(module, "NewFeature") + ")| " +
                "[![Tasks](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query(module, "Task") + ")](" + get_link(module, "Task") + ")|\n")
+               + get_query_by_module_and_type(module, "Task") + ")](" + get_link_by_module_and_type(module, "Task") + ")|\n")
         updated_readme_file += row
     try:
         with open('./issues/README.md', 'w') as README:
@@ -97,7 +97,7 @@ def update_dashboard(module_details_json):
         sys.exit()
 
 
-def get_all_issue_query(module):
+def get_query_by_module(module):
     module_name = module['name']
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,module/" + get_module_short_name(module_name))
@@ -113,7 +113,7 @@ def get_all_issue_query(module):
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
 
-def get_query(module, type):
+def get_query_by_module_and_type(module, type):
     module_name = module['name']
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,Type/" + type + ",module/" + get_module_short_name(module_name))
@@ -128,7 +128,7 @@ def get_query(module, type):
         label_colour = "yellow"
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
-def get_query_for_all_issues_by_type(type):
+def get_query_by_type(type):
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,Type/" + type)
         json_data = json.load(data)
@@ -142,14 +142,13 @@ def get_query_for_all_issues_by_type(type):
         label_colour = "yellow"
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "&label=&color=" + label_colour + "&logo=github"
 
-
-def get_all_issue_link(module):
+def get_link_by_module(module):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module['name'])
 
-def get_link(module, type):
+def get_link_by_module_and_type(module, type):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module['name'])
 
-def get_link_for_all_issues_by_type(type):
+def get_link_by_type(type):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type
 
 def get_module_short_name(module_name):
