@@ -1,7 +1,6 @@
 import ballerina/io;
 import ballerinax/stan;
 
-// TODO: Retry, once https://github.com/ballerina-platform/ballerina-standard-library/issues/1423 is fixed.
 listener stan:Listener securedEP = new("nats://localhost:4222",
     auth = {
         username: "alice",
