@@ -69,7 +69,7 @@ def update_dashboard(module_details_json):
             updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
                                    + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
                                    + get_query_by_type("Bug") + ")](" + get_link_by_type("Bug") + ")"
-            updated_readme_file += "\n"
+            updated_readme_file += "\n\n"
             updated_readme_file += "| Module | Issues | Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|\n"
             break
@@ -140,7 +140,7 @@ def get_query_by_type(type):
         label_colour = "brightgreen"
     else:
         label_colour = "yellow"
-    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "&label=&color=" + label_colour + "&logo=github"
+    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "&label=Total%20Bugs&color=" + label_colour + "&logo=github"
 
 def get_link_by_module(module):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module['name'])
