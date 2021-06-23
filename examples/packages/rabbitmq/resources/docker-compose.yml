@@ -1,0 +1,14 @@
+version: "3"
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-server
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./cert/ca.crt:/cert/ca.crt
+      - ./cert/server.crt:/cert/server.crt
+      - ./key/server.key:/key/server.key
+    ports:
+      - 5671:5671
+      - 5672:5672
+      - 15672:15672
