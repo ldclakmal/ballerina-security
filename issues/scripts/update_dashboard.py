@@ -67,6 +67,9 @@ def update_dashboard(module_details_json):
         updated_readme_file += processed_line
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
+            updated_readme_file += "[![Total Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Security%20Issues)](https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Aarea%2Fsecurity)\n"
+            updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
+            + get_query_for_all_issues_by_type("Bug") + ")](" + get_link_for_all_issues_by_type("Bug") + ")\n"
             updated_readme_file += "| Module | Issues | Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|\n"
             break
@@ -125,11 +128,29 @@ def get_query(module, type):
         label_colour = "yellow"
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
+def get_query_for_all_issues_by_type(type):
+    try:
+        data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,Type/" + type)
+        json_data = json.load(data)
+        issue_count = len(json_data)
+    except Exception as e:
+        print('Failed to get all issue details: ' + str(e))
+        issue_count = 1
+    if issue_count == 0:
+        label_colour = "brightgreen"
+    else:
+        label_colour = "yellow"
+    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "&label=&color=" + label_colour + "&logo=github"
+
+
 def get_all_issue_link(module):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module['name'])
 
 def get_link(module, type):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module['name'])
+
+def get_link_for_all_issues_by_type(type):
+    return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type
 
 def get_module_short_name(module_name):
     return module_name.split("-")[-1]
