@@ -1,6 +1,6 @@
 version: "3"
 services:
-  nats-tls:
+  nats:
     image: nats:latest
     container_name: nats-server
     command: "-c /server.conf"
