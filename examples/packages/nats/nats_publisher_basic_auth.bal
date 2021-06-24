@@ -28,6 +28,6 @@ public function main() returns error? {
         content: message.toBytes(),
         subject: "demo.security"
     });
-    io:println("Publish message successful.");
     check securedEP.close();
+    io:println("Message published successfully.");
 }

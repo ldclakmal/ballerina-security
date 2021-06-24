@@ -16,5 +16,5 @@ kafka:Producer producer = check new("localhost:9093",
 public function main() returns error? {
     check producer->send({ topic: TOPIC, value: MESSAGE.toBytes() });
     check producer->'flush();
-    io:println("Publish message successful.");
+    io:println("Message published successfully.");
 }

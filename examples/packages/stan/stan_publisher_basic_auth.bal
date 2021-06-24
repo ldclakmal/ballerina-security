@@ -28,7 +28,7 @@ public function main() returns error? {
         content: message.toBytes(),
         subject: "demo.security"
     });
-    io:println("NUID: " + nuid);
-    io:println("Publish message successful.");
     check securedEP.close();
+    io:println("NUID: " + nuid);
+    io:println("Message published successfully.");
 }
