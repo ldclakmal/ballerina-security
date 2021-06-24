@@ -9,10 +9,10 @@ This section demonstrates the examples with authentication and authorization for
 3. [GraphQL](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/graphql)
 4. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/grpc)
 5. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/websub)
-6. NATS _(Pending)_
-7. STAN _(Pending)_
-8. RabbitMQ _(Pending)_
-9. Kafka _(Pending)_
+6. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/nats)
+7. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/stan)
+8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/rabbitmq)
+9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/kafka)
 10. Email _(Pending)_
 11. FTP _(Pending)_
 12. TCP _(Pending)_
