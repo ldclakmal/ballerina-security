@@ -15,5 +15,5 @@ This section demonstrates the examples with authentication and authorization for
 9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/kafka)
 10. Email _(Pending)_
 11. FTP _(Pending)_
-12. TCP _(Pending)_
+12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/tcp)
 13. UDP _(Pending)_
