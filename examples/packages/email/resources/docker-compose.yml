@@ -1,0 +1,10 @@
+version: "3"
+services:
+  email:
+    image: greenmail/standalone:1.5.11
+    container_name: email-server
+    environment:
+      - GREENMAIL_OPTS=-Dgreenmail.verbose -Dgreenmail.hostname=0.0.0.0 -Dgreenmail.setup.test.smtps -Dgreenmail.setup.test.imaps -Dgreenmail.users=alice:alice123,bob:bob123,eve:eve123
+    ports:
+      - "3465:3465" # SMTPs
+      - "3993:3993" # IMAPs
