@@ -65,27 +65,32 @@ def update_dashboard(module_details_json):
         updated_readme_file += processed_line
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
-            updated_readme_file += "[![Total Issues](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Security%20Issues)](https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Aarea%2Fsecurity)\n"
+            updated_readme_file += "[![Total Issues](https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Aarea%2Fsecurity&label=Total%20Issues&color=yellow&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
             updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
                                    + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
-                                   + get_query_by_type("Bug") + ")](" + get_link_by_type("Bug") + ")"
-            updated_readme_file += "\n\n"
-            updated_readme_file += "| Module | Issues | Bugs | Improvements | New Features | Tasks |\n"
-            updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|\n"
+                                   + get_query_by_key_value("Type", "Bug", "Total Bugs") + ")](" + get_link_by_key_value("Type", "Bug") + ")\n"
+            updated_readme_file += "[![Total High Priority Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
+                                   + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
+                                   + get_query_by_key_value("Priority", "High", "Total High Priority Issues") + ")](" + get_link_by_key_value("Priority", "High") + ")\n"
+            updated_readme_file += "\n"
+            updated_readme_file += "| Module | All Issues | High Priority Issues | Bugs | Improvements | New Features | Tasks |\n"
+            updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|:---:|\n"
             break
     # A single row in the table is created for each module in the module list
     for module in module_details_json['modules']:
         row = ("|[" + module['name'].split('-')[-1] + "](" + BALLERINA_ORG_URL + module['name'] + ")| " +
                "[![Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
                + get_query_by_module(module) + ")](" + get_link_by_module(module) + ")| " +
+               "[![High Priority](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
+               + get_query_by_module_and_key_value(module, "Priority", "High") + ")](" + get_link_by_module_and_key_value(module, "Priority", "High") + ")| " +
                "[![Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_type(module, "Bug") + ")](" + get_link_by_module_and_type(module, "Bug") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "Bug") + ")](" + get_link_by_module_and_key_value(module, "Type", "Bug") + ")| " +
                "[![Improvements](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_type(module, "Improvement") + ")](" + get_link_by_module_and_type(module, "Improvement") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "Improvement") + ")](" + get_link_by_module_and_key_value(module, "Type", "Improvement") + ")| " +
                "[![NewFeatures](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_type(module, "NewFeature") + ")](" + get_link_by_module_and_type(module, "NewFeature") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "NewFeature") + ")](" + get_link_by_module_and_key_value(module, "Type", "NewFeature") + ")| " +
                "[![Tasks](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_type(module, "Task") + ")](" + get_link_by_module_and_type(module, "Task") + ")|\n")
+               + get_query_by_module_and_key_value(module, "Type", "Task") + ")](" + get_link_by_module_and_key_value(module, "Type", "Task") + ")|\n")
         updated_readme_file += row
     try:
         with open('./issues/README.md', 'w') as README:
@@ -113,10 +118,10 @@ def get_query_by_module(module):
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
 
-def get_query_by_module_and_type(module, type):
+def get_query_by_module_and_key_value(module, key, value):
     module_name = module['name']
     try:
-        data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,Type/" + type + ",module/" + get_module_short_name(module_name))
+        data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security," + key + "/" + value + ",module/" + get_module_short_name(module_name))
         json_data = json.load(data)
         issue_count = len(json_data)
     except Exception as e:
@@ -126,11 +131,11 @@ def get_query_by_module_and_type(module, type):
         label_colour = "brightgreen"
     else:
         label_colour = "yellow"
-    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
+    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
-def get_query_by_type(type):
+def get_query_by_key_value(key, value, label):
     try:
-        data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security,Type/" + type)
+        data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security," + key + "/" + value)
         json_data = json.load(data)
         issue_count = len(json_data)
     except Exception as e:
@@ -140,16 +145,16 @@ def get_query_by_type(type):
         label_colour = "brightgreen"
     else:
         label_colour = "yellow"
-    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "&label=Total%20Bugs&color=" + label_colour + "&logo=github"
+    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "&label=" + label + "&color=" + label_colour + "&logo=github"
 
 def get_link_by_module(module):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module['name'])
 
-def get_link_by_module_and_type(module, type):
-    return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type + "+label%3Amodule%2F" + get_module_short_name(module['name'])
+def get_link_by_module_and_key_value(module, key, value):
+    return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "+label%3Amodule%2F" + get_module_short_name(module['name'])
 
-def get_link_by_type(type):
-    return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3AType%2F" + type
+def get_link_by_key_value(key, value):
+    return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value
 
 def get_module_short_name(module_name):
     return module_name.split("-")[-1]
