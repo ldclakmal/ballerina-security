@@ -49,7 +49,7 @@ The followings are standards that govern the use of particular cryptographic pri
 > NOTE: Since most systems, today need to support multiple algorithms, and wish to be able to adapt to new algorithms as they are developed, PKCS8 is preferred for private keys, and a similar any-algorithm scheme defined by X.509 for public keys. Also, PKCS12/PFX is often preferred to both.
 
 References:
-1. <https://www.misterpki.com/>>
+1. <https://www.misterpki.com/>
 2. <https://tls.mbed.org/kb/cryptography/asn1-key-structures-in-der-and-pem>
 3. <https://www.cryptosys.net/pki/rsakeyformats.html>
 
@@ -67,6 +67,49 @@ References:
 3. <https://www.sslshopper.com/ssl-certificate-tools.html>
 4. <https://www.digitalocean.com/community/tutorials/openssl-essentials-working-with-ssl-certificates-private-keys-and-csrs>
 5. <https://blog.devolutions.net/2020/07/tutorial-how-to-generate-secure-self-signed-server-and-client-certificates-with-openssl>
+
+### Guide to generate certs and keys
+
+#### Generate CA cert and key
+```bash
+openssl genrsa -out ca.key 2048
+openssl req -x509 -sha256 -new -nodes -key ca.key -days 3650 -out ca.crt
+
+openssl req -out server.csr -newkey rsa:2048 -nodes -keyout server.key -config san.conf
+openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key -config san.conf
+```
+
+#### Generate CSR with CA cert and key
+```bash
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 3650 -sha256 -extfile san.conf -extensions v3_req
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 3650 -sha256 -extfile san.conf -extensions v3_req
+```
+
+#### Import certs to truststore
+```bash
+keytool -import -trustcacerts -alias ca -file ca.crt -keystore truststore.p12
+keytool -import -trustcacerts -alias client -file client.crt -keystore truststore.p12
+keytool -import -trustcacerts -alias server -file server.crt -keystore truststore.p12
+```
+
+#### Convert key to PKCS12 and import to keystore
+```bash
+openssl pkcs12 -export -in server.crt -inkey server.key \
+               -out server.p12 -name server \
+               -CAfile ca.crt -caname root
+openssl pkcs12 -export -in client.crt -inkey client.key \
+               -out client.p12 -name client \
+               -CAfile ca.crt -caname root
+               
+keytool -importkeystore \
+        -deststorepass ballerina -destkeypass ballerina -destkeystore keystore.p12 \
+        -srckeystore server.p12 -srcstoretype PKCS12 -srcstorepass ballerina \
+        -alias server
+keytool -importkeystore \
+        -deststorepass ballerina -destkeypass ballerina -destkeystore keystore.p12 \
+        -srckeystore client.p12 -srcstoretype PKCS12 -srcstorepass ballerina \
+        -alias client
+```
 
 ---
 
