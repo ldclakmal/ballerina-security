@@ -14,6 +14,6 @@ This section demonstrates the examples with authentication and authorization for
 8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/rabbitmq)
 9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/kafka)
 10. [Email](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/email)
-11. FTP _(Pending)_
+11. [FTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/ftp)
 12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/tcp)
 13. UDP _(Pending)_
