@@ -19,10 +19,10 @@ listener ftp:Listener securedEP = new({
 service "sftp" on securedEP {
     function onFileChange(ftp:WatchEvent event) {
         foreach ftp:FileInfo addedFile in event.addedFiles {
-            io:println("Added file of path: " + addedFile.path);
+            io:println("Added file of path: ", addedFile.path);
         }
         foreach string deletedFile in event.deletedFiles {
-            io:println("Deleted file of path: " + deletedFile);
+            io:println("Deleted file of path: ", deletedFile);
         }
     }
 }

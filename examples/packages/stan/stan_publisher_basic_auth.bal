@@ -29,6 +29,6 @@ public function main() returns error? {
         subject: "demo.security"
     });
     check securedEP.close();
-    io:println("NUID: " + nuid);
+    io:println("NUID: ", nuid);
     io:println("Message published successfully.");
 }

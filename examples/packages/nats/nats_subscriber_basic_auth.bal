@@ -29,7 +29,7 @@ service nats:Service on securedEP {
     remote function onMessage(nats:Message message) {
         string|error messageContent = string:fromBytes(message.content);
         if (messageContent is string) {
-            io:println("Received message: " + messageContent);
+            io:println("Received message: ", messageContent);
         }
     }
 }

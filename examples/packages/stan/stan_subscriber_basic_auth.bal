@@ -29,7 +29,7 @@ service stan:Service on securedEP {
     remote function onMessage(stan:Message message) {
         string|error messageContent = string:fromBytes(message.content);
         if (messageContent is string) {
-            io:println("Received message: " + messageContent);
+            io:println("Received message: ", messageContent);
         }
     }
 }

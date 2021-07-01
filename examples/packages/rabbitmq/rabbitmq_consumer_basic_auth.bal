@@ -28,7 +28,7 @@ service rabbitmq:Service on securedEP {
     remote function onMessage(rabbitmq:Message message) {
         string|error messageContent = string:fromBytes(message.content);
         if (messageContent is string) {
-            io:println("Received message: " + messageContent);
+            io:println("Received message: ", messageContent);
         }
     }
 }

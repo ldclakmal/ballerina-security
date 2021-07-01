@@ -19,7 +19,7 @@ service "tcp" on securedEP {
 
 service class EchoService {
     remote function onBytes(readonly & byte[] data) returns byte[] {
-        io:println("Received message: ", 'string:fromBytes(data));
+        io:println("Received message: ", string:fromBytes(data));
         return data;
     }
 }
