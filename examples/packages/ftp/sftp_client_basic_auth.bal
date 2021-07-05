@@ -6,7 +6,7 @@ ftp:Client securedEP = new({
     host: "127.0.0.1",
     port: 2222,
     auth: {
-        basicAuth: {
+        credentials: {
             username: "foo",
             password: "pass"
         }
