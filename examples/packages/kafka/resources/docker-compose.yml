@@ -10,6 +10,7 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_LOG4J_ROOT_LOGLEVEL: INFO
       KAFKA_OPTS: '-Djava.security.auth.login.config=/opt/confluentinc/kafka/config/zookeeper_jaas.conf'
     volumes:
       - ./zookeeper_jaas.conf:/opt/confluentinc/kafka/config/zookeeper_jaas.conf
@@ -42,6 +43,7 @@ services:
       KAFKA_SSL_KEY_CREDENTIALS: broker_ssl_key_credentials
       KAFKA_SSL_TRUSTSTORE_FILENAME: kafka.broker.truststore.jks
       KAFKA_SSL_TRUSTSTORE_CREDENTIALS: broker_truststore_credentials
+      KAFKA_LOG4J_ROOT_LOGLEVEL: INFO
       KAFKA_OPTS: '-Djava.security.auth.login.config=/opt/confluentinc/kafka/config/kafka_jaas.conf'
     volumes:
       - ./secrets/broker_keystore_credentials:/etc/kafka/secrets/broker_keystore_credentials

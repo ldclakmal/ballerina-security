@@ -16,7 +16,7 @@ listener kafka:Listener securedEP = new("localhost:9093",
 
 service kafka:Service on securedEP {
     remote function onConsumerRecord(kafka:Caller caller, kafka:ConsumerRecord[] records) returns error? {
-        io:println(string:fromBytes(records[records.length() - 1].value));
+        io:println("Received message: ", string:fromBytes(records[records.length() - 1].value));
         check caller->commit();
     }
 }
