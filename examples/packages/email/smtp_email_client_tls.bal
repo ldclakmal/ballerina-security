@@ -16,7 +16,7 @@ email:SmtpClient securedEP = check new("127.0.0.1", "alice", "alice123", {
 public function main() returns error? {
     email:Message email = {
         to: "bob",
-        subject: "Sample Email",
+        subject: "Hello, World!",
         body: "This is a sample email.",
         'from: "author@email.com"
     };

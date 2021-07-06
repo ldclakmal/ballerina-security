@@ -16,6 +16,6 @@ ftp:Client securedEP = new({
 public function main() returns error? {
     ftp:FileInfo[] response = check securedEP->list("/upload");
     foreach ftp:FileInfo info in response {
-        io:println(info.path);
+        io:println("File: ", info.path);
     }
 }
