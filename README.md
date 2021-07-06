@@ -1,6 +1,6 @@
 [![Ballerina-Security](./images/ballerina-security.png)](https://github.com/ldclakmal/ballerina-security)
 
-**Ballerina Security** repository contains the examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
+The examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
 ## Summary
 
