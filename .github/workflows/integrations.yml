@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'integrations/**'
+      - '.github/workflows/integrations.yml'
   workflow_dispatch:
 
 jobs:
