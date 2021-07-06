@@ -66,13 +66,13 @@ def update_dashboard(module_details_json):
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
             updated_readme_file += "[![Total Issues Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=red&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n\n"
+            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=darkgreen&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
             updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
                                    + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
-                                   + get_query_by_key_value("Type", "Bug", "Total%20Bugs") + ")](" + get_link_by_key_value("Type", "Bug") + ")\n"
+                                   + get_query_by_key_value("Type", "Bug", "Total%20Bugs", "red") + ")](" + get_link_by_key_value("Type", "Bug") + ")\n"
             updated_readme_file += "[![Total High Priority Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
                                    + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
-                                   + get_query_by_key_value("Priority", "High", "Total%20High%20Priority%20Issues") + ")](" + get_link_by_key_value("Priority", "High") + ")\n"
+                                   + get_query_by_key_value("Priority", "High", "Total%20High%20Priority%20Issues", "orange") + ")](" + get_link_by_key_value("Priority", "High") + ")\n"
             updated_readme_file += "\n"
             updated_readme_file += "| Module | All Issues | High Priority Issues | Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|:---:|\n"
@@ -83,15 +83,15 @@ def update_dashboard(module_details_json):
                "[![Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
                + get_query_by_module(module) + ")](" + get_link_by_module(module) + ")| " +
                "[![High Priority](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_key_value(module, "Priority", "High") + ")](" + get_link_by_module_and_key_value(module, "Priority", "High") + ")| " +
+               + get_query_by_module_and_key_value(module, "Priority", "High", "orange") + ")](" + get_link_by_module_and_key_value(module, "Priority", "High") + ")| " +
                "[![Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_key_value(module, "Type", "Bug") + ")](" + get_link_by_module_and_key_value(module, "Type", "Bug") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "Bug", "red") + ")](" + get_link_by_module_and_key_value(module, "Type", "Bug") + ")| " +
                "[![Improvements](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_key_value(module, "Type", "Improvement") + ")](" + get_link_by_module_and_key_value(module, "Type", "Improvement") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "Improvement", "yellow") + ")](" + get_link_by_module_and_key_value(module, "Type", "Improvement") + ")| " +
                "[![NewFeatures](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_key_value(module, "Type", "NewFeature") + ")](" + get_link_by_module_and_key_value(module, "Type", "NewFeature") + ")| " +
+               + get_query_by_module_and_key_value(module, "Type", "NewFeature", "yellow") + ")](" + get_link_by_module_and_key_value(module, "Type", "NewFeature") + ")| " +
                "[![Tasks](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
-               + get_query_by_module_and_key_value(module, "Type", "Task") + ")](" + get_link_by_module_and_key_value(module, "Type", "Task") + ")|\n")
+               + get_query_by_module_and_key_value(module, "Type", "Task", "yellow") + ")](" + get_link_by_module_and_key_value(module, "Type", "Task") + ")|\n")
         updated_readme_file += row
     try:
         with open('./issues/README.md', 'w') as README:
@@ -119,7 +119,7 @@ def get_query_by_module(module):
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
 
-def get_query_by_module_and_key_value(module, key, value):
+def get_query_by_module_and_key_value(module, key, value, color):
     module_name = module['name']
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security," + key + "/" + value + ",module/" + get_module_short_name(module_name))
@@ -131,10 +131,10 @@ def get_query_by_module_and_key_value(module, key, value):
     if issue_count == 0:
         label_colour = "brightgreen"
     else:
-        label_colour = "yellow"
+        label_colour = color
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
-def get_query_by_key_value(key, value, label):
+def get_query_by_key_value(key, value, label, color):
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security," + key + "/" + value)
         json_data = json.load(data)
@@ -145,7 +145,7 @@ def get_query_by_key_value(key, value, label):
     if issue_count == 0:
         label_colour = "brightgreen"
     else:
-        label_colour = "yellow"
+        label_colour = color
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "&label=" + label + "&color=" + label_colour + "&logo=github"
 
 def get_link_by_module(module):
