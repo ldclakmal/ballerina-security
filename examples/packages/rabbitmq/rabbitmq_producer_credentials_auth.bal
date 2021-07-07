@@ -28,6 +28,6 @@ public function main() returns error? {
         content: message.toBytes(),
         routingKey: "demo.security"
     });
-    check securedEP.close();
+    //check securedEP.close();
     io:println("Message published successfully.");
 }
