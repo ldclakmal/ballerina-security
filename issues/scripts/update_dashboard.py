@@ -66,7 +66,7 @@ def update_dashboard(module_details_json):
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
             updated_readme_file += "[![Total Issues Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=darkgreen&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
+            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=darkgreen&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aclosed+label%3Aarea%2Fsecurity)\n"
             updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
                                    + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
                                    + get_query_by_key_value("Type", "Bug", "Total%20Bugs", "red") + ")](" + get_link_by_key_value("Type", "Bug") + ")\n"
