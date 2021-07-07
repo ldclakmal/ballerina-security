@@ -66,15 +66,9 @@ def update_dashboard(module_details_json):
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
             updated_readme_file += "[![Total Issues Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=darkgreen&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aclosed+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
-                                   + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
-                                   + get_query_by_key_value("Type", "Bug", "Total%20Bugs", "red") + ")](" + get_link_by_key_value("Type", "Bug") + ")\n"
-            updated_readme_file += "[![Total High Priority Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" \
-                                   + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" \
-                                   + get_query_by_key_value("Priority", "High", "Total%20High%20Priority%20Issues", "orange") + ")](" + get_link_by_key_value("Priority", "High") + ")\n"
+            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=lightgrey&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aclosed+label%3Aarea%2Fsecurity)\n"
             updated_readme_file += "\n"
-            updated_readme_file += "| Module | All Issues | High Priority Issues | Bugs | Improvements | New Features | Tasks |\n"
+            updated_readme_file += "| Module | All Issues | [![Total High Priority Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" + get_query_by_key_value("Priority", "High", "orange") + ")](" + get_link_by_key_value("Priority", "High") + ") <br/> High Priority Issues | [![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" + get_query_by_key_value("Type", "Bug", "red") + ")](" + get_link_by_key_value("Type", "Bug") + ") <br/> Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|:---:|\n"
             break
     # A single row in the table is created for each module in the module list
@@ -134,7 +128,7 @@ def get_query_by_module_and_key_value(module, key, value, color):
         label_colour = color
     return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "+label%3Amodule%2F" + get_module_short_name(module_name) + "&label=&color=" + label_colour + "&logo=github"
 
-def get_query_by_key_value(key, value, label, color):
+def get_query_by_key_value(key, value, color):
     try:
         data = url_open_with_retry(BALLERINA_STANDARD_LIBRARY_REPO_API_URL + "issues?state=open&labels=area/security," + key + "/" + value)
         json_data = json.load(data)
@@ -146,7 +140,7 @@ def get_query_by_key_value(key, value, label, color):
         label_colour = "brightgreen"
     else:
         label_colour = color
-    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "&label=" + label + "&color=" + label_colour + "&logo=github"
+    return "query=is%3Aopen+label%3Aarea%2Fsecurity+label%3A" + key + "%2F" + value + "&label=&color=" + label_colour + "&logo=github"
 
 def get_link_by_module(module):
     return BALLERINA_ORG_URL + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "/issues?q=is%3Aopen+label%3Aarea%2Fsecurity+label%3Amodule%2F" + get_module_short_name(module['name'])
