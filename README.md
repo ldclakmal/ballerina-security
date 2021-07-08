@@ -55,15 +55,18 @@ This section demonstrates an automated Ballerina security test-suite which conta
 This section summarizes the issues related to the security aspects of Ballerina standard libraries. These issues are further categorized as bugs, improvements, new features, and tasks. Refer to the [issues](./issues) page for more information.
 
 ---
-> The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
 
-## User Guides
+## References
+
+The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
+
+### User Guides
 
 - [HTTP Listener Authentication and Authorization - Swan Lake Version](https://ballerina.io/learn/user-guide/security/http-listener-authentication-and-authorization/)
 - [HTTP Client Authentication - Swan Lake Version](https://ballerina.io/learn/user-guide/security/http-client-authentication/)
 - [Ballerina Authentication and Authorization Design - 1.2.x Version](https://ballerina.io/1.2/learn/writing-secure-ballerina-code/)
 
-## Research & Design
+### Research & Design
 
 - 2021 Apr - [Review of Ballerina Security APIs of StdLib Protocol Connector Module - Swan Lake Version](https://docs.google.com/document/d/16r_gjBi7SIqVffKVLtKGBevHQRxp7Fnoo9ELyIWV1BM/edit?usp=sharing)
 - 2021 Feb - [Re-Design of Ballerina SecureSocket API - Swan Lake Version](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
@@ -71,7 +74,7 @@ This section summarizes the issues related to the security aspects of Ballerina 
 - 2020 Oct - [Research Comparison on Ballerina Security Features/APIs with Different Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
 - 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design - First Draft (0.970.0)](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
 
-## GitHub Pull Requests
+### GitHub Pull Requests
 
 - 2021 Jun - [Implement declarative auth design for WebSocket upgrade service](https://github.com/ballerina-platform/module-ballerina-websocket/pull/216)
 - 2021 May - [Implement declarative auth design for GraphQL service](https://github.com/ballerina-platform/module-ballerina-graphql/pull/210)
@@ -95,7 +98,7 @@ This section summarizes the issues related to the security aspects of Ballerina 
 - 2019 May - [Improve HTTP secure client for OAuth2 grant types](https://github.com/ballerina-platform/ballerina-lang/pull/14419)
 - 2019 May - [Refactor inbound authentication with custom provider and handlers](https://github.com/ballerina-platform/ballerina-lang/pull/15056)
 
-## Specifications
+### Specifications
 
 - [RFC 8693 - OAuth 2.0 Token Exchange](https://tools.ietf.org/html/rfc8693)
 - [RFC 7662 - OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662)
@@ -107,7 +110,7 @@ This section summarizes the issues related to the security aspects of Ballerina 
 - [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
 - [RFC 7617 - The 'Basic' HTTP Authentication Scheme](https://tools.ietf.org/html/rfc7617)
 
-## Guides
+### Guides
 
 - [How to obtain Google OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html)
 - [How to obtain Salesforce OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-salesforce-oauth2-credentials.html)
