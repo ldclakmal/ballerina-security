@@ -14,9 +14,6 @@ rabbitmq:Client securedEP = check new("localhost", 5671,
         key: {
             path: "./resources/keystore/keystore.p12",
             password: "ballerina"
-        },
-        protocol: {
-            name: rabbitmq:TLS
         }
     }
 );

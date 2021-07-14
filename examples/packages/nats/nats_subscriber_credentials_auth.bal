@@ -15,9 +15,6 @@ listener nats:Listener securedEP = new("nats://localhost:4222",
         key: {
             path: "./resources/keystore/keystore.p12",
             password: "ballerina"
-        },
-        protocol: {
-            name: nats:TLS
         }
     }
 );
