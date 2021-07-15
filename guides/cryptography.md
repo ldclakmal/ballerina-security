@@ -48,6 +48,8 @@ The followings are standards that govern the use of particular cryptographic pri
 
 > NOTE: Since most systems, today need to support multiple algorithms, and wish to be able to adapt to new algorithms as they are developed, PKCS8 is preferred for private keys, and a similar any-algorithm scheme defined by X.509 for public keys. Also, PKCS12/PFX is often preferred to both.
 
+> A sample set of keys and certs can be found [here](https://github.com/ldclakmal/ballerina-security/tree/master/guides/resources/keys-certs/types).
+
 References:
 1. <https://www.misterpki.com/>
 2. <https://tls.mbed.org/kb/cryptography/asn1-key-structures-in-der-and-pem>
