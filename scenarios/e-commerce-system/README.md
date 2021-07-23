@@ -1,99 +1,31 @@
 # E-Commerce System
 
-## v1.2
-
-![v1.2](./e-commerce-system-v1.2.png)
-
-> TODO
-
-## v1.1
-
-![v1.1](./e-commerce-system-v1.1.png)
+> [**Source Code**](https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/e-commerce-system)
 
 ### Description
 
-Simple inventory management system, with 2 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server.
+An e-commerce system that can be used to search for items and purchase items. 
 
-User `Jane`, the admin, connects to `Admin Microservice` through the REST API of API gateway using HTTPS for management purposes. User `Alice`, a customer, connects to `Inventory Microservice` through the REST API of API gateway using HTTPS for purchasing items. All the APIs are authenticated with different types of authentication mechanisms such as basic auth, JWT auth, OAuth2, etc., and secured with TLS as well.
+The end-user (customer), in this example, **Alice** and **Bob**, interacts with the system using the web/mobile app provided. This web/mobile app acts as a **Client** on behalf of the user's actions.
 
-### Resources
+We have two trust domains; the left side trust domain is allowed any HTTPS inbound traffic, and the right side trust domain is allowed the inbound traffic only from the left side trust domain. The system trusts the **Authorization Server / STS** and the **Certificate Authority (CA)** which are configured for this system.
 
-- User Jane (admin) & Alice (customer)
-- API Gateway
-- Admin and Inventory Microservices
-- OAuth 2.0 Authorization Server (STS) [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
-- LDAP User Store [Reference: [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)]
+In the left side trust domain, we have an **API Gateway**, which has both REST APIs and GraphQL APIs. The API Gateway routes the GraphQL API requests to **Inventory Service**, which is responsible for managing the inventory of the system, and the REST API requests to **Order Service**, which is responsible for processing the order for the customer.
+In the right side trust domain, we have **Payment Service** and **Delivery Service** with gRPC APIs, which are called by the **Order Service** of the left trust domain only to process the payment and delivery.
 
-### Steps
+All the APIs are authenticated with different types and different levels of authentication mechanisms such as JWT auth, OAuth2, TLS, mTLS etc.
 
-#### Jane (admin)
+### Design
 
-1. User `Jane` calls basic-auth secured `/admin` **REST API** using username and password.
-2. _Ballerina API Gateway_ validates the user against LDAP user store for the scope `Admin`.
-3. _Ballerina API Gateway_ issues a self-signed JWT signed by Gateway's private key. The `scp` claim should  have the `Admin` scope. Calls the JWT secured **REST API** of _Ballerina Admin Microservice_ using that JWT.
-4. _Ballerina Admin Microservice_ validates the received JWT's signature with Gateway's public key. The value of the `scp` claim should be authorized by the API. The microservice trusts the API Gateway as an issuer (`iss`).
-
-> If successful, `Jane` should get a success response from `Admin Microservice`. If not, a 401 or 403 response.
-
-#### Alice (customer)
-
-1. User `Alice` gets an access token with scope `customer` via OAuth2 client credentials grant type or OAuth2 password grant type from _OAuth 2.0 Authorization Server (STS)_.
-2. `Alice` calls OAuth2 secured `/order` **REST API** of the _Ballerina API Gateway_ using the received OAuth2 access token.
-3. _Ballerina API Gateway_ introspects the received access token against the _OAuth 2.0 Authorization Server (STS)_ and validates the `scope` for the `customer`.
-4. _Ballerina API Gateway_ issues a self-signed JWT signed by Gateway's private key. The `scp` claim should have the `scope` received from the introspection response, which is the `customer`. Calls the JWT secured **REST API** of _Ballerina Inventory Microservice_ using that JWT.
-5. _Ballerina Inventory Microservice_ validates the received JWT's signature with Gateway's public key. The value of the `scp` claim should be authorized by the API. The microservice trusts the API Gateway as an issuer (`iss`).
-
-> If successful, `Alice` should get a success response from `Inventory Microservice`. If not, a 401 or 403 response.
-
-## v1.0
-
-![v1.0](./e-commerce-system-v1.0.png)
-
-### Description
-
-Advanced inventory management system, with 4 secured microservices, and a secured API gateway, which connects to an LDAP user store and trusts OAuth2 authorization server.
-
-User `Jane`, the admin, connects to `Admin Microservice` through the REST API of API gateway using HTTPS for management purposes. User `Alice`, a customer, connects to `Inventory Microservice` through the REST API of API gateway using HTTPS for purchasing items. User `Bob`, another customer, connects to `Inventory Microservice` through the GraphQL API of API gateway using HTTPS for searching items. `Electronic` and `Fashions` microservices are connected to `Inventory Microservice` and can be accessed via gRPC APIs. All the HTTP, GraphQL, gRPC APIs are authenticated with different types of authentication mechanisms such as basic auth, JWT auth, OAuth2, etc., and secured with TLS as well.
+![figure-1](./figure-1.png)
 
 ### Resources
 
-- User Jane (admin), Alice (customer), and Bob (customer)
+- Customer Alice & Bob
 - API Gateway
-- Admin, Inventory, Electronics and Fashions Microservices
-- OAuth 2.0 Authorization Server (STS) [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
-- LDAP User Store [Reference: [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)]
-
-### Steps
-
-#### Jane (admin)
-
-1. User `Jane` calls basic-auth secured `/admin` **REST API** using username and password.
-2. _Ballerina API Gateway_ validates the user against LDAP user store for the scope `Admin`.
-3. _Ballerina API Gateway_ issues a self-signed JWT signed by Gateway's private key. The `scp` claim should  have the `Admin` scope. Calls the JWT secured **REST API** of_Ballerina Admin Microservice_ using that JWT.
-4. _Ballerina Admin Microservice_ validates the received JWT's signature with Gateway's public key. The value of the `scp` claim should be authorized by the API. The microservice trusts the API Gateway as an issuer (`iss`).
-
-> If successful, `Jane` should get a success responses from `Admin Microservice`. If not, a 401 or 403 response.
-
-#### Alice (customer)
-
-1. User `Alice` gets an access token with scope `customer` via OAuth2 client credentials grant type or OAuth2 password grant type from _OAuth 2.0 Authorization Server (STS)_.
-2. `Alice` calls OAuth2 secured `/order` **REST API** of the _Ballerina API Gateway_ using the received OAuth2 access token.
-3. _Ballerina API Gateway_ introspects the received access token against the _OAuth 2.0 Authorization Server (STS)_ and validates the `scope` for the `customer`.
-4. _Ballerina API Gateway_ issues a self-signed JWT signed by Gateway's private key. The `scp` claim should have the `scope` received from the introspection response, which is the `customer`. Calls the JWT secured **REST API** of _Ballerina Inventory Microservice_ using that JWT.
-5. _Ballerina Inventory Microservice_ validates the received JWT's signature with Gateway's public key. The value of the `scp` claim should be authorized by the API. The microservice trusts the API Gateway as an issuer (`iss`).
-6. _Ballerina Inventory Gateway_ issues a self-signed JWT signed by inventory microservice's private key. Calls the JWT secured **gRPC API** of _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ using that JWT.
-7. _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ validates the received JWT's signature with the inventory microservice's public key. The microservice trusts the inventory microservice as an issuer (`iss`).
-
-> If successful, `Alice` should get a success response from `Inventory Microservice`. If not, a 401 or 403 response.
-
-#### Bob (customer)
-
-1. User `Bob` gets an access token with scope `customer` via OAuth2 client credentials grant type or OAuth2 password grant type from _OAuth 2.0 Authorization Server (STS)_.
-2. `Bob` calls OAuth2 secured `/search` **GraphQL API** of the _Ballerina API Gateway_ using the received OAuth2 access token.
-3. _Ballerina API Gateway_ introspects the received access token against the _OAuth 2.0 Authorization Server (STS)_ and validate the `scope` for the `customer`.
-4. _Ballerina API Gateway_ issues a self-signed JWT signed by Gateway's private key. The `scp` claim should have the `scope` received from the introspection response, which is the `customer`. Calls the JWT secured **REST API** of _Ballerina Inventory Microservice_ using that JWT.
-5. _Ballerina Inventory Microservice_ validates the received JWT's signature with Gateway's public key. The value of the `scp` claim should be authorized by the API. The microservice trusts the API Gateway as an issuer (`iss`).
-6. _Ballerina Inventory Gateway_ issues a self-signed JWT signed by inventory microservice's private key. Calls the JWT secured **gRPC API** of _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ using that JWT.
-7. _Ballerina Electronics Microservice_ or _Ballerina Fashions Microservice_ validates the received JWT's signature with the inventory microservice's public key. The microservice trusts the inventory microservice as an issuer (`iss`).
-
-> If successful, `Bob` should get a success response from `Electronics Microservice` or `Fashions Microservice`. If not, a 401 or 403 response.
+- Inventory Service
+- Order Service
+- Payment Service
+- Delivery Service
+- Authorization Server/STS [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
+- Certificate Authority (CA)
