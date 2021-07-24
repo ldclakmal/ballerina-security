@@ -29,3 +29,41 @@ All the APIs are authenticated with different types and different levels of auth
 - Delivery Service
 - Authorization Server/STS [Reference: [WSO2 IS STS](https://hub.docker.com/r/ldclakmal/wso2is-sts)]
 - Certificate Authority (CA)
+
+### User Story
+
+#### Scenario 1
+
+Alice (customer) wants to search for electronic items.
+
+First, she logs into the e-commerce app (client) with her credentials, and once her credentials are validated successfully, she will be redirected to the dashboard of the app. There, Alice searches for electronic items and she gets a list of items with their details such as code, name, price etc.
+
+#### Scenario 2
+
+Bob (customer) wants to place an order.
+
+First, he logs into the e-commerce app (client) with his credentials and once his credentials are validated successfully, he will be redirected to the dashboard of the app. There, Alice selects an electronic item and follows the purchasing process. Once completed, he gets a confirmation with the invoice, payment details, and delivery details, etc.
+
+### How to run?
+
+1. Start the Authorization Server/STS by following command.
+
+    ```shell
+    docker run -p 9443:9443 ldclakmal/wso2is-sts
+    ```
+
+2. Navigate to `src` directory and execute the following commands one by one to start the resource components.
+
+    ```shell
+    bal run payment_service
+    bal run payment_service
+    bal run order_service
+    bal run inventory_service
+    bal run api_gateway
+    ```
+
+3. Finally, navigate to the `src/client` directory and execute the following command to try out both of the scenarios described above.
+
+    ```shell
+    bal run client.bal
+    ```
