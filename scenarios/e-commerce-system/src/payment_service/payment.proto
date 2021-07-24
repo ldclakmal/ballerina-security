@@ -1,0 +1,6 @@
+syntax = "proto3";
+import "google/protobuf/wrappers.proto";
+
+service PaymentService {
+	rpc payments(google.protobuf.StringValue) returns (google.protobuf.StringValue);
+}
