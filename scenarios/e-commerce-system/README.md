@@ -8,10 +8,11 @@ An e-commerce system that can be used to search for items and purchase items.
 
 The end-user (customer), in this example, **Alice** and **Bob**, interacts with the system using the web/mobile app provided. This web/mobile app acts as a **Client** on behalf of the user's actions.
 
-We have two trust domains; the left side trust domain is allowed any HTTPS inbound traffic, and the right side trust domain is allowed the inbound traffic only from the left side trust domain. The system trusts the **Authorization Server / STS** and the **Certificate Authority (CA)** which are configured for this system.
+We have two trust domains; the left side trust domain is allowed any HTTPS inbound traffic, and the right side trust domain is allowed the inbound traffic only from the left side trust domain. The system trusts the **Authorization Server/STS** and the **Certificate Authority (CA)** which are configured for this system.
 
 In the left side trust domain, we have an **API Gateway**, which has both REST APIs and GraphQL APIs. The API Gateway routes the GraphQL API requests to **Inventory Service**, which is responsible for managing the inventory of the system, and the REST API requests to **Order Service**, which is responsible for processing the order for the customer.
-In the right side trust domain, we have **Payment Service** and **Delivery Service** with gRPC APIs, which are called by the **Order Service** of the left trust domain only to process the payment and delivery.
+
+In the right side trust domain, we have **Payment Service** and **Delivery Service** with gRPC APIs, which are called by the **Order Service** of the left side trust domain only to process the payment and delivery.
 
 All the APIs are authenticated with different types and different levels of authentication mechanisms such as JWT auth, OAuth2, TLS, mTLS etc.
 
@@ -36,13 +37,13 @@ All the APIs are authenticated with different types and different levels of auth
 
 Alice (customer) wants to search for electronic items.
 
-First, she logs into the e-commerce app (client) with her credentials, and once her credentials are validated successfully, she will be redirected to the dashboard of the app. There, Alice searches for electronic items and she gets a list of items with their details such as code, name, price etc.
+First, she logs into the e-commerce app (Client) with her credentials, and once her credentials are validated successfully, she will be redirected to the dashboard of the app. There, Alice searches for electronic items and she gets a list of items with their details such as code, name, price, etc.
 
 #### Scenario 2
 
 Bob (customer) wants to place an order.
 
-First, he logs into the e-commerce app (client) with his credentials and once his credentials are validated successfully, he will be redirected to the dashboard of the app. There, Alice selects an electronic item and follows the purchasing process. Once completed, he gets a confirmation with the invoice, payment details, and delivery details, etc.
+First, he logs into the e-commerce app (Client) with his credentials and once his credentials are validated successfully, he will be redirected to the dashboard of the app. There, Bob selects an electronic item and follows the purchasing process. Once completed, he gets a confirmation with the invoice, payment details, and delivery details, etc.
 
 ### How to run?
 
