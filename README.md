@@ -22,15 +22,15 @@ This section demonstrates the current status of the security modules of the Ball
 
 ## BBEs
 
-This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [BBEs](./bbes) page for more information.
+This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets.
 
 [![BBEs](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbe.yml)
 
 | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|
 | REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-http-service-jwt-auth] <br/> [Service - OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-http-client-oauth2-refresh-token-grant] |
-| GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] |
 | WebSocket Security | [Service - SSL/TLS][bbe-websocket-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-websocket-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-websocket-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-websocket-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-websocket-service-jwt-auth] <br/> [Service - OAuth2][bbe-websocket-service-oauth2] <br/> [Client - SSL/TLS][bbe-websocket-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-websocket-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-websocket-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-websocket-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-websocket-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-websocket-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-websocket-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-websocket-client-oauth2-refresh-token-grant] |
+| GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] |
 | Kafka Security | [SASL Authentication - Consumer][bbe-kafka-consumer-sasl] <br/> [SASL Authentication - Producer][bbe-kafka-producer-sasl] |
 | TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
 | Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
@@ -38,19 +38,49 @@ This section demonstrates an automated Ballerina security test-suite which integ
 
 ## Examples
 
-This section demonstrates the examples with authentication and authorization for different protocols supported by Ballerina. They are [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], [WebSub][websub], [NATS][nats], [STAN][stan], [RabbitMQ][rabbitmq], [Kafka][kafka], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp]. Refer to the [examples](./examples) page for more information.
+This section demonstrates the examples with authentication and authorization for different protocols supported by Ballerina.
 
 [![Examples](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
+1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/http)
+2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/websocket)
+3. [GraphQL](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/graphql)
+4. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/grpc)
+5. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/websub)
+6. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/nats)
+7. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/stan)
+8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/rabbitmq)
+9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/kafka)
+10. [Email](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/email)
+11. [FTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/ftp)
+12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/tcp)
+13. UDP _(Pending)_
+
 ## Scenarios
 
-This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina. Refer to the [scenarios](./scenarios) page for more information.
+This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
+
+1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
+2. [E-Commerce system](./scenarios/e-commerce-system)
 
 ## Integrations
 
-This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets. Refer to the [integrations](./integrations) page for more information.
+This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets.
 
 [![Integrations](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integration.yml)
+
+#### Directory Structure
+
+```shell
+integrations
+|__ packages
+|   |__ basic-auth-file-store
+|   |__ basic-auth-ldap-store
+|   |__ jwt-auth
+|   |__ oauth2
+|__ scripts
+|__ resources
+```
 
 ## Issues
 
@@ -76,8 +106,12 @@ The following sections have important references which were used for the design 
 - 2020 Oct - [Research Comparison on Ballerina Security Features/APIs with Different Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
 - 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design - First Draft (0.970.0)](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
 
+### Blogs
+- 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
+
 ### GitHub Pull Requests
 
+- 2021 Aug - [Add HMAC signature support for JWT](https://github.com/ballerina-platform/module-ballerina-jwt/pull/307)
 - 2021 Jun - [Implement declarative auth design for WebSocket upgrade service](https://github.com/ballerina-platform/module-ballerina-websocket/pull/216)
 - 2021 May - [Implement declarative auth design for GraphQL service](https://github.com/ballerina-platform/module-ballerina-graphql/pull/210)
 - 2021 Mar - [Redesign HTTP listener/client SecureSocket API](https://github.com/ballerina-platform/module-ballerina-http/pull/255)
@@ -236,13 +270,6 @@ The following sections have important references which were used for the design 
 [bbe-http-client-oauth2-password-grant]: https://ballerina.io/learn/by-example/http-client-oauth2-password-grant-type.html?is_ref_by_example=true
 [bbe-http-client-oauth2-refresh-token-grant]: https://ballerina.io/learn/by-example/http-client-oauth2-refresh-token-grant-type.html?is_ref_by_example=true
 
-[bbe-graphql-service-ssl-tls]: https://ballerina.io/learn/by-example/graphql-service-ssl-tls.html?is_ref_by_example=true
-[bbe-graphql-service-mutual-ssl]: https://ballerina.io/learn/by-example/graphql-service-mutual-ssl.html?is_ref_by_example=true
-[bbe-graphql-service-basic-auth-file]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-file-user-store.html?is_ref_by_example=true
-[bbe-graphql-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-ldap-user-store.html?is_ref_by_example=true
-[bbe-graphql-service-jwt-auth]: https://ballerina.io/learn/by-example/graphql-service-jwt-auth.html?is_ref_by_example=true
-[bbe-graphql-service-oauth2]: https://ballerina.io/learn/by-example/graphql-service-oauth2.html?is_ref_by_example=true
-
 [bbe-websocket-service-ssl-tls]: https://ballerina.io/learn/by-example/websocket-service-ssl-tls.html?is_ref_by_example=true
 [bbe-websocket-service-mutual-ssl]: https://ballerina.io/learn/by-example/websocket-service-mutual-ssl.html?is_ref_by_example=true
 [bbe-websocket-service-basic-auth-file]: https://ballerina.io/learn/by-example/websocket-service-basic-auth-file-user-store.html?is_ref_by_example=true
@@ -257,6 +284,13 @@ The following sections have important references which were used for the design 
 [bbe-websocket-client-oauth2-client-credentials-grant]: https://ballerina.io/learn/by-example/websocket-client-oauth2-client-credentials-grant-type.html?is_ref_by_example=true
 [bbe-websocket-client-oauth2-password-grant]: https://ballerina.io/learn/by-example/websocket-client-oauth2-password-grant-type.html?is_ref_by_example=true
 [bbe-websocket-client-oauth2-refresh-token-grant]: https://ballerina.io/learn/by-example/websocket-client-oauth2-refresh-token-grant-type.html?is_ref_by_example=true
+
+[bbe-graphql-service-ssl-tls]: https://ballerina.io/learn/by-example/graphql-service-ssl-tls.html?is_ref_by_example=true
+[bbe-graphql-service-mutual-ssl]: https://ballerina.io/learn/by-example/graphql-service-mutual-ssl.html?is_ref_by_example=true
+[bbe-graphql-service-basic-auth-file]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-file-user-store.html?is_ref_by_example=true
+[bbe-graphql-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-ldap-user-store.html?is_ref_by_example=true
+[bbe-graphql-service-jwt-auth]: https://ballerina.io/learn/by-example/graphql-service-jwt-auth.html?is_ref_by_example=true
+[bbe-graphql-service-oauth2]: https://ballerina.io/learn/by-example/graphql-service-oauth2.html?is_ref_by_example=true
 
 [bbe-kafka-consumer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-consumer.html?is_ref_by_example=true
 [bbe-kafka-producer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-producer.html?is_ref_by_example=true
