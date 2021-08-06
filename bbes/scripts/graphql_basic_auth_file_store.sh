@@ -6,7 +6,7 @@ curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-basic-auth/http_client_basic_auth.bal -o bbe/client.bal
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-service-basic-auth-file-user-store/Config.toml -o bbe/Config.toml
 
-export BAL_CONFIG_FILES=auth/Config.toml
+export BAL_CONFIG_FILES=bbe/Config.toml
 
 sed -i 's+../resource/path/to+resources+g' bbe/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client.bal
