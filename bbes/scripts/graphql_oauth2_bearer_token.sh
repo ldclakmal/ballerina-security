@@ -1,7 +1,7 @@
 source scripts/assert.sh
 source scripts/common.sh
 
-mkdir oauth2
+mkdir bbe
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/graphql-service-oauth2/graphql_service_oauth2.bal -o oauth2/service.bal
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-bearer-token-auth/http_client_bearer_token_auth.bal -o oauth2/client.bal
 

@@ -1,7 +1,7 @@
 source scripts/assert.sh
 source scripts/common.sh
 
-mkdir mtls
+mkdir bbe
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-service-mutual-ssl/http_service_mutual_ssl.bal -o mtls/service.bal
 curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-mutual-ssl/http_client_mutual_ssl.bal -o mtls/client.bal
 
