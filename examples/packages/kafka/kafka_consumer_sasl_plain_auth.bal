@@ -3,7 +3,7 @@ import ballerinax/kafka;
 
 const string TOPIC = "demo-security";
 
-listener kafka:Listener securedEP = new("localhost:9093",
+listener kafka:Listener securedEP = new("localhost:9094",
     topics = [TOPIC],
     groupId = "consumer-group-1",
     auth = {
@@ -11,7 +11,17 @@ listener kafka:Listener securedEP = new("localhost:9093",
         username: "alice",
         password: "alice@123"
     },
-    securityProtocol = kafka:PROTOCOL_SASL_PLAINTEXT
+    securityProtocol = kafka:PROTOCOL_SSL,
+    secureSocket = {
+        cert: "./resources/cert/server.crt",
+        key: {
+            certFile: "./resources/cert/client.crt",
+            keyFile: "./resources/key/client.key"
+        },
+        protocol: {
+            name: kafka:TLS
+        }
+    }
 );
 
 service kafka:Service on securedEP {

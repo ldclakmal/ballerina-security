@@ -7,13 +7,10 @@ listener rabbitmq:Listener securedEP = new("localhost", 5671,
         password: "alice@123"
     },
     secureSocket = {
-        cert: {
-            path: "./resources/keystore/truststore.p12",
-            password: "ballerina"
-        },
+        cert: "./resources/cert/server.crt",
         key: {
-            path: "./resources/keystore/keystore.p12",
-            password: "ballerina"
+            certFile: "./resources/cert/client.crt",
+            keyFile: "./resources/key/client.key",
         }
     }
 );
