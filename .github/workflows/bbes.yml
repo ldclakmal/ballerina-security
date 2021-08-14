@@ -638,3 +638,210 @@ jobs:
         working-directory: bbes
         run: |
           scripts/websocket_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-ssl-tls:
+    name: gRPC - SSL/TLS
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-mtls:
+    name: gRPC - mTLS
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-basic-auth-file-store:
+    name: gRPC - Basic Auth (File)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-basic-auth-ldap-store:
+    name: gRPC - Basic Auth (LDAP)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-jwt-auth:
+    name: gRPC - JWT Auth
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-oauth-bearer-token:
+    name: gRPC - OAuth2 (Bearer Token)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-oauth-client-credentials-grant:
+    name: gRPC - OAuth2 (Client Credentials Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-oauth-password-grant:
+    name: gRPC - OAuth2 (Password Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+  grpc-oauth-refresh-token-grant:
+    name: gRPC - OAuth2 (Refresh Token Grant)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
+      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download Ballerina
+        run: wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+      - name: Install Ballerina
+        run: |
+          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
+          sudo apt-get install -f
+          bal -v
+      - name: Test
+        working-directory: bbes
+        run: |
+          scripts/grpc_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
