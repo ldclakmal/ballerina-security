@@ -2,6 +2,8 @@
 
 The examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
+> **GitHub**: <https://github.com/ldclakmal/ballerina-security>
+
 ## Summary
 
 Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
@@ -37,6 +39,7 @@ This section demonstrates an automated Ballerina security test-suite which integ
 | REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-http-service-jwt-auth] <br/> [Service - OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-http-client-oauth2-refresh-token-grant] |
 | WebSocket Security | [Service - SSL/TLS][bbe-websocket-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-websocket-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-websocket-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-websocket-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-websocket-service-jwt-auth] <br/> [Service - OAuth2][bbe-websocket-service-oauth2] <br/> [Client - SSL/TLS][bbe-websocket-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-websocket-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-websocket-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-websocket-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-websocket-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-websocket-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-websocket-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-websocket-client-oauth2-refresh-token-grant] |
 | GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] |
+| gRPC Security | [Service - SSL/TLS][bbe-grpc-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-grpc-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-grpc-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-grpc-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-grpc-service-jwt-auth] <br/> [Service - OAuth2][bbe-grpc-service-oauth2] <br/> [Client - SSL/TLS][bbe-grpc-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-grpc-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-grpc-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-grpc-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-grpc-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-grpc-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-grpc-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-grpc-client-oauth2-refresh-token-grant] |
 | Kafka Security | [SASL Authentication - Consumer][bbe-kafka-consumer-sasl] <br/> [SASL Authentication - Producer][bbe-kafka-producer-sasl] |
 | TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
 | Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
@@ -114,6 +117,7 @@ The following sections have important references which were used for the design 
 
 ### Blogs
 - 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
+- 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
 
 ### GitHub Pull Requests
 
@@ -139,6 +143,13 @@ The following sections have important references which were used for the design 
 - 2019 May - [Introduce Configuration Pattern for Authn Handlers and Scopes](https://github.com/ballerina-platform/ballerina-lang/pull/15363)
 - 2019 May - [Improve HTTP secure client for OAuth2 grant types](https://github.com/ballerina-platform/ballerina-lang/pull/14419)
 - 2019 May - [Refactor inbound authentication with custom provider and handlers](https://github.com/ballerina-platform/ballerina-lang/pull/15056)
+
+### YouTube Videos
+
+- 2021 Mar - [How Netflix Scales Its API with GraphQL Federation at *QCon Plus 2021*](https://youtu.be/QrEOvHdH2Cg)
+- 2020 Apr - [What's New With OAuth and OIDC? at *OktaDev*](https://youtu.be/g_aVPdwBTfw)
+- 2018 Feb - [OAuth 2.0 and OpenID Connect at *OktaDev*](https://youtu.be/QrEOvHdH2Cg)
+- 2017 Nov - [Handling Authentication and Authorization in GraphQL at *GraphQL Summit 2017*](https://youtu.be/4_Bcw7BULC8)
 
 ### Specifications
 
@@ -178,7 +189,7 @@ The following sections have important references which were used for the design 
 [auth-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth
 [auth-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fauth
 [auth-pulls]: https://github.com/ballerina-platform/module-ballerina-auth/pulls
-[auth-docs]: https://docs.central.ballerina.io/ballerina/auth/latest
+[auth-docs]: https://lib.ballerina.io/ballerina/auth/latest
 [auth-package]: https://central.ballerina.io/ballerina/auth
 [auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
 [auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
@@ -192,7 +203,7 @@ The following sections have important references which were used for the design 
 [jwt-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt
 [jwt-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fjwt
 [jwt-pulls]: https://github.com/ballerina-platform/module-ballerina-jwt/pulls
-[jwt-docs]: https://docs.central.ballerina.io/ballerina/jwt/latest
+[jwt-docs]: https://lib.ballerina.io/ballerina/jwt/latest
 [jwt-package]: https://central.ballerina.io/ballerina/jwt
 [jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
 [jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
@@ -206,7 +217,7 @@ The following sections have important references which were used for the design 
 [oauth2-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2
 [oauth2-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Foauth2
 [oauth2-pulls]: https://github.com/ballerina-platform/module-ballerina-oauth2/pulls
-[oauth2-docs]: https://docs.central.ballerina.io/ballerina/oauth2/latest
+[oauth2-docs]: https://lib.ballerina.io/ballerina/oauth2/latest
 [oauth2-package]: https://central.ballerina.io/ballerina/oauth2
 [oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
 [oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
@@ -220,7 +231,7 @@ The following sections have important references which were used for the design 
 [crypto-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-crypto
 [crypto-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fcrypto
 [crypto-pulls]: https://github.com/ballerina-platform/module-ballerina-crypto/pulls
-[crypto-docs]: https://docs.central.ballerina.io/ballerina/crypto/latest
+[crypto-docs]: https://lib.ballerina.io/ballerina/crypto/latest
 [crypto-package]: https://central.ballerina.io/ballerina/crypto
 [crypto-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto?label=
 [crypto-badge-build]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml/badge.svg
@@ -234,7 +245,7 @@ The following sections have important references which were used for the design 
 [url-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-url
 [url-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Furl
 [url-pulls]: https://github.com/ballerina-platform/module-ballerina-url/pulls
-[url-docs]: https://docs.central.ballerina.io/ballerina/url/latest
+[url-docs]: https://lib.ballerina.io/ballerina/url/latest
 [url-package]: https://central.ballerina.io/ballerina/url
 [url-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-url?label=
 [url-badge-build]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml/badge.svg
@@ -297,6 +308,21 @@ The following sections have important references which were used for the design 
 [bbe-graphql-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/graphql-service-basic-auth-ldap-user-store.html?is_ref_by_example=true
 [bbe-graphql-service-jwt-auth]: https://ballerina.io/learn/by-example/graphql-service-jwt-auth.html?is_ref_by_example=true
 [bbe-graphql-service-oauth2]: https://ballerina.io/learn/by-example/graphql-service-oauth2.html?is_ref_by_example=true
+
+[bbe-grpc-service-ssl-tls]: https://ballerina.io/learn/by-example/grpc-service-ssl-tls.html?is_ref_by_example=true
+[bbe-grpc-service-mutual-ssl]: https://ballerina.io/learn/by-example/grpc-service-mutual-ssl.html?is_ref_by_example=true
+[bbe-grpc-service-basic-auth-file]: https://ballerina.io/learn/by-example/grpc-service-basic-auth-file-user-store.html?is_ref_by_example=true
+[bbe-grpc-service-basic-auth-ldap]: https://ballerina.io/learn/by-example/grpc-service-basic-auth-ldap-user-store.html?is_ref_by_example=true
+[bbe-grpc-service-jwt-auth]: https://ballerina.io/learn/by-example/grpc-service-jwt-auth.html?is_ref_by_example=true
+[bbe-grpc-service-oauth2]: https://ballerina.io/learn/by-example/grpc-service-oauth2.html?is_ref_by_example=true
+[bbe-grpc-client-ssl-tls]: https://ballerina.io/learn/by-example/grpc-client-ssl-tls.html?is_ref_by_example=true
+[bbe-grpc-client-mutual-ssl]: https://ballerina.io/learn/by-example/grpc-client-mutual-ssl.html?is_ref_by_example=true
+[bbe-grpc-client-basic-auth]: https://ballerina.io/learn/by-example/grpc-client-basic-auth.html?is_ref_by_example=true
+[bbe-grpc-client-bearer-token-auth]: https://ballerina.io/learn/by-example/grpc-client-bearer-token-auth.html?is_ref_by_example=true
+[bbe-grpc-client-self-signed-jwt-auth]: https://ballerina.io/learn/by-example/grpc-client-self-signed-jwt-auth.html?is_ref_by_example=true
+[bbe-grpc-client-oauth2-client-credentials-grant]: https://ballerina.io/learn/by-example/grpc-client-oauth2-client-credentials-grant-type.html?is_ref_by_example=true
+[bbe-grpc-client-oauth2-password-grant]: https://ballerina.io/learn/by-example/grpc-client-oauth2-password-grant-type.html?is_ref_by_example=true
+[bbe-grpc-client-oauth2-refresh-token-grant]: https://ballerina.io/learn/by-example/grpc-client-oauth2-refresh-token-grant-type.html?is_ref_by_example=true
 
 [bbe-kafka-consumer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-consumer.html?is_ref_by_example=true
 [bbe-kafka-producer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-producer.html?is_ref_by_example=true
