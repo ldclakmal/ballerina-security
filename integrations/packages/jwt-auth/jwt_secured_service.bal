@@ -19,7 +19,7 @@ service /orders1 on jwtListenerEP {
 	        {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         trustStoreConfig: {
                             certAlias: "wso2carbon",
@@ -51,7 +51,7 @@ service /orders1 on jwtListenerEP {
             {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         trustStoreConfig: {
                             certAlias: "wso2carbon",
@@ -87,7 +87,7 @@ service /orders2 on jwtListenerEP {
             {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         certFile: "resources/wso2Public.crt"
                     }
@@ -113,7 +113,7 @@ service /orders2 on jwtListenerEP {
             {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         certFile: "resources/wso2Public.crt"
                     }
@@ -143,7 +143,7 @@ service /orders3 on jwtListenerEP {
             {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         jwksConfig: {
                             url: "https://localhost:9443/oauth2/jwks",
@@ -179,7 +179,7 @@ service /orders3 on jwtListenerEP {
             {
                 jwtValidatorConfig: {
                     issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         jwksConfig: {
                             url: "https://localhost:9443/oauth2/jwks",

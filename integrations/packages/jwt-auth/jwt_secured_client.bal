@@ -4,7 +4,7 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
     auth = {
         username: "ballerina",
         issuer: "wso2is",
-        audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+        audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
         customClaims: {"scope": "view-order"},
         signatureConfig: {
             config: {

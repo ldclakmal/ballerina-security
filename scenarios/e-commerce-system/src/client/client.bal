@@ -4,8 +4,8 @@ import ballerina/io;
 http:Client webAppClient = check new("https://localhost:9090",
     auth = {
        tokenUrl: "https://localhost:9443/oauth2/token",
-       clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
-       clientSecret: "PJz0UhTJMrHOo68QQNpvnqAY_3Aa",
+       clientId: "uDMwA4hKR9H3deeXxvNf4sSU0i4a",
+       clientSecret: "8FOUOKUQfOp47pUfJCsPA5X4clga",
        scopes: ["customer"],
        clientConfig: {
            secureSocket: {
