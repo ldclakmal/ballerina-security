@@ -22,7 +22,7 @@ To run this in a local machine, we need to have [Ballerina Swan Lake Beta 1](htt
 - Refresh an access token with a scope:
 
     ```shell
-    curl -kv -u 3VTwFk7u1i366wzmvpJ_LZlfAV4a:TNOH0ZklJm8sqS9U3IMMAZVth78a -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d "grant_type=refresh_token&refresh_token=<ACCESS_TOKEN>&scope=view-order" https://localhost:9090/oauth2/token
+    curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" -d "grant_type=refresh_token&refresh_token=<ACCESS_TOKEN>&scope=view-order" https://localhost:9090/oauth2/token
     ```
 
 - Validate an access token:
