@@ -1,9 +1,8 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/graphql-service-mutual-ssl/graphql_service_mutual_ssl.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-mutual-ssl/http_client_mutual_ssl.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/graphql-service-mutual-ssl/graphql_service_mutual_ssl.bal -o bbe/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-mutual-ssl/http_client_mutual_ssl.bal -o bbe/client.bal
 
 sed -i 's+../resource/path/to+resources+g' bbe/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client.bal

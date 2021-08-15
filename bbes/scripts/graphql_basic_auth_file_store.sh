@@ -1,10 +1,9 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/graphql-service-basic-auth-file-user-store/graphql_service_basic_auth_file_user_store.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-basic-auth/http_client_basic_auth.bal -o bbe/client.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-service-basic-auth-file-user-store/Config.toml -o bbe/Config.toml
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/graphql-service-basic-auth-file-user-store/graphql_service_basic_auth_file_user_store.bal -o bbe/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-basic-auth/http_client_basic_auth.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-service-basic-auth-file-user-store/Config.toml -o bbe/Config.toml
 
 export BAL_CONFIG_FILES=bbe/Config.toml
 

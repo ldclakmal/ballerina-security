@@ -1,9 +1,8 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/websocket-service-basic-auth-ldap-user-store/websocket_service_basic_auth_ldap_user_store.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-basic-auth-ldap-user-store/websocket_service_basic_auth_ldap_user_store.bal -o bbe/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o bbe/client.bal
 
 sed -i 's+../resource/path/to+resources+g' bbe/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client.bal

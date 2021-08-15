@@ -1,9 +1,8 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/graphql-service-basic-auth-ldap-user-store/graphql_service_basic_auth_ldap_user_store.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/http-client-basic-auth/http_client_basic_auth.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/graphql-service-basic-auth-ldap-user-store/graphql_service_basic_auth_ldap_user_store.bal -o bbe/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-basic-auth/http_client_basic_auth.bal -o bbe/client.bal
 
 sed -i 's+../resource/path/to+resources+g' bbe/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client.bal

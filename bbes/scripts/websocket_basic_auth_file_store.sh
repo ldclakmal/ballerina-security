@@ -1,10 +1,9 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/websocket-service-basic-auth-file-user-store/websocket_service_basic_auth_file_user_store.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o bbe/client.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/websocket-service-basic-auth-file-user-store/Config.toml -o bbe/Config.toml
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-basic-auth-file-user-store/websocket_service_basic_auth_file_user_store.bal -o bbe/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-client-basic-auth/websocket_client_basic_auth.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/websocket-service-basic-auth-file-user-store/Config.toml -o bbe/Config.toml
 
 export BAL_CONFIG_FILES=bbe/Config.toml
 
