@@ -3,33 +3,25 @@ import ballerina/http;
 http:Client clientEP = checkpanic new("https://localhost:9090",
     auth = {
         username: "ballerina",
-        issuer: "wso2is",
+        issuer: "https://localhost:9443/oauth2/token",
         audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
         customClaims: {"scope": "view-order"},
         signatureConfig: {
             config: {
-                keyAlias: "wso2carbon",
-                keyPassword: "wso2carbon",
-                keyStore: {
-                    path: "resources/wso2Keystore.p12",
-                    password: "wso2carbon"
-                }
+                keyFile: "resources/wso2Private.key"
             }
         }
     },
     secureSocket = {
-        cert: {
-            path: "resources/ballerinaTruststore.p12",
-            password: "ballerina"
-        }
+        cert: "resources/ballerinaPublic.crt"
     }
 );
 
 listener http:Listener apiEP = new(8080,
     secureSocket = {
         key: {
-            path: "resources/ballerinaKeystore.p12",
-            password: "ballerina"
+            certFile: "resources/ballerinaPublic.crt",
+            keyFile: "resources/ballerinaPrivate.key"
         }
     }
 );
