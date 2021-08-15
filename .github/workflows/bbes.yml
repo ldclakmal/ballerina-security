@@ -6,15 +6,6 @@ on:
       - 'bbes/**'
       - '.github/workflows/bbes.yml'
   workflow_dispatch:
-    inputs:
-      organization:
-        description: 'GitHub organization of the `ballerina-distribution` repository'
-        required: false
-        default: 'ballerina-platform'
-      branch:
-        description: 'GitHub branch of the `ballerina-distribution` repository'
-        required: false
-        default: 'master'
 
 jobs:
   crypto:
@@ -39,7 +30,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/crypto.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/crypto.sh
   jwt:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
@@ -62,7 +53,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/jwt.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/jwt.sh
   url:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
@@ -85,7 +76,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/url.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/url.sh
   http-ssl-tls:
     name: HTTP - SSL/TLS
     runs-on: ubuntu-latest
@@ -108,7 +99,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_ssl_tls.sh
   http-mtls:
     name: HTTP - mTLS
     runs-on: ubuntu-latest
@@ -131,7 +122,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_mtls.sh
   http-basic-auth-file-store:
     name: HTTP - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -154,7 +145,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_basic_auth_file_store.sh
   http-basic-auth-ldap-store:
     name: HTTP - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -177,7 +168,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_basic_auth_ldap_store.sh
   http-jwt-auth:
     name: HTTP - JWT Auth
     runs-on: ubuntu-latest
@@ -200,7 +191,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_jwt_auth.sh
   http-oauth-bearer-token:
     name: HTTP - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -223,7 +214,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_oauth2_bearer_token.sh
   http-oauth-client-credentials-grant:
     name: HTTP - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -246,7 +237,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_oauth2_client_credentials_grant.sh
   http-oauth-password-grant:
     name: HTTP - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -269,7 +260,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_oauth2_password_grant.sh
   http-oauth-refresh-token-grant:
     name: HTTP - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -292,7 +283,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/http_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/http_oauth2_refresh_token_grant.sh
   graphql-ssl-tls:
     name: GraphQL - SSL/TLS
     runs-on: ubuntu-latest
@@ -315,7 +306,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_ssl_tls.sh
   graphql-mtls:
     name: GraphQL - mTLS
     runs-on: ubuntu-latest
@@ -338,7 +329,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_mtls.sh
   graphql-basic-auth-file-store:
     name: GraphQL - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -361,7 +352,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_basic_auth_file_store.sh
   graphql-basic-auth-ldap-store:
     name: GraphQL - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -384,7 +375,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_basic_auth_ldap_store.sh
   graphql-jwt-auth:
     name: GraphQL - JWT Auth
     runs-on: ubuntu-latest
@@ -407,7 +398,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_jwt_auth.sh
   graphql-oauth-bearer-token:
     name: GraphQL - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -430,7 +421,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/graphql_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/graphql_oauth2_bearer_token.sh
   websocket-ssl-tls:
     name: WebSocket - SSL/TLS
     runs-on: ubuntu-latest
@@ -453,7 +444,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_ssl_tls.sh
   websocket-mtls:
     name: WebSocket - mTLS
     runs-on: ubuntu-latest
@@ -476,7 +467,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_mtls.sh
   websocket-basic-auth-file-store:
     name: WebSocket - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -499,7 +490,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_basic_auth_file_store.sh
   websocket-basic-auth-ldap-store:
     name: WebSocket - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -522,7 +513,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_basic_auth_ldap_store.sh
   websocket-jwt-auth:
     name: WebSocket - JWT Auth
     runs-on: ubuntu-latest
@@ -545,7 +536,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_jwt_auth.sh
   websocket-oauth-bearer-token:
     name: WebSocket - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -568,7 +559,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_oauth2_bearer_token.sh
   websocket-oauth-client-credentials-grant:
     name: WebSocket - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -591,7 +582,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_oauth2_client_credentials_grant.sh
   websocket-oauth-password-grant:
     name: WebSocket - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -614,7 +605,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_oauth2_password_grant.sh
   websocket-oauth-refresh-token-grant:
     name: WebSocket - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -637,7 +628,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/websocket_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/websocket_oauth2_refresh_token_grant.sh
   grpc-ssl-tls:
     name: gRPC - SSL/TLS
     runs-on: ubuntu-latest
@@ -660,7 +651,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_ssl_tls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_ssl_tls.sh
   grpc-mtls:
     name: gRPC - mTLS
     runs-on: ubuntu-latest
@@ -683,7 +674,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_mtls.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_mtls.sh
   grpc-basic-auth-file-store:
     name: gRPC - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -706,7 +697,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_basic_auth_file_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_basic_auth_file_store.sh
   grpc-basic-auth-ldap-store:
     name: gRPC - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -729,7 +720,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_basic_auth_ldap_store.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_basic_auth_ldap_store.sh
   grpc-jwt-auth:
     name: gRPC - JWT Auth
     runs-on: ubuntu-latest
@@ -752,7 +743,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_jwt_auth.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_jwt_auth.sh
   grpc-oauth-bearer-token:
     name: gRPC - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -775,7 +766,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_oauth2_bearer_token.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_oauth2_bearer_token.sh
   grpc-oauth-client-credentials-grant:
     name: gRPC - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -798,7 +789,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_oauth2_client_credentials_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_oauth2_client_credentials_grant.sh
   grpc-oauth-password-grant:
     name: gRPC - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -821,7 +812,7 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_oauth2_password_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_oauth2_password_grant.sh
   grpc-oauth-refresh-token-grant:
     name: gRPC - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -844,4 +835,4 @@ jobs:
       - name: Test
         working-directory: bbes
         run: |
-          scripts/grpc_oauth2_refresh_token_grant.sh ${{ github.event.inputs.organization }} ${{ github.event.inputs.branch }}
+          scripts/grpc_oauth2_refresh_token_grant.sh

@@ -5,8 +5,8 @@ import ballerina/uuid;
 listener http:Listener jwtListenerEP = new(9090,
     secureSocket = {
         key: {
-            path: "resources/ballerinaKeystore.p12",
-            password: "ballerina"
+            certFile: "resources/ballerinaPublic.crt",
+            keyFile: "resources/ballerinaPrivate.key"
         }
     }
 );
@@ -18,16 +18,10 @@ service /orders1 on jwtListenerEP {
 	    auth: [
 	        {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        trustStoreConfig: {
-                            certAlias: "wso2carbon",
-                            trustStore: {
-                                path: "resources/wso2Truststore.p12",
-                                password: "wso2carbon"
-                            }
-                        }
+                        certFile: "resources/wso2Public.crt"
                     }
                 },
                 scopes: ["view-order"]
@@ -50,16 +44,10 @@ service /orders1 on jwtListenerEP {
         auth: [
             {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        trustStoreConfig: {
-                            certAlias: "wso2carbon",
-                            trustStore: {
-                                path: "resources/wso2Truststore.p12",
-                                password: "wso2carbon"
-                            }
-                        }
+                        certFile: "resources/wso2Public.crt"
                     }
                 },
                 scopes: ["add-order"]
@@ -86,8 +74,8 @@ service /orders2 on jwtListenerEP {
 	    auth: [
             {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         certFile: "resources/wso2Public.crt"
                     }
@@ -112,8 +100,8 @@ service /orders2 on jwtListenerEP {
         auth: [
             {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         certFile: "resources/wso2Public.crt"
                     }
@@ -142,17 +130,14 @@ service /orders3 on jwtListenerEP {
 	    auth: [
             {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         jwksConfig: {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    cert: {
-                                        path: "resources/ballerinaTruststore.p12",
-                                        password: "ballerina"
-                                    }
+                                    cert: "resources/wso2Public.crt"
                                 }
                             }
                         }
@@ -178,17 +163,14 @@ service /orders3 on jwtListenerEP {
         auth: [
             {
                 jwtValidatorConfig: {
-                    issuer: "wso2is",
-                    audience: "3VTwFk7u1i366wzmvpJ_LZlfAV4a",
+                    issuer: "https://localhost:9443/oauth2/token",
+                    audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
                         jwksConfig: {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    cert: {
-                                        path: "resources/ballerinaTruststore.p12",
-                                        password: "ballerina"
-                                    }
+                                    cert: "resources/wso2Public.crt"
                                 }
                             }
                         }

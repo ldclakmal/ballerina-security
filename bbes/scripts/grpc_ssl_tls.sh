@@ -1,5 +1,4 @@
 source scripts/assert.sh
-source scripts/common.sh
 
 mkdir bbe
 mkdir bbe/service
@@ -7,10 +6,10 @@ mkdir bbe/client
 touch bbe/service/Ballerina.toml
 touch bbe/client/Ballerina.toml
 
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/grpc-service-ssl-tls/grpc_service_ssl_tls.bal -o bbe/service/service.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/grpc-service-ssl-tls/grpc_service.proto -o bbe/service/service.proto
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/grpc-client-ssl-tls/grpc_client_ssl_tls.bal -o bbe/client/client.bal
-curl https://raw.githubusercontent.com/${organization}/ballerina-distribution/${branch}/examples/grpc-client-ssl-tls/grpc_client.proto -o bbe/client/client.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-ssl-tls/grpc_service_ssl_tls.bal -o bbe/service/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-ssl-tls/grpc_service.proto -o bbe/service/service.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-ssl-tls/grpc_client_ssl_tls.bal -o bbe/client/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-ssl-tls/grpc_client.proto -o bbe/client/client.proto
 
 bal grpc --input bbe/service/service.proto --output bbe/service/
 bal grpc --input bbe/client/client.proto --output bbe/client/

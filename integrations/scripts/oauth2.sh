@@ -25,7 +25,7 @@ assertOK "$(echo "${response}" | head -1 | tr -d '\r')"
 
 echo -e "\n--- Testing Listener ---"
 echo -e "\nRequesting access token from token endpoint:"
-response=$(curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
+response=$(curl -kv -u uDMwA4hKR9H3deeXxvNf4sSU0i4a:8FOUOKUQfOp47pUfJCsPA5X4clga \
           -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
           -d "grant_type=client_credentials&scope=view-order" \
           https://localhost:9443/oauth2/token)

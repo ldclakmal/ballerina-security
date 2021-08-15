@@ -28,7 +28,7 @@ done
 
 echo -e "\n--- Testing Listener ---"
 echo -e "\nRequesting access token from token endpoint:"
-response=$(curl -kv -u 3VTwFk7u1i366wzmvpJ_LZlfAV4a:TNOH0ZklJm8sqS9U3IMMAZVth78a \
+response=$(curl -kv -u I8_BIl8BxpVj1SzZm6Q49y4jFuIa:mcxB3K3hxZHn746K7vljJmmuKlEa \
           -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
           -d "grant_type=client_credentials&scope=view-order" \
           https://localhost:9443/oauth2/token)
