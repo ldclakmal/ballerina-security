@@ -28,9 +28,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/http
-        run: |
-          ../../scripts/http.sh
+        working-directory: examples/http
+        run: ./http.sh
   grpc:
     name: gRPC
     runs-on: ubuntu-latest
@@ -51,9 +50,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/grpc
-        run: |
-          ../../scripts/grpc.sh
+        working-directory: examples/grpc
+        run: ./grpc.sh
   websocket:
     name: WebSocket
     runs-on: ubuntu-latest
@@ -74,9 +72,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/websocket
-        run: |
-          ../../scripts/websocket.sh
+        working-directory: examples/websocket
+        run: ./websocket.sh
   websub:
     name: WebSub
     runs-on: ubuntu-latest
@@ -97,9 +94,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/websub
-        run: |
-          ../../scripts/websub.sh
+        working-directory: examples/websub
+        run: ./websub.sh
   graphql:
     name: GraphQL
     runs-on: ubuntu-latest
@@ -120,9 +116,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/graphql
-        run: |
-          ../../scripts/graphql.sh
+        working-directory: examples/graphql
+        run: ./graphql.sh
   email:
     name: Email
     runs-on: ubuntu-latest
@@ -143,9 +138,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/email
-        run: |
-          ../../scripts/email.sh
+        working-directory: examples/email
+        run: ./email.sh
   ftp:
     name: FTP
     runs-on: ubuntu-latest
@@ -166,9 +160,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/ftp
-        run: |
-          ../../scripts/ftp.sh
+        working-directory: examples/ftp
+        run: ./ftp.sh
   tcp:
     name: TCP
     runs-on: ubuntu-latest
@@ -189,9 +182,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/tcp
-        run: |
-          ../../scripts/tcp.sh
+        working-directory: examples/tcp
+        run: ./tcp.sh
   nats:
     name: NATS
     runs-on: ubuntu-latest
@@ -212,9 +204,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/nats
-        run: |
-          ../../scripts/nats.sh
+        working-directory: examples/nats
+        run: ./nats.sh
   stan:
     name: STAN
     runs-on: ubuntu-latest
@@ -235,9 +226,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/stan
-        run: |
-          ../../scripts/stan.sh
+        working-directory: examples/stan
+        run: ./stan.sh
   rabbitmq:
     name: RabbitMQ
     runs-on: ubuntu-latest
@@ -258,9 +248,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/rabbitmq
-        run: |
-          ../../scripts/rabbitmq.sh
+        working-directory: examples/rabbitmq
+        run: ./rabbitmq.sh
   kafka:
     name: Kafka
     runs-on: ubuntu-latest
@@ -281,6 +270,5 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: examples/packages/kafka
-        run: |
-          ../../scripts/kafka.sh
+        working-directory: examples/kafka
+        run: ./kafka.sh

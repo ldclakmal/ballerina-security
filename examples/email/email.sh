@@ -1,4 +1,4 @@
-source ../../scripts/assert.sh
+source assert.sh
 
 docker-compose -f resources/docker-compose.yml up &
 sleep 30s

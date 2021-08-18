@@ -1,4 +1,4 @@
-source ../../scripts/assert.sh
+source assert.sh
 
 bal run grpc_service_jwt_auth.bal &
 sleep 10s
