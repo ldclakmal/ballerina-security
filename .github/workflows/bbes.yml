@@ -28,9 +28,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/crypto.sh
+        working-directory: bbes/security
+        run: ./crypto.sh
   jwt:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
@@ -51,9 +50,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/jwt.sh
+        working-directory: bbes/security
+        run: ./jwt.sh
   url:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
@@ -74,9 +72,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/url.sh
+        working-directory: bbes/url
+        run: ./url.sh
   http-ssl-tls:
     name: HTTP - SSL/TLS
     runs-on: ubuntu-latest
@@ -97,9 +94,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_ssl_tls.sh
+        working-directory: bbes/http
+        run: ./http_ssl_tls.sh
   http-mtls:
     name: HTTP - mTLS
     runs-on: ubuntu-latest
@@ -120,9 +116,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_mtls.sh
+        working-directory: bbes/http
+        run: ./http_mtls.sh
   http-basic-auth-file-store:
     name: HTTP - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -143,9 +138,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_basic_auth_file_store.sh
+        working-directory: bbes/http
+        run: ./http_basic_auth_file_store.sh
   http-basic-auth-ldap-store:
     name: HTTP - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -166,9 +160,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_basic_auth_ldap_store.sh
+        working-directory: bbes/http
+        run: ./http_basic_auth_ldap_store.sh
   http-jwt-auth:
     name: HTTP - JWT Auth
     runs-on: ubuntu-latest
@@ -189,9 +182,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_jwt_auth.sh
+        working-directory: bbes/http
+        run: ./http_jwt_auth.sh
   http-oauth-bearer-token:
     name: HTTP - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -212,9 +204,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_oauth2_bearer_token.sh
+        working-directory: bbes/http
+        run: ./http_oauth2_bearer_token.sh
   http-oauth-client-credentials-grant:
     name: HTTP - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -235,9 +226,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_oauth2_client_credentials_grant.sh
+        working-directory: bbes/http
+        run: ./http_oauth2_client_credentials_grant.sh
   http-oauth-password-grant:
     name: HTTP - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -258,9 +248,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_oauth2_password_grant.sh
+        working-directory: bbes/http
+        run: ./http_oauth2_password_grant.sh
   http-oauth-refresh-token-grant:
     name: HTTP - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -281,9 +270,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/http_oauth2_refresh_token_grant.sh
+        working-directory: bbes/http
+        run: ./http_oauth2_refresh_token_grant.sh
   graphql-ssl-tls:
     name: GraphQL - SSL/TLS
     runs-on: ubuntu-latest
@@ -304,9 +292,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_ssl_tls.sh
+        working-directory: bbes/graphql
+        run: ./graphql_ssl_tls.sh
   graphql-mtls:
     name: GraphQL - mTLS
     runs-on: ubuntu-latest
@@ -327,9 +314,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_mtls.sh
+        working-directory: bbes/graphql
+        run: ./graphql_mtls.sh
   graphql-basic-auth-file-store:
     name: GraphQL - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -350,9 +336,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_basic_auth_file_store.sh
+        working-directory: bbes/graphql
+        run: ./graphql_basic_auth_file_store.sh
   graphql-basic-auth-ldap-store:
     name: GraphQL - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -373,9 +358,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_basic_auth_ldap_store.sh
+        working-directory: bbes/graphql
+        run: ./graphql_basic_auth_ldap_store.sh
   graphql-jwt-auth:
     name: GraphQL - JWT Auth
     runs-on: ubuntu-latest
@@ -396,9 +380,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_jwt_auth.sh
+        working-directory: bbes/graphql
+        run: ./graphql_jwt_auth.sh
   graphql-oauth-bearer-token:
     name: GraphQL - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -419,9 +402,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/graphql_oauth2_bearer_token.sh
+        working-directory: bbes/graphql
+        run: ./graphql_oauth2_bearer_token.sh
   websocket-ssl-tls:
     name: WebSocket - SSL/TLS
     runs-on: ubuntu-latest
@@ -442,9 +424,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_ssl_tls.sh
+        working-directory: bbes/websocket
+        run: ./websocket_ssl_tls.sh
   websocket-mtls:
     name: WebSocket - mTLS
     runs-on: ubuntu-latest
@@ -465,9 +446,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_mtls.sh
+        working-directory: bbes/websocket
+        run: ./websocket_mtls.sh
   websocket-basic-auth-file-store:
     name: WebSocket - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -488,9 +468,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_basic_auth_file_store.sh
+        working-directory: bbes/websocket
+        run: ./websocket_basic_auth_file_store.sh
   websocket-basic-auth-ldap-store:
     name: WebSocket - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -511,9 +490,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_basic_auth_ldap_store.sh
+        working-directory: bbes/websocket
+        run: ./websocket_basic_auth_ldap_store.sh
   websocket-jwt-auth:
     name: WebSocket - JWT Auth
     runs-on: ubuntu-latest
@@ -534,9 +512,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_jwt_auth.sh
+        working-directory: bbes/websocket
+        run: ./websocket_jwt_auth.sh
   websocket-oauth-bearer-token:
     name: WebSocket - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -557,9 +534,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_oauth2_bearer_token.sh
+        working-directory: bbes/websocket
+        run: ./websocket_oauth2_bearer_token.sh
   websocket-oauth-client-credentials-grant:
     name: WebSocket - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -580,9 +556,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_oauth2_client_credentials_grant.sh
+        working-directory: bbes/websocket
+        run: ./websocket_oauth2_client_credentials_grant.sh
   websocket-oauth-password-grant:
     name: WebSocket - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -603,9 +578,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_oauth2_password_grant.sh
+        working-directory: bbes/websocket
+        run: ./websocket_oauth2_password_grant.sh
   websocket-oauth-refresh-token-grant:
     name: WebSocket - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -626,9 +600,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/websocket_oauth2_refresh_token_grant.sh
+        working-directory: bbes/websocket
+        run: ./websocket_oauth2_refresh_token_grant.sh
   grpc-ssl-tls:
     name: gRPC - SSL/TLS
     runs-on: ubuntu-latest
@@ -649,9 +622,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_ssl_tls.sh
+        working-directory: bbes/grpc
+        run: ./grpc_ssl_tls.sh
   grpc-mtls:
     name: gRPC - mTLS
     runs-on: ubuntu-latest
@@ -672,9 +644,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_mtls.sh
+        working-directory: bbes/grpc
+        run: ./grpc_mtls.sh
   grpc-basic-auth-file-store:
     name: gRPC - Basic Auth (File)
     runs-on: ubuntu-latest
@@ -695,9 +666,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_basic_auth_file_store.sh
+        working-directory: bbes/grpc
+        run: ./grpc_basic_auth_file_store.sh
   grpc-basic-auth-ldap-store:
     name: gRPC - Basic Auth (LDAP)
     runs-on: ubuntu-latest
@@ -718,9 +688,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_basic_auth_ldap_store.sh
+        working-directory: bbes/grpc
+        run: ./grpc_basic_auth_ldap_store.sh
   grpc-jwt-auth:
     name: gRPC - JWT Auth
     runs-on: ubuntu-latest
@@ -741,9 +710,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_jwt_auth.sh
+        working-directory: bbes/grpc
+        run: ./grpc_jwt_auth.sh
   grpc-oauth-bearer-token:
     name: gRPC - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
@@ -764,9 +732,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_oauth2_bearer_token.sh
+        working-directory: bbes/grpc
+        run: ./grpc_oauth2_bearer_token.sh
   grpc-oauth-client-credentials-grant:
     name: gRPC - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
@@ -787,9 +754,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_oauth2_client_credentials_grant.sh
+        working-directory: bbes/grpc
+        run: ./grpc_oauth2_client_credentials_grant.sh
   grpc-oauth-password-grant:
     name: gRPC - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
@@ -810,9 +776,8 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_oauth2_password_grant.sh
+        working-directory: bbes/grpc
+        run: ./grpc_oauth2_password_grant.sh
   grpc-oauth-refresh-token-grant:
     name: gRPC - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
@@ -833,6 +798,5 @@ jobs:
           sudo apt-get install -f
           bal -v
       - name: Test
-        working-directory: bbes
-        run: |
-          scripts/grpc_oauth2_refresh_token_grant.sh
+        working-directory: bbes/grpc
+        run: ./grpc_oauth2_refresh_token_grant.sh
