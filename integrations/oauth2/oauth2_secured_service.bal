@@ -5,8 +5,8 @@ import ballerina/uuid;
 listener http:Listener listenerEP = new(9090,
     secureSocket = {
         key: {
-            certFile: "resources/ballerinaPublic.crt",
-            keyFile: "resources/ballerinaPrivate.key"
+            certFile: "./resources/ballerinaPublic.crt",
+            keyFile: "./resources/ballerinaPrivate.key"
         }
     }
 );
@@ -21,7 +21,7 @@ service /orders on listenerEP {
                     clientConfig: {
                         customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                         secureSocket: {
-                            cert: "resources/wso2Public.crt"
+                            cert: "./resources/wso2Public.crt"
                         }
                     }
                 },
@@ -49,7 +49,7 @@ service /orders on listenerEP {
                     clientConfig: {
                         customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                         secureSocket: {
-                            cert: "resources/wso2Public.crt"
+                            cert: "./resources/wso2Public.crt"
                         }
                     }
                 },

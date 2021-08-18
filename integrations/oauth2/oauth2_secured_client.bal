@@ -8,20 +8,20 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
         scopes: ["view-order"],
         clientConfig: {
             secureSocket: {
-                cert: "resources/wso2Public.crt"
+                cert: "./resources/wso2Public.crt"
             }
         }
     },
     secureSocket = {
-        cert: "resources/ballerinaPublic.crt"
+        cert: "./resources/ballerinaPublic.crt"
     }
 );
 
 listener http:Listener apiEP = new(8080,
     secureSocket = {
         key: {
-            certFile: "resources/ballerinaPublic.crt",
-            keyFile: "resources/ballerinaPrivate.key"
+            certFile: "./resources/ballerinaPublic.crt",
+            keyFile: "./resources/ballerinaPrivate.key"
         }
     }
 );

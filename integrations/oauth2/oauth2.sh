@@ -1,11 +1,11 @@
-source scripts/assert.sh
+source assert.sh
 
 echo -e "\n--- Starting WSO2IS STS ---"
 docker run -p 9443:9443 ldclakmal/wso2is-sts:latest &
 sleep 90s
 
 echo -e "\n--- Starting Ballerina OAuth2 service ---"
-bal run packages/oauth2 &
+bal run &
 sleep 10s
 
 echo -e "\n--- Testing Client ---"

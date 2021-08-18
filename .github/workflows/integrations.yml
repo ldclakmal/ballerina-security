@@ -29,9 +29,8 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: integrations
-        run: |
-          scripts/basic_auth_file_store.sh
+        working-directory: integrations/basic-auth-file-store
+        run: ./basic_auth_file_store.sh
   basic-auth-ldap-store:
     name: Basic Auth - LDAP
     runs-on: ubuntu-latest
@@ -53,9 +52,8 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: integrations
-        run: |
-          scripts/basic_auth_ldap_store.sh
+        working-directory: integrations/basic-auth-ldap-store
+        run: ./basic_auth_ldap_store.sh
   jwt-auth:
     name: JWT Auth
     runs-on: ubuntu-latest
@@ -77,9 +75,8 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: integrations
-        run: |
-          scripts/jwt_auth.sh
+        working-directory: integrations/jwt-auth
+        run: ./jwt_auth.sh
   oauth2:
     name: OAuth2
     runs-on: ubuntu-latest
@@ -101,6 +98,5 @@ jobs:
           sudo apt-get install jq
           bal -v
       - name: Test
-        working-directory: integrations
-        run: |
-          scripts/oauth2.sh
+        working-directory: integrations/oauth2
+        run: ./oauth2.sh

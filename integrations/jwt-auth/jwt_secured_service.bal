@@ -5,8 +5,8 @@ import ballerina/uuid;
 listener http:Listener jwtListenerEP = new(9090,
     secureSocket = {
         key: {
-            certFile: "resources/ballerinaPublic.crt",
-            keyFile: "resources/ballerinaPrivate.key"
+            certFile: "./resources/ballerinaPublic.crt",
+            keyFile: "./resources/ballerinaPrivate.key"
         }
     }
 );
@@ -21,7 +21,7 @@ service /orders1 on jwtListenerEP {
                     issuer: "https://localhost:9443/oauth2/token",
                     audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "./resources/wso2Public.crt"
                     }
                 },
                 scopes: ["view-order"]
@@ -47,7 +47,7 @@ service /orders1 on jwtListenerEP {
                     issuer: "https://localhost:9443/oauth2/token",
                     audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "./resources/wso2Public.crt"
                     }
                 },
                 scopes: ["add-order"]
@@ -77,7 +77,7 @@ service /orders2 on jwtListenerEP {
                     issuer: "https://localhost:9443/oauth2/token",
                     audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "./resources/wso2Public.crt"
                     }
                 },
                 scopes: ["view-order"]
@@ -103,7 +103,7 @@ service /orders2 on jwtListenerEP {
                     issuer: "https://localhost:9443/oauth2/token",
                     audience: "I8_BIl8BxpVj1SzZm6Q49y4jFuIa",
                     signatureConfig: {
-                        certFile: "resources/wso2Public.crt"
+                        certFile: "./resources/wso2Public.crt"
                     }
                 },
                 scopes: ["add-order"]
@@ -137,7 +137,7 @@ service /orders3 on jwtListenerEP {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    cert: "resources/wso2Public.crt"
+                                    cert: "./resources/wso2Public.crt"
                                 }
                             }
                         }
@@ -170,7 +170,7 @@ service /orders3 on jwtListenerEP {
                             url: "https://localhost:9443/oauth2/jwks",
                             clientConfig: {
                                 secureSocket: {
-                                    cert: "resources/wso2Public.crt"
+                                    cert: "./resources/wso2Public.crt"
                                 }
                             }
                         }

@@ -1,9 +1,7 @@
-source scripts/assert.sh
-
-export BAL_CONFIG_FILES=packages/basic-auth-file-store/Config.toml
+source assert.sh
 
 echo -e "\n--- Starting Ballerina Basic Auth - File service ---"
-bal run packages/basic-auth-file-store &
+bal run &
 sleep 10s
 
 echo -e "\n--- Testing Client ---"

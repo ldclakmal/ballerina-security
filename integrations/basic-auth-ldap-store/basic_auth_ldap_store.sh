@@ -1,11 +1,11 @@
-source scripts/assert.sh
+source assert.sh
 
 echo -e "\n--- Starting OpenLDAP Server ---"
 docker-compose -f resources/docker-compose.yml up &
 sleep 30s
 
 echo -e "\n--- Starting Ballerina Basic Auth - LDAP service ---"
-bal run packages/basic-auth-ldap-store &
+bal run &
 sleep 10s
 
 echo -e "\n--- Testing Client ---"

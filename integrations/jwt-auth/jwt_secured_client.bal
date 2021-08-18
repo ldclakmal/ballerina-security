@@ -8,20 +8,20 @@ http:Client clientEP = checkpanic new("https://localhost:9090",
         customClaims: {"scope": "view-order"},
         signatureConfig: {
             config: {
-                keyFile: "resources/wso2Private.key"
+                keyFile: "./resources/wso2Private.key"
             }
         }
     },
     secureSocket = {
-        cert: "resources/ballerinaPublic.crt"
+        cert: "./resources/ballerinaPublic.crt"
     }
 );
 
 listener http:Listener apiEP = new(8080,
     secureSocket = {
         key: {
-            certFile: "resources/ballerinaPublic.crt",
-            keyFile: "resources/ballerinaPrivate.key"
+            certFile: "./resources/ballerinaPublic.crt",
+            keyFile: "./resources/ballerinaPrivate.key"
         }
     }
 );
