@@ -51,18 +51,18 @@ This section demonstrates the examples with authentication and authorization for
 
 [![Examples](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
-1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/http)
-2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/websocket)
-3. [GraphQL](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/graphql)
-4. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/grpc)
-5. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/websub)
-6. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/nats)
-7. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/stan)
-8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/rabbitmq)
-9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/kafka)
-10. [Email](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/email)
-11. [FTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/ftp)
-12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/packages/tcp)
+1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
+2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
+3. [GraphQL](https://github.com/ldclakmal/ballerina-security/tree/master/examples/graphql)
+4. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/grpc)
+5. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websub)
+6. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/nats)
+7. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/stan)
+8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/rabbitmq)
+9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/kafka)
+10. [Email](https://github.com/ldclakmal/ballerina-security/tree/master/examples/email)
+11. [FTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/ftp)
+12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/tcp)
 13. UDP _(Pending)_
 
 ## Scenarios
@@ -82,13 +82,10 @@ This section demonstrates an automated Ballerina security test-suite which conta
 
 ```shell
 integrations
-|__ packages
-|   |__ basic-auth-file-store
-|   |__ basic-auth-ldap-store
-|   |__ jwt-auth
-|   |__ oauth2
-|__ scripts
-|__ resources
+|__ basic-auth-file-store
+|__ basic-auth-ldap-store
+|__ jwt-auth
+|__ oauth2
 ```
 
 ## Issues
