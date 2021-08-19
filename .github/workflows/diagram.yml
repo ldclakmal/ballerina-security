@@ -11,5 +11,5 @@ jobs:
       - name: Update diagram
         uses: githubocto/repo-visualizer@main
         with:
-          output_file: 'images/codebase.svg'
-          excluded_paths: ".github,.gitignore,_config.yml,icons,images,guides,issues"
+          output_file: '_resources/images/codebase.svg'
+          excluded_paths: ".github,.gitignore,_config.yml,_resources,guides,issues"
