@@ -6,6 +6,10 @@ on:
       - 'integrations/**'
       - '.github/workflows/integrations.yml'
   workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: 'Artifact ID of Ballerina ZIP'
+        required: false
 
 jobs:
   basic-auth-file-store:
@@ -14,6 +18,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -21,12 +26,11 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Download & Install Tools
         run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
           sudo apt-get install -f
           sudo apt-get install jq
-          bal -v
       - name: Test
         working-directory: integrations/basic-auth-file-store
         run: ./basic_auth_file_store.sh
@@ -36,6 +40,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -43,12 +48,11 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Download & Install Tools
         run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
           sudo apt-get install -f
           sudo apt-get install jq
-          bal -v
       - name: Test
         working-directory: integrations/basic-auth-ldap-store
         run: ./basic_auth_ldap_store.sh
@@ -58,6 +62,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -65,12 +70,11 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Download & Install Tools
         run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
           sudo apt-get install -f
           sudo apt-get install jq
-          bal -v
       - name: Test
         working-directory: integrations/jwt-auth
         run: ./jwt_auth.sh
@@ -80,6 +84,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -87,12 +92,11 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Download & Install Tools
         run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
           sudo apt-get install -f
           sudo apt-get install jq
-          bal -v
       - name: Test
         working-directory: integrations/oauth2
         run: ./oauth2.sh

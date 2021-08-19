@@ -6,6 +6,10 @@ on:
       - 'examples/**'
       - '.github/workflows/examples.yml'
   workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: 'Artifact ID of Ballerina ZIP'
+        required: false
 
 jobs:
   http:
@@ -14,6 +18,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -21,11 +26,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/http
         run: ./http.sh
@@ -35,6 +36,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -42,11 +44,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/grpc
         run: ./grpc.sh
@@ -56,6 +54,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -63,11 +62,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/websocket
         run: ./websocket.sh
@@ -77,6 +72,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -84,11 +80,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/websub
         run: ./websub.sh
@@ -98,6 +90,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -105,11 +98,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/graphql
         run: ./graphql.sh
@@ -119,6 +108,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -126,11 +116,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/email
         run: ./email.sh
@@ -140,6 +126,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -147,11 +134,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/ftp
         run: ./ftp.sh
@@ -161,6 +144,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -168,11 +152,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/tcp
         run: ./tcp.sh
@@ -182,6 +162,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -189,11 +170,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/nats
         run: ./nats.sh
@@ -203,6 +180,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -210,11 +188,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/stan
         run: ./stan.sh
@@ -224,6 +198,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -231,11 +206,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/rabbitmq
         run: ./rabbitmq.sh
@@ -245,6 +216,7 @@ jobs:
     env:
       BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
       BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
@@ -252,11 +224,7 @@ jobs:
         with:
           java-version: 11
       - name: Download & Install Ballerina
-        run: |
-          wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo dpkg -i ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
-          sudo apt-get install -f
-          bal -v
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/kafka
         run: ./kafka.sh
