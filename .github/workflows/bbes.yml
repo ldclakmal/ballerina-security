@@ -62,7 +62,6 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
-      - name: Download Ballerina
       - name: Download & Install Ballerina
         run: |
           wget ${{ env.BALLERINA_DOWNLOAD_HOST }}/downloads/${{ env.BALLERINA_VERSION }}/ballerina-linux-installer-x64-${{ env.BALLERINA_VERSION }}.deb
