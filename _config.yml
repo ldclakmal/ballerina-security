@@ -1,3 +1,5 @@
 title: Ballerina Security
 author: Chanaka Lakmal | ldclakmal@gmail.com | https://ldclakmal.me
 google_analytics: UA-69533863-9
+include:
+  - _resources
