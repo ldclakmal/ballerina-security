@@ -7,12 +7,12 @@ touch bbe/service/Ballerina.toml
 touch bbe/client/Ballerina.toml
 
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-oauth2/grpc_service_oauth2.bal -o bbe/service/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-oauth2/grpc_service.proto -o bbe/service/service.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-oauth2/grpc_service.proto -o bbe/service/grpc_service.proto
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-bearer-token-auth/grpc_client_bearer_token_auth.bal -o bbe/client/client.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-bearer-token-auth/grpc_client.proto -o bbe/client/client.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-bearer-token-auth/grpc_client.proto -o bbe/client/grpc_client.proto
 
-bal grpc --input bbe/service/service.proto --output bbe/service/
-bal grpc --input bbe/client/client.proto --output bbe/client/
+bal grpc --input bbe/service/grpc_service.proto --output bbe/service/
+bal grpc --input bbe/client/grpc_client.proto --output bbe/client/
 
 sed -i 's+../resource/path/to+resources+g' bbe/service/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client/client.bal

@@ -1,7 +1,14 @@
 source assert.sh
 
-bal run grpc_service_jwt_auth.bal &
+touch service/Ballerina.toml
+touch client/Ballerina.toml
+bal grpc --input resources/grpc.proto --output service/
+bal grpc --input resources/grpc.proto --output client/
+
+bal build service
+bal run service/target/bin/service.jar &
 sleep 10s
-response=$(bal run grpc_client_self_signed_jwt_auth.bal 2>&1 | tail -n 1)
+bal build client
+response=$(bal run client/target/bin/client.jar 2>&1 | tail -n 1)
 assertNotEmpty "$response"
 assertEquals "$response" "Hello, World!"
