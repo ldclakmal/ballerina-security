@@ -16,7 +16,7 @@ GITHUB_BADGE_URL = "https://img.shields.io/github/"
 BALLERINA_STANDARD_LIBRARY_REPO_NAME = "ballerina-standard-library"
 BALLERINA_STANDARD_LIBRARY_REPO_API_URL = "https://api.github.com/repos/ballerina-platform/ballerina-standard-library/"
 
-bot_token = os.environ["packagePAT"]
+bot_token = os.environ["GITHUB_TOKEN"]
 
 def main():
     print('Started to update dashboard.')

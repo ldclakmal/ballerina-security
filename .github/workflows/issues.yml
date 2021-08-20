@@ -27,17 +27,18 @@ jobs:
           pip install semver
       - name : Configure GitHub
         env:
-          GITHUB_TOKEN: ${{ secrets.BALLERINA_BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
+          BOT_EMAIL: ${{ secrets.BOT_EMAIL }}
         run: |
-          git config --global user.name ${{ secrets.BOT_USERNAME }}
-          git config --global user.email ${{ secrets.BOT_EMAIL }}
-          git clone https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_TOKEN }}@github.com/ldclakmal/ballerina-security.git
+          git config --global user.name ${{ env.BOT_USERNAME }}
+          git config --global user.email ${{ env.BOT_EMAIL }}
+          git clone https://${{ env.BOT_USERNAME }}:${{ env.GITHUB_TOKEN }}@github.com/ldclakmal/ballerina-security.git
           cd ballerina-security
           git checkout master
       - name: Update dashboard
         env:
-          packageUser: ${{ secrets.BOT_USERNAME }}
-          packagePAT: ${{ secrets.BOT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: |
           cd ballerina-security
           ls
@@ -46,12 +47,13 @@ jobs:
         id: commit
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+          BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
         run: |
           cd ballerina-security
           git update-index -q --refresh
           if ! git diff-index --quiet HEAD --;then
               echo ::set-output name=changes::true
-              git remote set-url origin https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_TOKEN }}@github.com/ldclakmal/ballerina-security.git
+              git remote set-url origin https://${{ env.BOT_USERNAME }}:${{ env.GITHUB_TOKEN }}@github.com/ldclakmal/ballerina-security.git
               git add .
               git commit -m "[Automated] Update security status dashboard"
               curl -fsSL https://github.com/github/hub/raw/master/script/get | bash -s 2.14.1
