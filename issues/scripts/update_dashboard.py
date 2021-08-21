@@ -65,16 +65,16 @@ def update_dashboard(module_details_json):
         updated_readme_file += processed_line
         if "### Dashboard" in processed_line:
             updated_readme_file += "\n"
-            updated_readme_file += "[![Total Issues Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
-            updated_readme_file += "[![Total Issues Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=lightgrey&label=Total%20Issues&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aclosed+label%3Aarea%2Fsecurity)\n"
+            updated_readme_file += "[![Total Issues/Tasks Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues%2FTasks&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)\n"
+            updated_readme_file += "[![Total Issues/Tasks Closed](https://img.shields.io/github/issues-closed/ballerina-platform/ballerina-standard-library/area/security?color=lightgrey&label=Total%20Issues%2FTasks&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aclosed+label%3Aarea%2Fsecurity)\n"
             updated_readme_file += "\n"
-            updated_readme_file += "| Module | All Issues | [![Total High Priority Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" + get_query_by_key_value("Priority", "High", "orange") + ")](" + get_link_by_key_value("Priority", "High") + ") <br/> High Priority Issues | [![Total Bugs](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?" + get_query_by_key_value("Type", "Bug", "red") + ")](" + get_link_by_key_value("Type", "Bug") + ") <br/> Bugs | Improvements | New Features | Tasks |\n"
+            updated_readme_file += "| Module | Total Issues/Tasks | High Priority | Bugs | Improvements | New Features | Tasks |\n"
             updated_readme_file += "|:---|:---:|:---:|:---:|:---:|:---:|:---:|\n"
             break
     # A single row in the table is created for each module in the module list
     for module in module_details_json['modules']:
         row = ("|[" + module['name'].split('-')[-1] + "](" + BALLERINA_ORG_URL + module['name'] + ")| " +
-               "[![Issues](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
+               "[![Issues/Tasks](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
                + get_query_by_module(module) + ")](" + get_link_by_module(module) + ")| " +
                "[![High Priority](" + GITHUB_BADGE_URL + "issues-search/" + BALLERINA_ORG_NAME + "/" + BALLERINA_STANDARD_LIBRARY_REPO_NAME + "?"
                + get_query_by_module_and_key_value(module, "Priority", "High", "orange") + ")](" + get_link_by_module_and_key_value(module, "Priority", "High") + ")| " +
