@@ -26,7 +26,7 @@ This section demonstrates the current status of the security modules of the Ball
 
 This section demonstrates the visualization of project codebase using the [GitHub OCTO - Repo Visualization Project](https://octo.github.com/projects/repo-visualization).
 
-![Visualization of the codebase](./_resources/images/codebase.svg)
+[![Visualization of the codebase](./_resources/images/codebase.svg)](https://github.com/ldclakmal/ballerina-security)
 
 ## Ballerina by Examples (BBEs)
 
