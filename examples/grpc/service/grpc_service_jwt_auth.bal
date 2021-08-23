@@ -1,5 +1,4 @@
 import ballerina/grpc;
-import ballerina/jwt;
 
 listener grpc:Listener securedEP = new(9090,
     secureSocket = {
@@ -26,8 +25,8 @@ listener grpc:Listener securedEP = new(9090,
     ]
 }
 @grpc:ServiceDescriptor {
-    descriptor: ROOT_DESCRIPTOR,
-    descMap: getDescriptorMap()
+    descriptor: ROOT_DESCRIPTOR_GRPC,
+    descMap: getDescriptorMapGrpc()
 }
 service "HelloWorld" on securedEP {
     remote function hello() returns string {
