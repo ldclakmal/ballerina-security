@@ -16,6 +16,7 @@ configurable string CLIENT_SECRET = "PJz0UhTJMrHOo68QQNpvnqAY_3Aa";
 const GRANT_TYPE_CLIENT_CREDENTIALS = "client_credentials";
 const GRANT_TYPE_PASSWORD = "password";
 const GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
+const GRANT_TYPE_JWT_BEARER = "urn:ietf:params:oauth:grant-type:jwt-bearer";
 
 string[] accessTokenStore = ["56ede317-4511-44b4-8579-a08f094ee8c5"];
 string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
@@ -240,6 +241,19 @@ function prepareTokenResponse(string grantType, string username, string password
         }
         string description = "The provided refresh token is invalid, expired or revoked.";
         return createInvalidGrant(description);
+    } else if (grantType == GRANT_TYPE_JWT_BEARER) {
+        string newAccessToken = uuid:createType4AsString();
+        addToAccessTokenStore(newAccessToken);
+        json response = {
+            "access_token": newAccessToken,
+            "token_type": "example",
+            "expires_in": TOKEN_VALIDITY_PERIOD,
+            "example_parameter": "example_value"
+        };
+        if (scopes != "") {
+            return checkpanic response.mergeJson({"scope": scopes});
+        }
+        return response;
     }
     string description = "The authorization grant type is not supported by the authorization server.";
     return createUnsupportedGrant(description);
