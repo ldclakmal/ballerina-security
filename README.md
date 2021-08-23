@@ -1,14 +1,19 @@
 [![Ballerina-Security](./_resources/images/ballerina-security.png)](https://github.com/ldclakmal/ballerina-security)
 
-The examples, use-cases, demos, resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
+The examples, use-cases, demos, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
 > **GitHub**: <https://github.com/ldclakmal/ballerina-security>
 
 ## Summary
 
-Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
+Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
 
+Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
 The [NATS][nats], [STAN][stan], [RabbitMQ][rabbitmq], [Kafka][kafka], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
+
+This repository contains all the examples, use-cases, demos, and resources related to Ballerina Security in one place.
+
+> <a href="https://octo-repo-visualization.vercel.app/?repo=ldclakmal%2Fballerina-security" target="_blank">Click here</a> to see the visualization of project codebase using the [GitHub OCTO - Repo Visualization Project](https://octo.github.com/projects/repo-visualization).
 
 ## Dashboard
 
@@ -21,12 +26,6 @@ This section demonstrates the current status of the security modules of the Ball
 | [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [![issues][oauth2-badge-issues]][oauth2-issues] <br/> [![pulls][oauth2-badge-pulls]][oauth2-pulls] | [![docs][ballerina-docs-logo]][oauth2-docs] <br/> [![package][ballerina-central-logo]][oauth2-package] |
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![issues][crypto-badge-issues]][crypto-issues] <br/> [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [![issues][url-badge-issues]][url-issues] <br/> [![pulls][url-badge-pulls]][url-pulls] | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package] |
-
-## Project Visualization
-
-This section demonstrates the visualization of project codebase using the [GitHub OCTO - Repo Visualization Project](https://octo.github.com/projects/repo-visualization).
-
-[![Visualization of the codebase](./_resources/images/codebase.svg)](https://github.com/ldclakmal/ballerina-security)
 
 ## Ballerina by Examples (BBEs)
 
