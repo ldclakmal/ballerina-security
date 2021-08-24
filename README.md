@@ -118,6 +118,7 @@ The following sections have important references which were used for the design 
 
 ### GitHub Pull Requests
 
+- 2021 Aug - [Add JWT bearer grant support for OAuth2](https://github.com/ballerina-platform/module-ballerina-oauth2/pull/287)
 - 2021 Aug - [Add HMAC signature support for JWT](https://github.com/ballerina-platform/module-ballerina-jwt/pull/307)
 - 2021 Jun - [Implement declarative auth design for WebSocket upgrade service](https://github.com/ballerina-platform/module-ballerina-websocket/pull/216)
 - 2021 May - [Implement declarative auth design for GraphQL service](https://github.com/ballerina-platform/module-ballerina-graphql/pull/210)
