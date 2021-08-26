@@ -6,8 +6,8 @@ import ballerina/uuid;
 listener grpc:Listener paymentsEP = new(9191,
     secureSocket = {
         key: {
-            certFile: "./_resources/public.crt",
-            keyFile: "./_resources/private.key"
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
         }
     }
 );
@@ -16,7 +16,7 @@ grpc:ListenerJwtAuthHandler handler = new({
     issuer: "order-service",
     audience: "payment-service",
     signatureConfig: {
-        certFile: "./_resources/public.crt"
+        certFile: "./resources/public.crt"
     },
     scopeKey: "scp"
 });

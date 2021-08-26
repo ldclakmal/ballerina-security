@@ -9,24 +9,30 @@ http:Client webAppClient = check new("https://localhost:9090",
        scopes: ["customer"],
        clientConfig: {
            secureSocket: {
-               cert: "../_resources/sts-public.crt"
+               cert: "./resources/sts-public.crt"
            }
        }
     },
     secureSocket = {
-        cert: "../_resources/public.crt"
+        cert: "./resources/public.crt"
     }
 );
 
 public function main() returns error? {
     json searchPayload = { "query": "{ electronics { brand, model, price } }" };
     json searchResponse = check webAppClient->post("/inventory", searchPayload);
+    io:println("Search Response:");
     io:println(searchResponse);
 
-    string orderId = "HQCKJ5496";
-    string paymentMethod = "VISA...1234";
-    string deliveryMethod = "DM01";
-    string orderPayload = "order_id=" + orderId + "&payment_method=" + paymentMethod + "&delivery_method=" + deliveryMethod;
-    json orderResponse = check webAppClient->post("/orders/" + orderId, orderPayload);
+    json payload = {
+        orderId: "HQCKJ5496",
+        category: "electronics",
+        code: "SOWH1000XM4",
+        qty: 2,
+        paymentMethod: "VISA...1234",
+        deliveryMethod: "DM01"
+    };
+    json orderResponse = check webAppClient->post("/orders", payload);
+    io:println("\nOrder Response:");
     io:println(orderResponse);
 }

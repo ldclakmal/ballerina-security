@@ -1,4 +1,4 @@
 [package]
 org = "ldclakmal"
-name = "paymentservice"
+name = "inventory_service"
 version = "1.0.0"

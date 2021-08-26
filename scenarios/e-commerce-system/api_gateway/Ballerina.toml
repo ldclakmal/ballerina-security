@@ -1,4 +1,4 @@
 [package]
 org = "ldclakmal"
-name = "apigateway"
+name = "api_gateway"
 version = "1.0.0"

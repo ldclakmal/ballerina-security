@@ -1,20 +1,20 @@
 import ballerina/http;
 import ballerina/graphql;
 
-type ElectronicItem record {
+type ElectronicItem record {|
     string code;
     string brand;
     string model;
     string price;
     int qty;
-};
+|};
 
 http:Client inventoryClient = check new("https://localhost:9091",
     secureSocket = {
-        cert: "./_resources/public.crt",
+        cert: "./resources/public.crt",
         key: {
-            certFile: "./_resources/public.crt",
-            keyFile: "./_resources/private.key"
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
         }
     }
 );
@@ -27,7 +27,7 @@ http:Client inventoryClient = check new("https://localhost:9091",
                 clientConfig: {
                     customHeaders: {"Authorization": "Basic YWRtaW46YWRtaW4="},
                     secureSocket: {
-                        cert: "./_resources/sts-public.crt"
+                        cert: "./resources/sts-public.crt"
                     }
                 }
             },
