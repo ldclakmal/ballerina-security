@@ -9,7 +9,7 @@ The examples, use-cases, demos, and resources related to microservices security 
 Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
 
 Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
-The [NATS][nats], [STAN][stan], [RabbitMQ][rabbitmq], [Kafka][kafka], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
+The [Kafka][kafka], [RabbitMQ][rabbitmq], [NATS][nats], [STAN][stan], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
 
 This repository contains all the examples, use-cases, demos, and resources related to Ballerina Security in one place.
 
@@ -40,6 +40,9 @@ This section demonstrates an automated Ballerina security test-suite which integ
 | GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] |
 | gRPC Security | [Service - SSL/TLS][bbe-grpc-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-grpc-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-grpc-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-grpc-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-grpc-service-jwt-auth] <br/> [Service - OAuth2][bbe-grpc-service-oauth2] <br/> [Client - SSL/TLS][bbe-grpc-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-grpc-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-grpc-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-grpc-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-grpc-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-grpc-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-grpc-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-grpc-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-grpc-client-oauth2-jwt-bearer-grant] |
 | Kafka Security | [SASL Authentication - Consumer][bbe-kafka-consumer-sasl] <br/> [SASL Authentication - Producer][bbe-kafka-producer-sasl] |
+| RabbitMQ Security | [Secured Connection - Producer & Consumer][bbe-rabbitmq-security] |
+| NATS Security | [Secured Connection - Publisher & Subscriber][bbe-nats-security] |
+| STAN Security | [Secured Connection - Publisher & Subscriber][bbe-stan-security] |
 | TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
 | Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
 | URL | [URL Encode & Decode][bbe-url-encode-decode] |
@@ -55,10 +58,10 @@ This section demonstrates the examples with authentication and authorization for
 3. [GraphQL](https://github.com/ldclakmal/ballerina-security/tree/master/examples/graphql)
 4. [gRPC](https://github.com/ldclakmal/ballerina-security/tree/master/examples/grpc)
 5. [WebSub](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websub)
-6. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/nats)
-7. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/stan)
-8. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/rabbitmq)
-9. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/kafka)
+6. [Kafka](https://github.com/ldclakmal/ballerina-security/tree/master/examples/kafka)
+7. [RabbitMQ](https://github.com/ldclakmal/ballerina-security/tree/master/examples/rabbitmq)
+8. [NATS](https://github.com/ldclakmal/ballerina-security/tree/master/examples/nats)
+9. [STAN](https://github.com/ldclakmal/ballerina-security/tree/master/examples/stan)
 10. [Email](https://github.com/ldclakmal/ballerina-security/tree/master/examples/email)
 11. [FTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/ftp)
 12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/tcp)
@@ -257,10 +260,10 @@ The following sections have important references which were used for the design 
 [websocket]: https://github.com/ballerina-platform/module-ballerina-websocket
 [websub]: https://github.com/ballerina-platform/module-ballerina-websub
 [graphql]: https://github.com/ballerina-platform/module-ballerina-graphql
+[kafka]: https://github.com/ballerina-platform/module-ballerinax-kafka
+[rabbitmq]: https://github.com/ballerina-platform/module-ballerinax-rabbitmq
 [nats]: https://github.com/ballerina-platform/module-ballerinax-nats
 [stan]: https://github.com/ballerina-platform/module-ballerinax-stan
-[rabbitmq]: https://github.com/ballerina-platform/module-ballerinax-rabbitmq
-[kafka]: https://github.com/ballerina-platform/module-ballerinax-kafka
 [email]: https://github.com/ballerina-platform/module-ballerina-email
 [ftp]: https://github.com/ballerina-platform/module-ballerina-ftp
 [tcp]: https://github.com/ballerina-platform/module-ballerina-tcp
@@ -327,6 +330,9 @@ The following sections have important references which were used for the design 
 
 [bbe-kafka-consumer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-consumer.html?is_ref_by_example=true
 [bbe-kafka-producer-sasl]: https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-producer.html?is_ref_by_example=true
+[bbe-rabbitmq-security]: https://ballerina.io/learn/by-example/rabbitmq-secure-connection.html?is_ref_by_example=true
+[bbe-nats-security]: https://ballerina.io/learn/by-example/nats-basic-secure-connection.html?is_ref_by_example=true
+[bbe-stan-security]: https://ballerina.io/learn/by-example/nats-streaming-secure-connection.html?is_ref_by_example=true
 
 [bbe-tcp-ssl-tls]: https://ballerina.io/learn/by-example/tcp-transport-security.html?is_ref_by_example=true
 
