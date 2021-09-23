@@ -101,21 +101,15 @@ Refer to the [this](./issues) page for more information.
 
 The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
 
-### User Guides
-
-- [HTTP Listener Authentication and Authorization - Swan Lake Version](https://ballerina.io/learn/user-guide/security/http-listener-authentication-and-authorization/)
-- [HTTP Client Authentication - Swan Lake Version](https://ballerina.io/learn/user-guide/security/http-client-authentication/)
-- [Ballerina Authentication and Authorization Design - 1.2.x Version](https://ballerina.io/1.2/learn/writing-secure-ballerina-code/)
-
 ### Research & Design
 
-- 2021 Apr - [Review of Ballerina Security APIs of StdLib Protocol Connector Module - Swan Lake Version](https://docs.google.com/document/d/16r_gjBi7SIqVffKVLtKGBevHQRxp7Fnoo9ELyIWV1BM/edit?usp=sharing)
-- 2021 Feb - [Re-Design of Ballerina SecureSocket API - Swan Lake Version](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
-- 2020 Nov - [Design of Ballerina Authentication & Authorization Framework - Swan Lake Version](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
-- 2020 Oct - [Research Comparison on Ballerina Security Features/APIs with Different Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
-- 2018 Apr - [Ballerina HTTP Service Authentication and Secure HTTP Clients Design - First Draft (0.970.0)](https://docs.google.com/document/d/1GR-z2aNTFybY1LBquxKPvN3J-kWdEL2Y4_X7S570BOU/edit?usp=sharing)
+- 2021 Apr - [[Review] Ballerina Security APIs of StdLib Protocol Connector Module](https://docs.google.com/document/d/16r_gjBi7SIqVffKVLtKGBevHQRxp7Fnoo9ELyIWV1BM/edit?usp=sharing)
+- 2021 Feb - [[Re-Design] Ballerina SecureSocket API](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
+- 2020 Nov - [[Design] Ballerina Authentication & Authorization Framework](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
+- 2020 Oct - [[Research] Comparison on Ballerina Security Features/APIs with Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
 
 ### Blogs
+
 - 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
 - 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
 
@@ -166,6 +160,8 @@ The following sections have important references which were used for the design 
 
 ### Guides
 
+- [Ballerina HTTP Listener Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-listener-auth.html)
+- [Ballerina HTTP Client Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-client-auth.html)
 - [How to obtain Google OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html)
 - [How to obtain Salesforce OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-salesforce-oauth2-credentials.html)
 - [How to obtain Twilio Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html)
