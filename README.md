@@ -103,6 +103,7 @@ The following sections have important references which were used for the design 
 
 ### Research & Design
 
+- 2021 Sep - [[Design] Ballerina GraphQL Authentication and Authorization](https://docs.google.com/document/d/1ebwR5qXosyKjT7tSr4HgcYDq1vFsuzQxtiMgdET1G0o/edit?usp=sharing)
 - 2021 Apr - [[Review] Ballerina Security APIs of StdLib Protocol Connector Module](https://docs.google.com/document/d/16r_gjBi7SIqVffKVLtKGBevHQRxp7Fnoo9ELyIWV1BM/edit?usp=sharing)
 - 2021 Feb - [[Re-Design] Ballerina SecureSocket API](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
 - 2020 Nov - [[Design] Ballerina Authentication & Authorization Framework](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
@@ -142,6 +143,7 @@ The following sections have important references which were used for the design 
 ### YouTube Videos
 
 - 2021 Mar - [How Netflix Scales Its API with GraphQL Federation at *QCon Plus 2021*](https://youtu.be/QrEOvHdH2Cg)
+- 2020 Aug - [How to Auth: Secure a GraphQL API with Confidence at *Apollo GraphQL Summit*](https://youtu.be/dBuU61ABEDs)
 - 2020 Apr - [What's New With OAuth and OIDC? at *OktaDev*](https://youtu.be/g_aVPdwBTfw)
 - 2018 Feb - [OAuth 2.0 and OpenID Connect at *OktaDev*](https://youtu.be/QrEOvHdH2Cg)
 - 2017 Nov - [Handling Authentication and Authorization in GraphQL at *GraphQL Summit 2017*](https://youtu.be/4_Bcw7BULC8)
