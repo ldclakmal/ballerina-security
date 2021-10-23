@@ -43,6 +43,7 @@ This section demonstrates an automated Ballerina security test-suite which integ
 | RabbitMQ Security | [Secured Connection - Producer & Consumer][bbe-rabbitmq-security] |
 | NATS Security | [Secured Connection - Publisher & Subscriber][bbe-nats-security] |
 | STAN Security | [Secured Connection - Publisher & Subscriber][bbe-stan-security] |
+| FTP Security | [Listener - SFTP][bbe-ftp-listener-sftp] <br/> [Client - SFTP][bbe-ftp-client-sftp] |
 | TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
 | Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
 | URL | [URL Encode & Decode][bbe-url-encode-decode] |
@@ -334,6 +335,9 @@ The following sections have important references which were used for the design 
 [bbe-stan-security]: https://ballerina.io/learn/by-example/nats-streaming-secure-connection.html?is_ref_by_example=true
 
 [bbe-tcp-ssl-tls]: https://ballerina.io/learn/by-example/tcp-transport-security.html?is_ref_by_example=true
+
+[bbe-ftp-listener-sftp]: https://ballerina.io/learn/by-example/sftp-listener.html?is_ref_by_example=true
+[bbe-ftp-client-sftp]: https://ballerina.io/learn/by-example/sftp-client.html?is_ref_by_example=true
 
 [ballerina-central-logo]: ./_resources/images/ballerina-central-logo.svg
 [ballerina-docs-logo]: ./_resources/images/ballerina-docs-logo.svg
