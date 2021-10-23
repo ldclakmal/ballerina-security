@@ -109,8 +109,9 @@ The following sections have important references which were used for the design 
 - 2020 Nov - [[Design] Ballerina Authentication & Authorization Framework](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
 - 2020 Oct - [[Research] Comparison on Ballerina Security Features/APIs with Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
 
-### Blogs
+### Security Blogs
 
+- 2021 Oct - [Securing Microservices with JWT](https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f)
 - 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
 - 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
 
