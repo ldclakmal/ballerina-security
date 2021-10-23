@@ -27,32 +27,22 @@ This section demonstrates the current status of the security modules of the Ball
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![issues][crypto-badge-issues]][crypto-issues] <br/> [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [![issues][url-badge-issues]][url-issues] <br/> [![pulls][url-badge-pulls]][url-pulls] | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package] |
 
-## Ballerina by Examples (BBEs)
+## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
 This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets.
 
-[![BBEs](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+| Category | ![BBE][ballerina-bbe-logo] | Category | ![BBE][ballerina-bbe-logo] |
+|---|---|---|---|
+| REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-http-service-jwt-auth] <br/> [Service - OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-http-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-http-client-oauth2-jwt-bearer-grant] | WebSocket Security | [Service - SSL/TLS][bbe-websocket-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-websocket-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-websocket-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-websocket-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-websocket-service-jwt-auth] <br/> [Service - OAuth2][bbe-websocket-service-oauth2] <br/> [Client - SSL/TLS][bbe-websocket-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-websocket-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-websocket-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-websocket-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-websocket-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-websocket-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-websocket-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-websocket-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-websocket-client-oauth2-jwt-bearer-grant] |
+| GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] | gRPC Security | [Service - SSL/TLS][bbe-grpc-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-grpc-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-grpc-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-grpc-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-grpc-service-jwt-auth] <br/> [Service - OAuth2][bbe-grpc-service-oauth2] <br/> [Client - SSL/TLS][bbe-grpc-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-grpc-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-grpc-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-grpc-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-grpc-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-grpc-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-grpc-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-grpc-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-grpc-client-oauth2-jwt-bearer-grant] |
+| Kafka Security | [SASL Authentication - Consumer][bbe-kafka-consumer-sasl] <br/> [SASL Authentication - Producer][bbe-kafka-producer-sasl] | RabbitMQ Security | [Secured Connection - Producer & Consumer][bbe-rabbitmq-security] |
+| NATS Security | [Secured Connection - Publisher & Subscriber][bbe-nats-security] | STAN Security | [Secured Connection - Publisher & Subscriber][bbe-stan-security] |
+| FTP Security | [Listener - SFTP][bbe-ftp-listener-sftp] <br/> [Client - SFTP][bbe-ftp-client-sftp] | TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
+| Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] | URL | [URL Encode & Decode][bbe-url-encode-decode] |
 
-| Category | ![BBE][ballerina-bbe-logo] |
-|---|---|
-| REST API Security | [Service - SSL/TLS][bbe-http-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-http-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-http-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-http-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-http-service-jwt-auth] <br/> [Service - OAuth2][bbe-http-service-oauth2] <br/> [Client - SSL/TLS][bbe-http-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-http-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-http-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-http-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-http-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-http-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-http-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-http-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-http-client-oauth2-jwt-bearer-grant] |
-| WebSocket Security | [Service - SSL/TLS][bbe-websocket-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-websocket-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-websocket-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-websocket-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-websocket-service-jwt-auth] <br/> [Service - OAuth2][bbe-websocket-service-oauth2] <br/> [Client - SSL/TLS][bbe-websocket-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-websocket-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-websocket-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-websocket-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-websocket-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-websocket-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-websocket-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-websocket-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-websocket-client-oauth2-jwt-bearer-grant] |
-| GraphQL Security | [Service - SSL/TLS][bbe-graphql-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-graphql-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-graphql-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-graphql-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-graphql-service-jwt-auth] <br/> [Service - OAuth2][bbe-graphql-service-oauth2] |
-| gRPC Security | [Service - SSL/TLS][bbe-grpc-service-ssl-tls] <br/> [Service - Mutual SSL][bbe-grpc-service-mutual-ssl] <br/> [Service - Basic Auth File User Store][bbe-grpc-service-basic-auth-file] <br/> [Service - Basic Auth LDAP User Store][bbe-grpc-service-basic-auth-ldap] <br/> [Service - JWT Auth][bbe-grpc-service-jwt-auth] <br/> [Service - OAuth2][bbe-grpc-service-oauth2] <br/> [Client - SSL/TLS][bbe-grpc-client-ssl-tls] <br/> [Client - Mutual SSL][bbe-grpc-client-mutual-ssl] <br/> [Client - Basic Auth][bbe-grpc-client-basic-auth] <br/> [Client - Bearer Token Auth][bbe-grpc-client-bearer-token-auth] <br/> [Client - Self Signed JWT Auth][bbe-grpc-client-self-signed-jwt-auth] <br/> [Client - OAuth2 Client Credentials Grant Type][bbe-grpc-client-oauth2-client-credentials-grant] <br/> [Client - OAuth2 Password Grant Type][bbe-grpc-client-oauth2-password-grant] <br/> [Client - OAuth2 Refresh Token Grant Type][bbe-grpc-client-oauth2-refresh-token-grant] <br/> [Client - OAuth2 JWT Bearer Grant Type][bbe-grpc-client-oauth2-jwt-bearer-grant] |
-| Kafka Security | [SASL Authentication - Consumer][bbe-kafka-consumer-sasl] <br/> [SASL Authentication - Producer][bbe-kafka-producer-sasl] |
-| RabbitMQ Security | [Secured Connection - Producer & Consumer][bbe-rabbitmq-security] |
-| NATS Security | [Secured Connection - Publisher & Subscriber][bbe-nats-security] |
-| STAN Security | [Secured Connection - Publisher & Subscriber][bbe-stan-security] |
-| FTP Security | [Listener - SFTP][bbe-ftp-listener-sftp] <br/> [Client - SFTP][bbe-ftp-client-sftp] |
-| TCP Security | [TCP Transport Security][bbe-tcp-ssl-tls] |
-| Security | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate] |
-| URL | [URL Encode & Decode][bbe-url-encode-decode] |
-
-## Examples
+## Examples [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
 This section demonstrates the examples with authentication and authorization for different protocols supported by Ballerina.
-
-[![Examples](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -77,21 +67,9 @@ This section demonstrates the real-world scenarios which have authentication and
 3. [Secured Order Management Service with JWT Auth](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/examples/order-management-service/README.md)
 4. [Secured Order Management Service with OAuth2](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/examples/order-management-service/README.md)
 
-## Integrations
+## Integrations [![Integrations](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Integrations?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml)
 
 This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets.
-
-[![Integrations](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml/badge.svg)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml)
-
-#### Directory Structure
-
-```shell
-integrations
-|__ basic-auth-file-store
-|__ basic-auth-ldap-store
-|__ jwt-auth
-|__ oauth2
-```
 
 ## Issues/Tasks
 
