@@ -74,6 +74,8 @@ This section demonstrates the real-world scenarios which have authentication and
 
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)
+3. [Secured Order Management Service with JWT Auth](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/examples/order-management-service/README.md)
+4. [Secured Order Management Service with OAuth2](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/examples/order-management-service/README.md)
 
 ## Integrations
 
