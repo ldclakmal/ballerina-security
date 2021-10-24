@@ -11,6 +11,9 @@ listener rabbitmq:Listener securedEP = new("localhost", 5671,
         key: {
             certFile: "./resources/cert/client.crt",
             keyFile: "./resources/key/client.key"
+        },
+        protocol: {
+            name: rabbitmq:TLS
         }
     }
 );
