@@ -10,7 +10,10 @@ rabbitmq:Client securedEP = check new("localhost", 5671,
         cert: "./resources/cert/server.crt",
         key: {
             certFile: "./resources/cert/client.crt",
-            keyFile: "./resources/key/client.key",
+            keyFile: "./resources/key/client.key"
+        },
+        protocol: {
+            name: rabbitmq:TLS
         }
     }
 );
@@ -22,6 +25,6 @@ public function main() returns error? {
         content: message.toBytes(),
         routingKey: "demo.security"
     });
-    //check securedEP.close();
+    check securedEP->close();
     io:println("Message published successfully.");
 }

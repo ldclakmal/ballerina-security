@@ -11,7 +11,7 @@ nats:Client securedEP = check new("nats://localhost:4222",
         cert: "./resources/cert/server.crt",
         key: {
             certFile: "./resources/cert/client.crt",
-            keyFile: "./resources/key/client.key",
+            keyFile: "./resources/key/client.key"
         }
     }
 );
