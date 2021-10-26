@@ -320,3 +320,74 @@ public function main() returns error? {
     log:printInfo(response.toJsonString());
 }
 ```
+
+## Custom Auth
+
+### Custom Auth Provider
+
+```ballerina
+public type CustomConfig record {|
+    // required fields to get from the user
+|};
+```
+
+```ballerina
+public isolated class ClientAuthProvider {
+
+    public isolated function init(CustomConfig config) {
+        // This function initialize the required configurations.
+    }
+
+    public isolated function generateToken() returns string|error {
+        // This function generate the token as required.
+    }
+}
+```
+
+Example: <https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/ballerina/client_self_signed_jwt_auth_provider.bal>
+
+### Custom Auth Handler
+
+```ballerina
+import ballerina/http;
+
+public isolated class ClientAuthHandler {
+
+    private final ClientAuthProvider provider;
+
+    public isolated function init(CustomConfig config) {
+        self.provider = new(config);
+    }
+
+    public isolated function enrich(http:Request req) returns http:Request|error {
+        string result = check self.provider.generateToken();
+        // Set the HTTP header as required.
+    }
+}
+```
+
+Example: <https://github.com/ballerina-platform/module-ballerina-http/blob/master/ballerina/auth_client_self_signed_jwt_auth_handler.bal>
+
+### Sample
+
+```ballerina
+import ballerina/http;
+
+CustomConfig config = {
+    // initialize the fields
+};
+ClientAuthHandler handler = new(config);
+
+http:Client securedEP = check new("https://localhost:9090",
+    secureSocket = {
+        cert: "/path/to/public.crt"
+    }
+);
+
+public function main() returns error? {
+    http:Request req = new;
+    req = check handler.enrich(req);
+    json response = check securedEP->get("/foo/bar");
+    // evaluate response
+}
+```
