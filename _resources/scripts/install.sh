@@ -1,7 +1,7 @@
 artifact_id=$1
 if [[ -z $artifact_id ]]; then
-  wget $BALLERINA_DOWNLOAD_HOST/downloads/$BALLERINA_VERSION/ballerina-linux-installer-x64-$BALLERINA_VERSION.deb
-  sudo dpkg -i ballerina-linux-installer-x64-$BALLERINA_VERSION.deb
+  wget $BALLERINA_DEB_URL
+  sudo dpkg -i ${BALLERINA_DEB_URL##*/}
   sudo apt-get install -f
   bal -v
 else
