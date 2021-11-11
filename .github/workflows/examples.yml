@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       artifact_id:
-        description: 'Artifact ID of Ballerina ZIP'
+        description: 'GitHub Artifact ID of the Ballerina ZIP produced during Ballerina daily build'
         required: false
 
 jobs:
@@ -16,8 +16,7 @@ jobs:
     name: HTTP
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -34,8 +33,7 @@ jobs:
     name: gRPC
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -52,8 +50,7 @@ jobs:
     name: WebSocket
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -70,8 +67,7 @@ jobs:
     name: WebSub
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -88,8 +84,7 @@ jobs:
     name: GraphQL
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -106,8 +101,7 @@ jobs:
     name: Email
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -124,8 +118,7 @@ jobs:
     name: FTP
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -142,8 +135,7 @@ jobs:
     name: TCP
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -160,8 +152,7 @@ jobs:
     name: NATS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -178,8 +169,7 @@ jobs:
     name: STAN
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -196,8 +186,7 @@ jobs:
     name: RabbitMQ
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -214,8 +203,7 @@ jobs:
     name: Kafka
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2

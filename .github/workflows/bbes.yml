@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       artifact_id:
-        description: 'Artifact ID of Ballerina ZIP'
+        description: 'GitHub Artifact ID of the Ballerina ZIP produced during Ballerina daily build'
         required: false
 
 jobs:
@@ -16,8 +16,7 @@ jobs:
     name: Cryptographic Operations
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -34,8 +33,7 @@ jobs:
     name: JWT Issue & Validate
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -52,8 +50,7 @@ jobs:
     name: URL Encode & Decode
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -70,8 +67,7 @@ jobs:
     name: HTTP - SSL/TLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -88,8 +84,7 @@ jobs:
     name: HTTP - mTLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -106,8 +101,7 @@ jobs:
     name: HTTP - Basic Auth (File)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -124,8 +118,7 @@ jobs:
     name: HTTP - Basic Auth (LDAP)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -142,8 +135,7 @@ jobs:
     name: HTTP - JWT Auth
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -160,8 +152,7 @@ jobs:
     name: HTTP - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -178,8 +169,7 @@ jobs:
     name: HTTP - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -196,8 +186,7 @@ jobs:
     name: HTTP - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -214,8 +203,7 @@ jobs:
     name: HTTP - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -232,8 +220,7 @@ jobs:
     name: HTTP - OAuth2 (JWT Bearer Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -250,8 +237,7 @@ jobs:
     name: GraphQL - SSL/TLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -268,8 +254,7 @@ jobs:
     name: GraphQL - mTLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -286,8 +271,7 @@ jobs:
     name: GraphQL - Basic Auth (File)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -304,8 +288,7 @@ jobs:
     name: GraphQL - Basic Auth (LDAP)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -322,8 +305,7 @@ jobs:
     name: GraphQL - JWT Auth
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -340,8 +322,7 @@ jobs:
     name: GraphQL - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -358,8 +339,7 @@ jobs:
     name: WebSocket - SSL/TLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -376,8 +356,7 @@ jobs:
     name: WebSocket - mTLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -394,8 +373,7 @@ jobs:
     name: WebSocket - Basic Auth (File)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -412,8 +390,7 @@ jobs:
     name: WebSocket - Basic Auth (LDAP)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -430,8 +407,7 @@ jobs:
     name: WebSocket - JWT Auth
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -448,8 +424,7 @@ jobs:
     name: WebSocket - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -466,8 +441,7 @@ jobs:
     name: WebSocket - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -484,8 +458,7 @@ jobs:
     name: WebSocket - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -502,8 +475,7 @@ jobs:
     name: WebSocket - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -520,8 +492,7 @@ jobs:
     name: WebSocket - OAuth2 (JWT Bearer Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -538,8 +509,7 @@ jobs:
     name: gRPC - SSL/TLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -556,8 +526,7 @@ jobs:
     name: gRPC - mTLS
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -574,8 +543,7 @@ jobs:
     name: gRPC - Basic Auth (File)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -592,8 +560,7 @@ jobs:
     name: gRPC - Basic Auth (LDAP)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -610,8 +577,7 @@ jobs:
     name: gRPC - JWT Auth
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -628,8 +594,7 @@ jobs:
     name: gRPC - OAuth2 (Bearer Token)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -646,8 +611,7 @@ jobs:
     name: gRPC - OAuth2 (Client Credentials Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -664,8 +628,7 @@ jobs:
     name: gRPC - OAuth2 (Password Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -682,8 +645,7 @@ jobs:
     name: gRPC - OAuth2 (Refresh Token Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
@@ -700,8 +662,7 @@ jobs:
     name: gRPC - OAuth2 (JWT Bearer Grant)
     runs-on: ubuntu-latest
     env:
-      BALLERINA_VERSION: ${{ secrets.BALLERINA_VERSION }}
-      BALLERINA_DOWNLOAD_HOST: ${{ secrets.BALLERINA_DOWNLOAD_HOST }}
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     steps:
       - uses: actions/checkout@v2
