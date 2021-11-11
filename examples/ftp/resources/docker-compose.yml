@@ -2,7 +2,7 @@ version: "3"
 services:
   nats:
     image: atmoz/sftp
-    container_name: nats-server
+    container_name: sftp-server
     command: foo:pass:1001
     volumes:
       - "./upload:/home/foo/upload"
