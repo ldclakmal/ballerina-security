@@ -17,7 +17,7 @@ listener email:ImapListener securedEP = check new({
     }
 });
 
-service "email" on securedEP {
+service on securedEP {
     remote function onMessage(email:Message email) {
         io:println("Received email: ", email.subject);
     }
