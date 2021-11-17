@@ -196,7 +196,7 @@ function prepareTokenResponse(string grantType, string username, string password
             "example_parameter": "example_value"
         };
         if (scopes != "") {
-            return checkpanic response.mergeJson({"scope": scopes});
+            return <json> response.mergeJson({"scope": scopes});
         }
         return response;
     } else if (grantType == GRANT_TYPE_PASSWORD) {
@@ -213,7 +213,7 @@ function prepareTokenResponse(string grantType, string username, string password
                 "example_parameter": "example_value"
             };
             if (scopes != "") {
-                return checkpanic response.mergeJson({"scope": scopes});
+                return <json> response.mergeJson({"scope": scopes});
             }
             return response;
         }
@@ -234,7 +234,7 @@ function prepareTokenResponse(string grantType, string username, string password
                     "example_parameter": "example_value"
                 };
                 if (scopes != "") {
-                    return checkpanic response.mergeJson({"scope": scopes});
+                    return <json> response.mergeJson({"scope": scopes});
                 }
                 return response;
             }
@@ -251,7 +251,7 @@ function prepareTokenResponse(string grantType, string username, string password
             "example_parameter": "example_value"
         };
         if (scopes != "") {
-            return checkpanic response.mergeJson({"scope": scopes});
+            return <json> response.mergeJson({"scope": scopes});
         }
         return response;
     }

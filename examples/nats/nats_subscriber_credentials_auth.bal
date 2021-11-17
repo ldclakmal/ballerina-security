@@ -19,8 +19,8 @@ listener nats:Listener securedEP = new("nats://localhost:4222",
 @nats:ServiceConfig {
     subject: "demo.security"
 }
-service nats:Service on securedEP {
-    remote function onMessage(nats:Message message) {
+isolated service nats:Service on securedEP {
+    isolated remote function onMessage(nats:Message message) {
         string|error messageContent = string:fromBytes(message.content);
         if (messageContent is string) {
             io:println("Received message: ", messageContent);

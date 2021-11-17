@@ -12,7 +12,7 @@ listener http:Listener jwtListenerEP = new(9090,
 );
 
 // Signature is validated with truststore.
-service /orders1 on jwtListenerEP {
+isolated service /orders1 on jwtListenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -28,12 +28,12 @@ service /orders1 on jwtListenerEP {
             }
         ]
 	}
-    resource function get view() returns json {
+    isolated resource function get view() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -54,12 +54,12 @@ service /orders1 on jwtListenerEP {
             }
         ]
     }
-    resource function get add() returns json {
+    isolated resource function get add() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -68,7 +68,7 @@ service /orders1 on jwtListenerEP {
 }
 
 // Signature is validated with public cert file.
-service /orders2 on jwtListenerEP {
+isolated service /orders2 on jwtListenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -84,12 +84,12 @@ service /orders2 on jwtListenerEP {
             }
         ]
 	}
-    resource function get view() returns json {
+    isolated resource function get view() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -110,12 +110,12 @@ service /orders2 on jwtListenerEP {
             }
         ]
     }
-    resource function get add() returns json {
+    isolated resource function get add() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -124,7 +124,7 @@ service /orders2 on jwtListenerEP {
 }
 
 // Signature is validated with JWKS endpoint.
-service /orders3 on jwtListenerEP {
+isolated service /orders3 on jwtListenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -147,12 +147,12 @@ service /orders3 on jwtListenerEP {
             }
         ]
 	}
-    resource function get view() returns json {
+    isolated resource function get view() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -180,12 +180,12 @@ service /orders3 on jwtListenerEP {
             }
         ]
     }
-    resource function get add() returns json {
+    isolated resource function get add() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };

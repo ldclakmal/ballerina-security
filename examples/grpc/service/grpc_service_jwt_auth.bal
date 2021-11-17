@@ -28,8 +28,8 @@ listener grpc:Listener securedEP = new(9090,
     descriptor: ROOT_DESCRIPTOR_GRPC,
     descMap: getDescriptorMapGrpc()
 }
-service "HelloWorld" on securedEP {
-    remote function hello() returns string {
+isolated service "HelloWorld" on securedEP {
+    isolated remote function hello() returns string {
         return "Hello, World!";
     }
 }

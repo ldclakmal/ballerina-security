@@ -16,8 +16,8 @@ listener ftp:Listener securedEP = new({
     fileNamePattern: "(.*).txt"
 });
 
-service on securedEP {
-    function onFileChange(ftp:WatchEvent event) {
+isolated service on securedEP {
+    isolated function onFileChange(ftp:WatchEvent event) {
         foreach ftp:FileInfo addedFile in event.addedFiles {
             io:println("Added file of path: ", addedFile.path);
         }
