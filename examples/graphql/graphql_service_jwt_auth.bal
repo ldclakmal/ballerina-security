@@ -24,8 +24,8 @@ listener graphql:Listener securedEP = new(9090,
         }
     ]
 }
-service /foo on securedEP {
-    resource function get bar() returns string {
+isolated service /foo on securedEP {
+    isolated resource function get bar() returns string {
         return "Hello, World!";
     }
 }

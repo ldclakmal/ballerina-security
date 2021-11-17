@@ -11,7 +11,7 @@ listener http:Listener listenerEP = new(9090,
     }
 );
 
-service /orders on listenerEP {
+isolated service /orders on listenerEP {
 
     @http:ResourceConfig {
 	    auth: [
@@ -29,12 +29,12 @@ service /orders on listenerEP {
             }
         ]
 	}
-    resource function get view() returns json {
+    isolated resource function get view() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };
@@ -57,12 +57,12 @@ service /orders on listenerEP {
             }
         ]
     }
-    resource function get add() returns json {
+    isolated resource function get add() returns json|error {
         json inventory = {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
-                    "qty" : checkpanic random:createIntInRange(1, 100)
+                    "qty" : check random:createIntInRange(1, 100)
                 }
             ]
         };

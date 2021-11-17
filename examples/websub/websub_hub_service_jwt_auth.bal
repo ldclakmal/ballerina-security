@@ -12,7 +12,7 @@ listener websubhub:Listener securedHub = new(9090,
     }
 );
 
-http:ListenerJwtAuthHandler handler = new({
+final http:ListenerJwtAuthHandler handler = new({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
@@ -28,8 +28,8 @@ http:ListenerJwtAuthHandler handler = new({
         }
     }
 }
-service /websubhub on securedHub {
-    remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
+isolated service /websubhub on securedHub {
+    isolated remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:TopicRegistrationError(auth);
@@ -41,7 +41,7 @@ service /websubhub on securedHub {
         return result;
     }
 
-    remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
+    isolated remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
         string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:TopicDeregistrationError(auth);
@@ -53,7 +53,7 @@ service /websubhub on securedHub {
         return result;
     }
 
-    remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
+    isolated remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
         string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:InternalSubscriptionError(auth);
@@ -66,22 +66,22 @@ service /websubhub on securedHub {
     }
 
     // Internal call from Hub itself
-    remote function onSubscriptionValidation(websubhub:Subscription msg) {
+    isolated remote function onSubscriptionValidation(websubhub:Subscription msg) {
         log:printInfo("Subscription validated for topic: '" + msg.hubTopic + "'.");
     }
 
     // Internal call from Hub itself
-    remote function onSubscriptionIntentVerified(websubhub:VerifiedSubscription msg) {
+    isolated remote function onSubscriptionIntentVerified(websubhub:VerifiedSubscription msg) {
         log:printInfo("Subscription intent verified: '" + msg.verificationSuccess.toString() + "', for topic: '" + msg.hubTopic + "'.");
         addSubscriber(msg);
     }
 
-    remote function onUnsubscriptionIntentVerified(websubhub:VerifiedUnsubscription msg) {
+    isolated remote function onUnsubscriptionIntentVerified(websubhub:VerifiedUnsubscription msg) {
         log:printInfo("Unsubscription intent verified: '" + msg.verificationSuccess.toString() + "', for topic: '" + msg.hubTopic + "'.");
         removeSubscriber(msg);
     }
 
-    remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
+    isolated remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(headers);
         if (auth is string) {
             return error websubhub:UpdateMessageError(auth);
@@ -116,7 +116,7 @@ service /websubhub on securedHub {
     }
 }
 
-function doAuth(http:Headers headers) returns string? {
+isolated function doAuth(http:Headers headers) returns string? {
     jwt:Payload|http:Unauthorized authn = handler.authenticate(headers);
     if (authn is http:Unauthorized) {
         string errorMsg = "Failed to authenticate the request. " + <string>authn?.body;
@@ -132,37 +132,45 @@ function doAuth(http:Headers headers) returns string? {
     return;
 }
 
-map<websubhub:Subscription[]> subscribersMap = {};
+isolated map<websubhub:Subscription[]> subscribersMap = {};
 
-function addSubscriber(websubhub:Subscription subscriber) {
-    if (subscribersMap.hasKey(subscriber.hubTopic)) {
-        subscribersMap.get(subscriber.hubTopic).push(subscriber);
-    } else {
-        websubhub:Subscription[] subscribersArray = [];
-        subscribersArray.push(subscriber);
-        subscribersMap[subscriber.hubTopic] = subscribersArray;
-    }
-}
-
-function removeSubscriber(websubhub:Unsubscription subscriber) {
-    if (subscribersMap.hasKey(subscriber.hubTopic)) {
-        websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
-        int i = 0;
-        foreach websubhub:Subscription sub in subscribersArray {
-            if (sub.hubCallback == subscriber.hubCallback) {
-                break;
-            }
-            i = i + 1;
+isolated function addSubscriber(websubhub:Subscription subscriber) {
+    lock {
+        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+            subscribersMap.get(subscriber.hubTopic).push(subscriber.cloneReadOnly());
+        } else {
+            websubhub:Subscription[] subscribersArray = [];
+            subscribersArray.push(subscriber.cloneReadOnly());
+            subscribersMap[subscriber.hubTopic] = subscribersArray;
         }
-        _ = subscribersArray.remove(i);
-        subscribersMap[subscriber.hubTopic] = subscribersArray;
     }
 }
 
-function isTopicAvailable(string topic) returns boolean {
-    return subscribersMap.hasKey(topic);
+isolated function removeSubscriber(websubhub:Unsubscription subscriber) {
+    lock {
+        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+            websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
+            int i = 0;
+            foreach websubhub:Subscription sub in subscribersArray {
+                if (sub.hubCallback == subscriber.hubCallback) {
+                    break;
+                }
+                i = i + 1;
+            }
+            _ = subscribersArray.remove(i);
+            subscribersMap[subscriber.hubTopic] = subscribersArray;
+        }
+    }
 }
 
-function retrieveSubscribers(string topic) returns websubhub:Subscription[] {
-    return subscribersMap.get(topic).clone();
+isolated function isTopicAvailable(string topic) returns boolean {
+    lock {
+        return subscribersMap.hasKey(topic);
+    }
+}
+
+isolated function retrieveSubscribers(string topic) returns websubhub:Subscription[] {
+    lock {
+        return subscribersMap.get(topic).clone();
+    }
 }

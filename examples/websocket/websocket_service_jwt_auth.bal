@@ -24,15 +24,15 @@ listener websocket:Listener securedEP = new(9090,
         }
     ]
 }
-service /foo on securedEP {
-    resource function get bar() returns websocket:Service {
+isolated service /foo on securedEP {
+    isolated resource function get bar() returns websocket:Service {
         return new WsService();
     }
 }
 
-service class WsService {
+isolated service class WsService {
     *websocket:Service;
-    remote function onTextMessage(websocket:Caller caller, string text) returns websocket:Error? {
+    isolated remote function onTextMessage(websocket:Caller caller, string text) returns websocket:Error? {
         _ = check caller->writeTextMessage(text);
     }
 }

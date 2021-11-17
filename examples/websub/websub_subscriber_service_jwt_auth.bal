@@ -36,8 +36,8 @@ listener websub:Listener securedSubscriber = new(8080,
         }
     }
 }
-service /subscriber on securedSubscriber {
-    remote function onEventNotification(websub:ContentDistributionMessage event) returns websub:Acknowledgement {
+isolated service /subscriber on securedSubscriber {
+    isolated remote function onEventNotification(websub:ContentDistributionMessage event) returns websub:Acknowledgement {
         log:printInfo("Event notified with content: '" + event.content.toString() + "'.");
         websub:Acknowledgement result = {
             body: { message: "Event notified with content: '" + event.content.toString() + "'." }
@@ -45,7 +45,7 @@ service /subscriber on securedSubscriber {
         return result;
     }
 
-    remote function onSubscriptionVerification(websub:SubscriptionVerification msg) returns websub:SubscriptionVerificationSuccess {
+    isolated remote function onSubscriptionVerification(websub:SubscriptionVerification msg) returns websub:SubscriptionVerificationSuccess {
         log:printInfo("Subscription verification success. Hub mode: '" + msg.hubMode + "', hub topic: '" +
                        msg.hubTopic + "', hub challenge: '" + msg.hubChallenge + "'.");
         websub:SubscriptionVerificationSuccess result = {

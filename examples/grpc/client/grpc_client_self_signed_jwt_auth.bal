@@ -1,6 +1,6 @@
 import ballerina/io;
 
-HelloWorldClient securedEP = check new("https://localhost:9090",
+final HelloWorldClient securedEP = check new("https://localhost:9090",
     auth = {
         username: "ballerina",
         issuer: "wso2",

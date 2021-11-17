@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerina/tcp;
 
-tcp:Client securedEP = check new("localhost", 3000,
+final tcp:Client securedEP = check new("localhost", 3000,
     secureSocket = {
         cert: "./resources/public.crt"
     }
