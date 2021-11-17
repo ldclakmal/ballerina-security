@@ -6,7 +6,7 @@ sleep 90s
 
 echo -e "\n--- Starting Ballerina OAuth2 service ---"
 bal run &
-sleep 10s
+sleep 15s
 
 echo -e "\n--- Testing Client ---"
 echo -e "\nClient Test-1: Authn Success - Authz Failure:"

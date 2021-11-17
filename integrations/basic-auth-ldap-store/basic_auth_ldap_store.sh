@@ -6,7 +6,7 @@ sleep 30s
 
 echo -e "\n--- Starting Ballerina Basic Auth - LDAP service ---"
 bal run &
-sleep 10s
+sleep 15s
 
 echo -e "\n--- Testing Client ---"
 echo -e "\nClient Test-1: Authn Success - Authz Failure:"

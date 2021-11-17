@@ -6,7 +6,7 @@ sleep 90s
 
 echo -e "\n--- Starting Ballerina JWT service ---"
 bal run &
-sleep 10s
+sleep 15s
 
 echo -e "\n--- Testing Client ---"
 for id in 1 2
