@@ -18,6 +18,9 @@ isolated service on securedEP {
 }
 
 isolated service class EchoService {
+
+    *tcp:ConnectionService;
+
     isolated remote function onBytes(readonly & byte[] data) returns byte[] {
         io:println("Received message: ", string:fromBytes(data));
         return data;
