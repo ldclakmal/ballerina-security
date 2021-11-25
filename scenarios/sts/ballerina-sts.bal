@@ -35,7 +35,7 @@ listener http:Listener sts = new(SERVER_PORT, {
 service /oauth2 on sts {
 
     // This issues an access token with reference to the received grant type (client credentials, password and refresh token grant type).
-    resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest {
+    resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest|http:InternalServerError {
         var authorizationHeader = req.getHeader("Authorization");
         if (authorizationHeader is string) {
             if (isAuthorizedTokenClient(authorizationHeader)) {
@@ -185,7 +185,7 @@ service /oauth2 on sts {
     }
 }
 
-function prepareTokenResponse(string grantType, string username, string password, string refreshToken, string scopes) returns json|http:Unauthorized|http:BadRequest {
+function prepareTokenResponse(string grantType, string username, string password, string refreshToken, string scopes) returns json|http:Unauthorized|http:BadRequest|http:InternalServerError {
     if (grantType == GRANT_TYPE_CLIENT_CREDENTIALS) {
         string newAccessToken = uuid:createType4AsString();
         addToAccessTokenStore(newAccessToken);
@@ -196,7 +196,11 @@ function prepareTokenResponse(string grantType, string username, string password
             "example_parameter": "example_value"
         };
         if (scopes != "") {
-            return <json> response.mergeJson({"scope": scopes});
+            json|error mergedJson = response.mergeJson({"scope": scopes});
+            if (mergedJson is error) {
+                return <http:InternalServerError> {};
+            }
+            return <json> mergedJson;
         }
         return response;
     } else if (grantType == GRANT_TYPE_PASSWORD) {
@@ -213,7 +217,11 @@ function prepareTokenResponse(string grantType, string username, string password
                 "example_parameter": "example_value"
             };
             if (scopes != "") {
-                return <json> response.mergeJson({"scope": scopes});
+                json|error mergedJson = response.mergeJson({"scope": scopes});
+                if (mergedJson is error) {
+                    return <http:InternalServerError> {};
+                }
+                return <json> mergedJson;
             }
             return response;
         }
@@ -234,7 +242,11 @@ function prepareTokenResponse(string grantType, string username, string password
                     "example_parameter": "example_value"
                 };
                 if (scopes != "") {
-                    return <json> response.mergeJson({"scope": scopes});
+                    json|error mergedJson = response.mergeJson({"scope": scopes});
+                    if (mergedJson is error) {
+                        return <http:InternalServerError> {};
+                    }
+                    return <json> mergedJson;
                 }
                 return response;
             }
@@ -251,7 +263,11 @@ function prepareTokenResponse(string grantType, string username, string password
             "example_parameter": "example_value"
         };
         if (scopes != "") {
-            return <json> response.mergeJson({"scope": scopes});
+            json|error mergedJson = response.mergeJson({"scope": scopes});
+            if (mergedJson is error) {
+                return <http:InternalServerError> {};
+            }
+            return <json> mergedJson;
         }
         return response;
     }

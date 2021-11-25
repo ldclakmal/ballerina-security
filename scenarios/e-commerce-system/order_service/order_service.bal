@@ -1,5 +1,6 @@
 import ballerina/grpc;
 import ballerina/http;
+import ballerina/protobuf.types.wrappers;
 
 type OrderRequest record {|
     string orderId;
@@ -17,19 +18,19 @@ type UpdateRequest record {|
 
 map<OrderRequest> ordersMap = {};
 
-PaymentServiceClient paymentServiceClient = check new("https://localhost:9191",
+final PaymentServiceClient paymentServiceClient = check new("https://localhost:9191",
     secureSocket = {
         cert: "./resources/public.crt"
     }
 );
 
-DeliveryServiceClient deliveryServiceClient = check new("https://localhost:9192",
+final DeliveryServiceClient deliveryServiceClient = check new("https://localhost:9192",
     secureSocket = {
         cert: "./resources/public.crt"
     }
 );
 
-http:Client inventoryClient = check new("https://localhost:9091",
+final http:Client inventoryClient = check new("https://localhost:9091",
     secureSocket = {
         cert: "./resources/public.crt",
         key: {
@@ -76,15 +77,18 @@ service /orders on ordersEP {
             code: orderRequest.code,
             qty: orderRequest.qty
         };
-        json item = check inventoryClient->put("/inventory/" + orderRequest.category, updateRequest);
+        json|http:ClientError response = inventoryClient->put("/inventory/" + orderRequest.category, updateRequest);
+        if response is http:ClientError {
+            return error("Failed to update the inventory quantity.", response);
+        }
 
-        ContextString paymentContext = { content: "order_id=" + orderRequest.orderId + "&payment_method=" +
-                                         orderRequest.paymentMethod, headers: headers };
+        wrappers:ContextString paymentContext = { content: "order_id=" + orderRequest.orderId + "&payment_method=" +
+                                                  orderRequest.paymentMethod, headers: headers };
         json paymentResponse = check paymentServiceClient->payments(paymentContext);
 
-        ContextString deliveryContext = { content: "order_id=" + orderRequest.orderId + "&delivery_method=" +
-                                          orderRequest.deliveryMethod, headers: headers };
-        json deliveryResponse =  check deliveryServiceClient->delivery(deliveryContext);
+        wrappers:ContextString deliveryContext = { content: "order_id=" + orderRequest.orderId + "&delivery_method=" +
+                                                   orderRequest.deliveryMethod, headers: headers };
+        json deliveryResponse = check deliveryServiceClient->delivery(deliveryContext);
 
         return {
             payment: paymentResponse,

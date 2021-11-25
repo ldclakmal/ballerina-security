@@ -69,7 +69,7 @@ Detailed implementation details including security implementations details can b
 
 Open the terminal and start the 'Authorization Server/STS' first by the following command.
 ```shell
-$ docker run -p 9443:9443 ldclakmal/wso2is-sts
+$ docker run -p 9443:9443 ldclakmal/wso2is-sts:latest
 ```
 
 Now, navigate to `scenarios/e-commerce-system/payment_service` directory and execute the following command.
@@ -83,8 +83,6 @@ Compiling source
         ldclakmal/payment_service:1.0.0
 
 Running executable
-
-[ballerina/grpc] started HTTPS/WSS listener 0.0.0.0:9191
 ```
 
 Now, navigate to `scenarios/e-commerce-system/delivery_service` directory and execute the same command.
@@ -94,8 +92,6 @@ Compiling source
         ldclakmal/delivery_service:1.0.0
 
 Running executable
-
-[ballerina/grpc] started HTTPS/WSS listener 0.0.0.0:9192
 ```
 
 Now, navigate to `scenarios/e-commerce-system/inventory_service` directory and execute the same command.
@@ -105,8 +101,6 @@ Compiling source
         ldclakmal/inventory_service:1.0.0
 
 Running executable
-
-[ballerina/http] started HTTPS/WSS listener 0.0.0.0:9091
 ```
 
 Now, navigate to `scenarios/e-commerce-system/order_service` directory and execute the same command.
@@ -116,8 +110,6 @@ Compiling source
         ldclakmal/order_service:1.0.0
 
 Running executable
-
-[ballerina/http] started HTTPS/WSS listener 0.0.0.0:9092
 ```
 
 Now, navigate to `scenarios/e-commerce-system/api_gateway` directory and execute the same command.
@@ -127,8 +119,6 @@ Compiling source
         ldclakmal/api_gateway:1.0.0
 
 Running executable
-
-[ballerina/http] started HTTPS/WSS listener 0.0.0.0:9090
 ```
 
 Now, we can test authentication and authorization checks being enforced on different functions of the e-commerce system 
@@ -140,13 +130,13 @@ operation as follows.
 Navigate to the `scenarios/e-commerce-system/client` directory and execute the following command to try out 
 both of the scenarios described above.
 ```shell
-$ bal run client.bal
+$ bal run
 ```
 
 Output:
 ```shell
 Compiling source
-        client.bal
+        ldclakmal/client:1.0.0
 
 Running executable
 

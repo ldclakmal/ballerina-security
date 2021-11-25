@@ -12,12 +12,12 @@ later version installed.
 
 - Run as a container
   ```shell
-  $ docker run -p 9090:9090 ldclakmal/ballerina-sts
+  $ docker run -p 9445:9445 ldclakmal/ballerina-sts:latest
   ```
   
 - Run using source code
   ```shell
-  $ bal run ballerina-sts.bal
+  $ bal run
   ```
 
 
@@ -28,7 +28,7 @@ later version installed.
   $ curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
   -d "grant_type=client_credentials&scope=view-order" \
-  https://localhost:9090/oauth2/token
+  https://localhost:9445/oauth2/token
   ```
 
 - Refresh an access token with a scope:
@@ -36,12 +36,12 @@ later version installed.
   $ curl -kv -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
   -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
   -d "grant_type=refresh_token&refresh_token=<ACCESS_TOKEN>&scope=view-order" \
-  https://localhost:9090/oauth2/token
+  https://localhost:9445/oauth2/token
   ```
 
 - Validate an access token:
   ```shell
   $ curl -kv -u admin:admin -H 'Content-Type: application/x-www-form-urlencoded' \
   -d 'token=<ACCESS_TOKEN>' \
-  https://localhost:9090/oauth2/introspect
+  https://localhost:9445/oauth2/introspect
   ```
