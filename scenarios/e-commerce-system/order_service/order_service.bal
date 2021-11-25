@@ -1,5 +1,6 @@
 import ballerina/grpc;
 import ballerina/http;
+import ballerina/lang.value;
 import ballerina/protobuf.types.wrappers;
 
 type OrderRequest record {|
@@ -84,15 +85,15 @@ service /orders on ordersEP {
 
         wrappers:ContextString paymentContext = { content: "order_id=" + orderRequest.orderId + "&payment_method=" +
                                                   orderRequest.paymentMethod, headers: headers };
-        json paymentResponse = check paymentServiceClient->payments(paymentContext);
+        string paymentResponse = check paymentServiceClient->payments(paymentContext);
 
         wrappers:ContextString deliveryContext = { content: "order_id=" + orderRequest.orderId + "&delivery_method=" +
                                                    orderRequest.deliveryMethod, headers: headers };
-        json deliveryResponse = check deliveryServiceClient->delivery(deliveryContext);
+        string deliveryResponse = check deliveryServiceClient->delivery(deliveryContext);
 
         return {
-            payment: paymentResponse,
-            delivery: deliveryResponse
+            payment: check value:fromJsonString(paymentResponse),
+            delivery: check value:fromJsonString(deliveryResponse)
         };
     }
 }

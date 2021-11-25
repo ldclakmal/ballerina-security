@@ -140,11 +140,7 @@ Compiling source
 
 Running executable
 
-Search Response:
-{"data":{"electronics":[{"brand":"Apple","model":"Mac Book AIR M1 (13-inch 2021)","price":"$1249.00"},{"brand":"Sony","model":"WH-1000XM4","price":"$349.99"}]}}
-
-Order Response:
-{"payment":"{"order_id":"HQCKJ5496", "invoice_id":"1c290d2b-f539-4f2a-832c-7c5c0466a76e", "payment_method":"VISA...1234", "amount":"$349.99"}","delivery":"{"order_id":"HQCKJ5496", "delivery_id":"3a58bc48-ffdd-4c1e-8d53-a3dbd6e962e0", "delivery_method":"DM01"}"}
+{"search_response":{"data":{"electronics":[{"brand":"Apple","model":"Mac Book AIR M1 (13-inch 2021)","price":"$1249.00"},{"brand":"Sony","model":"WH-1000XM4","price":"$349.99"}]}},"order_response":{"payment":{"order_id":"HQCKJ5496", "invoice_id":"a1ce0c30-f56a-4ea0-a220-d9fe9116acc4", "payment_method":"VISA...1234", "amount":"$349.99"},"delivery":{"order_id":"HQCKJ5496", "delivery_id":"f73843b6-6c46-4676-bcb2-3292c0f254fd", "delivery_method":"DM01"}}}
 ```
 
 #### CURL Commands

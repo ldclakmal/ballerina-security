@@ -21,8 +21,6 @@ final http:Client webAppClient = check new("https://localhost:9090",
 public function main() returns error? {
     json searchPayload = { "query": "{ electronics { brand, model, price } }" };
     json searchResponse = check webAppClient->post("/inventory", searchPayload);
-    io:println("Search Response:");
-    io:println(searchResponse);
 
     json payload = {
         orderId: "HQCKJ5496",
@@ -33,6 +31,10 @@ public function main() returns error? {
         deliveryMethod: "DM01"
     };
     json orderResponse = check webAppClient->post("/orders", payload);
-    io:println("\nOrder Response:");
-    io:println(orderResponse);
+
+    json result = {
+        "search_response": searchResponse,
+        "order_response": orderResponse
+    };
+    io:println(result);
 }
