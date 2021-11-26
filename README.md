@@ -58,7 +58,7 @@ This section demonstrates the examples with authentication and authorization for
 12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/tcp)
 13. UDP _(Pending)_
 
-## Scenarios
+## Scenarios [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
