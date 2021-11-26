@@ -46,3 +46,37 @@ jobs:
       - name: Test
         working-directory: scenarios/e-commerce-system
         run: ./test.sh
+  order-management-system-jwt:
+    name: Order Management System (JWT)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Test
+        working-directory: scenarios/order-management-service-jwt-auth
+        run: ./test.sh
+  order-management-system-oauth2:
+    name: Order Management System (OAuth2)
+    runs-on: ubuntu-latest
+    env:
+      BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Download & Install Ballerina
+        run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
+      - name: Test
+        working-directory: scenarios/order-management-service-oauth2
+        run: ./test.sh
