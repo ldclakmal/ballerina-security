@@ -8,3 +8,4 @@ target/
 *.log
 *.lock
 *.lck
+Dependencies.toml
