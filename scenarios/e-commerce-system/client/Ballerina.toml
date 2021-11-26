@@ -1,0 +1,4 @@
+[package]
+org = "ldclakmal"
+name = "client"
+version = "1.0.0"

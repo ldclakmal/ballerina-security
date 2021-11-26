@@ -1,5 +1,6 @@
 import ballerina/grpc;
 import ballerina/jwt;
+import ballerina/protobuf.types.wrappers;
 import ballerina/regex;
 import ballerina/uuid;
 
@@ -12,7 +13,7 @@ listener grpc:Listener deliveryEP = new(9192,
     }
 );
 
-grpc:ListenerJwtAuthHandler handler = new({
+final grpc:ListenerJwtAuthHandler handler = new({
     issuer: "order-service",
     audience: "delivery-service",
     signatureConfig: {
@@ -22,11 +23,11 @@ grpc:ListenerJwtAuthHandler handler = new({
 });
 
 @grpc:ServiceDescriptor {
-    descriptor: ROOT_DESCRIPTOR,
-    descMap: getDescriptorMap()
+    descriptor: ROOT_DESCRIPTOR_DELIVERY,
+    descMap: getDescriptorMapDelivery()
 }
 service "DeliveryService" on deliveryEP {
-    remote function delivery(ContextString request) returns string|grpc:UnauthenticatedError|grpc:PermissionDeniedError {
+    remote function delivery(wrappers:ContextString request) returns string|grpc:UnauthenticatedError|grpc:PermissionDeniedError {
         jwt:Payload|grpc:UnauthenticatedError authn = handler.authenticate(request.headers);
         if (authn is grpc:UnauthenticatedError) {
             return authn;
