@@ -33,7 +33,7 @@ echo -e "\n--- Starting Client ---"
 cd ../client
 response=$(bal run 2>&1 | tail -n 1)
 assertNotEmpty "$response"
-echo -e "\nResponse: $response"
+echo -e "\nBallerina client response: $response"
 search_response=$(jq -r '.search_response.data.electronics[0].brand' <<< $response)
 assertNotEmpty $search_response
 assertEquals "$search_response" "Apple"
