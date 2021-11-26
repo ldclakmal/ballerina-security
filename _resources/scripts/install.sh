@@ -5,7 +5,7 @@ if [[ -z $artifact_id ]]; then
   sudo apt-get install -f
   bal -v
 else
-  if curl -kv -L -X GET 'https://api.github.com/repos/ballerina-platform/ballerina-distribution/actions/artifacts/'"$artifact_id"'/zip' -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: Bearer '"$GITHUB_TOKEN"'' -o ballerina.zip; then
+  if curl -k -L -X GET 'https://api.github.com/repos/ballerina-platform/ballerina-distribution/actions/artifacts/'"$artifact_id"'/zip' -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: Bearer '"$GITHUB_TOKEN"'' -o ballerina.zip; then
     unzip -q ballerina.zip
     unzip -q ballerina-swan-lake-*.zip
     rm -r ballerina*.zip

@@ -149,7 +149,7 @@ First, we need to get an access token from the Authorization Server/STS. We need
 requests when we are performing different scenarios. (Make sure to get a new access token each time you try this since 
 the access token gets expired after an hour.)
 ```shell
-curl -k -v -u uDMwA4hKR9H3deeXxvNf4sSU0i4a:8FOUOKUQfOp47pUfJCsPA5X4clga \
+curl -k -u uDMwA4hKR9H3deeXxvNf4sSU0i4a:8FOUOKUQfOp47pUfJCsPA5X4clga \
 -H "Content-Type:application/x-www-form-urlencoded" \
 -d "grant_type=client_credentials&scope=customer" \
 https://localhost:9443/oauth2/token
@@ -163,7 +163,7 @@ Output:
 ##### Search Item
 
 ```shell
-curl -k -v -H "Content-type: application/json" \
+curl -k -H "Content-type: application/json" \
 -H "Authorization: Bearer e4a42228-f985-3725-b033-5b9ff11e03fd" \
 -d '{ "query": "{ electronics { brand, model, price } }" }' \
 "https://localhost:9090/inventory"
@@ -178,7 +178,7 @@ Output:
 ##### Order Item
 
 ```shell
-curl -k -v -H "Content-type: application/json" \
+curl -k -H "Content-type: application/json" \
 -H "Authorization: Bearer e4a42228-f985-3725-b033-5b9ff11e03fd" \
 -d '{ "orderId": "HQCKJ5496", "category": "electronics", "code": "SOWH1000XM4", "qty": 2, "paymentMethod": "VISA...1234", "deliveryMethod": "DM01" }' \
 "https://localhost:9090/orders"
