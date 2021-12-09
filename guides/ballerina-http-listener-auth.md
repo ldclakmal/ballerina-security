@@ -1,4 +1,30 @@
-# Ballerina HTTP Listener Authentication and Authorization
+# Specification: Ballerina HTTP Listener Authentication and Authorization
+
+This is the specification for authentication and authorization of HTTP listener programmed in the
+[Ballerina programming language](https://ballerina.io/), which is an open-source programming language for the cloud
+that makes it easier to use, combine, and create network services.
+
+This is an extended version of following specifications:
+- [Specification: Ballerina Auth Library](https://github.com/ballerina-platform/module-ballerina-auth/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina JWT Library](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina OAuth2 Library](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/docs/spec/spec.md)
+
+# Contents
+
+1. [Overview](#1-overview)
+    * 1.1. [Declarative Approach](#11-declarative-approach)
+    * 1.2. [Imperative Approach](#12-imperative-approach)
+2. [Basic Auth](#2-basic-auth)
+    * 2.1. [File User Store](#21-file-user-store)
+    * 2.2. [LDAP User Store](#22-ldap-user-store)
+3. [JWT Auth](#3-jwt-auth)
+4. [OAuth2](#4-oauth2)
+5. [Custom Auth](#5-custom-auth)
+    * 5.1. [Custom Auth Provider](#51-custom-auth-provider)
+    * 5.2. [Custom Auth Handler](#52-custom-auth-handler)
+    * 5.3. [Sample](#53-sample)
+
+## 1. Overview
 
 > Ballerina HTTP services/resources can be configured to enforce authentication and authorization.
 
@@ -67,9 +93,29 @@ Also, the security enforcement that is done for the service using the `http:Serv
 
 > **Note:** It is required to use HTTPS when enforcing authentication and authorization checks to ensure the confidentiality of sensitive authentication data.
 
-## Basic Auth
+### 1.1. Declarative Approach
 
-### File User Store
+This is also known as the configuration-driven approach, which is used for simple use cases, where users have to
+provide a set of configurations and do not need to be worried more about how authentication and authorization works.
+The user does not have full control over the configuration-driven approach.
+
+The service and/or resource configurations are used to define the authentication and authorization configurations.
+Users can configure the configurations needed for different authentication schemes and configurations needed for
+authorizations of each authentication scheme. Also, the configurations can be provided at both the service and resource
+levels. The priority will be given from bottom to top. Then, the auth handler creation and request
+authentication/authorization is handled internally without user intervention. The requests that succeeded both
+authentication and/or authorization phases according to the configurations will be passed to the business logic layer.
+
+### 1.2. Imperative Approach
+
+This is also known as the code-driven approach, which is used for advanced use cases, where users need to be worried
+more about how authentication and authorization work and need to have further customizations. The user has full control
+of the code-driven approach. The handler creation and authentication/authorization calls are made by the user at the
+business logic layer.
+
+## 2. Basic Auth
+
+### 2.1. File User Store
 
 Ballerina supports the file user store basic authentication and authorization for services/resources. The `auth` field of a service/resource annotation should have an `http:FileUserStoreConfigWithScopes` record as an element. If the `fileUserStoreConfig` field is assigned with the `http:FileUserStoreConfig` implementation, the authentication will be evaluated. Optionally, you can have the `string|string[]` value for the `scopes` field also. Then, the authorization will be evaluated.
 
@@ -206,7 +252,7 @@ service /foo on securedEP {
 }
 ```
 
-### LDAP User Store
+### 2.2. LDAP User Store
 
 Ballerina supports LDAP user store basic authentication and authorization for services/resources. The `auth` field of a service/resource annotation should have a `http:LdapUserStoreConfigWithScopes` record as an element. If the `ldapUserStoreConfig` field is assigned with the `http:LdapUserStoreConfig` implementation, the authentication will be evaluated. Optionally, you can have the `string|string[]` value for the `scopes` field also. Then, the authorization will be evaluated.
 
@@ -388,7 +434,7 @@ service /foo on securedEP {
 }
 ```
 
-## JWT Auth
+## 3. JWT Auth
 
 Ballerina supports JWT authentication and authorization for services/resources. The `auth` field of a service/resource annotation should have a `http:JwtValidatorConfigWithScopes` record as an element. If the `jwtValidatorConfig` field is assigned with the `http:JwtValidatorConfig` implementation, the authentication will be evaluated. Optionally, you can have the `string|string[]` value for the `scopes` field also. Then, the authorization will be evaluated.
 
@@ -496,7 +542,7 @@ curl -k -v https://localhost:9091/hello -H 'Authorization: Bearer <token>'
 Hello, World!
 ```
 
-### Imperative Method
+#### Imperative Method
 
 There is an imperative method to handle authentication and authorization as follows:
 
@@ -536,7 +582,7 @@ service /foo on securedEP {
 }
 ```
 
-## OAuth2
+## 4. OAuth2
 
 Ballerina supports OAuth2 authorization for services/resources. The `auth` field of a service/resource annotation should have an `http:OAuth2IntrospectionConfigWithScopes` record as an element. If the `oauth2IntrospectionConfig` field is assigned with the `http:OAuth2IntrospectionConfig` implementation, the authentication will be evaluated. Optionally, you can have the `string|string[]` value for the `scopes` field also. Then, the authorization will be evaluated.
 
@@ -647,7 +693,7 @@ curl -k -v https://localhost:9091/hello -H 'Authorization: Bearer <token>'
 Hello, World!
 ```
 
-### Imperative Method
+#### Imperative Method
 
 There is an imperative method to handle authorization as follows:
 
@@ -681,6 +727,91 @@ service /foo on securedEP {
             return auth;
         }
         return "Hello, World!";
+    }
+}
+```
+
+## 5. Custom Auth
+
+### 5.1. Custom Auth Provider
+
+```ballerina
+public type CustomConfig record {|
+    // required fields to get from the user
+|};
+```
+
+```ballerina
+public type CustomData record {|
+    // required fields to represents the authenticated data
+|};
+```
+
+```ballerina
+public isolated class ListenerAuthProvider {
+
+    public isolated function init(CustomConfig config) {
+        // this function initialize the required configurations
+    }
+
+    public isolated function authenticate(string credential) returns CustomData|error {
+        // this function authenticates the token as required
+    }
+}
+```
+
+Example: <https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/ballerina/listener_jwt_auth_provider.bal>
+
+### 5.2. Custom Auth Handler
+
+```ballerina
+import ballerina/http;
+
+public isolated class ListenerAuthHandler {
+
+    private final ListenerAuthProvider provider;
+
+    public isolated function init(CustomConfig config) {
+        self.provider = new(config);
+    }
+
+    public isolated function authenticate(http:Request|http:Headers|string data) returns CustomData|http:Unauthorized {
+        // extracts the credential.
+        CustomData|error details = self.provider.authenticate(credential);
+        // evaluate details and prepare error responses
+    }
+}
+```
+
+Example: <https://github.com/ballerina-platform/module-ballerina-http/blob/master/ballerina/auth_listener_jwt_auth_handler.bal>
+
+### 5.3. Sample
+
+```ballerina
+import ballerina/http;
+
+CustomConfig config = {
+    // initialize the fields
+};
+ListenerAuthHandler handler = new(config);
+
+listener http:Listener securedEP = new(9090,
+    secureSocket = {
+        key: {
+            certFile: "/path/to/public.crt"
+            keyFile: "/path/to/private.key"
+        }
+    }
+);
+
+service /foo on securedEP {
+
+    resource function get bar(@http:Header { name: "Authorization" } string header) returns string|http:Unauthorized {
+        CustomData|http:Unauthorized result = handler.authenticate(header);
+        if result is http:Unauthorized {
+            return result;
+        }
+        // evaluate `CustomData`
     }
 }
 ```

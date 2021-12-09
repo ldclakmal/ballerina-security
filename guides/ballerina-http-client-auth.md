@@ -1,4 +1,30 @@
-# Ballerina HTTP Client Authentication
+# Specification: Ballerina HTTP Client Authentication
+
+This is the specification for authentication of HTTP client programmed in the
+[Ballerina programming language](https://ballerina.io/), which is an open-source programming language for the cloud
+that makes it easier to use, combine, and create network services.
+
+This is an extended version of following specifications:
+- [Specification: Ballerina Auth Library](https://github.com/ballerina-platform/module-ballerina-auth/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina JWT Library](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina OAuth2 Library](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/docs/spec/spec.md)
+
+# Contents
+
+1. [Overview](#1-overview)
+2. [Basic Auth](#2-basic-auth)
+3. [Self-Signed JWT Auth](#3-self-signed-jwt-auth)
+4. [Bearer Token Auth](#4-bearer-token-auth)
+5. [OAuth2](#5-oauth2)
+    * 5.1. [Client Credentials Grant Type](#51-client-credentials-grant-type)
+    * 5.2. [Password Grant Type](#52-password-grant-type)
+    * 5.3. [Refresh Token Grant Type](#53-refresh-token-grant-type)
+6. [Custom Auth](#6-custom-auth)
+    * 6.1. [Custom Auth Provider](#61-custom-auth-provider)
+    * 6.2. [Custom Auth Handler](#62-custom-auth-handler)
+    * 6.3. [Sample](#63-sample)
+
+## 1. Overview
 
 > Ballerina HTTP clients can be configured to enforce authentication.
 
@@ -24,7 +50,7 @@ http:Client securedEP = check new("https://localhost:9090",
 );
 ```
 
-## Basic Auth
+## 2. Basic Auth
 
 Ballerina supports Basic Authentication for clients. The `auth` field of the client configurations (`http:ClientConfiguration`) should have the `http:CredentialsConfig` record.
 
@@ -53,7 +79,7 @@ public function main() returns error? {
 }
 ```
 
-## Self-Signed JWT Auth
+## 3. Self-Signed JWT Auth
 
 Ballerina supports self-signed JWT Authentication for clients. The `auth` field of the client configurations (`http:ClientConfiguration`) should have the `http:JwtIssuerConfig` record.
 
@@ -111,7 +137,7 @@ public function main() returns error? {
 }
 ```
 
-## Bearer Token Auth
+## 4. Bearer Token Auth
 
 Ballerina supports Bearer Token Authentication for clients. The `auth` field of the client configurations (`http:ClientConfiguration`) should have the `http:BearerTokenConfig` record.
 
@@ -138,11 +164,11 @@ public function main() returns error? {
 }
 ```
 
-## OAuth2
+## 5. OAuth2
 
 Ballerina supports OAuth2 authorization for clients. It supports the client credentials grant type, password grant type, and refresh token grant type, in which, the credentials can be provided manually, and after that, refreshing is handled internally. The `auth` field of the client configurations (`http:ClientConfiguration`) should have either one of the `http:OAuth2ClientCredentialsGrantConfig`, `http:OAuth2PasswordGrantConfig`, or `http:OAuth2RefreshTokenGrantConfig` records.
 
-### Client Credentials Grant Type
+### 5.1. Client Credentials Grant Type
 
 The `http:OAuth2ClientCredentialsGrantConfig` configurations include:
 
@@ -194,7 +220,7 @@ public function main() returns error? {
 }
 ```
 
-### Password Grant Type
+### 5.2. Password Grant Type
 
 The `http:OAuth2PasswordGrantConfig` configurations include:
 
@@ -267,7 +293,7 @@ public function main() returns error? {
 }
 ```
 
-### Refresh Token Grant Type
+### 5.3. Refresh Token Grant Type
 
 The `http:OAuth2RefreshTokenGrantConfig` configurations include:
 
@@ -321,9 +347,9 @@ public function main() returns error? {
 }
 ```
 
-## Custom Auth
+## 6. Custom Auth
 
-### Custom Auth Provider
+### 6.1. Custom Auth Provider
 
 ```ballerina
 public type CustomConfig record {|
@@ -335,18 +361,18 @@ public type CustomConfig record {|
 public isolated class ClientAuthProvider {
 
     public isolated function init(CustomConfig config) {
-        // This function initialize the required configurations.
+        // this function initialize the required configurations
     }
 
     public isolated function generateToken() returns string|error {
-        // This function generate the token as required.
+        // this function generate the token as required
     }
 }
 ```
 
 Example: <https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/ballerina/client_self_signed_jwt_auth_provider.bal>
 
-### Custom Auth Handler
+### 6.2. Custom Auth Handler
 
 ```ballerina
 import ballerina/http;
@@ -361,14 +387,14 @@ public isolated class ClientAuthHandler {
 
     public isolated function enrich(http:Request req) returns http:Request|error {
         string result = check self.provider.generateToken();
-        // Set the HTTP header as required.
+        // set the HTTP header as required
     }
 }
 ```
 
 Example: <https://github.com/ballerina-platform/module-ballerina-http/blob/master/ballerina/auth_client_self_signed_jwt_auth_handler.bal>
 
-### Sample
+### 6.3. Sample
 
 ```ballerina
 import ballerina/http;
