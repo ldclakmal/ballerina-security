@@ -19,13 +19,13 @@ This repository contains all the examples, use-cases, demos, and resources relat
 
 This section demonstrates the current status of the security modules of the Ballerina standard library followed by the official references for all the security examples aka Ballerina by examples (BBEs).
 
-| Module | Latest Release | Status | Issues & PRs | Docs & Package |
-|---|---|---|---|---|
-| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] | [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov] | [![issues][auth-badge-issues]][auth-issues] <br/> [![pulls][auth-badge-pulls]][auth-pulls] | [![docs][ballerina-docs-logo]][auth-docs] <br/> [![package][ballerina-central-logo]][auth-package] |
-| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] | [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov] | [![issues][jwt-badge-issues]][jwt-issues] <br/> [![pulls][jwt-badge-pulls]][jwt-pulls] | [![docs][ballerina-docs-logo]][jwt-docs] <br/> [![package][ballerina-central-logo]][jwt-package] |
-| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [![issues][oauth2-badge-issues]][oauth2-issues] <br/> [![pulls][oauth2-badge-pulls]][oauth2-pulls] | [![docs][ballerina-docs-logo]][oauth2-docs] <br/> [![package][ballerina-central-logo]][oauth2-package] |
-| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![issues][crypto-badge-issues]][crypto-issues] <br/> [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
-| [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [![issues][url-badge-issues]][url-issues] <br/> [![pulls][url-badge-pulls]][url-pulls] | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package] |
+| Module | Latest Release | Build Status | Code Coverage | ![docs][ballerina-docs-logo] | ![package][ballerina-central-logo] |
+|---|---|---|---|---|---|
+| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] | [![build][auth-badge-build]][auth-build] | [![codecov][auth-badge-codecov]][auth-codecov] | [lib.ballerina.io/ballerina/auth][auth-docs] | [central.ballerina.io/ballerina/auth][auth-package] |
+| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] | [![build][jwt-badge-build]][jwt-build] | [![codecov][jwt-badge-codecov]][jwt-codecov] | [lib.ballerina.io/ballerina/jwt][jwt-docs] | [central.ballerina.io/ballerina/jwt][jwt-package] |
+| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] | [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [lib.ballerina.io/ballerina/oauth2][oauth2-docs] | [central.ballerina.io/ballerina/oauth2][oauth2-package] |
+| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] | [![codecov][crypto-badge-codecov]][crypto-codecov] | [lib.ballerina.io/ballerina/crypto][crypto-docs] | [central.ballerina.io/ballerina/crypto][crypto-package] |
+| [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] | [![codecov][url-badge-codecov]][url-codecov] | [lib.ballerina.io/ballerina/url][url-docs] | [central.ballerina.io/ballerina/url][url-package] |
 
 ## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
