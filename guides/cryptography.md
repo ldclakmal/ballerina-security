@@ -76,15 +76,30 @@ References:
 ```bash
 openssl genrsa -out ca.key 2048
 openssl req -x509 -sha256 -new -nodes -key ca.key -days 3650 -out ca.crt
-
-openssl req -out server.csr -newkey rsa:2048 -nodes -keyout server.key -config san.conf
-openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key -config san.conf
 ```
 
-#### Generate CSR with CA cert and key
+#### Generate client/server CSR and key
 ```bash
-openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 3650 -sha256 -extfile san.conf -extensions v3_req
-openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 3650 -sha256 -extfile san.conf -extensions v3_req
+openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key
+openssl req -out server.csr -newkey rsa:2048 -nodes -keyout server.key
+```
+
+###### [Optional] with `san.conf`
+```bash
+openssl req -out client.csr -newkey rsa:2048 -nodes -keyout client.key -config san.conf
+openssl req -out server.csr -newkey rsa:2048 -nodes -keyout server.key -config san.conf
+```
+
+#### Generate client/server cert
+```bash
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 3650 -sha256
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 3650 -sha256
+```
+
+###### [Optional] with `san.conf`
+```bash
+openssl x509 -req -in client.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out client.crt -days 3650 -sha256 -extfile san.conf
+openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 3650 -sha256 -extfile san.conf
 ```
 
 #### Import certs to truststore
@@ -96,21 +111,21 @@ keytool -import -trustcacerts -alias server -file server.crt -keystore truststor
 
 #### Convert key to PKCS12 and import to keystore
 ```bash
-openssl pkcs12 -export -in server.crt -inkey server.key \
-               -out server.p12 -name server \
-               -CAfile ca.crt -caname root
 openssl pkcs12 -export -in client.crt -inkey client.key \
                -out client.p12 -name client \
                -CAfile ca.crt -caname root
-               
-keytool -importkeystore \
-        -deststorepass ballerina -destkeypass ballerina -destkeystore keystore.p12 \
-        -srckeystore server.p12 -srcstoretype PKCS12 -srcstorepass ballerina \
-        -alias server
+openssl pkcs12 -export -in server.crt -inkey server.key \
+               -out server.p12 -name server \
+               -CAfile ca.crt -caname root
+
 keytool -importkeystore \
         -deststorepass ballerina -destkeypass ballerina -destkeystore keystore.p12 \
         -srckeystore client.p12 -srcstoretype PKCS12 -srcstorepass ballerina \
         -alias client
+keytool -importkeystore \
+        -deststorepass ballerina -destkeypass ballerina -destkeystore keystore.p12 \
+        -srckeystore server.p12 -srcstoretype PKCS12 -srcstorepass ballerina \
+        -alias server
 ```
 
 ---
