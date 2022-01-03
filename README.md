@@ -73,8 +73,10 @@ This section demonstrates an automated Ballerina security test-suite which conta
 
 ## Issues/Tasks
 
-Ballerina standard library has a separate [GitHub issue](https://github.com/ballerina-platform/ballerina-standard-library/issues) for each issue or task. So, this section summarizes the issues/tasks related to the security aspects of Ballerina standard libraries. These issues/tasks are further categorized as bugs, improvements, new features, and tasks.
-Refer to the [this](./issues) page for more information.
+This section summarizes the issues/tasks related to the security aspects of Ballerina.
+- The Ballerina standard library issues/tasks are further categorized as bugs, improvements, new features, and tasks.
+  Refer to the [this](./issues) page for more information.
+- Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
 
 ---
 

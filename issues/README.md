@@ -2,9 +2,6 @@
 
 Ballerina standard library has a separate [GitHub issue](https://github.com/ballerina-platform/ballerina-standard-library/issues) for each issue or task. So, this section summarizes the issues/tasks related to the security aspects of Ballerina standard libraries. These issues/tasks are further categorized as bugs, improvements, new features, and tasks.
 
-> ### Project Board [Beta]
-> <https://github.com/users/ldclakmal/projects/1>
-
 ### Dashboard
 
 [![Total Issues/Tasks Open](https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/area/security?label=Total%20Issues%2FTasks&logo=github)](https://github.com/ballerina-platform//ballerina-standard-library/issues?q=is%3Aopen+label%3Aarea%2Fsecurity)
