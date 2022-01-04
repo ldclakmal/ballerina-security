@@ -225,6 +225,7 @@ There is an imperative method to handle authentication and authorization as foll
 
 ```ballerina
 import ballerina/http;
+import ballerina/auth;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {
@@ -387,6 +388,7 @@ There is an imperative method to handle authentication and authorization as foll
 
 ```ballerina
 import ballerina/http;
+import ballerina/auth;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {
@@ -548,6 +550,7 @@ There is an imperative method to handle authentication and authorization as foll
 
 ```ballerina
 import ballerina/http;
+import ballerina/jwt;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {
@@ -699,6 +702,7 @@ There is an imperative method to handle authorization as follows:
 
 ```ballerina
 import ballerina/http;
+import ballerina/oauth2;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {

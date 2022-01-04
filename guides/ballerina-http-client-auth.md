@@ -38,7 +38,6 @@ The following example represents how an HTTP client can be configured to call a 
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -61,7 +60,7 @@ The `http:CredentialsConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -75,7 +74,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
@@ -108,7 +107,7 @@ The `http:JwtIssuerConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -133,7 +132,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
@@ -147,7 +146,7 @@ The `http:BearerTokenConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -160,7 +159,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
@@ -195,7 +194,7 @@ The `http:OAuth2ClientCredentialsGrantConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -216,7 +215,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
@@ -257,7 +256,7 @@ The `http:OAuth2PasswordGrantConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -289,7 +288,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
@@ -321,7 +320,7 @@ The `http:OAuth2RefreshTokenGrantConfig` configurations include:
 
 ```ballerina
 import ballerina/http;
-import ballerina/log;
+import ballerina/io;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -343,7 +342,7 @@ http:Client securedEP = check new("https://localhost:9090",
 
 public function main() returns error? {
     json response = check securedEP->get("/foo/bar");
-    log:printInfo(response.toJsonString());
+    io:println(response);
 }
 ```
 
