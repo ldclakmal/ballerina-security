@@ -108,6 +108,7 @@ The `http:JwtIssuerConfig` configurations include:
 ```ballerina
 import ballerina/http;
 import ballerina/io;
+import ballerina/jwt;
 
 http:Client securedEP = check new("https://localhost:9090",
     auth = {
@@ -121,7 +122,7 @@ http:Client securedEP = check new("https://localhost:9090",
         signatureConfig: {
             algorithm: jwt:RS256,
             config: {
-                keyFile: "/path/to/private.key",
+                keyFile: "/path/to/private.key"
             }
         }
     },

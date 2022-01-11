@@ -224,8 +224,8 @@ Hello, World!
 There is an imperative method to handle authentication and authorization as follows:
 
 ```ballerina
-import ballerina/http;
 import ballerina/auth;
+import ballerina/http;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {
@@ -387,8 +387,8 @@ Hello, World!
 There is an imperative method to handle authentication and authorization as follows:
 
 ```ballerina
-import ballerina/http;
 import ballerina/auth;
+import ballerina/http;
 
 listener http:Listener securedEP = new(9090,
     secureSocket = {
@@ -423,11 +423,11 @@ http:ListenerLdapUserStoreBasicAuthHandler handler = new({
 
 service /foo on securedEP {
     resource function get bar(@http:Header { name: "Authorization" } string header) returns string|http:Unauthorized|http:Forbidden {
-        auth:UserDetails|http:Unauthorized authn = handler.authenticate(header);
+        auth:UserDetails|http:Unauthorized authn = handler->authenticate(header);
         if (authn is http:Unauthorized) {
             return authn;
         }
-        http:Forbidden? authz = handler.authorize(<auth:UserDetails> authn, ["write", "update"]);
+        http:Forbidden? authz = handler->authorize(<auth:UserDetails> authn, ["write", "update"]);
         if (authz is http:Forbidden) {
             return authz;
         }
@@ -780,7 +780,7 @@ public isolated class ListenerAuthHandler {
     }
 
     public isolated function authenticate(http:Request|http:Headers|string data) returns CustomData|http:Unauthorized {
-        // extracts the credential.
+        // extracts the credential
         CustomData|error details = self.provider.authenticate(credential);
         // evaluate details and prepare error responses
     }
