@@ -7,9 +7,9 @@ if [[ -z $artifact_id ]]; then
 else
   if curl -k -L -X GET 'https://api.github.com/repos/ballerina-platform/ballerina-distribution/actions/artifacts/'"$artifact_id"'/zip' -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: Bearer '"$GITHUB_TOKEN"'' -o ballerina.zip; then
     unzip -q ballerina.zip
-    unzip -q ballerina-swan-lake-*.zip
+    unzip -q ballerina-2201.*.zip
     rm -r ballerina*.zip
-    directory=$(ls | grep ballerina-swan-lake-*)
+    directory=$(ls | grep ballerina-2201.*)
     $GITHUB_WORKSPACE/$directory/bin/bal -v
     echo "$GITHUB_WORKSPACE/$directory/bin" >> $GITHUB_PATH
   fi
