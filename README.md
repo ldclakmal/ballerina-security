@@ -74,9 +74,9 @@ This section demonstrates an automated Ballerina security test-suite which conta
 ## Issues/Tasks
 
 This section summarizes the issues/tasks related to the security aspects of Ballerina.
+- Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
 - The Ballerina standard library issues/tasks are further categorized as bugs, improvements, new features, and tasks.
   Refer to the [this](./issues) page for more information.
-- Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
 
 ---
 
@@ -149,7 +149,6 @@ The following sections have important references which were used for the design 
 - [Ballerina HTTP Listener Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-listener-auth.html)
 - [Ballerina HTTP Client Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-client-auth.html)
 - [How to obtain Google OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html)
-- [How to obtain Salesforce OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-salesforce-oauth2-credentials.html)
 - [How to obtain Twilio Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html)
 - [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)
 - [Cryptography](https://ldclakmal.me/ballerina-security/guides/cryptography.html)
