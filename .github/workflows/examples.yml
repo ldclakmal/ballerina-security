@@ -31,4 +31,4 @@ jobs:
         run: ./_resources/scripts/install.sh ${{ github.event.inputs.artifact_id }}
       - name: Test
         working-directory: examples/${{ matrix.module }}
-        run: ./${{ matrix.module }}.sh
+        run: ./scripts/${{ matrix.module }}.sh

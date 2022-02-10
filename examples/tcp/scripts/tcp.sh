@@ -1,4 +1,4 @@
-source assert.sh
+source scripts/assert.sh
 
 bal run tcp_listener_tls.bal &
 sleep 10s

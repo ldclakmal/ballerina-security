@@ -1,4 +1,4 @@
-source assert.sh
+source scripts/assert.sh
 
 touch service/Ballerina.toml
 touch client/Ballerina.toml

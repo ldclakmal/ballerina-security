@@ -1,4 +1,4 @@
-source assert.sh
+source scripts/assert.sh
 
 bal run websocket_service_jwt_auth.bal &
 sleep 10s
