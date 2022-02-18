@@ -29,7 +29,7 @@ isolated service /orders1 on jwtListenerEP {
         ]
 	}
     isolated resource function get view() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -37,7 +37,6 @@ isolated service /orders1 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 
     @http:ResourceConfig {
@@ -55,7 +54,7 @@ isolated service /orders1 on jwtListenerEP {
         ]
     }
     isolated resource function get add() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -63,7 +62,6 @@ isolated service /orders1 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 }
 
@@ -85,7 +83,7 @@ isolated service /orders2 on jwtListenerEP {
         ]
 	}
     isolated resource function get view() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -93,7 +91,6 @@ isolated service /orders2 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 
     @http:ResourceConfig {
@@ -111,7 +108,7 @@ isolated service /orders2 on jwtListenerEP {
         ]
     }
     isolated resource function get add() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -119,7 +116,6 @@ isolated service /orders2 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 }
 
@@ -148,7 +144,7 @@ isolated service /orders3 on jwtListenerEP {
         ]
 	}
     isolated resource function get view() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -156,7 +152,6 @@ isolated service /orders3 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 
     @http:ResourceConfig {
@@ -181,7 +176,7 @@ isolated service /orders3 on jwtListenerEP {
         ]
     }
     isolated resource function get add() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -189,6 +184,5 @@ isolated service /orders3 on jwtListenerEP {
                 }
             ]
         };
-        return inventory;
     }
 }

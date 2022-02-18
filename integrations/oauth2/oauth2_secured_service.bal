@@ -30,7 +30,7 @@ isolated service /orders on listenerEP {
         ]
 	}
     isolated resource function get view() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -38,7 +38,6 @@ isolated service /orders on listenerEP {
                 }
             ]
         };
-        return inventory;
     }
 
     @http:ResourceConfig {
@@ -58,7 +57,7 @@ isolated service /orders on listenerEP {
         ]
     }
     isolated resource function get add() returns json|error {
-        json inventory = {
+        return {
             "items": [
                 {
                     "code": uuid:createType4AsString(),
@@ -66,6 +65,5 @@ isolated service /orders on listenerEP {
                 }
             ]
         };
-        return inventory;
     }
 }

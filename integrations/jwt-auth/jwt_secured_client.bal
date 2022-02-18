@@ -27,13 +27,8 @@ listener http:Listener apiEP = new (8080,
 );
 
 isolated service /api on apiEP {
-    isolated resource function get [int id]/[string api]() returns http:Response|http:InternalServerError {
-        http:Response|http:ClientError response = clientEP->get("/orders" + id.toString() + "/" + api);
-        if response is http:Response {
-            return response;
-        } else {
-            http:InternalServerError err = { body: response.toString() };
-            return err;
-        }
+    isolated resource function get [int id]/[string api]() returns json|error {
+        json payload = check clientEP->get("/orders" + id.toString() + "/" + api);
+        return payload;
     }
 }
