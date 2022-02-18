@@ -31,7 +31,7 @@ final http:ListenerJwtAuthHandler handler = new({
 isolated service /websubhub on securedHub {
     isolated remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicRegistrationError(auth);
         }
         log:printInfo("Registered topic: '" + msg.topic + "'.");
@@ -43,7 +43,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicDeregistrationError(auth);
         }
         log:printInfo("Deregistered topic: '" + msg.topic + "'.");
@@ -55,7 +55,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:InternalSubscriptionError(auth);
         }
         log:printInfo("Subscription accepted for topic: '" + msg.hubTopic + "'.");
@@ -83,7 +83,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:UpdateMessageError(auth);
         }
         log:printInfo("Message updated for message type: '" + msg.msgType.toString() + "', topic: '" + msg.hubTopic +
@@ -96,18 +96,18 @@ isolated service /websubhub on securedHub {
                     cert: "./resources/public.crt"
                 }
             });
-            if (clientEP is error) {
+            if clientEP is error {
                 log:printError("Error occurred while initializing the hub client.", 'error = clientEP);
             } else {
                 websubhub:ContentDistributionMessage distributionMsg = {
                     content: msg.content.toString()
                 };
                 websubhub:ContentDistributionSuccess|websubhub:SubscriptionDeletedError|error? response = clientEP->notifyContentDistribution(distributionMsg);
-                if (response is websubhub:ContentDistributionSuccess) {
+                if response is websubhub:ContentDistributionSuccess {
                     log:printInfo("Successfully notified the content to subscriber.");
-                } else if (response is websubhub:SubscriptionDeletedError) {
+                } else if response is websubhub:SubscriptionDeletedError {
                     log:printError("Subscription deleted error occurred while notifying the content to subscriber.");
-                } else if (response is error) {
+                } else if response is error {
                     log:printError("Error occurred while notifying the content to subscriber.", 'error = response);
                 }
             }
@@ -118,13 +118,13 @@ isolated service /websubhub on securedHub {
 
 isolated function doAuth(http:Headers headers) returns string? {
     jwt:Payload|http:Unauthorized authn = handler.authenticate(headers);
-    if (authn is http:Unauthorized) {
+    if authn is http:Unauthorized {
         string errorMsg = "Failed to authenticate the request. " + <string>authn?.body;
         log:printError(errorMsg);
         return errorMsg;
     }
     http:Forbidden? authz = handler.authorize(<jwt:Payload>authn, "admin");
-    if (authz is http:Forbidden) {
+    if authz is http:Forbidden {
         string errorMsg = "Failed to authorize the request for the scope key: 'scp' and value: 'admin'.";
         log:printError(errorMsg);
         return errorMsg;
@@ -136,7 +136,7 @@ isolated map<websubhub:Subscription[]> subscribersMap = {};
 
 isolated function addSubscriber(websubhub:Subscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             subscribersMap.get(subscriber.hubTopic).push(subscriber.cloneReadOnly());
         } else {
             websubhub:Subscription[] subscribersArray = [];
@@ -148,11 +148,11 @@ isolated function addSubscriber(websubhub:Subscription subscriber) {
 
 isolated function removeSubscriber(websubhub:Unsubscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
             int i = 0;
             foreach websubhub:Subscription sub in subscribersArray {
-                if (sub.hubCallback == subscriber.hubCallback) {
+                if sub.hubCallback == subscriber.hubCallback {
                     break;
                 }
                 i = i + 1;

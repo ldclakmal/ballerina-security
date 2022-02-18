@@ -24,7 +24,7 @@ listener rabbitmq:Listener securedEP = new("localhost", 5671,
 isolated service rabbitmq:Service on securedEP {
     isolated remote function onMessage(rabbitmq:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println("Received message: ", messageContent);
         }
     }

@@ -23,7 +23,7 @@ listener stan:Listener securedEP = new("nats://localhost:4222",
 isolated service stan:Service on securedEP {
     isolated remote function onMessage(stan:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println("Received message: ", messageContent);
         }
     }

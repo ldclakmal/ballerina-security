@@ -22,7 +22,7 @@ listener http:Listener apiEP = new(8080,
 isolated service /api on apiEP {
     isolated resource function get [string api]() returns http:Response|http:InternalServerError {
         http:Response|http:ClientError response = clientEP->get("/orders/" + api);
-        if (response is http:Response) {
+        if response is http:Response {
             return response;
         } else {
             http:InternalServerError err = { body: response.toString() };
