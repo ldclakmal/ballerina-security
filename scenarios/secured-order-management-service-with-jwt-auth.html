@@ -173,7 +173,234 @@
 <li><a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service"><strong>Source Code</strong></a></li>
 <li><a href="https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f"><strong>Blog</strong></a></li>
 </ul>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<p>This guide explains how to secure an 'Order Management Service' (RESTful service) with JWT Auth using Ballerina.
+The following figure illustrates a high-level design diagram of the complete use case.</p>
 <p><img src="./order-management-service-jwt.png" alt="Securing Microservice with JWT" /></p>
+<p>The end-user (customer), in this example, Alice and Bob, interacts with the system using the web/mobile app provided.
+This web/mobile app acts as a 'Client' on behalf of the user’s actions and calls to the 'API Gateway'. The 'API Gateway'
+routes the requests to 'Order Service', which is responsible for processing the order for the customer. The 'Inventory
+Service' is called by the 'Order Service' to process the inventory-related operations.</p>
+<p><strong>NOTE</strong>: For this guide, since we are discussing the JWT security aspects, we are focussing on the network
+interactions once the 'API Gateway' receives a request.</p>
+<ul>
+<li>The 'API Gateway' intercepts the request from the end-user, extracts the token, and then talks to the 'STS' connected
+to validate the token.</li>
+<li>After validating the token, the 'STS' issues a new JWT signed by itself. This JWT includes the user details.</li>
+<li>The 'API Gateway' passes the new JWT to the 'Order Management Service', and it needs only trust this STS to accept
+the token as valid. The 'Order Management Service' validates the signature of the JWT to make sure that it's issued
+by the 'STS' it trusts. Apart from the signature validation, the 'Order Management Service' also does the issuer and
+audience validation.</li>
+<li>The 'Order Service' talks to 'Inventory Service' with mTLS (mutual TLS).</li>
+</ul>
+<p>In this approach, JWT helps us to achieve two things. First, it helps to pass the end-user context across microservices
+in a manner that can’t be forged. Because the claims set of the JWT is signed by the STS, no microservice can change
+it's content without invalidating its signature. Also, JWT helps to secure service-to-service communications. One
+microservice can access another microservice only if it carries a valid JWT issued by the trusted STS. Any recipient
+microservice rejects any request without a valid JWT.</p>
+<h2><a class="header" href="#implementation" id="implementation">Implementation</a></h2>
+<p><strong>NOTE</strong>: To get started with the implementation we need to have the 'Inventory Service' to be ready. But, since we are
+focussing only on the 'Order Service' by this guide, the implementation details of the 'Inventory Service' are not
+explained. Refer to <a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a> for the implementation.</p>
+<ul>
+<li>
+<p>Now, we can get started with the Ballerina service; 'Order Service', which is a RESTful service that serves the
+order management requests. We will look at securing multiple resources exposed by 'Order Service' to match with the
+different security requirements.</p>
+<ul>
+<li><strong>Create Order</strong> : Order creation should only be allowed for authenticated users.</li>
+<li><strong>Retrieve Order</strong> : Retrieval of the order details should be allowed for all the users.</li>
+<li><strong>Update Order</strong> : Updating order details should only be allowed for &quot;admin&quot; users.</li>
+<li><strong>Delete Order</strong> : Deletion of the order should only be allowed for &quot;admin&quot; users.</li>
+</ul>
+</li>
+<li>
+<p>Authentication is enabled by setting the <code>auth</code> attribute of <code>http:ServiceConfig</code> or <code>http:ResourceConfig</code>. If we
+configure the <code>auth</code> attribute of <code>http:ServiceConfig</code> it will be applied to all the resources of the configured HTTP
+Service. Also, the security enforcement that is done for the service using the <code>http:ServiceConfig</code> can be overridden
+by the <code>http:ResourceConfig</code> annotation for a specific API(s).</p>
+</li>
+<li>
+<p>For this example 'Order Service', we need to configure the <code>auth</code> attribute of all the resources except the &quot;Retrieve
+Order&quot; resource, since we need to allow that for all the users.</p>
+</li>
+<li>
+<p>Ballerina uses the concept of 'scope' as the way of expressing authorization. Multiple scopes can be assigned to a
+user, and scopes can then be validated while enforcing authorization. To express that a certain service or resource
+require a scope, we have used the <code>scopes</code> annotation attribute of the <code>auth</code> annotation attribute.</p>
+</li>
+<li>
+<p>For this example 'Order Service', we need to configure the <code>scope</code> attribute for all the resources except the
+&quot;Retrieve Order&quot; resource, since we need to allow that for all the users.</p>
+</li>
+</ul>
+<p><strong>NOTE</strong>: For the simplicity of the article, we use an in-memory map for storing order data, and a 'Mock STS' is used
+for validating the JWT signature using JWKs. Refer to <a href="./sts"><code>examples/order-management-service/sts</code></a> for the implementation.</p>
+<h2><a class="header" href="#testing" id="testing">Testing</a></h2>
+<p>We can run the 'Order Service' that we developed above, in our local environment. To complete the design diagram
+illustrated above, we have to run the 'Mock STS', and the 'Inventory Service' first.</p>
+<p>Open the terminal and navigate to <a href="./sts"><code>examples/order-management-service/sts</code></a> directory and execute the following command.</p>
+<pre><code class="language-shell">$ bal run
+</code></pre>
+<p>The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/sts:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/inventory_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <a href="./order_service"><code>examples/order-management-service/order_service</code></a> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/order_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, we can test authentication and authorization checks being enforced on different functions of the 'Order Service'
+by sending HTTP requests. For example, we have used the CURL commands to test each operation of the 'Order Service' as
+follows.</p>
+<h3><a class="header" href="#create-order" id="create-order">Create Order</a></h3>
+<h4><a class="header" href="#without-authentication" id="without-authentication">Without authentication</a></h4>
+<pre><code class="language-shell">curl -k -v -H &quot;Content-Type: application/json&quot; \
+-d '{&quot;id&quot;: &quot;100500&quot;, &quot;name&quot;: &quot;Sample order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 2}, {&quot;category&quot;: &quot;books&quot;, &quot;code&quot;: &quot;978-1617295959&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 401 Unauthorized
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:33:52 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-the-counter-user-who-has-add_order-permission" id="authenticating-as-the-counter-user-who-has-add_order-permission">Authenticating as the 'counter' user, who has 'add_order' permission</a></h4>
+<pre><code class="language-shell">curl -k -v -H &quot;Content-Type: application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImNvdW50ZXIiLCAiYXVkIjoiYmFsbGVyaW5hIiwgImV4cCI6MTk0NTIzODg5NCwgIm5iZiI6MTYyOTg3ODg5NCwgImlhdCI6MTYyOTg3ODg5NCwgImp0aSI6ImY1YWRlZDUwNTg1YzQ2ZjJiOGNhMjMzZDBjMmEzYzlkIiwgInNjb3BlIjoiYWRkX29yZGVyIn0.FMDL-Y8zMtAW7vBVeEbwf_8ynSKdjAkuEBVJpoGds06Z2cOrL3WPZYswnbUOzULBnOXQJQEnK-P-QmypvqP0NWGpzfoC5QMqg0FhPvxyglP1QNYbrS_5tZFM_7Nn7tBFZxiBq666AzjDyhZ2jc39X9rftV0m8p4yyFdSI4KFiEzQ8eOWVVOIg3ejQ0ruDlSVvwx3lXe03XYmrhQp0m-_KYm-SGV3HTZttbo00A250pVY1QL137WDgeeDtGchOfjvM9G-UL8t3sw1Lyoq4OzblHEJJQOJnfRLM_nFKeULuAtt5k_UwmQRlV-XrgxMk0lu6KvYt1-Sa1HMiS8aIvrwig&quot; \
+-d '{&quot;id&quot;: &quot;100500&quot;, &quot;name&quot;: &quot;Sample order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 2}, {&quot;category&quot;: &quot;books&quot;, &quot;code&quot;: &quot;978-1617295959&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 201 Created
+&lt; Location: http://localhost:9090/order/100500
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:05 +0530
+
+{&quot;status&quot;:&quot;Order '100500' created.&quot;}
+</code></pre>
+<h3><a class="header" href="#retrieve-order" id="retrieve-order">Retrieve Order</a></h3>
+<pre><code class="language-shell">curl -k -v &quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 70
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:20 +0530
+
+{&quot;id&quot;:&quot;100500&quot;, &quot;name&quot;:&quot;Sample order&quot;, &quot;items&quot;:[{&quot;category&quot;:&quot;electronics&quot;, &quot;code&quot;:&quot;SOWH1000XM4&quot;, &quot;qty&quot;:2}, {&quot;category&quot;:&quot;books&quot;, &quot;code&quot;:&quot;978-1617295959&quot;, &quot;qty&quot;:1}]}
+</code></pre>
+<h3><a class="header" href="#update-order" id="update-order">Update Order</a></h3>
+<h4><a class="header" href="#without-authentication-1" id="without-authentication-1">Without authentication</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 401 Unauthorized
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:32 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-counter-user-who-has-add_order-permission" id="authenticating-as-counter-user-who-has-add_order-permission">Authenticating as 'counter' user, who has 'add_order' permission</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImNvdW50ZXIiLCAiYXVkIjoiYmFsbGVyaW5hIiwgImV4cCI6MTk0NTIzODg5NCwgIm5iZiI6MTYyOTg3ODg5NCwgImlhdCI6MTYyOTg3ODg5NCwgImp0aSI6ImY1YWRlZDUwNTg1YzQ2ZjJiOGNhMjMzZDBjMmEzYzlkIiwgInNjb3BlIjoiYWRkX29yZGVyIn0.FMDL-Y8zMtAW7vBVeEbwf_8ynSKdjAkuEBVJpoGds06Z2cOrL3WPZYswnbUOzULBnOXQJQEnK-P-QmypvqP0NWGpzfoC5QMqg0FhPvxyglP1QNYbrS_5tZFM_7Nn7tBFZxiBq666AzjDyhZ2jc39X9rftV0m8p4yyFdSI4KFiEzQ8eOWVVOIg3ejQ0ruDlSVvwx3lXe03XYmrhQp0m-_KYm-SGV3HTZttbo00A250pVY1QL137WDgeeDtGchOfjvM9G-UL8t3sw1Lyoq4OzblHEJJQOJnfRLM_nFKeULuAtt5k_UwmQRlV-XrgxMk0lu6KvYt1-Sa1HMiS8aIvrwig&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 403 Forbidden
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:55 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions" id="authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions">Authenticating as 'admin' user, who has 'add_order, update_order, cancel_order' permissions</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImFkbWluIiwgImF1ZCI6ImJhbGxlcmluYSIsICJleHAiOjE5NDUyMzY1OTksICJuYmYiOjE2Mjk4NzY1OTksICJpYXQiOjE2Mjk4NzY1OTksICJqdGkiOiJkMWI4NjNlNjc1N2M0ZjJlYjViMjM3YjI5ZmRhOGZhZSIsICJzY29wZSI6WyJhZGRfb3JkZXIiLCAidXBkYXRlX29yZGVyIiwgImNhbmNlbF9vcmRlciJdfQ.XxThNFztJTpn9FIk-9JfEm_xF8sbTwGnNa5bOl-l4lb3KfeV5ojAKEmjenpQR_2YctT2GM68mxunXP4CTxXoAVHAYWDmV10wkR4r7R6LO3wDJDqr7POC3zwtM-n9Ro-gWJEio-SLYw04kxExvjsE1aFa7pRJFuAFDIdAqnXkEaHLXshmOCgxYhAMzdgBQzUtBo7QmjQZf_0kPUioPpNNsDV4bGLQTeZo-SCZhfhvbHBrUsY2VVleUg0_gNVMmT0ySFQ8Jci4CaiglYrxQN9byS38_9qXtWINYEMbtApHaeyl4-0YvY5p8EbJes2ep_r0Q_Od6FQzGekFAVO4gSE6Zw&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:35:07 +0530
+
+{&quot;status&quot;:&quot;Order '100500' updated.&quot;}
+</code></pre>
+<h3><a class="header" href="#cancel-order" id="cancel-order">Cancel Order</a></h3>
+<h4><a class="header" href="#authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions-1" id="authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions-1">Authenticating as 'admin' user, who has 'add_order, update_order, cancel_order' permissions</a></h4>
+<pre><code class="language-shell">curl -k -v -X DELETE \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImFkbWluIiwgImF1ZCI6ImJhbGxlcmluYSIsICJleHAiOjE5NDUyMzY1OTksICJuYmYiOjE2Mjk4NzY1OTksICJpYXQiOjE2Mjk4NzY1OTksICJqdGkiOiJkMWI4NjNlNjc1N2M0ZjJlYjViMjM3YjI5ZmRhOGZhZSIsICJzY29wZSI6WyJhZGRfb3JkZXIiLCAidXBkYXRlX29yZGVyIiwgImNhbmNlbF9vcmRlciJdfQ.XxThNFztJTpn9FIk-9JfEm_xF8sbTwGnNa5bOl-l4lb3KfeV5ojAKEmjenpQR_2YctT2GM68mxunXP4CTxXoAVHAYWDmV10wkR4r7R6LO3wDJDqr7POC3zwtM-n9Ro-gWJEio-SLYw04kxExvjsE1aFa7pRJFuAFDIdAqnXkEaHLXshmOCgxYhAMzdgBQzUtBo7QmjQZf_0kPUioPpNNsDV4bGLQTeZo-SCZhfhvbHBrUsY2VVleUg0_gNVMmT0ySFQ8Jci4CaiglYrxQN9byS38_9qXtWINYEMbtApHaeyl4-0YvY5p8EbJes2ep_r0Q_Od6FQzGekFAVO4gSE6Zw&quot; \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:35:26 +0530
+
+{&quot;status&quot;:&quot;Order '100500' removed.&quot;}
+</code></pre>
+<h2><a class="header" href="#deployment" id="deployment">Deployment</a></h2>
+<p>Once we are done with the development, we can deploy the service using any of the methods that are listed below.</p>
+<h3><a class="header" href="#deploying-locally" id="deploying-locally">Deploying Locally</a></h3>
+<p>As the first step, we can build Ballerina executable files (.jar) of the microservices that we developed above. Open the
+terminal and navigate to <a href="./sts"><code>examples/order-management-service/sts</code></a>,
+<a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a>
+and <a href="./order_service"><code>examples/order-management-service/order_service</code></a> directories, and execute the following command
+for each of them.</p>
+<pre><code class="language-shell">$ bal build
+</code></pre>
+<p>The successful execution of the above command should show us the following outputs in order.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/sts:1.0.0
+
+Generating executable
+        target/bin/sts.jar
+</code></pre>
+<pre><code class="language-shell">Compiling source
+        jwt/inventory_service:1.0.0
+
+Generating executable
+        target/bin/inventory_service.jar
+</code></pre>
+<pre><code class="language-shell">Compiling source
+        jwt/order_service:1.0.0
+
+Generating executable
+        target/bin/order_service.jar
+</code></pre>
+<p>Once the <code>*.jar</code> files are created inside the <code>target/bin</code> directories, we can run the microservices with the following
+commands in order.</p>
+<pre><code class="language-shell">$ bal run target/bin/sts.jar
+$ bal run target/bin/inventory_service.jar
+$ bal run target/bin/order_service.jar
+</code></pre>
+<h3><a class="header" href="#deploying-code-to-cloud" id="deploying-code-to-cloud">Deploying Code to Cloud</a></h3>
+<p>Ballerina code to cloud supports generating the deployment artifacts of the Docker and Kubernetes.
+Refer to <a href="https://ballerina.io/learn/user-guide/deployment/code-to-cloud/">Code to Cloud</a> guide for more information.</p>
+<h2><a class="header" href="#observability" id="observability">Observability</a></h2>
+<p>HTTP/HTTPS based Ballerina services and any client connectors are observable by default.
+<a href="https://ballerina.io/learn/user-guide/observability/observing-ballerina-code/">Observing Ballerina Code</a> guide provides
+information on enabling Ballerina service observability with some of its supported systems.</p>
 
                     </main>
 

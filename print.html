@@ -1184,11 +1184,16 @@ public function main() returns error? {
 <li><a href="./scenarios/secured-order-management-service-with-oauth2.html">Secured Order Management Service with OAuth2</a></li>
 </ol>
 <h1><a class="header" href="#ballerina-sts" id="ballerina-sts">Ballerina STS</a></h1>
-<p>Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation. 
+<h4><a class="header" href="#important-links" id="important-links">Important Links</a></h4>
+<ul>
+<li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/sts/ballerina-sts.bal"><strong>Source Code</strong></a></li>
+</ul>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<p>Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation.
 This is published into Docker Hub as well.</p>
-<p><img src="https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts" alt="Docker Pulls" /></p>
+<p><a href="https://hub.docker.com/r/ldclakmal/ballerina-sts"><img src="https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts" alt="Docker Pulls" /></a></p>
 <h3><a class="header" href="#start" id="start">Start</a></h3>
-<p>To start STS in a local machine, we need to have <a href="https://ballerina.io/downloads/">Ballerina Swan Lake Beta 1</a> or 
+<p>To start STS in a local machine, we need to have <a href="https://ballerina.io/downloads/">Ballerina 2201.0.0 (Swan Lake)</a> or 
 later version installed.</p>
 <ul>
 <li>
@@ -1229,12 +1234,12 @@ https://localhost:9445/oauth2/introspect
 </li>
 </ul>
 <h1><a class="header" href="#e-commerce-system" id="e-commerce-system">E-Commerce System</a></h1>
-<h4><a class="header" href="#important-links" id="important-links">Important Links</a></h4>
+<h4><a class="header" href="#important-links-1" id="important-links-1">Important Links</a></h4>
 <ul>
 <li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/e-commerce-system"><strong>Source Code</strong></a></li>
 <li><a href="https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373"><strong>Blog</strong></a></li>
 </ul>
-<h3><a class="header" href="#overview" id="overview">Overview</a></h3>
+<h3><a class="header" href="#overview-1" id="overview-1">Overview</a></h3>
 <p>An e-commerce system that can be used to search for items and purchase items. </p>
 <p>The end-user (customer), in this example, <strong>Alice</strong> and <strong>Bob</strong>, interacts with the system using the web/mobile app 
 provided. This web/mobile app acts as a <strong>Client</strong> on behalf of the user's actions.</p>
@@ -1369,22 +1374,423 @@ https://localhost:9443/oauth2/token
 \&quot;delivery_id\&quot;:\&quot;d77336a7-2a8c-4732-96f3-ef84ae5c4b3d\&quot;, \&quot;delivery_method\&quot;:\&quot;DM01\&quot;}&quot;}
 </code></pre>
 <h1><a class="header" href="#secured-order-management-service-with-jwt-auth" id="secured-order-management-service-with-jwt-auth">Secured Order Management Service with JWT Auth</a></h1>
-<h4><a class="header" href="#important-links-1" id="important-links-1">Important Links</a></h4>
+<h4><a class="header" href="#important-links-2" id="important-links-2">Important Links</a></h4>
 <ul>
 <li><a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service"><strong>Source Code</strong></a></li>
 <li><a href="https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f"><strong>Blog</strong></a></li>
 </ul>
+<h2><a class="header" href="#overview-2" id="overview-2">Overview</a></h2>
+<p>This guide explains how to secure an 'Order Management Service' (RESTful service) with JWT Auth using Ballerina.
+The following figure illustrates a high-level design diagram of the complete use case.</p>
 <p><img src="scenarios/./order-management-service-jwt.png" alt="Securing Microservice with JWT" /></p>
+<p>The end-user (customer), in this example, Alice and Bob, interacts with the system using the web/mobile app provided.
+This web/mobile app acts as a 'Client' on behalf of the user’s actions and calls to the 'API Gateway'. The 'API Gateway'
+routes the requests to 'Order Service', which is responsible for processing the order for the customer. The 'Inventory
+Service' is called by the 'Order Service' to process the inventory-related operations.</p>
+<p><strong>NOTE</strong>: For this guide, since we are discussing the JWT security aspects, we are focussing on the network
+interactions once the 'API Gateway' receives a request.</p>
+<ul>
+<li>The 'API Gateway' intercepts the request from the end-user, extracts the token, and then talks to the 'STS' connected
+to validate the token.</li>
+<li>After validating the token, the 'STS' issues a new JWT signed by itself. This JWT includes the user details.</li>
+<li>The 'API Gateway' passes the new JWT to the 'Order Management Service', and it needs only trust this STS to accept
+the token as valid. The 'Order Management Service' validates the signature of the JWT to make sure that it's issued
+by the 'STS' it trusts. Apart from the signature validation, the 'Order Management Service' also does the issuer and
+audience validation.</li>
+<li>The 'Order Service' talks to 'Inventory Service' with mTLS (mutual TLS).</li>
+</ul>
+<p>In this approach, JWT helps us to achieve two things. First, it helps to pass the end-user context across microservices
+in a manner that can’t be forged. Because the claims set of the JWT is signed by the STS, no microservice can change
+it's content without invalidating its signature. Also, JWT helps to secure service-to-service communications. One
+microservice can access another microservice only if it carries a valid JWT issued by the trusted STS. Any recipient
+microservice rejects any request without a valid JWT.</p>
+<h2><a class="header" href="#implementation-1" id="implementation-1">Implementation</a></h2>
+<p><strong>NOTE</strong>: To get started with the implementation we need to have the 'Inventory Service' to be ready. But, since we are
+focussing only on the 'Order Service' by this guide, the implementation details of the 'Inventory Service' are not
+explained. Refer to <a href="scenarios/./inventory_service"><code>examples/order-management-service/inventory_service</code></a> for the implementation.</p>
+<ul>
+<li>
+<p>Now, we can get started with the Ballerina service; 'Order Service', which is a RESTful service that serves the
+order management requests. We will look at securing multiple resources exposed by 'Order Service' to match with the
+different security requirements.</p>
+<ul>
+<li><strong>Create Order</strong> : Order creation should only be allowed for authenticated users.</li>
+<li><strong>Retrieve Order</strong> : Retrieval of the order details should be allowed for all the users.</li>
+<li><strong>Update Order</strong> : Updating order details should only be allowed for &quot;admin&quot; users.</li>
+<li><strong>Delete Order</strong> : Deletion of the order should only be allowed for &quot;admin&quot; users.</li>
+</ul>
+</li>
+<li>
+<p>Authentication is enabled by setting the <code>auth</code> attribute of <code>http:ServiceConfig</code> or <code>http:ResourceConfig</code>. If we
+configure the <code>auth</code> attribute of <code>http:ServiceConfig</code> it will be applied to all the resources of the configured HTTP
+Service. Also, the security enforcement that is done for the service using the <code>http:ServiceConfig</code> can be overridden
+by the <code>http:ResourceConfig</code> annotation for a specific API(s).</p>
+</li>
+<li>
+<p>For this example 'Order Service', we need to configure the <code>auth</code> attribute of all the resources except the &quot;Retrieve
+Order&quot; resource, since we need to allow that for all the users.</p>
+</li>
+<li>
+<p>Ballerina uses the concept of 'scope' as the way of expressing authorization. Multiple scopes can be assigned to a
+user, and scopes can then be validated while enforcing authorization. To express that a certain service or resource
+require a scope, we have used the <code>scopes</code> annotation attribute of the <code>auth</code> annotation attribute.</p>
+</li>
+<li>
+<p>For this example 'Order Service', we need to configure the <code>scope</code> attribute for all the resources except the
+&quot;Retrieve Order&quot; resource, since we need to allow that for all the users.</p>
+</li>
+</ul>
+<p><strong>NOTE</strong>: For the simplicity of the article, we use an in-memory map for storing order data, and a 'Mock STS' is used
+for validating the JWT signature using JWKs. Refer to <a href="scenarios/./sts"><code>examples/order-management-service/sts</code></a> for the implementation.</p>
+<h2><a class="header" href="#testing-1" id="testing-1">Testing</a></h2>
+<p>We can run the 'Order Service' that we developed above, in our local environment. To complete the design diagram
+illustrated above, we have to run the 'Mock STS', and the 'Inventory Service' first.</p>
+<p>Open the terminal and navigate to <a href="scenarios/./sts"><code>examples/order-management-service/sts</code></a> directory and execute the following command.</p>
+<pre><code class="language-shell">$ bal run
+</code></pre>
+<p>The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/sts:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <a href="scenarios/./inventory_service"><code>examples/order-management-service/inventory_service</code></a> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/inventory_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <a href="scenarios/./order_service"><code>examples/order-management-service/order_service</code></a> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/order_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, we can test authentication and authorization checks being enforced on different functions of the 'Order Service'
+by sending HTTP requests. For example, we have used the CURL commands to test each operation of the 'Order Service' as
+follows.</p>
+<h3><a class="header" href="#create-order" id="create-order">Create Order</a></h3>
+<h4><a class="header" href="#without-authentication" id="without-authentication">Without authentication</a></h4>
+<pre><code class="language-shell">curl -k -v -H &quot;Content-Type: application/json&quot; \
+-d '{&quot;id&quot;: &quot;100500&quot;, &quot;name&quot;: &quot;Sample order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 2}, {&quot;category&quot;: &quot;books&quot;, &quot;code&quot;: &quot;978-1617295959&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 401 Unauthorized
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:33:52 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-the-counter-user-who-has-add_order-permission" id="authenticating-as-the-counter-user-who-has-add_order-permission">Authenticating as the 'counter' user, who has 'add_order' permission</a></h4>
+<pre><code class="language-shell">curl -k -v -H &quot;Content-Type: application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImNvdW50ZXIiLCAiYXVkIjoiYmFsbGVyaW5hIiwgImV4cCI6MTk0NTIzODg5NCwgIm5iZiI6MTYyOTg3ODg5NCwgImlhdCI6MTYyOTg3ODg5NCwgImp0aSI6ImY1YWRlZDUwNTg1YzQ2ZjJiOGNhMjMzZDBjMmEzYzlkIiwgInNjb3BlIjoiYWRkX29yZGVyIn0.FMDL-Y8zMtAW7vBVeEbwf_8ynSKdjAkuEBVJpoGds06Z2cOrL3WPZYswnbUOzULBnOXQJQEnK-P-QmypvqP0NWGpzfoC5QMqg0FhPvxyglP1QNYbrS_5tZFM_7Nn7tBFZxiBq666AzjDyhZ2jc39X9rftV0m8p4yyFdSI4KFiEzQ8eOWVVOIg3ejQ0ruDlSVvwx3lXe03XYmrhQp0m-_KYm-SGV3HTZttbo00A250pVY1QL137WDgeeDtGchOfjvM9G-UL8t3sw1Lyoq4OzblHEJJQOJnfRLM_nFKeULuAtt5k_UwmQRlV-XrgxMk0lu6KvYt1-Sa1HMiS8aIvrwig&quot; \
+-d '{&quot;id&quot;: &quot;100500&quot;, &quot;name&quot;: &quot;Sample order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 2}, {&quot;category&quot;: &quot;books&quot;, &quot;code&quot;: &quot;978-1617295959&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 201 Created
+&lt; Location: http://localhost:9090/order/100500
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:05 +0530
+
+{&quot;status&quot;:&quot;Order '100500' created.&quot;}
+</code></pre>
+<h3><a class="header" href="#retrieve-order" id="retrieve-order">Retrieve Order</a></h3>
+<pre><code class="language-shell">curl -k -v &quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 70
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:20 +0530
+
+{&quot;id&quot;:&quot;100500&quot;, &quot;name&quot;:&quot;Sample order&quot;, &quot;items&quot;:[{&quot;category&quot;:&quot;electronics&quot;, &quot;code&quot;:&quot;SOWH1000XM4&quot;, &quot;qty&quot;:2}, {&quot;category&quot;:&quot;books&quot;, &quot;code&quot;:&quot;978-1617295959&quot;, &quot;qty&quot;:1}]}
+</code></pre>
+<h3><a class="header" href="#update-order" id="update-order">Update Order</a></h3>
+<h4><a class="header" href="#without-authentication-1" id="without-authentication-1">Without authentication</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 401 Unauthorized
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:32 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-counter-user-who-has-add_order-permission" id="authenticating-as-counter-user-who-has-add_order-permission">Authenticating as 'counter' user, who has 'add_order' permission</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImNvdW50ZXIiLCAiYXVkIjoiYmFsbGVyaW5hIiwgImV4cCI6MTk0NTIzODg5NCwgIm5iZiI6MTYyOTg3ODg5NCwgImlhdCI6MTYyOTg3ODg5NCwgImp0aSI6ImY1YWRlZDUwNTg1YzQ2ZjJiOGNhMjMzZDBjMmEzYzlkIiwgInNjb3BlIjoiYWRkX29yZGVyIn0.FMDL-Y8zMtAW7vBVeEbwf_8ynSKdjAkuEBVJpoGds06Z2cOrL3WPZYswnbUOzULBnOXQJQEnK-P-QmypvqP0NWGpzfoC5QMqg0FhPvxyglP1QNYbrS_5tZFM_7Nn7tBFZxiBq666AzjDyhZ2jc39X9rftV0m8p4yyFdSI4KFiEzQ8eOWVVOIg3ejQ0ruDlSVvwx3lXe03XYmrhQp0m-_KYm-SGV3HTZttbo00A250pVY1QL137WDgeeDtGchOfjvM9G-UL8t3sw1Lyoq4OzblHEJJQOJnfRLM_nFKeULuAtt5k_UwmQRlV-XrgxMk0lu6KvYt1-Sa1HMiS8aIvrwig&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 403 Forbidden
+&lt; content-length: 0
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:34:55 +0530
+</code></pre>
+<h4><a class="header" href="#authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions" id="authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions">Authenticating as 'admin' user, who has 'add_order, update_order, cancel_order' permissions</a></h4>
+<pre><code class="language-shell">curl -k -v -X PUT -H &quot;Content-Type:application/json&quot; \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImFkbWluIiwgImF1ZCI6ImJhbGxlcmluYSIsICJleHAiOjE5NDUyMzY1OTksICJuYmYiOjE2Mjk4NzY1OTksICJpYXQiOjE2Mjk4NzY1OTksICJqdGkiOiJkMWI4NjNlNjc1N2M0ZjJlYjViMjM3YjI5ZmRhOGZhZSIsICJzY29wZSI6WyJhZGRfb3JkZXIiLCAidXBkYXRlX29yZGVyIiwgImNhbmNlbF9vcmRlciJdfQ.XxThNFztJTpn9FIk-9JfEm_xF8sbTwGnNa5bOl-l4lb3KfeV5ojAKEmjenpQR_2YctT2GM68mxunXP4CTxXoAVHAYWDmV10wkR4r7R6LO3wDJDqr7POC3zwtM-n9Ro-gWJEio-SLYw04kxExvjsE1aFa7pRJFuAFDIdAqnXkEaHLXshmOCgxYhAMzdgBQzUtBo7QmjQZf_0kPUioPpNNsDV4bGLQTeZo-SCZhfhvbHBrUsY2VVleUg0_gNVMmT0ySFQ8Jci4CaiglYrxQN9byS38_9qXtWINYEMbtApHaeyl4-0YvY5p8EbJes2ep_r0Q_Od6FQzGekFAVO4gSE6Zw&quot; \
+-d '{&quot;name&quot;: &quot;Updated order&quot;, &quot;items&quot;: [{&quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 1}]}' \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:35:07 +0530
+
+{&quot;status&quot;:&quot;Order '100500' updated.&quot;}
+</code></pre>
+<h3><a class="header" href="#cancel-order" id="cancel-order">Cancel Order</a></h3>
+<h4><a class="header" href="#authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions-1" id="authenticating-as-admin-user-who-has-add_order-update_order-cancel_order-permissions-1">Authenticating as 'admin' user, who has 'add_order, update_order, cancel_order' permissions</a></h4>
+<pre><code class="language-shell">curl -k -v -X DELETE \
+-H &quot;Authorization: Bearer eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTlRBeFptTXhORE15WkRnM01UVTFaR00wTXpFek9ESmhaV0k0TkRObFpEVTFPR0ZrTmpGaU1RIn0.eyJpc3MiOiJ3c28yIiwgInN1YiI6ImFkbWluIiwgImF1ZCI6ImJhbGxlcmluYSIsICJleHAiOjE5NDUyMzY1OTksICJuYmYiOjE2Mjk4NzY1OTksICJpYXQiOjE2Mjk4NzY1OTksICJqdGkiOiJkMWI4NjNlNjc1N2M0ZjJlYjViMjM3YjI5ZmRhOGZhZSIsICJzY29wZSI6WyJhZGRfb3JkZXIiLCAidXBkYXRlX29yZGVyIiwgImNhbmNlbF9vcmRlciJdfQ.XxThNFztJTpn9FIk-9JfEm_xF8sbTwGnNa5bOl-l4lb3KfeV5ojAKEmjenpQR_2YctT2GM68mxunXP4CTxXoAVHAYWDmV10wkR4r7R6LO3wDJDqr7POC3zwtM-n9Ro-gWJEio-SLYw04kxExvjsE1aFa7pRJFuAFDIdAqnXkEaHLXshmOCgxYhAMzdgBQzUtBo7QmjQZf_0kPUioPpNNsDV4bGLQTeZo-SCZhfhvbHBrUsY2VVleUg0_gNVMmT0ySFQ8Jci4CaiglYrxQN9byS38_9qXtWINYEMbtApHaeyl4-0YvY5p8EbJes2ep_r0Q_Od6FQzGekFAVO4gSE6Zw&quot; \
+&quot;https://localhost:9090/order/100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 36
+&lt; server: ballerina
+&lt; date: Tue, 24 Aug 2021 06:35:26 +0530
+
+{&quot;status&quot;:&quot;Order '100500' removed.&quot;}
+</code></pre>
+<h2><a class="header" href="#deployment" id="deployment">Deployment</a></h2>
+<p>Once we are done with the development, we can deploy the service using any of the methods that are listed below.</p>
+<h3><a class="header" href="#deploying-locally" id="deploying-locally">Deploying Locally</a></h3>
+<p>As the first step, we can build Ballerina executable files (.jar) of the microservices that we developed above. Open the
+terminal and navigate to <a href="scenarios/./sts"><code>examples/order-management-service/sts</code></a>,
+<a href="scenarios/./inventory_service"><code>examples/order-management-service/inventory_service</code></a>
+and <a href="scenarios/./order_service"><code>examples/order-management-service/order_service</code></a> directories, and execute the following command
+for each of them.</p>
+<pre><code class="language-shell">$ bal build
+</code></pre>
+<p>The successful execution of the above command should show us the following outputs in order.</p>
+<pre><code class="language-shell">Compiling source
+        jwt/sts:1.0.0
+
+Generating executable
+        target/bin/sts.jar
+</code></pre>
+<pre><code class="language-shell">Compiling source
+        jwt/inventory_service:1.0.0
+
+Generating executable
+        target/bin/inventory_service.jar
+</code></pre>
+<pre><code class="language-shell">Compiling source
+        jwt/order_service:1.0.0
+
+Generating executable
+        target/bin/order_service.jar
+</code></pre>
+<p>Once the <code>*.jar</code> files are created inside the <code>target/bin</code> directories, we can run the microservices with the following
+commands in order.</p>
+<pre><code class="language-shell">$ bal run target/bin/sts.jar
+$ bal run target/bin/inventory_service.jar
+$ bal run target/bin/order_service.jar
+</code></pre>
+<h3><a class="header" href="#deploying-code-to-cloud" id="deploying-code-to-cloud">Deploying Code to Cloud</a></h3>
+<p>Ballerina code to cloud supports generating the deployment artifacts of the Docker and Kubernetes.
+Refer to <a href="https://ballerina.io/learn/user-guide/deployment/code-to-cloud/">Code to Cloud</a> guide for more information.</p>
+<h2><a class="header" href="#observability" id="observability">Observability</a></h2>
+<p>HTTP/HTTPS based Ballerina services and any client connectors are observable by default.
+<a href="https://ballerina.io/learn/user-guide/observability/observing-ballerina-code/">Observing Ballerina Code</a> guide provides
+information on enabling Ballerina service observability with some of its supported systems.</p>
 <h1><a class="header" href="#secured-order-management-service-with-oauth2" id="secured-order-management-service-with-oauth2">Secured Order Management Service with OAuth2</a></h1>
-<h4><a class="header" href="#important-links-2" id="important-links-2">Important Links</a></h4>
+<h4><a class="header" href="#important-links-3" id="important-links-3">Important Links</a></h4>
 <ul>
 <li><a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service"><strong>Source Code</strong></a></li>
 </ul>
+<h2><a class="header" href="#overview-3" id="overview-3">Overview</a></h2>
+<p>This guide explains how to secure an 'Order Management Service' (RESTful service) with OAuth2 using Ballerina.
+The following figure illustrates a high-level design diagram of the complete use case.</p>
 <p><img src="scenarios/./order-management-service-oauth2.png" alt="Securing Microservice with OAuth2" /></p>
+<p>The end-user (customer), in this example, Alice and Bob, interacts with the system using the web/mobile app provided.
+This web/mobile app acts as a 'Client' on behalf of the user’s actions and calls to the 'API Gateway'. The 'API Gateway'
+routes the requests to 'Order Service', which is responsible for processing the order for the customer. The 'Inventory
+Service' is called by the 'Order Service' to process the inventory-related operations.</p>
+<p><strong>NOTE</strong>: For this guide, since we are discussing the OAuth2 security aspects, we are focussing on the network
+interactions until the 'API Gateway' validates a request.</p>
+<p>Scenario 1 - Web App:</p>
+<ul>
+<li>The end-user 'Alice' wants to retrieve her order details using the web app.</li>
+<li>First, she signs in to the application with her credentials (username and password).</li>
+<li>Now the web app needs to invoke an API on behalf of the logged-in end-user 'Alice'. It talks to the 'OAuth
+Authorization Server', trusted by the API, and uses the client credentials grant type, to get an access token.</li>
+<li>Now the web app invokes the API with the access token.</li>
+<li>The 'API Gateway' intercepts the request from the end-user, extracts the token, and then talks to the 'OAuth
+Authorization Server' connected to validate the token.</li>
+</ul>
+<p>Scenario 2 - Mobile App:</p>
+<ul>
+<li>The end-user 'Bob' wants to retrieve her order details using the web app.</li>
+<li>The end-user 'Bob' sign-in to the mobile app using the single sign-on (SSO) feature provided.</li>
+<li>The end-user gets redirected to the OpenID Connect (OIDC) server and authenticates against the user-store or
+active-directory connected to it. After the authentication, the end-user gets redirected back to the mobile app, with
+an authorization code (assuming that we are using OAuth 2.0 authorization code grant type).</li>
+<li>The mobile app talks directly to the OpenID Connect (OIDC) server and exchanges the authorization code from the
+previous step to an ID token, and an access token. The ID token itself is a JWT, which is signed by the OpenID Connect
+(OIDC) server.</li>
+<li>Now the mobile app needs to invoke an API on behalf of the logged-in end-user 'Bob'. It talks to the 'OAuth
+Authorization Server', trusted by the API, and using the JWT grant type, exchanges the received JWT (ID token) to an
+access token. The 'OAuth Authorization Server' validates the JWT and makes sure that it’s being signed by a trusted
+identity provider. In this case, the 'OAuth Authorization Server' trusts the OpenID Connect (OIDC) identity provider.</li>
+<li>Now the mobile app invokes the API with the access token.</li>
+<li>The 'API Gateway' intercepts the request from the end-user, extracts the token, and then talks to the 'OAuth
+Authorization Server' connected to validate the token.</li>
+</ul>
+<h2><a class="header" href="#implementation-2" id="implementation-2">Implementation</a></h2>
+<p><strong>NOTE</strong>: To get started with the implementation we need to have the web/mobile app to be ready. But, since we are
+discussing the OAuth2 security aspects by this guide, the frontend implementation of the web/mobile app is not
+explained. We will be using Ballerina as the app backend of both web/mobile app (hereinafter referred to as 'Web Client
+Backend' and 'Mobile Client Backend').</p>
+<ul>
+<li>
+<p>Now, we can get started with the 'Web Client Backend', which is responsible to invoke an API on behalf of the
+logged-in end-user. It talks to the 'OAuth Authorization Server', trusted by the API, and uses the client credentials
+grant type, to get an access token.</p>
+</li>
+<li>
+<p>The client authentication is enabled by setting the <code>auth</code> client configuration of the Ballerina HTTP client. It is
+configured with the client credentials grant configurations so that the Ballerina HTTP client knows how to get the
+access token and proceed with the actual API call.
+Refer to <a href="scenarios/./app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
+</li>
+<li>
+<p>Now, we can get started with the 'Mobile Client Backend', which is also responsible to invoke an API on behalf of
+the logged-in end-user. It talks to the 'OAuth Authorization Server', trusted by the API, and using the JWT grant
+type, exchanges the received JWT (ID token) to an access token. The 'OAuth Authorization Server' validates the JWT
+and makes sure that it’s being signed by a trusted identity provider. In this case, the 'OAuth Authorization Server'
+trusts the OpenID Connect (OIDC) identity provider.</p>
+</li>
+<li>
+<p>The client authentication is enabled by setting the <code>auth</code> client configuration of the Ballerina HTTP client. It is
+configured with the JWT bearer grant configurations so that the Ballerina HTTP client knows how to get the access
+token and proceed with the actual API call.
+Refer to <a href="scenarios/./app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
+</li>
+<li>
+<p>Now, we can get started with the 'API Gateway', which is responsible to authorize the requests using OAuth2 and
+forward the request to the actual microservice via mTLS (mutual TLS). In this scenario, it is 'Order Service'. The
+'API Gateway' service is secured by setting the <code>auth</code> attribute of <code>http:ServiceConfig</code> with the OAuth2 introspection
+configurations, so that the Ballerina HTTP service knows how to validate the access token with the configured 'OAuth
+Authorization Server'. Once validated, the business logic defined inside the resource will get executed. In this case,
+it will call the 'Order Service' via mTLS and return the response to the 'Client'.</p>
+</li>
+</ul>
+<p><strong>NOTE</strong>: For the simplicity of the article, since we are interested only in OAuth2 security aspects the rest of the
+components like 'Order Service' and 'Inventory Service' is not implemented. But, to complete the story, we
+will be returning a successful mock response from the 'API Gateway'.</p>
+<h2><a class="header" href="#testing-2" id="testing-2">Testing</a></h2>
+<p>We can run the 'API Gateway', 'Web Client Backend' and 'Mobile Client Backend' that we developed above, in our local
+environment. To complete the design diagram illustrated above, we have to run the
+<a href="https://hub.docker.com/repository/docker/ldclakmal/wso2is-sts">'OAuth Authorization Server'</a> first.
+Open the terminal and execute the following command. This will take few seconds to start and run.</p>
+<pre><code class="language-shell">$ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
+</code></pre>
+<p>Now, navigate to <a href="scenarios/./api_gateway"><code>examples/order-management-service/api_gateway</code></a> directory and execute the following command.</p>
+<pre><code class="language-shell">$ bal run
+</code></pre>
+<p>The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        oauth2/api_gateway:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <a href="scenarios/./app_backend"><code>examples/order-management-service/app_backend</code></a> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        oauth2/app_backend:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, we can test authentication and authorization checks being enforced on different actions by sending HTTP requests.
+For example, we have used the CURL commands to test each scenario as follows.</p>
+<h3><a class="header" href="#scenario-1---web-app" id="scenario-1---web-app">Scenario 1 - Web App</a></h3>
+<pre><code class="language-shell">curl -k -v &quot;https://localhost:8080/order/web?orderId=100500&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 163
+&lt; server: ballerina
+&lt; date: Fri, 3 Sep 2021 10:35:37 +0530
+
+{&quot;id&quot;:&quot;100500&quot;, &quot;name&quot;:&quot;Sample order&quot;, &quot;items&quot;:[{&quot;category&quot;:&quot;electronics&quot;, &quot;code&quot;:&quot;SOWH1000XM4&quot;, &quot;qty&quot;:2}, {&quot;category&quot;:&quot;books&quot;, &quot;code&quot;:&quot;978-1617295959&quot;, &quot;qty&quot;:1}]}
+</code></pre>
+<h3><a class="header" href="#scenario-2---mobile-app" id="scenario-2---mobile-app">Scenario 2 - Mobile App</a></h3>
+<p>Here, we need to export our ID Token, that the mobile client received for the OpenID Connect (OIDC) response from the
+'OAuth Authorization Server'.
+Refer to <a href="https://is.docs.wso2.com/en/latest/learn/openid-connect/">WSO2 Identity Server Documentation - OpenID Connect</a>
+for more information.</p>
+<pre><code class="language-shell">export ID_TOKEN=&quot;eyJhbGciOiJSUzI1NiIsICJ0eXAiOiJKV1QiLCAia2lkIjoiTXpZeE1tRmtPR1l3TVdJMFpXTm1ORGN4TkdZd1ltTTRaVEEzTVdJMk5EQXpaR1F6TkdNMFpHIn0.eyJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo5NDQzL29hdXRoMi90b2tlbiIsICJzdWIiOiJhZG1pbiIsICJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo5NDQzL29hdXRoMi90b2tlbiIsICJleHAiOjE5NDQ0NzI2MjksICJuYmYiOjE2MjkxMTI2MjksICJpYXQiOjE2MjkxMTI2Mjl9.Qbi5kElPZlyViUUuYW9Ik4nXSeTIroacEDs4BoI0rAGAOBXfyWLW4Yxm6hAlb4GXtkPZ4YMO8c0mUgdXgvPVFqFYJuINNPu6Y_nExahAVD0VxCYRE59lEjRv7t_gqn5OxSu_jTGcgcHH8_j-tvL_-AHaqgflr5UljbTPtnQyXtLaPNeu3r7FoWs-LrewMPIm1aw5qc2gI2iYwI1jfIdpNlEjU6r_Mg6ou2D2AGqJa0QYN1FMqi4YJt2jHr60tQMQIWJ7zhKU4ShZESxYOVKK_cBOeL6K-A07pNEZYaSxtCU3609MIZ8EOUJuQUJb7zHHxG4QziHM8eBwFo26yovBFw&quot;;
+
+curl -k -v &quot;https://localhost:8080/order/mobile?orderId=100500&amp;idToken=$ID_TOKEN&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">&lt; HTTP/1.1 200 OK
+&lt; content-type: application/json
+&lt; content-length: 163
+&lt; server: ballerina
+&lt; date: Fri, 3 Sep 2021 10:35:37 +0530
+
+{&quot;id&quot;:&quot;100500&quot;, &quot;name&quot;:&quot;Sample order&quot;, &quot;items&quot;:[{&quot;category&quot;:&quot;electronics&quot;, &quot;code&quot;:&quot;SOWH1000XM4&quot;, &quot;qty&quot;:2}, {&quot;category&quot;:&quot;books&quot;, &quot;code&quot;:&quot;978-1617295959&quot;, &quot;qty&quot;:1}]}
+</code></pre>
+<h2><a class="header" href="#deployment-1" id="deployment-1">Deployment</a></h2>
+<p>Once we are done with the development, we can deploy the service using any of the methods that are listed below.</p>
+<h3><a class="header" href="#deploying-locally-1" id="deploying-locally-1">Deploying Locally</a></h3>
+<p>As the first step, we have to run the 'OAuth Authorization Server' first. Open the terminal and execute the following
+command. This will take few seconds to start and run.</p>
+<pre><code class="language-shell">$ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
+</code></pre>
+<p>Now, we can build Ballerina executable files (.jar) of the components that we developed above. Open the terminal and
+navigate to <a href="scenarios/./api_gateway"><code>examples/order-management-service/api_gateway</code></a>, and
+<a href="scenarios/./app_backend"><code>examples/order-management-service/app_backend</code></a> directories, and execute the following command for
+each of them.</p>
+<pre><code class="language-shell">$ bal build
+</code></pre>
+<p>The successful execution of the above command should show us the following outputs in order.</p>
+<pre><code class="language-shell">Compiling source
+        oauth2/api_gateway:1.0.0
+
+Generating executable
+        target/bin/api_gateway.jar
+</code></pre>
+<pre><code class="language-shell">Compiling source
+        oauth2/app_backend:1.0.0
+
+Generating executable
+        target/bin/app_backend.jar
+</code></pre>
+<p>Once the <code>*.jar</code> files are created inside the <code>target/bin</code> directories, we can run the components with the following
+commands in order.</p>
+<pre><code class="language-shell">$ bal run target/bin/api_gateway.jar
+$ bal run target/bin/app_backend.jar
+</code></pre>
+<h3><a class="header" href="#deploying-code-to-cloud-1" id="deploying-code-to-cloud-1">Deploying Code to Cloud</a></h3>
+<p>Ballerina code to cloud supports generating the deployment artifacts of the Docker and Kubernetes.
+Refer to <a href="https://ballerina.io/learn/user-guide/deployment/code-to-cloud/">Code to Cloud</a> guide for more information.</p>
+<h2><a class="header" href="#observability-1" id="observability-1">Observability</a></h2>
+<p>HTTP/HTTPS based Ballerina services and any client connectors are observable by default.
+<a href="https://ballerina.io/learn/user-guide/observability/observing-ballerina-code/">Observing Ballerina Code</a> guide provides
+information on enabling Ballerina service observability with some of its supported systems.</p>
 <h1><a class="header" href="#integrations-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsintegrationsymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securityintegrationslogogithublabelstatus-altintegrations-a" id="integrations-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsintegrationsymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securityintegrationslogogithublabelstatus-altintegrations-a">Integrations <a href="https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml"><img src="https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Integrations?logo=github&amp;label=Status" alt="Integrations" /></a></a></h1>
 <p>This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets.</p>
+<h4><a class="header" href="#important-links-4" id="important-links-4">Important Links</a></h4>
 <ul>
 <li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/integrations"><strong>Source Code</strong></a></li>
+<li><a href="https://hub.docker.com/r/ldclakmal/wso2is-sts"><strong>WSO2 IS STS</strong></a></li>
 </ul>
 <h1><a class="header" href="#issuestasks" id="issuestasks">Issues/Tasks</a></h1>
 <p>This section summarizes the issues/tasks related to the security aspects of Ballerina.</p>
