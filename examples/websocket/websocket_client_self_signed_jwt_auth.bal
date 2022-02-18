@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerina/websocket;
 
-final websocket:Client wsClient = check new("wss://localhost:9090/foo/bar",
+final websocket:Client wsClient = check new ("wss://localhost:9090/foo/bar",
     auth = {
         username: "ballerina",
         issuer: "wso2",

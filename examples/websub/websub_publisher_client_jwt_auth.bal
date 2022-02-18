@@ -3,7 +3,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new("https://localhost:9090/websubhub",
+    websubhub:PublisherClient publsherClient = check new ("https://localhost:9090/websubhub",
         auth = {
             username: "ballerina",
             issuer: "wso2",

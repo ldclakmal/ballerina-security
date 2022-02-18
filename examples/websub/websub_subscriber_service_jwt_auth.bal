@@ -1,7 +1,7 @@
 import ballerina/log;
 import ballerina/websub;
 
-listener websub:Listener securedSubscriber = new(8080,
+listener websub:Listener securedSubscriber = new (8080,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

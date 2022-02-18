@@ -5,7 +5,7 @@ type UpdateRequest record {|
     int qty;
 |};
 
-listener http:Listener inventoryEP = new(9091,
+listener http:Listener inventoryEP = new (9091,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

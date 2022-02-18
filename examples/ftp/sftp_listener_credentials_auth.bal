@@ -1,7 +1,7 @@
 import ballerina/ftp;
 import ballerina/io;
 
-listener ftp:Listener securedEP = new({
+listener ftp:Listener securedEP = new ({
     protocol: ftp:SFTP,
     host: "127.0.0.1",
     port: 2222,

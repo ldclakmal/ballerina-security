@@ -1,6 +1,6 @@
 import ballerina/websocket;
 
-listener websocket:Listener securedEP = new(9090,
+listener websocket:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

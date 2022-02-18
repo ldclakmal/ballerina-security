@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerinax/stan;
 
-final stan:Client securedEP = check new("nats://localhost:4222",
+final stan:Client securedEP = check new ("nats://localhost:4222",
     clusterId = "b7a_cluster",
     auth = {
         username: "alice",

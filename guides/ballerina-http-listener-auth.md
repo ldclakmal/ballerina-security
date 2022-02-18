@@ -39,7 +39,7 @@ The example below represents how a service can be secured. The `http:ServiceConf
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -67,7 +67,7 @@ These concepts are applied to the `http:ResourceConfig` annotation as well. The 
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -141,7 +141,7 @@ password="password3"
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -227,7 +227,7 @@ There is an imperative method to handle authentication and authorization as foll
 import ballerina/auth;
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -284,7 +284,7 @@ The `http:LdapUserStoreConfig` configurations include:
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -390,7 +390,7 @@ There is an imperative method to handle authentication and authorization as foll
 import ballerina/auth;
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -399,7 +399,7 @@ listener http:Listener securedEP = new(9090,
     }
 );
 
-http:ListenerLdapUserStoreBasicAuthHandler handler = new({
+http:ListenerLdapUserStoreBasicAuthHandler handler = new ({
     domainName: "avix.lk",
     connectionUrl: "ldap://localhost:389",
     connectionName: "cn=admin,dc=avix,dc=lk",
@@ -459,7 +459,7 @@ The `http:JwtValidatorConfig` configurations include:
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -552,7 +552,7 @@ There is an imperative method to handle authentication and authorization as foll
 import ballerina/http;
 import ballerina/jwt;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -561,7 +561,7 @@ listener http:Listener securedEP = new(9090,
     }
 );
 
-http:ListenerJwtAuthHandler handler = new({
+http:ListenerJwtAuthHandler handler = new ({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
@@ -609,7 +609,7 @@ The `http:OAuth2IntrospectionConfig` configurations include:
 ```ballerina
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -704,7 +704,7 @@ There is an imperative method to handle authorization as follows:
 import ballerina/http;
 import ballerina/oauth2;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt",
@@ -713,7 +713,7 @@ listener http:Listener securedEP = new(9090,
     }
 );
 
-http:ListenerOAuth2Handler handler = new({
+http:ListenerOAuth2Handler handler = new ({
     url: "https://localhost:9445/oauth2/introspect",
     tokenTypeHint: "access_token",
     scopeKey: "scp",
@@ -776,7 +776,7 @@ public isolated class ListenerAuthHandler {
     private final ListenerAuthProvider provider;
 
     public isolated function init(CustomConfig config) {
-        self.provider = new(config);
+        self.provider = new (config);
     }
 
     public isolated function authenticate(http:Request|http:Headers|string data) returns CustomData|http:Unauthorized {
@@ -797,9 +797,9 @@ import ballerina/http;
 CustomConfig config = {
     // initialize the fields
 };
-ListenerAuthHandler handler = new(config);
+ListenerAuthHandler handler = new (config);
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "/path/to/public.crt"

@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerina/tcp;
 
-listener tcp:Listener securedEP = check new(3000,
+listener tcp:Listener securedEP = check new (3000,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

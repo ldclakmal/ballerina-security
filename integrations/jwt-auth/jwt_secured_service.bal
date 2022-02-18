@@ -2,7 +2,7 @@ import ballerina/http;
 import ballerina/random;
 import ballerina/uuid;
 
-listener http:Listener jwtListenerEP = new(9090,
+listener http:Listener jwtListenerEP = new (9090,
     secureSocket = {
         key: {
             certFile: "./resources/ballerinaPublic.crt",

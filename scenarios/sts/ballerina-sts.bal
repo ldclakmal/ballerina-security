@@ -23,7 +23,7 @@ string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
 
 // The mock authorization server, which is capable of issuing access tokens with related to the grant type and
 // also of refreshing the already-issued access tokens. Also, capable of introspection the access tokens.
-listener http:Listener sts = new(SERVER_PORT, {
+listener http:Listener sts = new (SERVER_PORT, {
     secureSocket: {
         key: {
             certFile: "./cert/public.crt",

@@ -1,6 +1,6 @@
 import ballerina/http;
 
-final http:Client ordersClient = check new("https://localhost:9092",
+final http:Client ordersClient = check new ("https://localhost:9092",
     secureSocket = {
         cert: "./resources/public.crt",
         key: {

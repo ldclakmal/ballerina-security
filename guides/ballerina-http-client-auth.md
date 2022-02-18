@@ -39,7 +39,7 @@ The following example represents how an HTTP client can be configured to call a 
 ```ballerina
 import ballerina/http;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         // ...
     },
@@ -62,7 +62,7 @@ The `http:CredentialsConfig` configurations include:
 import ballerina/http;
 import ballerina/io;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         username: "alice",
         password: "123"
@@ -110,7 +110,7 @@ import ballerina/http;
 import ballerina/io;
 import ballerina/jwt;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         username: "ballerina",
         issuer: "wso2",
@@ -149,7 +149,7 @@ The `http:BearerTokenConfig` configurations include:
 import ballerina/http;
 import ballerina/io;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         token: "JlbmMiOiJBMTI4Q0JDLUhTMjU2In"
     },
@@ -197,7 +197,7 @@ The `http:OAuth2ClientCredentialsGrantConfig` configurations include:
 import ballerina/http;
 import ballerina/io;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         tokenUrl: "https://localhost:9445/oauth2/token",
         clientId: "FlfJYKBD2c925h4lkycqNZlC2l4a",
@@ -259,7 +259,7 @@ The `http:OAuth2PasswordGrantConfig` configurations include:
 import ballerina/http;
 import ballerina/io;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         tokenUrl: "https://localhost:9445/oauth2/token",
         username: "admin",
@@ -323,7 +323,7 @@ The `http:OAuth2RefreshTokenGrantConfig` configurations include:
 import ballerina/http;
 import ballerina/io;
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         refreshUrl: "https://localhost:9445/oauth2/token",
         refreshToken: "24f19603-8565-4b5f-a036-88a945e1f272",
@@ -382,7 +382,7 @@ public isolated class ClientAuthHandler {
     private final ClientAuthProvider provider;
 
     public isolated function init(CustomConfig config) {
-        self.provider = new(config);
+        self.provider = new (config);
     }
 
     public isolated function enrich(http:Request req) returns http:Request|error {
@@ -402,9 +402,9 @@ import ballerina/http;
 CustomConfig config = {
     // initialize the fields
 };
-ClientAuthHandler handler = new(config);
+ClientAuthHandler handler = new (config);
 
-http:Client securedEP = check new("https://localhost:9090",
+http:Client securedEP = check new ("https://localhost:9090",
     secureSocket = {
         cert: "/path/to/public.crt"
     }

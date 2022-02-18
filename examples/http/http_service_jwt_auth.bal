@@ -1,6 +1,6 @@
 import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

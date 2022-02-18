@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerinax/rabbitmq;
 
-listener rabbitmq:Listener securedEP = new("localhost", 5671,
+listener rabbitmq:Listener securedEP = new ("localhost", 5671,
     auth = {
         username: "alice",
         password: "alice@123"

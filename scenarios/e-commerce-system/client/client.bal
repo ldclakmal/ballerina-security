@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/io;
 
-final http:Client webAppClient = check new("https://localhost:9090",
+final http:Client webAppClient = check new ("https://localhost:9090",
     auth = {
        tokenUrl: "https://localhost:9443/oauth2/token",
        clientId: "uDMwA4hKR9H3deeXxvNf4sSU0i4a",

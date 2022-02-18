@@ -19,19 +19,19 @@ type UpdateRequest record {|
 
 map<OrderRequest> ordersMap = {};
 
-final PaymentServiceClient paymentServiceClient = check new("https://localhost:9191",
+final PaymentServiceClient paymentServiceClient = check new ("https://localhost:9191",
     secureSocket = {
         cert: "./resources/public.crt"
     }
 );
 
-final DeliveryServiceClient deliveryServiceClient = check new("https://localhost:9192",
+final DeliveryServiceClient deliveryServiceClient = check new ("https://localhost:9192",
     secureSocket = {
         cert: "./resources/public.crt"
     }
 );
 
-final http:Client inventoryClient = check new("https://localhost:9091",
+final http:Client inventoryClient = check new ("https://localhost:9091",
     secureSocket = {
         cert: "./resources/public.crt",
         key: {
@@ -41,7 +41,7 @@ final http:Client inventoryClient = check new("https://localhost:9091",
     }
 );
 
-listener http:Listener ordersEP = new(9092,
+listener http:Listener ordersEP = new (9092,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",
@@ -56,7 +56,7 @@ listener http:Listener ordersEP = new(9092,
 
 service /orders on ordersEP {
     resource function post .(@http:Payload OrderRequest orderRequest) returns json|error {
-        grpc:ClientSelfSignedJwtAuthHandler handler = new({
+        grpc:ClientSelfSignedJwtAuthHandler handler = new ({
             issuer: "order-service",
             audience: ["payment-service", "delivery-service"],
             keyId: "5a0b754-895f-4279-8843-b745e11a57e9",

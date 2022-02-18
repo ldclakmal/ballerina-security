@@ -1,6 +1,6 @@
 import ballerina/http;
 
-final http:Client clientEP = check new("https://localhost:9090",
+final http:Client clientEP = check new ("https://localhost:9090",
     auth = {
         tokenUrl: "https://localhost:9443/oauth2/token",
         clientId: "uDMwA4hKR9H3deeXxvNf4sSU0i4a",
@@ -17,7 +17,7 @@ final http:Client clientEP = check new("https://localhost:9090",
     }
 );
 
-listener http:Listener apiEP = new(8080,
+listener http:Listener apiEP = new (8080,
     secureSocket = {
         key: {
             certFile: "./resources/ballerinaPublic.crt",

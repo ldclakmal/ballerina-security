@@ -3,7 +3,7 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websubhub;
 
-listener websubhub:Listener securedHub = new(9090,
+listener websubhub:Listener securedHub = new (9090,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",
@@ -12,7 +12,7 @@ listener websubhub:Listener securedHub = new(9090,
     }
 );
 
-final http:ListenerJwtAuthHandler handler = new({
+final http:ListenerJwtAuthHandler handler = new ({
     issuer: "wso2",
     audience: "ballerina",
     signatureConfig: {
@@ -91,7 +91,7 @@ isolated service /websubhub on securedHub {
         websubhub:Subscription[] subscribers = retrieveSubscribers(msg.hubTopic);
         foreach websubhub:Subscription sub in subscribers {
             log:printInfo("Subscriber found with callback URL: '" + sub.hubCallback + "'");
-            websubhub:HubClient|error clientEP = new(sub, {
+            websubhub:HubClient|error clientEP = new (sub, {
                 secureSocket: {
                     cert: "./resources/public.crt"
                 }

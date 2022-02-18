@@ -1,7 +1,7 @@
 import ballerina/ftp;
 import ballerina/io;
 
-final ftp:Client securedEP = check new({
+final ftp:Client securedEP = check new ({
     protocol: ftp:SFTP,
     host: "127.0.0.1",
     port: 2222,

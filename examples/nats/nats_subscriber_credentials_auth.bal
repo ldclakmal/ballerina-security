@@ -1,7 +1,7 @@
 import ballerina/io;
 import ballerinax/nats;
 
-listener nats:Listener securedEP = new("nats://localhost:4222",
+listener nats:Listener securedEP = new ("nats://localhost:4222",
     auth = {
         username: "alice",
         password: "alice@123"

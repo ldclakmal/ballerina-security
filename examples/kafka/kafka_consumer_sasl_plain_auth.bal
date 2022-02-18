@@ -3,7 +3,7 @@ import ballerinax/kafka;
 
 const string TOPIC = "demo-security";
 
-listener kafka:Listener securedEP = new("localhost:9094",
+listener kafka:Listener securedEP = new ("localhost:9094",
     topics = [TOPIC],
     groupId = "consumer-group-1",
     auth = {

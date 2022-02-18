@@ -1,7 +1,7 @@
 import ballerina/email;
 import ballerina/io;
 
-final email:SmtpClient securedEP = check new("127.0.0.1", "alice", "alice123", {
+final email:SmtpClient securedEP = check new ("127.0.0.1", "alice", "alice123", {
     port: 3465,
     secureSocket: {
         cert: "./resources/cert/server.crt",

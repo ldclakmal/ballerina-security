@@ -9,7 +9,7 @@ type ElectronicItem record {|
     int qty;
 |};
 
-final http:Client inventoryClient = check new("https://localhost:9091",
+final http:Client inventoryClient = check new ("https://localhost:9091",
     secureSocket = {
         cert: "./resources/public.crt",
         key: {

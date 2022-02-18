@@ -1,7 +1,7 @@
 import ballerina/email;
 import ballerina/io;
 
-listener email:ImapListener securedEP = check new({
+listener email:ImapListener securedEP = check new ({
     host: "127.0.0.1",
     port: 3993,
     username: "bob",

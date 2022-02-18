@@ -4,7 +4,7 @@ import ballerinax/kafka;
 const string TOPIC = "demo-security";
 const string MESSAGE = "Hello, World!";
 
-final kafka:Producer producer = check new("localhost:9094",
+final kafka:Producer producer = check new ("localhost:9094",
     auth = {
         mechanism: kafka:AUTH_SASL_PLAIN,
         username: "alice",

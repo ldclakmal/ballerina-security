@@ -3,7 +3,7 @@ import ballerina/protobuf.types.wrappers;
 import ballerina/regex;
 import ballerina/uuid;
 
-listener grpc:Listener paymentsEP = new(9191,
+listener grpc:Listener paymentsEP = new (9191,
     secureSocket = {
         key: {
             certFile: "./resources/public.crt",

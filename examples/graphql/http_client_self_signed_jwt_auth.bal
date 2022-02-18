@@ -1,7 +1,7 @@
 import ballerina/http;
 import ballerina/io;
 
-final http:Client securedEP = check new("https://localhost:9090",
+final http:Client securedEP = check new ("https://localhost:9090",
     auth = {
         username: "ballerina",
         issuer: "wso2",

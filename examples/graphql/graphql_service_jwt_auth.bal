@@ -1,12 +1,12 @@
 import ballerina/graphql;
 
-listener graphql:Listener securedEP = new(9090,
-   secureSocket = {
-       key: {
-           certFile: "./resources/public.crt",
-           keyFile: "./resources/private.key"
-       }
-   }
+listener graphql:Listener securedEP = new (9090,
+    secureSocket = {
+        key: {
+            certFile: "./resources/public.crt",
+            keyFile: "./resources/private.key"
+        }
+    }
 );
 
 @graphql:ServiceConfig {
