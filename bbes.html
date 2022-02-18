@@ -1,0 +1,254 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Ballerina by Examples - Ballerina Security</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="dashboard.html"><strong aria-hidden="true">1.</strong> Dashboard</a></li><li class="chapter-item expanded "><a href="bbes.html" class="active"><strong aria-hidden="true">2.</strong> Ballerina by Examples</a></li><li class="chapter-item "><a href="examples.html"><strong aria-hidden="true">3.</strong> Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="examples/http.html"><strong aria-hidden="true">3.1.</strong> HTTP</a></li><li class="chapter-item "><a href="examples/websocket.html"><strong aria-hidden="true">3.2.</strong> WebSocket</a></li><li class="chapter-item "><a href="examples/graphql.html"><strong aria-hidden="true">3.3.</strong> GraphQL</a></li><li class="chapter-item "><a href="examples/grpc.html"><strong aria-hidden="true">3.4.</strong> gRPC</a></li><li class="chapter-item "><a href="examples/websub.html"><strong aria-hidden="true">3.5.</strong> WebSub</a></li><li class="chapter-item "><a href="examples/kafka.html"><strong aria-hidden="true">3.6.</strong> Kafka</a></li><li class="chapter-item "><a href="examples/rabbitmq.html"><strong aria-hidden="true">3.7.</strong> RabbitMQ</a></li><li class="chapter-item "><a href="examples/nats.html"><strong aria-hidden="true">3.8.</strong> NATS</a></li><li class="chapter-item "><a href="examples/stan.html"><strong aria-hidden="true">3.9.</strong> STAN</a></li><li class="chapter-item "><a href="examples/email.html"><strong aria-hidden="true">3.10.</strong> Email</a></li><li class="chapter-item "><a href="examples/ftp.html"><strong aria-hidden="true">3.11.</strong> FTP</a></li><li class="chapter-item "><a href="examples/tcp.html"><strong aria-hidden="true">3.12.</strong> TCP</a></li></ol></li><li class="chapter-item "><a href="scenarios.html"><strong aria-hidden="true">4.</strong> Scenarios</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="scenarios/sts.html"><strong aria-hidden="true">4.1.</strong> STS</a></li><li class="chapter-item "><a href="scenarios/e-commerce-system.html"><strong aria-hidden="true">4.2.</strong> E-Commerce System</a></li><li class="chapter-item "><a href="scenarios/secured-order-management-service-with-jwt-auth.html"><strong aria-hidden="true">4.3.</strong> Secured Order Management Service with JWT Auth</a></li><li class="chapter-item "><a href="scenarios/secured-order-management-service-with-oauth2.html"><strong aria-hidden="true">4.4.</strong> Secured Order Management Service with OAuth2</a></li></ol></li><li class="chapter-item "><a href="integrations.html"><strong aria-hidden="true">5.</strong> Integrations</a></li><li class="chapter-item "><a href="issues.html"><strong aria-hidden="true">6.</strong> Issues</a></li><li class="chapter-item affix "><li class="part-title">References</li><li class="chapter-item "><a href="references.html"><strong aria-hidden="true">7.</strong> References</a></li><li class="chapter-item "><a href="about-me.html"><strong aria-hidden="true">8.</strong> About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Ballerina Security</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/ldclakmal/ballerina-security" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#ballerina-by-examples-bbes-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsbbesymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securitybbeslogogithublabelstatus-altbbes-a" id="ballerina-by-examples-bbes-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsbbesymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securitybbeslogogithublabelstatus-altbbes-a">Ballerina by Examples (BBEs) <a href="https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml"><img src="https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&amp;label=Status" alt="BBEs" /></a></a></h1>
+<p>This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets.</p>
+<table><thead><tr><th>Category</th><th><img src="img/logos/ballerina-bbe-logo.svg" alt="BBE" /></th></tr></thead><tbody>
+<tr><td>REST API Security</td><td><a href="https://ballerina.io/learn/by-example/http-service-ssl-tls.html">Service - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/http-service-mutual-ssl.html">Service - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/http-service-basic-auth-file-user-store.html">Service - Basic Auth File User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/http-service-basic-auth-ldap-user-store.html">Service - Basic Auth LDAP User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/http-service-jwt-auth.html">Service - JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/http-service-oauth2.html">Service - OAuth2</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-ssl-tls.html">Client - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-mutual-ssl.html">Client - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-basic-auth.html">Client - Basic Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-bearer-token-auth.html">Client - Bearer Token Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-self-signed-jwt-auth.html">Client - Self Signed JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-oauth2-client-credentials-grant-type.html">Client - OAuth2 Client Credentials Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-oauth2-password-grant-type.html">Client - OAuth2 Password Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-oauth2-refresh-token-grant-type.html">Client - OAuth2 Refresh Token Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/http-client-oauth2-jwt-bearer-grant-type.html">Client - OAuth2 JWT Bearer Grant Type</a></td></tr>
+<tr><td>WebSocket Security</td><td><a href="https://ballerina.io/learn/by-example/websocket-service-ssl-tls.html">Service - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-service-mutual-ssl.html">Service - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-service-basic-auth-file-user-store.html">Service - Basic Auth File User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-service-basic-auth-ldap-user-store.html">Service - Basic Auth LDAP User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-service-jwt-auth.html">Service - JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-service-oauth2.html">Service - OAuth2</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-ssl-tls.html">Client - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-mutual-ssl.html">Client - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-basic-auth.html">Client - Basic Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-bearer-token-auth.html">Client - Bearer Token Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-self-signed-jwt-auth.html">Client - Self Signed JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-oauth2-client-credentials-grant-type.html">Client - OAuth2 Client Credentials Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-oauth2-password-grant-type.html">Client - OAuth2 Password Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-oauth2-refresh-token-grant-type.html">Client - OAuth2 Refresh Token Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/websocket-client-oauth2-jwt-bearer-grant-type.html">Client - OAuth2 JWT Bearer Grant Type</a></td></tr>
+<tr><td>GraphQL Security</td><td><a href="https://ballerina.io/learn/by-example/graphql-service-ssl-tls.html">Service - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/graphql-service-mutual-ssl.html">Service - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/graphql-service-basic-auth-file-user-store.html">Service - Basic Auth File User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/graphql-service-basic-auth-ldap-user-store.html">Service - Basic Auth LDAP User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/graphql-service-jwt-auth.html">Service - JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/graphql-service-oauth2.html">Service - OAuth2</a></td></tr>
+<tr><td>gRPC Security</td><td><a href="https://ballerina.io/learn/by-example/grpc-service-ssl-tls.html">Service - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-service-mutual-ssl.html">Service - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-service-basic-auth-file-user-store.html">Service - Basic Auth File User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-service-basic-auth-ldap-user-store.html">Service - Basic Auth LDAP User Store</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-service-jwt-auth.html">Service - JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-service-oauth2.html">Service - OAuth2</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-ssl-tls.html">Client - SSL/TLS</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-mutual-ssl.html">Client - Mutual SSL</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-basic-auth.html">Client - Basic Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-bearer-token-auth.html">Client - Bearer Token Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-self-signed-jwt-auth.html">Client - Self Signed JWT Auth</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-oauth2-client-credentials-grant-type.html">Client - OAuth2 Client Credentials Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-oauth2-password-grant-type.html">Client - OAuth2 Password Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-oauth2-refresh-token-grant-type.html">Client - OAuth2 Refresh Token Grant Type</a> <br/> <a href="https://ballerina.io/learn/by-example/grpc-client-oauth2-jwt-bearer-grant-type.html">Client - OAuth2 JWT Bearer Grant Type</a></td></tr>
+<tr><td>Kafka Security</td><td><a href="https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-consumer.html">SASL Authentication - Consumer</a> <br/> <a href="https://ballerina.io/learn/by-example/kafka-authentication-sasl-plain-producer.html">SASL Authentication - Producer</a></td></tr>
+<tr><td>RabbitMQ Security</td><td><a href="https://ballerina.io/learn/by-example/rabbitmq-secure-connection.html">Secured Connection - Producer &amp; Consumer</a></td></tr>
+<tr><td>NATS Security</td><td><a href="https://ballerina.io/learn/by-example/nats-basic-secure-connection.html">Secured Connection - Publisher &amp; Subscriber</a></td></tr>
+<tr><td>STAN Security</td><td><a href="https://ballerina.io/learn/by-example/nats-streaming-secure-connection.html">Secured Connection - Publisher &amp; Subscriber</a></td></tr>
+<tr><td>FTP Security</td><td><a href="https://ballerina.io/learn/by-example/sftp-listener.html">Listener - SFTP</a> <br/> <a href="https://ballerina.io/learn/by-example/sftp-client.html">Client - SFTP</a></td></tr>
+<tr><td>TCP Security</td><td><a href="https://ballerina.io/learn/by-example/tcp-transport-security.html">TCP Transport Security</a></td></tr>
+<tr><td>Security</td><td><a href="https://ballerina.io/learn/by-example/security-crypto.html">Cryptographic Operations</a> <br/> <a href="https://ballerina.io/learn/by-example/security-jwt-issue-validate.html">JWT Issue &amp; Validate</a></td></tr>
+<tr><td>URL</td><td><a href="https://ballerina.io/learn/by-example/url-encode-decode.html">URL Encode &amp; Decode</a></td></tr>
+</tbody></table>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="dashboard.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="examples.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="dashboard.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="examples.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>E-Commerce System - Ballerina Security</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        
+        <link rel="shortcut icon" href="../favicon.png">
+        
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        
+        <link rel="stylesheet" href="../css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="../introduction.html">Introduction</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="../dashboard.html"><strong aria-hidden="true">1.</strong> Dashboard</a></li><li class="chapter-item "><a href="../bbes.html"><strong aria-hidden="true">2.</strong> Ballerina by Examples</a></li><li class="chapter-item "><a href="../examples.html"><strong aria-hidden="true">3.</strong> Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../examples/http.html"><strong aria-hidden="true">3.1.</strong> HTTP</a></li><li class="chapter-item "><a href="../examples/websocket.html"><strong aria-hidden="true">3.2.</strong> WebSocket</a></li><li class="chapter-item "><a href="../examples/graphql.html"><strong aria-hidden="true">3.3.</strong> GraphQL</a></li><li class="chapter-item "><a href="../examples/grpc.html"><strong aria-hidden="true">3.4.</strong> gRPC</a></li><li class="chapter-item "><a href="../examples/websub.html"><strong aria-hidden="true">3.5.</strong> WebSub</a></li><li class="chapter-item "><a href="../examples/kafka.html"><strong aria-hidden="true">3.6.</strong> Kafka</a></li><li class="chapter-item "><a href="../examples/rabbitmq.html"><strong aria-hidden="true">3.7.</strong> RabbitMQ</a></li><li class="chapter-item "><a href="../examples/nats.html"><strong aria-hidden="true">3.8.</strong> NATS</a></li><li class="chapter-item "><a href="../examples/stan.html"><strong aria-hidden="true">3.9.</strong> STAN</a></li><li class="chapter-item "><a href="../examples/email.html"><strong aria-hidden="true">3.10.</strong> Email</a></li><li class="chapter-item "><a href="../examples/ftp.html"><strong aria-hidden="true">3.11.</strong> FTP</a></li><li class="chapter-item "><a href="../examples/tcp.html"><strong aria-hidden="true">3.12.</strong> TCP</a></li></ol></li><li class="chapter-item expanded "><a href="../scenarios.html"><strong aria-hidden="true">4.</strong> Scenarios</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../scenarios/sts.html"><strong aria-hidden="true">4.1.</strong> STS</a></li><li class="chapter-item expanded "><a href="../scenarios/e-commerce-system.html" class="active"><strong aria-hidden="true">4.2.</strong> E-Commerce System</a></li><li class="chapter-item "><a href="../scenarios/secured-order-management-service-with-jwt-auth.html"><strong aria-hidden="true">4.3.</strong> Secured Order Management Service with JWT Auth</a></li><li class="chapter-item "><a href="../scenarios/secured-order-management-service-with-oauth2.html"><strong aria-hidden="true">4.4.</strong> Secured Order Management Service with OAuth2</a></li></ol></li><li class="chapter-item "><a href="../integrations.html"><strong aria-hidden="true">5.</strong> Integrations</a></li><li class="chapter-item "><a href="../issues.html"><strong aria-hidden="true">6.</strong> Issues</a></li><li class="chapter-item affix "><li class="part-title">References</li><li class="chapter-item "><a href="../references.html"><strong aria-hidden="true">7.</strong> References</a></li><li class="chapter-item "><a href="../about-me.html"><strong aria-hidden="true">8.</strong> About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Ballerina Security</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/ldclakmal/ballerina-security" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#e-commerce-system" id="e-commerce-system">E-Commerce System</a></h1>
+<h4><a class="header" href="#important-links" id="important-links">Important Links</a></h4>
+<ul>
+<li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/e-commerce-system"><strong>Source Code</strong></a></li>
+<li><a href="https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373"><strong>Blog</strong></a></li>
+</ul>
+<h3><a class="header" href="#overview" id="overview">Overview</a></h3>
+<p>An e-commerce system that can be used to search for items and purchase items. </p>
+<p>The end-user (customer), in this example, <strong>Alice</strong> and <strong>Bob</strong>, interacts with the system using the web/mobile app 
+provided. This web/mobile app acts as a <strong>Client</strong> on behalf of the user's actions.</p>
+<p>We have two trust domains; the left side trust domain is allowed any HTTPS inbound traffic, and the right side trust 
+domain is allowed the inbound traffic only from the left side trust domain. The system trusts the <strong>Authorization 
+Server/STS</strong> and the <strong>Certificate Authority (CA)</strong> which are configured for this system.</p>
+<p>In the left side trust domain, we have an <strong>API Gateway</strong>, which has both REST APIs and GraphQL APIs. The API Gateway 
+routes the GraphQL API requests to <strong>Inventory Service</strong>, which is responsible for managing the inventory of the system, 
+and the REST API requests to <strong>Order Service</strong>, which is responsible for processing the order for the customer.</p>
+<p>In the right side trust domain, we have <strong>Payment Service</strong> and <strong>Delivery Service</strong> with gRPC APIs, which are called 
+by the <strong>Order Service</strong> of the left side trust domain only to process the payment and delivery.</p>
+<p>All the APIs are authenticated with different types and different levels of authentication mechanisms such as JWT auth, 
+OAuth2, TLS, mTLS etc.</p>
+<h3><a class="header" href="#design" id="design">Design</a></h3>
+<p><img src="./e-commerce-system.png" alt="figure-1" /></p>
+<h3><a class="header" href="#resources" id="resources">Resources</a></h3>
+<ul>
+<li>Customer Alice &amp; Bob</li>
+<li>API Gateway</li>
+<li>Inventory Service</li>
+<li>Order Service</li>
+<li>Payment Service</li>
+<li>Delivery Service</li>
+<li>Authorization Server/STS [Reference: <a href="https://hub.docker.com/r/ldclakmal/wso2is-sts">WSO2 IS STS</a>]</li>
+<li>Certificate Authority (CA)</li>
+</ul>
+<h3><a class="header" href="#user-story" id="user-story">User Story</a></h3>
+<h4><a class="header" href="#scenario-1" id="scenario-1">Scenario 1</a></h4>
+<p>Alice (customer) wants to search for electronic items.</p>
+<p>First, she logs into the e-commerce app (Client) with her credentials, and once her credentials are validated 
+successfully, she will be redirected to the dashboard of the app. There, Alice searches for electronic items and she 
+gets a list of items with their details such as code, name, price, etc.</p>
+<h4><a class="header" href="#scenario-2" id="scenario-2">Scenario 2</a></h4>
+<p>Bob (customer) wants to place an order.</p>
+<p>First, he logs into the e-commerce app (Client) with his credentials and once his credentials are validated 
+successfully, he will be redirected to the dashboard of the app. There, Bob selects an electronic item and follows the 
+purchasing process. Once completed, he gets a confirmation with the invoice, payment details, and delivery details, etc.</p>
+<h3><a class="header" href="#implementation" id="implementation">Implementation</a></h3>
+<p>Detailed implementation details including security implementations details can be found on the blog 
+<a href="https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373">Microservices Security with Ballerina</a>.</p>
+<ul>
+<li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/e-commerce-system"><strong>Source Code</strong></a></li>
+</ul>
+<h3><a class="header" href="#testing" id="testing">Testing</a></h3>
+<p>Open the terminal and start the 'Authorization Server/STS' first by the following command.</p>
+<pre><code class="language-shell">$ docker run -p 9443:9443 ldclakmal/wso2is-sts:latest
+</code></pre>
+<p>Now, navigate to <code>scenarios/e-commerce-system/payment_service</code> directory and execute the following command.</p>
+<pre><code class="language-shell">$ bal run
+</code></pre>
+<p>The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/payment_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <code>scenarios/e-commerce-system/delivery_service</code> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/delivery_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <code>scenarios/e-commerce-system/inventory_service</code> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/inventory_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <code>scenarios/e-commerce-system/order_service</code> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/order_service:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, navigate to <code>scenarios/e-commerce-system/api_gateway</code> directory and execute the same command.
+The successful execution of the service should show us the following output.</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/api_gateway:1.0.0
+
+Running executable
+</code></pre>
+<p>Now, we can test authentication and authorization checks being enforced on different functions of the e-commerce system 
+by sending HTTP requests. For example, we have used a sample client written by Ballerina and CURL commands to test each 
+operation as follows.</p>
+<h4><a class="header" href="#ballerina-client" id="ballerina-client">Ballerina Client</a></h4>
+<p>Navigate to the <code>scenarios/e-commerce-system/client</code> directory and execute the following command to try out 
+both of the scenarios described above.</p>
+<pre><code class="language-shell">$ bal run
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">Compiling source
+        ldclakmal/client:1.0.0
+
+Running executable
+
+{&quot;search_response&quot;:{&quot;data&quot;:{&quot;electronics&quot;:[{&quot;brand&quot;:&quot;Apple&quot;,&quot;model&quot;:&quot;Mac Book AIR M1 (13-inch 2021)&quot;,&quot;price&quot;:&quot;$1249.00&quot;},{&quot;brand&quot;:&quot;Sony&quot;,&quot;model&quot;:&quot;WH-1000XM4&quot;,&quot;price&quot;:&quot;$349.99&quot;}]}},&quot;order_response&quot;:{&quot;payment&quot;:{&quot;order_id&quot;:&quot;HQCKJ5496&quot;, &quot;invoice_id&quot;:&quot;a1ce0c30-f56a-4ea0-a220-d9fe9116acc4&quot;, &quot;payment_method&quot;:&quot;VISA...1234&quot;, &quot;amount&quot;:&quot;$349.99&quot;},&quot;delivery&quot;:{&quot;order_id&quot;:&quot;HQCKJ5496&quot;, &quot;delivery_id&quot;:&quot;f73843b6-6c46-4676-bcb2-3292c0f254fd&quot;, &quot;delivery_method&quot;:&quot;DM01&quot;}}}
+</code></pre>
+<h4><a class="header" href="#curl-commands" id="curl-commands">CURL Commands</a></h4>
+<p>First, we need to get an access token from the Authorization Server/STS. We need to use that for authenticating the user 
+requests when we are performing different scenarios. (Make sure to get a new access token each time you try this since 
+the access token gets expired after an hour.)</p>
+<pre><code class="language-shell">curl -k -u uDMwA4hKR9H3deeXxvNf4sSU0i4a:8FOUOKUQfOp47pUfJCsPA5X4clga \
+-H &quot;Content-Type:application/x-www-form-urlencoded&quot; \
+-d &quot;grant_type=client_credentials&amp;scope=customer&quot; \
+https://localhost:9443/oauth2/token
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">{&quot;access_token&quot;:&quot;e4a42228-f985-3725-b033-5b9ff11e03fd&quot;,&quot;token_type&quot;:&quot;Bearer&quot;,&quot;expires_in&quot;:3600}
+</code></pre>
+<h5><a class="header" href="#search-item" id="search-item">Search Item</a></h5>
+<pre><code class="language-shell">curl -k -H &quot;Content-type: application/json&quot; \
+-H &quot;Authorization: Bearer e4a42228-f985-3725-b033-5b9ff11e03fd&quot; \
+-d '{ &quot;query&quot;: &quot;{ electronics { brand, model, price } }&quot; }' \
+&quot;https://localhost:9090/inventory&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">{&quot;data&quot;:{&quot;electronics&quot;:[{&quot;brand&quot;:&quot;Apple&quot;, &quot;model&quot;:&quot;Mac Book AIR M1 (13-inch 2021)&quot;, &quot;price&quot;:&quot;$1249.00&quot;}, 
+{&quot;brand&quot;:&quot;Sony&quot;, &quot;model&quot;:&quot;WH-1000XM4&quot;, &quot;price&quot;:&quot;$349.99&quot;}]}}
+</code></pre>
+<h5><a class="header" href="#order-item" id="order-item">Order Item</a></h5>
+<pre><code class="language-shell">curl -k -H &quot;Content-type: application/json&quot; \
+-H &quot;Authorization: Bearer e4a42228-f985-3725-b033-5b9ff11e03fd&quot; \
+-d '{ &quot;orderId&quot;: &quot;HQCKJ5496&quot;, &quot;category&quot;: &quot;electronics&quot;, &quot;code&quot;: &quot;SOWH1000XM4&quot;, &quot;qty&quot;: 2, &quot;paymentMethod&quot;: &quot;VISA...1234&quot;, &quot;deliveryMethod&quot;: &quot;DM01&quot; }' \
+&quot;https://localhost:9090/orders&quot;
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-shell">{&quot;payment&quot;:&quot;{\&quot;order_id\&quot;:\&quot;HQCKJ5496\&quot;, \&quot;invoice_id\&quot;:\&quot;a658ac39-a5d1-45c3-b76d-97db86815243\&quot;, 
+\&quot;payment_method\&quot;:\&quot;VISA...1234\&quot;, \&quot;amount\&quot;:\&quot;$349.99\&quot;}&quot;, &quot;delivery&quot;:&quot;{\&quot;order_id\&quot;:\&quot;HQCKJ5496\&quot;, 
+\&quot;delivery_id\&quot;:\&quot;d77336a7-2a8c-4732-96f3-ef84ae5c4b3d\&quot;, \&quot;delivery_method\&quot;:\&quot;DM01\&quot;}&quot;}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../scenarios/sts.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="../scenarios/secured-order-management-service-with-jwt-auth.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="../scenarios/sts.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="../scenarios/secured-order-management-service-with-jwt-auth.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

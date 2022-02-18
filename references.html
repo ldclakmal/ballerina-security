@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>References - Ballerina Security</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item affix "><li class="part-title">Summary</li><li class="chapter-item "><a href="dashboard.html"><strong aria-hidden="true">1.</strong> Dashboard</a></li><li class="chapter-item "><a href="bbes.html"><strong aria-hidden="true">2.</strong> Ballerina by Examples</a></li><li class="chapter-item "><a href="examples.html"><strong aria-hidden="true">3.</strong> Examples</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="examples/http.html"><strong aria-hidden="true">3.1.</strong> HTTP</a></li><li class="chapter-item "><a href="examples/websocket.html"><strong aria-hidden="true">3.2.</strong> WebSocket</a></li><li class="chapter-item "><a href="examples/graphql.html"><strong aria-hidden="true">3.3.</strong> GraphQL</a></li><li class="chapter-item "><a href="examples/grpc.html"><strong aria-hidden="true">3.4.</strong> gRPC</a></li><li class="chapter-item "><a href="examples/websub.html"><strong aria-hidden="true">3.5.</strong> WebSub</a></li><li class="chapter-item "><a href="examples/kafka.html"><strong aria-hidden="true">3.6.</strong> Kafka</a></li><li class="chapter-item "><a href="examples/rabbitmq.html"><strong aria-hidden="true">3.7.</strong> RabbitMQ</a></li><li class="chapter-item "><a href="examples/nats.html"><strong aria-hidden="true">3.8.</strong> NATS</a></li><li class="chapter-item "><a href="examples/stan.html"><strong aria-hidden="true">3.9.</strong> STAN</a></li><li class="chapter-item "><a href="examples/email.html"><strong aria-hidden="true">3.10.</strong> Email</a></li><li class="chapter-item "><a href="examples/ftp.html"><strong aria-hidden="true">3.11.</strong> FTP</a></li><li class="chapter-item "><a href="examples/tcp.html"><strong aria-hidden="true">3.12.</strong> TCP</a></li></ol></li><li class="chapter-item "><a href="scenarios.html"><strong aria-hidden="true">4.</strong> Scenarios</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="scenarios/sts.html"><strong aria-hidden="true">4.1.</strong> STS</a></li><li class="chapter-item "><a href="scenarios/e-commerce-system.html"><strong aria-hidden="true">4.2.</strong> E-Commerce System</a></li><li class="chapter-item "><a href="scenarios/secured-order-management-service-with-jwt-auth.html"><strong aria-hidden="true">4.3.</strong> Secured Order Management Service with JWT Auth</a></li><li class="chapter-item "><a href="scenarios/secured-order-management-service-with-oauth2.html"><strong aria-hidden="true">4.4.</strong> Secured Order Management Service with OAuth2</a></li></ol></li><li class="chapter-item "><a href="integrations.html"><strong aria-hidden="true">5.</strong> Integrations</a></li><li class="chapter-item "><a href="issues.html"><strong aria-hidden="true">6.</strong> Issues</a></li><li class="chapter-item affix "><li class="part-title">References</li><li class="chapter-item expanded "><a href="references.html" class="active"><strong aria-hidden="true">7.</strong> References</a></li><li class="chapter-item "><a href="about-me.html"><strong aria-hidden="true">8.</strong> About Me</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Ballerina Security</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                        <a href="https://github.com/ldclakmal/ballerina-security" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        
+                        
+
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#references" id="references">References</a></h1>
+<p>The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.</p>
+<h3><a class="header" href="#research--design" id="research--design">Research &amp; Design</a></h3>
+<ul>
+<li>2021 Sep - <a href="https://docs.google.com/document/d/1ebwR5qXosyKjT7tSr4HgcYDq1vFsuzQxtiMgdET1G0o/edit?usp=sharing">[Design] Ballerina GraphQL Authentication and Authorization</a></li>
+<li>2021 Apr - <a href="https://docs.google.com/document/d/16r_gjBi7SIqVffKVLtKGBevHQRxp7Fnoo9ELyIWV1BM/edit?usp=sharing">[Review] Ballerina Security APIs of StdLib Protocol Connector Module</a></li>
+<li>2021 Feb - <a href="https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing">[Re-Design] Ballerina SecureSocket API</a></li>
+<li>2020 Nov - <a href="https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing">[Design] Ballerina Authentication &amp; Authorization Framework</a></li>
+<li>2020 Oct - <a href="https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing">[Research] Comparison on Ballerina Security Features/APIs with Programming Languages</a></li>
+</ul>
+<h3><a class="header" href="#security-blogs" id="security-blogs">Security Blogs</a></h3>
+<ul>
+<li>2021 Oct - <a href="https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f">Securing Microservices with JWT</a></li>
+<li>2021 Aug - <a href="https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373">Microservices Security with Ballerina</a></li>
+<li>2021 Aug - <a href="https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9">HTTP Security in Ballerina</a></li>
+</ul>
+<h3><a class="header" href="#github-pull-requests" id="github-pull-requests">GitHub Pull Requests</a></h3>
+<ul>
+<li>2021 Aug - <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/pull/287">Add JWT bearer grant support for OAuth2</a></li>
+<li>2021 Aug - <a href="https://github.com/ballerina-platform/module-ballerina-jwt/pull/307">Add HMAC signature support for JWT</a></li>
+<li>2021 Jun - <a href="https://github.com/ballerina-platform/module-ballerina-websocket/pull/216">Implement declarative auth design for WebSocket upgrade service</a></li>
+<li>2021 May - <a href="https://github.com/ballerina-platform/module-ballerina-graphql/pull/210">Implement declarative auth design for GraphQL service</a></li>
+<li>2021 Mar - <a href="https://github.com/ballerina-platform/module-ballerina-http/pull/255">Redesign HTTP listener/client SecureSocket API</a></li>
+<li>2021 Mar - <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/pull/98">Add cert file and mTLS support for JDK11 client of OAuth2 module</a></li>
+<li>2021 Mar - <a href="https://github.com/ballerina-platform/module-ballerina-jwt/pull/137">Add cert file and mTLS support for JDK11 client of JWT module</a></li>
+<li>2021 Feb - <a href="https://github.com/ballerina-platform/module-ballerina-jwt/pull/109">Extend private key/public cert support for JWT signature generation/validation</a></li>
+<li>2021 Feb - <a href="https://github.com/ballerina-platform/module-ballerina-crypto/pull/61">Add support to decode private/public keys from key/cert files</a></li>
+<li>2021 Jan - <a href="https://github.com/ballerina-platform/module-ballerina-http/pull/155">Implement Declarative Auth Design</a></li>
+<li>2021 Jan - <a href="https://github.com/ballerina-platform/module-ballerina-http/pull/142">Implement Imperative Auth Design</a></li>
+<li>2021 Jan - <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/pull/49">Read custom fields of OAuth2 introspection response</a></li>
+<li>2021 Jan - <a href="https://github.com/ballerina-platform/module-ballerina-http/pull/164">Send optional parameters to introspection endpoint</a></li>
+<li>2021 Jan - <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/pull/53">Send custom parameters to introspection endpoint</a></li>
+<li>2020 Apr - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/22982">Implement JWT signature validation with JWKs</a></li>
+<li>2020 Apr - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/22890">Add API to generate public key from JWKs parameters</a></li>
+<li>2019 Aug - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/18309">Remove redundant APIs and replace usages of Encoding module</a></li>
+<li>2019 Jun - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/15696">Refactor outbound authentication with custom providers and handlers</a></li>
+<li>2019 Jun - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/15489">Implement OAuth2 Inbound Authentication</a></li>
+<li>2019 Jun - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/15435">Refactor Modules for Inbound Authentication</a></li>
+<li>2019 May - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/15363">Introduce Configuration Pattern for Authn Handlers and Scopes</a></li>
+<li>2019 May - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/14419">Improve HTTP secure client for OAuth2 grant types</a></li>
+<li>2019 May - <a href="https://github.com/ballerina-platform/ballerina-lang/pull/15056">Refactor inbound authentication with custom provider and handlers</a></li>
+</ul>
+<h3><a class="header" href="#youtube-videos" id="youtube-videos">YouTube Videos</a></h3>
+<ul>
+<li>2021 Mar - <a href="https://youtu.be/QrEOvHdH2Cg">How Netflix Scales Its API with GraphQL Federation at <em>QCon Plus 2021</em></a></li>
+<li>2020 Aug - <a href="https://youtu.be/dBuU61ABEDs">How to Auth: Secure a GraphQL API with Confidence at <em>Apollo GraphQL Summit</em></a></li>
+<li>2020 Apr - <a href="https://youtu.be/g_aVPdwBTfw">What's New With OAuth and OIDC? at <em>OktaDev</em></a></li>
+<li>2018 Feb - <a href="https://youtu.be/QrEOvHdH2Cg">OAuth 2.0 and OpenID Connect at <em>OktaDev</em></a></li>
+<li>2017 Nov - <a href="https://youtu.be/4_Bcw7BULC8">Handling Authentication and Authorization in GraphQL at <em>GraphQL Summit 2017</em></a></li>
+</ul>
+<h3><a class="header" href="#specifications" id="specifications">Specifications</a></h3>
+<ul>
+<li><a href="https://tools.ietf.org/html/rfc8693">RFC 8693 - OAuth 2.0 Token Exchange</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7662">RFC 7662 - OAuth 2.0 Token Introspection</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7519">RFC 7519 - JSON Web Token (JWT)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7518">RFC 7518 - JSON Web Algorithms (JWA)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7517">RFC 7517 - JSON Web Key (JWK)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7516">RFC 7516 - JSON Web Encryption (JWE)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7515">RFC 7515 - JSON Web Signature (JWS)</a></li>
+<li><a href="https://tools.ietf.org/html/rfc6749">RFC 6749 - The OAuth 2.0 Authorization Framework</a></li>
+<li><a href="https://tools.ietf.org/html/rfc7617">RFC 7617 - The 'Basic' HTTP Authentication Scheme</a></li>
+</ul>
+<h3><a class="header" href="#guides" id="guides">Guides</a></h3>
+<ul>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/ballerina-http-listener-auth.html">Ballerina HTTP Listener Auth</a></li>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/ballerina-http-client-auth.html">Ballerina HTTP Client Auth</a></li>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html">How to obtain Google OAuth2.0 Credentials</a></li>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html">How to obtain Twilio Credentials</a></li>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html">How to Start OpenLDAP Server with User Data</a></li>
+<li><a href="https://ldclakmal.me/ballerina-security/guides/cryptography.html">Cryptography</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="issues.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="about-me.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="issues.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="about-me.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
