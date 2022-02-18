@@ -64,9 +64,9 @@ The following sections have important references which were used for the design 
 
 ### Guides
 
-- [Ballerina HTTP Listener Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-listener-auth.html)
-- [Ballerina HTTP Client Auth](https://ldclakmal.me/ballerina-security/guides/ballerina-http-client-auth.html)
-- [How to obtain Google OAuth2.0 Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-google-oauth2-credentials.html)
-- [How to obtain Twilio Credentials](https://ldclakmal.me/ballerina-security/guides/how-to-obtain-twilio-credentials.html)
-- [How to Start OpenLDAP Server with User Data](https://ldclakmal.me/ballerina-security/guides/how-to-start-open-ldap-server.html)
-- [Cryptography](https://ldclakmal.me/ballerina-security/guides/cryptography.html)
+- [Ballerina HTTP Listener Auth](https://github.com/ldclakmal/ballerina-security/blob/master/guides/ballerina-http-listener-auth.md)
+- [Ballerina HTTP Client Auth](https://github.com/ldclakmal/ballerina-security/blob/master/guides/ballerina-http-client-auth.md)
+- [How to obtain Google OAuth2.0 Credentials](https://github.com/ldclakmal/ballerina-security/blob/master/guides/how-to-obtain-google-oauth2-credentials.md)
+- [How to obtain Twilio Credentials](https://github.com/ldclakmal/ballerina-security/blob/master/guides/how-to-obtain-twilio-credentials.md)
+- [How to Start OpenLDAP Server with User Data](https://github.com/ldclakmal/ballerina-security/blob/master/guides/how-to-start-open-ldap-server.md)
+- [Cryptography](https://github.com/ldclakmal/ballerina-security/blob/master/guides/cryptography.md)
