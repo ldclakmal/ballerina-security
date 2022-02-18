@@ -2,7 +2,10 @@
 
 The examples, use-cases, demos, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
-> **GitHub**: <https://github.com/ldclakmal/ballerina-security>
+[![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+[![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
+[![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
+[![Integrations](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Integrations?logo=github&label=Integrations)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml)
 
 ## Summary
 
@@ -13,11 +16,9 @@ The [Kafka][kafka], [RabbitMQ][rabbitmq], [NATS][nats], [STAN][stan], [Email][em
 
 This repository contains all the examples, use-cases, demos, and resources related to Ballerina Security in one place.
 
-> <a href="https://octo-repo-visualization.vercel.app/?repo=ldclakmal%2Fballerina-security" target="_blank">Click here</a> to see the visualization of project codebase using the [GitHub OCTO - Repo Visualization Project](https://octo.github.com/projects/repo-visualization).
-
 ## Dashboard
 
-This section demonstrates the current status of the security modules of the Ballerina standard library followed by the official references for all the security examples aka Ballerina by examples (BBEs).
+This section demonstrates the current status of the security modules of the Ballerina standard library.
 
 | Module | Latest Release | Build Status | Code Coverage | ![docs][ballerina-docs-logo] | ![package][ballerina-central-logo] |
 |---|---|---|---|---|---|

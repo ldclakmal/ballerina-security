@@ -1,13 +1,18 @@
 # Ballerina STS
 
-Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation. 
+#### Important Links
+- [**Source Code**](https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/sts/ballerina-sts.bal)
+
+## Overview
+
+Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation.
 This is published into Docker Hub as well.
 
-![Docker Pulls](https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts)
+[![Docker Pulls](https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts)](https://hub.docker.com/r/ldclakmal/ballerina-sts)
 
 ### Start
 
-To start STS in a local machine, we need to have [Ballerina Swan Lake Beta 1](https://ballerina.io/downloads/) or 
+To start STS in a local machine, we need to have [Ballerina 2201.0.0 (Swan Lake)](https://ballerina.io/downloads/) or 
 later version installed.
 
 - Run as a container

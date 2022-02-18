@@ -1,15 +1,16 @@
 [book]
+title = "Ballerina Security"
 authors = ["Chanaka Lakmal"]
 language = "en"
 multilingual = false
 src = "src"
-title = "Ballerina Security"
 
 [output.html]
 theme = "theme"
 default-theme = "light"
 git-repository-url = "https://github.com/ldclakmal/ballerina-security"
 edit-url-template = "https://github.com/ldclakmal/ballerina-security/edit/master/docs/src/{path}"
+site-url = "/ballerina-security/"
 
 [output.html.fold]
 enable = true
