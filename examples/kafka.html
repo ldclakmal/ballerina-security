@@ -174,7 +174,7 @@ import ballerinax/kafka;
 
 const string TOPIC = &quot;demo-security&quot;;
 
-listener kafka:Listener securedEP = new(&quot;localhost:9094&quot;,
+listener kafka:Listener securedEP = new (&quot;localhost:9094&quot;,
     topics = [TOPIC],
     groupId = &quot;consumer-group-1&quot;,
     auth = {
@@ -209,7 +209,7 @@ import ballerinax/kafka;
 const string TOPIC = &quot;demo-security&quot;;
 const string MESSAGE = &quot;Hello, World!&quot;;
 
-final kafka:Producer producer = check new(&quot;localhost:9094&quot;,
+final kafka:Producer producer = check new (&quot;localhost:9094&quot;,
     auth = {
         mechanism: kafka:AUTH_SASL_PLAIN,
         username: &quot;alice&quot;,

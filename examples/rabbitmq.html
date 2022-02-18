@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
-listener rabbitmq:Listener securedEP = new(&quot;localhost&quot;, 5671,
+listener rabbitmq:Listener securedEP = new (&quot;localhost&quot;, 5671,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -195,7 +195,7 @@ listener rabbitmq:Listener securedEP = new(&quot;localhost&quot;, 5671,
 isolated service rabbitmq:Service on securedEP {
     isolated remote function onMessage(rabbitmq:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -205,7 +205,7 @@ isolated service rabbitmq:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
-final rabbitmq:Client securedEP = check new(&quot;localhost&quot;, 5671,
+final rabbitmq:Client securedEP = check new (&quot;localhost&quot;, 5671,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;

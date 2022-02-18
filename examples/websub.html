@@ -174,7 +174,7 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websubhub;
 
-listener websubhub:Listener securedHub = new(9090,
+listener websubhub:Listener securedHub = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -183,7 +183,7 @@ listener websubhub:Listener securedHub = new(9090,
     }
 );
 
-final http:ListenerJwtAuthHandler handler = new({
+final http:ListenerJwtAuthHandler handler = new ({
     issuer: &quot;wso2&quot;,
     audience: &quot;ballerina&quot;,
     signatureConfig: {
@@ -202,7 +202,7 @@ final http:ListenerJwtAuthHandler handler = new({
 isolated service /websubhub on securedHub {
     isolated remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicRegistrationError(auth);
         }
         log:printInfo(&quot;Registered topic: '&quot; + msg.topic + &quot;'.&quot;);
@@ -214,7 +214,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicDeregistrationError(auth);
         }
         log:printInfo(&quot;Deregistered topic: '&quot; + msg.topic + &quot;'.&quot;);
@@ -226,7 +226,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:InternalSubscriptionError(auth);
         }
         log:printInfo(&quot;Subscription accepted for topic: '&quot; + msg.hubTopic + &quot;'.&quot;);
@@ -254,7 +254,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:UpdateMessageError(auth);
         }
         log:printInfo(&quot;Message updated for message type: '&quot; + msg.msgType.toString() + &quot;', topic: '&quot; + msg.hubTopic +
@@ -262,23 +262,23 @@ isolated service /websubhub on securedHub {
         websubhub:Subscription[] subscribers = retrieveSubscribers(msg.hubTopic);
         foreach websubhub:Subscription sub in subscribers {
             log:printInfo(&quot;Subscriber found with callback URL: '&quot; + sub.hubCallback + &quot;'&quot;);
-            websubhub:HubClient|error clientEP = new(sub, {
+            websubhub:HubClient|error clientEP = new (sub, {
                 secureSocket: {
                     cert: &quot;./resources/public.crt&quot;
                 }
             });
-            if (clientEP is error) {
+            if clientEP is error {
                 log:printError(&quot;Error occurred while initializing the hub client.&quot;, 'error = clientEP);
             } else {
                 websubhub:ContentDistributionMessage distributionMsg = {
                     content: msg.content.toString()
                 };
                 websubhub:ContentDistributionSuccess|websubhub:SubscriptionDeletedError|error? response = clientEP-&gt;notifyContentDistribution(distributionMsg);
-                if (response is websubhub:ContentDistributionSuccess) {
+                if response is websubhub:ContentDistributionSuccess {
                     log:printInfo(&quot;Successfully notified the content to subscriber.&quot;);
-                } else if (response is websubhub:SubscriptionDeletedError) {
+                } else if response is websubhub:SubscriptionDeletedError {
                     log:printError(&quot;Subscription deleted error occurred while notifying the content to subscriber.&quot;);
-                } else if (response is error) {
+                } else if response is error {
                     log:printError(&quot;Error occurred while notifying the content to subscriber.&quot;, 'error = response);
                 }
             }
@@ -289,13 +289,13 @@ isolated service /websubhub on securedHub {
 
 isolated function doAuth(http:Headers headers) returns string? {
     jwt:Payload|http:Unauthorized authn = handler.authenticate(headers);
-    if (authn is http:Unauthorized) {
+    if authn is http:Unauthorized {
         string errorMsg = &quot;Failed to authenticate the request. &quot; + &lt;string&gt;authn?.body;
         log:printError(errorMsg);
         return errorMsg;
     }
     http:Forbidden? authz = handler.authorize(&lt;jwt:Payload&gt;authn, &quot;admin&quot;);
-    if (authz is http:Forbidden) {
+    if authz is http:Forbidden {
         string errorMsg = &quot;Failed to authorize the request for the scope key: 'scp' and value: 'admin'.&quot;;
         log:printError(errorMsg);
         return errorMsg;
@@ -307,7 +307,7 @@ isolated map&lt;websubhub:Subscription[]&gt; subscribersMap = {};
 
 isolated function addSubscriber(websubhub:Subscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             subscribersMap.get(subscriber.hubTopic).push(subscriber.cloneReadOnly());
         } else {
             websubhub:Subscription[] subscribersArray = [];
@@ -319,11 +319,11 @@ isolated function addSubscriber(websubhub:Subscription subscriber) {
 
 isolated function removeSubscriber(websubhub:Unsubscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
             int i = 0;
             foreach websubhub:Subscription sub in subscribersArray {
-                if (sub.hubCallback == subscriber.hubCallback) {
+                if sub.hubCallback == subscriber.hubCallback {
                     break;
                 }
                 i = i + 1;
@@ -350,7 +350,7 @@ isolated function retrieveSubscribers(string topic) returns websubhub:Subscripti
 <pre><code class="language-ballerina">import ballerina/log;
 import ballerina/websub;
 
-listener websub:Listener securedSubscriber = new(8080,
+listener websub:Listener securedSubscriber = new (8080,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -411,7 +411,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new(&quot;https://localhost:9090/websubhub&quot;,
+    websubhub:PublisherClient publsherClient = check new (&quot;https://localhost:9090/websubhub&quot;,
         auth = {
             username: &quot;ballerina&quot;,
             issuer: &quot;wso2&quot;,
@@ -432,7 +432,7 @@ public function main() returns error? {
     );
 
     websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient-&gt;registerTopic(&quot;Ballerina&quot;);
-    if (registrationResponse is websubhub:TopicRegistrationSuccess) {
+    if registrationResponse is websubhub:TopicRegistrationSuccess {
         io:println(&quot;Topic registration successful.&quot;);
     } else {
         log:printError(&quot;Topic registration failed!.&quot;, 'error = registrationResponse);
@@ -440,7 +440,7 @@ public function main() returns error? {
 
     string payload = &quot;Swan Lake GA Released!&quot;;
     websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient-&gt;publishUpdate(&quot;Ballerina&quot;, payload);
-    if (publishResponse is websubhub:Acknowledgement) {
+    if publishResponse is websubhub:Acknowledgement {
         io:println(&quot;Publish update successful.&quot;);
     } else {
         log:printError(&quot;Publish update failed!.&quot;, 'error = publishResponse);

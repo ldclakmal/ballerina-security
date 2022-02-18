@@ -221,7 +221,7 @@ The <a href="https://github.com/ballerina-platform/module-ballerinax-kafka">Kafk
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -255,7 +255,7 @@ isolated service /foo on securedEP {
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/io;
 
-final http:Client securedEP = check new(&quot;https://localhost:9090&quot;,
+final http:Client securedEP = check new (&quot;https://localhost:9090&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,
@@ -284,7 +284,7 @@ public function main() returns error? {
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/websocket;
 
-listener websocket:Listener securedEP = new(9090,
+listener websocket:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -325,7 +325,7 @@ isolated service class WsService {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/websocket;
 
-final websocket:Client wsClient = check new(&quot;wss://localhost:9090/foo/bar&quot;,
+final websocket:Client wsClient = check new (&quot;wss://localhost:9090/foo/bar&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,
@@ -355,13 +355,13 @@ public function main() returns error? {
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/graphql;
 
-listener graphql:Listener securedEP = new(9090,
-   secureSocket = {
-       key: {
-           certFile: &quot;./resources/public.crt&quot;,
-           keyFile: &quot;./resources/private.key&quot;
-       }
-   }
+listener graphql:Listener securedEP = new (9090,
+    secureSocket = {
+        key: {
+            certFile: &quot;./resources/public.crt&quot;,
+            keyFile: &quot;./resources/private.key&quot;
+        }
+    }
 );
 
 @graphql:ServiceConfig {
@@ -389,7 +389,7 @@ isolated service /foo on securedEP {
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/io;
 
-final http:Client securedEP = check new(&quot;https://localhost:9090&quot;,
+final http:Client securedEP = check new (&quot;https://localhost:9090&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,
@@ -419,7 +419,7 @@ public function main() returns error? {
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/grpc;
 
-listener grpc:Listener securedEP = new(9090,
+listener grpc:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -456,7 +456,7 @@ isolated service &quot;HelloWorld&quot; on securedEP {
 <p><strong>Client</strong></p>
 <pre><code class="language-ballerina">import ballerina/io;
 
-final HelloWorldClient securedEP = check new(&quot;https://localhost:9090&quot;,
+final HelloWorldClient securedEP = check new (&quot;https://localhost:9090&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,
@@ -488,7 +488,7 @@ import ballerina/jwt;
 import ballerina/log;
 import ballerina/websubhub;
 
-listener websubhub:Listener securedHub = new(9090,
+listener websubhub:Listener securedHub = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -497,7 +497,7 @@ listener websubhub:Listener securedHub = new(9090,
     }
 );
 
-final http:ListenerJwtAuthHandler handler = new({
+final http:ListenerJwtAuthHandler handler = new ({
     issuer: &quot;wso2&quot;,
     audience: &quot;ballerina&quot;,
     signatureConfig: {
@@ -516,7 +516,7 @@ final http:ListenerJwtAuthHandler handler = new({
 isolated service /websubhub on securedHub {
     isolated remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicRegistrationError(auth);
         }
         log:printInfo(&quot;Registered topic: '&quot; + msg.topic + &quot;'.&quot;);
@@ -528,7 +528,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:TopicDeregistrationError(auth);
         }
         log:printInfo(&quot;Deregistered topic: '&quot; + msg.topic + &quot;'.&quot;);
@@ -540,7 +540,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:InternalSubscriptionError(auth);
         }
         log:printInfo(&quot;Subscription accepted for topic: '&quot; + msg.hubTopic + &quot;'.&quot;);
@@ -568,7 +568,7 @@ isolated service /websubhub on securedHub {
 
     isolated remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(headers);
-        if (auth is string) {
+        if auth is string {
             return error websubhub:UpdateMessageError(auth);
         }
         log:printInfo(&quot;Message updated for message type: '&quot; + msg.msgType.toString() + &quot;', topic: '&quot; + msg.hubTopic +
@@ -576,23 +576,23 @@ isolated service /websubhub on securedHub {
         websubhub:Subscription[] subscribers = retrieveSubscribers(msg.hubTopic);
         foreach websubhub:Subscription sub in subscribers {
             log:printInfo(&quot;Subscriber found with callback URL: '&quot; + sub.hubCallback + &quot;'&quot;);
-            websubhub:HubClient|error clientEP = new(sub, {
+            websubhub:HubClient|error clientEP = new (sub, {
                 secureSocket: {
                     cert: &quot;./resources/public.crt&quot;
                 }
             });
-            if (clientEP is error) {
+            if clientEP is error {
                 log:printError(&quot;Error occurred while initializing the hub client.&quot;, 'error = clientEP);
             } else {
                 websubhub:ContentDistributionMessage distributionMsg = {
                     content: msg.content.toString()
                 };
                 websubhub:ContentDistributionSuccess|websubhub:SubscriptionDeletedError|error? response = clientEP-&gt;notifyContentDistribution(distributionMsg);
-                if (response is websubhub:ContentDistributionSuccess) {
+                if response is websubhub:ContentDistributionSuccess {
                     log:printInfo(&quot;Successfully notified the content to subscriber.&quot;);
-                } else if (response is websubhub:SubscriptionDeletedError) {
+                } else if response is websubhub:SubscriptionDeletedError {
                     log:printError(&quot;Subscription deleted error occurred while notifying the content to subscriber.&quot;);
-                } else if (response is error) {
+                } else if response is error {
                     log:printError(&quot;Error occurred while notifying the content to subscriber.&quot;, 'error = response);
                 }
             }
@@ -603,13 +603,13 @@ isolated service /websubhub on securedHub {
 
 isolated function doAuth(http:Headers headers) returns string? {
     jwt:Payload|http:Unauthorized authn = handler.authenticate(headers);
-    if (authn is http:Unauthorized) {
+    if authn is http:Unauthorized {
         string errorMsg = &quot;Failed to authenticate the request. &quot; + &lt;string&gt;authn?.body;
         log:printError(errorMsg);
         return errorMsg;
     }
     http:Forbidden? authz = handler.authorize(&lt;jwt:Payload&gt;authn, &quot;admin&quot;);
-    if (authz is http:Forbidden) {
+    if authz is http:Forbidden {
         string errorMsg = &quot;Failed to authorize the request for the scope key: 'scp' and value: 'admin'.&quot;;
         log:printError(errorMsg);
         return errorMsg;
@@ -621,7 +621,7 @@ isolated map&lt;websubhub:Subscription[]&gt; subscribersMap = {};
 
 isolated function addSubscriber(websubhub:Subscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             subscribersMap.get(subscriber.hubTopic).push(subscriber.cloneReadOnly());
         } else {
             websubhub:Subscription[] subscribersArray = [];
@@ -633,11 +633,11 @@ isolated function addSubscriber(websubhub:Subscription subscriber) {
 
 isolated function removeSubscriber(websubhub:Unsubscription subscriber) {
     lock {
-        if (subscribersMap.hasKey(subscriber.hubTopic)) {
+        if subscribersMap.hasKey(subscriber.hubTopic) {
             websubhub:Subscription[] subscribersArray = subscribersMap.get(subscriber.hubTopic);
             int i = 0;
             foreach websubhub:Subscription sub in subscribersArray {
-                if (sub.hubCallback == subscriber.hubCallback) {
+                if sub.hubCallback == subscriber.hubCallback {
                     break;
                 }
                 i = i + 1;
@@ -664,7 +664,7 @@ isolated function retrieveSubscribers(string topic) returns websubhub:Subscripti
 <pre><code class="language-ballerina">import ballerina/log;
 import ballerina/websub;
 
-listener websub:Listener securedSubscriber = new(8080,
+listener websub:Listener securedSubscriber = new (8080,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -725,7 +725,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new(&quot;https://localhost:9090/websubhub&quot;,
+    websubhub:PublisherClient publsherClient = check new (&quot;https://localhost:9090/websubhub&quot;,
         auth = {
             username: &quot;ballerina&quot;,
             issuer: &quot;wso2&quot;,
@@ -746,7 +746,7 @@ public function main() returns error? {
     );
 
     websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient-&gt;registerTopic(&quot;Ballerina&quot;);
-    if (registrationResponse is websubhub:TopicRegistrationSuccess) {
+    if registrationResponse is websubhub:TopicRegistrationSuccess {
         io:println(&quot;Topic registration successful.&quot;);
     } else {
         log:printError(&quot;Topic registration failed!.&quot;, 'error = registrationResponse);
@@ -754,7 +754,7 @@ public function main() returns error? {
 
     string payload = &quot;Swan Lake GA Released!&quot;;
     websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient-&gt;publishUpdate(&quot;Ballerina&quot;, payload);
-    if (publishResponse is websubhub:Acknowledgement) {
+    if publishResponse is websubhub:Acknowledgement {
         io:println(&quot;Publish update successful.&quot;);
     } else {
         log:printError(&quot;Publish update failed!.&quot;, 'error = publishResponse);
@@ -768,7 +768,7 @@ import ballerinax/kafka;
 
 const string TOPIC = &quot;demo-security&quot;;
 
-listener kafka:Listener securedEP = new(&quot;localhost:9094&quot;,
+listener kafka:Listener securedEP = new (&quot;localhost:9094&quot;,
     topics = [TOPIC],
     groupId = &quot;consumer-group-1&quot;,
     auth = {
@@ -803,7 +803,7 @@ import ballerinax/kafka;
 const string TOPIC = &quot;demo-security&quot;;
 const string MESSAGE = &quot;Hello, World!&quot;;
 
-final kafka:Producer producer = check new(&quot;localhost:9094&quot;,
+final kafka:Producer producer = check new (&quot;localhost:9094&quot;,
     auth = {
         mechanism: kafka:AUTH_SASL_PLAIN,
         username: &quot;alice&quot;,
@@ -833,7 +833,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
-listener rabbitmq:Listener securedEP = new(&quot;localhost&quot;, 5671,
+listener rabbitmq:Listener securedEP = new (&quot;localhost&quot;, 5671,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -856,7 +856,7 @@ listener rabbitmq:Listener securedEP = new(&quot;localhost&quot;, 5671,
 isolated service rabbitmq:Service on securedEP {
     isolated remote function onMessage(rabbitmq:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -866,7 +866,7 @@ isolated service rabbitmq:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
-final rabbitmq:Client securedEP = check new(&quot;localhost&quot;, 5671,
+final rabbitmq:Client securedEP = check new (&quot;localhost&quot;, 5671,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -899,7 +899,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
-listener nats:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
+listener nats:Listener securedEP = new (&quot;nats://localhost:4222&quot;,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -920,7 +920,7 @@ listener nats:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
 isolated service nats:Service on securedEP {
     isolated remote function onMessage(nats:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -930,7 +930,7 @@ isolated service nats:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
-final nats:Client securedEP = check new(&quot;nats://localhost:4222&quot;,
+final nats:Client securedEP = check new (&quot;nats://localhost:4222&quot;,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -960,7 +960,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
-listener stan:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
+listener stan:Listener securedEP = new (&quot;nats://localhost:4222&quot;,
     clusterId = &quot;b7a_cluster&quot;,
     auth = {
         username: &quot;alice&quot;,
@@ -982,7 +982,7 @@ listener stan:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
 isolated service stan:Service on securedEP {
     isolated remote function onMessage(stan:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -992,7 +992,7 @@ isolated service stan:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
-final stan:Client securedEP = check new(&quot;nats://localhost:4222&quot;,
+final stan:Client securedEP = check new (&quot;nats://localhost:4222&quot;,
     clusterId = &quot;b7a_cluster&quot;,
     auth = {
         username: &quot;alice&quot;,
@@ -1024,7 +1024,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/email;
 import ballerina/io;
 
-listener email:ImapListener securedEP = check new({
+listener email:ImapListener securedEP = check new ({
     host: &quot;127.0.0.1&quot;,
     port: 3993,
     username: &quot;bob&quot;,
@@ -1050,7 +1050,7 @@ isolated service on securedEP {
 <pre><code class="language-ballerina">import ballerina/email;
 import ballerina/io;
 
-final email:SmtpClient securedEP = check new(&quot;127.0.0.1&quot;, &quot;alice&quot;, &quot;alice123&quot;, {
+final email:SmtpClient securedEP = check new (&quot;127.0.0.1&quot;, &quot;alice&quot;, &quot;alice123&quot;, {
     port: 3465,
     secureSocket: {
         cert: &quot;./resources/cert/server.crt&quot;,
@@ -1078,7 +1078,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
-listener ftp:Listener securedEP = new({
+listener ftp:Listener securedEP = new ({
     protocol: ftp:SFTP,
     host: &quot;127.0.0.1&quot;,
     port: 2222,
@@ -1108,7 +1108,7 @@ isolated service on securedEP {
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
-final ftp:Client securedEP = check new({
+final ftp:Client securedEP = check new ({
     protocol: ftp:SFTP,
     host: &quot;127.0.0.1&quot;,
     port: 2222,
@@ -1132,7 +1132,7 @@ public function main() returns error? {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
-listener tcp:Listener securedEP = check new(3000,
+listener tcp:Listener securedEP = check new (3000,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -1162,7 +1162,7 @@ isolated service class EchoService {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
-final tcp:Client securedEP = check new(&quot;localhost&quot;, 3000,
+final tcp:Client securedEP = check new (&quot;localhost&quot;, 3000,
     secureSocket = {
         cert: &quot;./resources/public.crt&quot;
     }

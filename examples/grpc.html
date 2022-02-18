@@ -171,7 +171,7 @@
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/grpc;
 
-listener grpc:Listener securedEP = new(9090,
+listener grpc:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -208,7 +208,7 @@ isolated service &quot;HelloWorld&quot; on securedEP {
 <p><strong>Client</strong></p>
 <pre><code class="language-ballerina">import ballerina/io;
 
-final HelloWorldClient securedEP = check new(&quot;https://localhost:9090&quot;,
+final HelloWorldClient securedEP = check new (&quot;https://localhost:9090&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,

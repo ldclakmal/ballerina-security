@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
-listener ftp:Listener securedEP = new({
+listener ftp:Listener securedEP = new ({
     protocol: ftp:SFTP,
     host: &quot;127.0.0.1&quot;,
     port: 2222,
@@ -202,7 +202,7 @@ isolated service on securedEP {
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
-final ftp:Client securedEP = check new({
+final ftp:Client securedEP = check new ({
     protocol: ftp:SFTP,
     host: &quot;127.0.0.1&quot;,
     port: 2222,

@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
-listener stan:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
+listener stan:Listener securedEP = new (&quot;nats://localhost:4222&quot;,
     clusterId = &quot;b7a_cluster&quot;,
     auth = {
         username: &quot;alice&quot;,
@@ -194,7 +194,7 @@ listener stan:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
 isolated service stan:Service on securedEP {
     isolated remote function onMessage(stan:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -204,7 +204,7 @@ isolated service stan:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
-final stan:Client securedEP = check new(&quot;nats://localhost:4222&quot;,
+final stan:Client securedEP = check new (&quot;nats://localhost:4222&quot;,
     clusterId = &quot;b7a_cluster&quot;,
     auth = {
         username: &quot;alice&quot;,

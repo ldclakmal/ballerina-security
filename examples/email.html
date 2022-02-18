@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/email;
 import ballerina/io;
 
-listener email:ImapListener securedEP = check new({
+listener email:ImapListener securedEP = check new ({
     host: &quot;127.0.0.1&quot;,
     port: 3993,
     username: &quot;bob&quot;,
@@ -198,7 +198,7 @@ isolated service on securedEP {
 <pre><code class="language-ballerina">import ballerina/email;
 import ballerina/io;
 
-final email:SmtpClient securedEP = check new(&quot;127.0.0.1&quot;, &quot;alice&quot;, &quot;alice123&quot;, {
+final email:SmtpClient securedEP = check new (&quot;127.0.0.1&quot;, &quot;alice&quot;, &quot;alice123&quot;, {
     port: 3465,
     secureSocket: {
         cert: &quot;./resources/cert/server.crt&quot;,

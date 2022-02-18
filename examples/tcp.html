@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
-listener tcp:Listener securedEP = check new(3000,
+listener tcp:Listener securedEP = check new (3000,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -202,7 +202,7 @@ isolated service class EchoService {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
-final tcp:Client securedEP = check new(&quot;localhost&quot;, 3000,
+final tcp:Client securedEP = check new (&quot;localhost&quot;, 3000,
     secureSocket = {
         cert: &quot;./resources/public.crt&quot;
     }

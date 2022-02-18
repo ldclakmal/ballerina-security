@@ -171,7 +171,7 @@
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/http;
 
-listener http:Listener securedEP = new(9090,
+listener http:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -205,7 +205,7 @@ isolated service /foo on securedEP {
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/io;
 
-final http:Client securedEP = check new(&quot;https://localhost:9090&quot;,
+final http:Client securedEP = check new (&quot;https://localhost:9090&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,

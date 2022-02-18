@@ -172,7 +172,7 @@
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
-listener nats:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
+listener nats:Listener securedEP = new (&quot;nats://localhost:4222&quot;,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;
@@ -193,7 +193,7 @@ listener nats:Listener securedEP = new(&quot;nats://localhost:4222&quot;,
 isolated service nats:Service on securedEP {
     isolated remote function onMessage(nats:Message message) {
         string|error messageContent = string:fromBytes(message.content);
-        if (messageContent is string) {
+        if messageContent is string {
             io:println(&quot;Received message: &quot;, messageContent);
         }
     }
@@ -203,7 +203,7 @@ isolated service nats:Service on securedEP {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
-final nats:Client securedEP = check new(&quot;nats://localhost:4222&quot;,
+final nats:Client securedEP = check new (&quot;nats://localhost:4222&quot;,
     auth = {
         username: &quot;alice&quot;,
         password: &quot;alice@123&quot;

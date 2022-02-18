@@ -171,7 +171,7 @@
 <p><strong>Service</strong></p>
 <pre><code class="language-ballerina">import ballerina/websocket;
 
-listener websocket:Listener securedEP = new(9090,
+listener websocket:Listener securedEP = new (9090,
     secureSocket = {
         key: {
             certFile: &quot;./resources/public.crt&quot;,
@@ -212,7 +212,7 @@ isolated service class WsService {
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/websocket;
 
-final websocket:Client wsClient = check new(&quot;wss://localhost:9090/foo/bar&quot;,
+final websocket:Client wsClient = check new (&quot;wss://localhost:9090/foo/bar&quot;,
     auth = {
         username: &quot;ballerina&quot;,
         issuer: &quot;wso2&quot;,
