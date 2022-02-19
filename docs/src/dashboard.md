@@ -2,13 +2,13 @@
 
 This section demonstrates the current status of the security modules of the Ballerina standard library.
 
-| Module | Latest Release | Build Status | Code Coverage | ![docs][ballerina-docs-logo] & ![package][ballerina-central-logo] |
-|---|---|---|---|---|
-| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] | [![build][auth-badge-build]][auth-build] | [![codecov][auth-badge-codecov]][auth-codecov] | [lib.ballerina.io/ballerina/auth][auth-docs] <br/> [central.ballerina.io/ballerina/auth][auth-package] |
-| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] | [![build][jwt-badge-build]][jwt-build] | [![codecov][jwt-badge-codecov]][jwt-codecov] | [lib.ballerina.io/ballerina/jwt][jwt-docs] <br/> [central.ballerina.io/ballerina/jwt][jwt-package] |
-| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] | [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [lib.ballerina.io/ballerina/oauth2][oauth2-docs] <br/> [central.ballerina.io/ballerina/oauth2][oauth2-package] |
-| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] | [![codecov][crypto-badge-codecov]][crypto-codecov] | [lib.ballerina.io/ballerina/crypto][crypto-docs] <br/> [central.ballerina.io/ballerina/crypto][crypto-package] |
-| [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] | [![codecov][url-badge-codecov]][url-codecov] | [lib.ballerina.io/ballerina/url][url-docs] <br/> [central.ballerina.io/ballerina/url][url-package] |
+| Module | Latest Release | Status | ![docs][ballerina-docs-logo] & ![package][ballerina-central-logo] |
+|---|---|---|---|
+| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] | [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov] | [lib.ballerina.io/ballerina/auth][auth-docs] <br/> [central.ballerina.io/ballerina/auth][auth-package] |
+| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] | [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov] | [lib.ballerina.io/ballerina/jwt][jwt-docs] <br/> [central.ballerina.io/ballerina/jwt][jwt-package] |
+| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [lib.ballerina.io/ballerina/oauth2][oauth2-docs] <br/> [central.ballerina.io/ballerina/oauth2][oauth2-package] |
+| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [lib.ballerina.io/ballerina/crypto][crypto-docs] <br/> [central.ballerina.io/ballerina/crypto][crypto-package] |
+| [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [lib.ballerina.io/ballerina/url][url-docs] <br/> [central.ballerina.io/ballerina/url][url-package] |
 
 [ballerina-central-logo]: img/logos/ballerina-central-logo.svg
 [ballerina-docs-logo]: img/logos/ballerina-docs-logo.svg
