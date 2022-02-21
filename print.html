@@ -218,7 +218,8 @@ The <a href="https://github.com/ballerina-platform/module-ballerinax-kafka">Kafk
 <li>UDP <em>(Pending)</em></li>
 </ol>
 <h1><a class="header" href="#http" id="http">HTTP</a></h1>
-<p><strong>Service</strong></p>
+<h3><a class="header" href="#service" id="service">Service</a></h3>
+<p><em>http_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/http;
 
 listener http:Listener securedEP = new (9090,
@@ -251,7 +252,10 @@ isolated service /foo on securedEP {
     }
 }
 </code></pre>
-<p><strong>Client</strong></p>
+<pre><code class="language-shell">$ bal run http_service_jwt_auth.bal
+</code></pre>
+<h3><a class="header" href="#client" id="client">Client</a></h3>
+<p><em>http_client_self_signed_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/io;
 
@@ -279,6 +283,63 @@ public function main() returns error? {
     string response = check securedEP-&gt;get(&quot;/foo/bar&quot;);
     io:println(response);
 }
+</code></pre>
+<pre><code class="language-shell">$ bal run http_client_self_signed_jwt_auth.bal
+</code></pre>
+<hr />
+<h3><a class="header" href="#resources" id="resources">Resources</a></h3>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#websocket" id="websocket">WebSocket</a></h1>
 <p><strong>Service</strong></p>
@@ -1033,45 +1094,6 @@ services:
       - &quot;3465:3465&quot; # SMTPs
       - &quot;3993:3993&quot; # IMAPs
 </code></pre>
-<p><em>server.conf</em></p>
-<pre><code class="language-yaml">listen: 0.0.0.0:4222
-
-tls: {
-  cert_file: './cert/server.crt'
-  key_file: './key/server.key'
-  ca_file: './cert/ca.crt'
-  verify: true
-}
-// Use one of the methods (username/password and token)
-authorization: {
-  user: &quot;alice&quot;,
-  password: &quot;alice@123&quot;
-  //token: &quot;s3cr3t&quot;
-}
-</code></pre>
-<p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
-MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
-UzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlHcmVl
-bk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2VydGlm
-aWNhdGUwHhcNMTkxMDIyMTIxMTI3WhcNMjIwMTI0MTIxMTI3WjBxMQswCQYDVQQG
-EwJVUzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlH
-cmVlbk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2Vy
-dGlmaWNhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCg9LgAqJCg
-X2AHZrEwhoRmuITGg60BN3zIVdD5N/p7og1G1Ny9gM9G7t9H7WikiSZ1V1Mx1O2R
-BVcC879Wl4PJmrpwyi5PX2R0htyGymP0EgJndryoRW6Zo76JXxWVKXcU9g3DxuRp
-xDL2QgTDZ/kXbF+mlKNHmoe2ev8OZENb1UD6Plrt/bKo+m7aUnRvY6QIfwCWiVnn
-3xjKp02Hfr7sUFwGSqtuTEa7vqenKiXPVQRkuqXTaPxAMmACfTy8/j1ySxguRMXh
-PW1TE7wvDaxOq7pc6a0EDWYEjf6F5ubBjhsB2ELXiHdR3fi3VuArftLofyQNth9x
-sN+3Eq3ZVkVbAgMBAAGjITAfMB0GA1UdDgQWBBSkV0ak0yiPOgzsfZXb2nCc+aLs
-LDANBgkqhkiG9w0BAQsFAAOCAQEAfZKJIzl/Q99Pv/wm0YrQnGSb8hWCJ5RJzqQx
-PJtYtnqvnDEZXedZWfM54qumPbcAJ47SGCMSZRgLAglQEYPIO++/7nzokleJNElF
-IjvRMuUX942+CvCR39ClxBw814r90znHA5PQkyA/AnUCwyWw4gIEU+38llTrsrga
-Ab3OXqK9HS8xvVNvrWzls1ItydCQtYqSBtNFw3hx67Q2LLcsHMjjFvUY73m8dL54
-/Jgw2Tk8NgdhgzVtYjZsxdsxrVLZqnStXZQpeJGHLoayUI3thsQips/scejp9snJ
-1vnNb6LouUDYZOk63VvRrkjiV58Erg6uefv9Q+yFvMRctsTf7Q==
------END CERTIFICATE-----
-</code></pre>
 <pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
 </code></pre>
 <h3><a class="header" href="#imap-listener" id="imap-listener">IMAP Listener</a></h3>
@@ -1132,6 +1154,31 @@ public function main() returns error? {
 }
 </code></pre>
 <pre><code class="language-shell">$ bal run smtp_email_client_tls.bal
+</code></pre>
+<hr />
+<h3><a class="header" href="#resources-1" id="resources-1">Resources</a></h3>
+<p><em>server.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
+UzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlHcmVl
+bk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2VydGlm
+aWNhdGUwHhcNMTkxMDIyMTIxMTI3WhcNMjIwMTI0MTIxMTI3WjBxMQswCQYDVQQG
+EwJVUzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlH
+cmVlbk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2Vy
+dGlmaWNhdGUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCg9LgAqJCg
+X2AHZrEwhoRmuITGg60BN3zIVdD5N/p7og1G1Ny9gM9G7t9H7WikiSZ1V1Mx1O2R
+BVcC879Wl4PJmrpwyi5PX2R0htyGymP0EgJndryoRW6Zo76JXxWVKXcU9g3DxuRp
+xDL2QgTDZ/kXbF+mlKNHmoe2ev8OZENb1UD6Plrt/bKo+m7aUnRvY6QIfwCWiVnn
+3xjKp02Hfr7sUFwGSqtuTEa7vqenKiXPVQRkuqXTaPxAMmACfTy8/j1ySxguRMXh
+PW1TE7wvDaxOq7pc6a0EDWYEjf6F5ubBjhsB2ELXiHdR3fi3VuArftLofyQNth9x
+sN+3Eq3ZVkVbAgMBAAGjITAfMB0GA1UdDgQWBBSkV0ak0yiPOgzsfZXb2nCc+aLs
+LDANBgkqhkiG9w0BAQsFAAOCAQEAfZKJIzl/Q99Pv/wm0YrQnGSb8hWCJ5RJzqQx
+PJtYtnqvnDEZXedZWfM54qumPbcAJ47SGCMSZRgLAglQEYPIO++/7nzokleJNElF
+IjvRMuUX942+CvCR39ClxBw814r90znHA5PQkyA/AnUCwyWw4gIEU+38llTrsrga
+Ab3OXqK9HS8xvVNvrWzls1ItydCQtYqSBtNFw3hx67Q2LLcsHMjjFvUY73m8dL54
+/Jgw2Tk8NgdhgzVtYjZsxdsxrVLZqnStXZQpeJGHLoayUI3thsQips/scejp9snJ
+1vnNb6LouUDYZOk63VvRrkjiV58Erg6uefv9Q+yFvMRctsTf7Q==
+-----END CERTIFICATE-----
 </code></pre>
 <h1><a class="header" href="#ftp" id="ftp">FTP</a></h1>
 <p><strong>SFTP Listener</strong></p>
@@ -1315,7 +1362,7 @@ by the <strong>Order Service</strong> of the left side trust domain only to proc
 OAuth2, TLS, mTLS etc.</p>
 <h3><a class="header" href="#design" id="design">Design</a></h3>
 <p><img src="scenarios/./e-commerce-system.png" alt="figure-1" /></p>
-<h3><a class="header" href="#resources" id="resources">Resources</a></h3>
+<h3><a class="header" href="#resources-2" id="resources-2">Resources</a></h3>
 <ul>
 <li>Customer Alice &amp; Bob</li>
 <li>API Gateway</li>
