@@ -287,7 +287,7 @@ public function main() returns error? {
 <pre><code class="language-shell">$ bal run http_client_self_signed_jwt_auth.bal
 </code></pre>
 <hr />
-<h3><a class="header" href="#resources" id="resources">Resources</a></h3>
+<h4><a class="header" href="#resources" id="resources">Resources</a></h4>
 <p><em>public.crt</em></p>
 <pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
@@ -342,7 +342,8 @@ JQdp3KBU9S8CmBjGrRpJ2qw=
 -----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#websocket" id="websocket">WebSocket</a></h1>
-<p><strong>Service</strong></p>
+<h3><a class="header" href="#service-1" id="service-1">Service</a></h3>
+<p><em>websocket_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/websocket;
 
 listener websocket:Listener securedEP = new (9090,
@@ -382,7 +383,10 @@ isolated service class WsService {
     }
 }
 </code></pre>
-<p><strong>Client</strong></p>
+<pre><code class="language-shell">$ bal run websocket_service_jwt_auth.bal
+</code></pre>
+<h3><a class="header" href="#client-1" id="client-1">Client</a></h3>
+<p><em>websocket_client_self_signed_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/websocket;
 
@@ -412,8 +416,66 @@ public function main() returns error? {
     io:println(response);
 }
 </code></pre>
+<pre><code class="language-shell">$ bal run websocket_client_self_signed_jwt_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-1" id="resources-1">Resources</a></h4>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#graphql" id="graphql">GraphQL</a></h1>
-<p><strong>Service</strong></p>
+<h3><a class="header" href="#service-2" id="service-2">Service</a></h3>
+<p><em>graphql_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/graphql;
 
 listener graphql:Listener securedEP = new (9090,
@@ -446,7 +508,10 @@ isolated service /foo on securedEP {
     }
 }
 </code></pre>
-<p><strong>Client</strong></p>
+<pre><code class="language-shell">$ bal run graphql_service_jwt_auth.bal
+</code></pre>
+<h3><a class="header" href="#client-2" id="client-2">Client</a></h3>
+<p><em>http_client_self_signed_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/io;
 
@@ -476,8 +541,78 @@ public function main() returns error? {
     io:println(response);
 }
 </code></pre>
+<pre><code class="language-shell">$ bal run http_client_self_signed_jwt_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-2" id="resources-2">Resources</a></h4>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#grpc" id="grpc">gRPC</a></h1>
-<p><strong>Service</strong></p>
+<h3><a class="header" href="#service-3" id="service-3">Service</a></h3>
+<p><em>grpc.proto</em></p>
+<pre><code class="language-ballerina">// This is the service definition for the scenario.
+syntax = &quot;proto3&quot;;
+import &quot;google/protobuf/empty.proto&quot;;
+import &quot;google/protobuf/wrappers.proto&quot;;
+
+service HelloWorld {
+	rpc hello(google.protobuf.Empty) returns (google.protobuf.StringValue);
+}
+</code></pre>
+<pre><code class="language-shell">$ bal grpc --input grpc.proto --output .
+</code></pre>
+<p><em>grpc_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/grpc;
 
 listener grpc:Listener securedEP = new (9090,
@@ -514,7 +649,22 @@ isolated service &quot;HelloWorld&quot; on securedEP {
     }
 }
 </code></pre>
-<p><strong>Client</strong></p>
+<pre><code class="language-shell">$ bal build
+</code></pre>
+<h3><a class="header" href="#client-3" id="client-3">Client</a></h3>
+<p><em>grpc.proto</em></p>
+<pre><code class="language-ballerina">// This is the service definition for the scenario.
+syntax = &quot;proto3&quot;;
+import &quot;google/protobuf/empty.proto&quot;;
+import &quot;google/protobuf/wrappers.proto&quot;;
+
+service HelloWorld {
+	rpc hello(google.protobuf.Empty) returns (google.protobuf.StringValue);
+}
+</code></pre>
+<pre><code class="language-shell">$ bal grpc --input grpc.proto --output .
+</code></pre>
+<p><em>grpc_client_self_signed_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 
 final HelloWorldClient securedEP = check new (&quot;https://localhost:9090&quot;,
@@ -542,8 +692,66 @@ public function main() returns error? {
     io:println(result);
 }
 </code></pre>
+<pre><code class="language-shell">$ bal build
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-3" id="resources-3">Resources</a></h4>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#websub" id="websub">WebSub</a></h1>
-<p><strong>Hub</strong></p>
+<h3><a class="header" href="#hub" id="hub">Hub</a></h3>
+<p><em>websub_hub_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/http;
 import ballerina/jwt;
 import ballerina/log;
@@ -721,7 +929,10 @@ isolated function retrieveSubscribers(string topic) returns websubhub:Subscripti
     }
 }
 </code></pre>
-<p><strong>Subscriber</strong></p>
+<pre><code class="language-shell">$ bal run websub_hub_service_jwt_auth.bal
+</code></pre>
+<h3><a class="header" href="#subscriber" id="subscriber">Subscriber</a></h3>
+<p><em>websub_subscriber_service_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/log;
 import ballerina/websub;
 
@@ -780,7 +991,10 @@ isolated service /subscriber on securedSubscriber {
     }
 }
 </code></pre>
-<p><strong>Publisher</strong></p>
+<pre><code class="language-shell">$ bal run websub_subscriber_service_jwt_auth.bal
+</code></pre>
+<h3><a class="header" href="#publisher" id="publisher">Publisher</a></h3>
+<p><em>websub_publisher_client_jwt_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/log;
 import ballerina/websubhub;
@@ -821,6 +1035,63 @@ public function main() returns error? {
         log:printError(&quot;Publish update failed!.&quot;, 'error = publishResponse);
     }
 }
+</code></pre>
+<pre><code class="language-shell">$ bal run websub_publisher_client_jwt_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-4" id="resources-4">Resources</a></h4>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#kafka" id="kafka">Kafka</a></h1>
 <p><strong>Consumer</strong></p>
@@ -1156,7 +1427,7 @@ public function main() returns error? {
 <pre><code class="language-shell">$ bal run smtp_email_client_tls.bal
 </code></pre>
 <hr />
-<h3><a class="header" href="#resources-1" id="resources-1">Resources</a></h3>
+<h4><a class="header" href="#resources-5" id="resources-5">Resources</a></h4>
 <p><em>server.crt</em></p>
 <pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
@@ -1362,7 +1633,7 @@ by the <strong>Order Service</strong> of the left side trust domain only to proc
 OAuth2, TLS, mTLS etc.</p>
 <h3><a class="header" href="#design" id="design">Design</a></h3>
 <p><img src="scenarios/./e-commerce-system.png" alt="figure-1" /></p>
-<h3><a class="header" href="#resources-2" id="resources-2">Resources</a></h3>
+<h3><a class="header" href="#resources-6" id="resources-6">Resources</a></h3>
 <ul>
 <li>Customer Alice &amp; Bob</li>
 <li>API Gateway</li>
