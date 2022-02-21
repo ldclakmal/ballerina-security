@@ -601,7 +601,7 @@ JQdp3KBU9S8CmBjGrRpJ2qw=
 <h1><a class="header" href="#grpc" id="grpc">gRPC</a></h1>
 <h3><a class="header" href="#service-3" id="service-3">Service</a></h3>
 <p><em>grpc.proto</em></p>
-<pre><code class="language-ballerina">// This is the service definition for the scenario.
+<pre><code class="language-proto">// This is the service definition for the scenario.
 syntax = &quot;proto3&quot;;
 import &quot;google/protobuf/empty.proto&quot;;
 import &quot;google/protobuf/wrappers.proto&quot;;
@@ -653,7 +653,7 @@ isolated service &quot;HelloWorld&quot; on securedEP {
 </code></pre>
 <h3><a class="header" href="#client-3" id="client-3">Client</a></h3>
 <p><em>grpc.proto</em></p>
-<pre><code class="language-ballerina">// This is the service definition for the scenario.
+<pre><code class="language-proto">// This is the service definition for the scenario.
 syntax = &quot;proto3&quot;;
 import &quot;google/protobuf/empty.proto&quot;;
 import &quot;google/protobuf/wrappers.proto&quot;;
@@ -1094,7 +1094,90 @@ JQdp3KBU9S8CmBjGrRpJ2qw=
 -----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#kafka" id="kafka">Kafka</a></h1>
-<p><strong>Consumer</strong></p>
+<h3><a class="header" href="#kafka-server" id="kafka-server">Kafka Server</a></h3>
+<p><em>docker-compose.yml</em></p>
+<pre><code class="language-yaml">version: '2'
+
+services:
+  zookeeper:
+    image: 'confluentinc/cp-zookeeper:latest'
+    hostname: zookeeper
+    container_name: kafka-zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_LOG4J_ROOT_LOGLEVEL: INFO
+      KAFKA_OPTS: '-Djava.security.auth.login.config=/opt/confluentinc/kafka/config/zookeeper_jaas.conf'
+    volumes:
+      - ./zookeeper_jaas.conf:/opt/confluentinc/kafka/config/zookeeper_jaas.conf
+  broker:
+    image: 'confluentinc/cp-server:latest'
+    hostname: broker
+    container_name: kafka-broker
+    depends_on:
+      - zookeeper
+    ports:
+      - '9092:9092'
+      - '9093:9093'
+      - '9094:9094'
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_SASL_ENABLED_MECHANISMS: PLAIN
+      KAFKA_SECURITY_INTER_BROKER_PROTOCOL: PLAINTEXT
+      KAFKA_SSL_CLIENT_AUTH: &quot;required&quot;
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker:29092,EX_PLAINTEXT://localhost:9092,EX_SASL_PLAINTEXT://localhost:9093,EX_SSL://localhost:9094
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,EX_PLAINTEXT:PLAINTEXT,EX_SASL_PLAINTEXT:SASL_PLAINTEXT,EX_SSL:SSL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_CONFLUENT_LICENSE_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CONFLUENT_BALANCER_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_SSL_KEYSTORE_FILENAME: kafka.broker.keystore.jks
+      KAFKA_SSL_KEYSTORE_CREDENTIALS: broker_keystore_credentials
+      KAFKA_SSL_KEY_CREDENTIALS: broker_ssl_key_credentials
+      KAFKA_SSL_TRUSTSTORE_FILENAME: kafka.broker.truststore.jks
+      KAFKA_SSL_TRUSTSTORE_CREDENTIALS: broker_truststore_credentials
+      KAFKA_LOG4J_ROOT_LOGLEVEL: INFO
+      KAFKA_OPTS: '-Djava.security.auth.login.config=/opt/confluentinc/kafka/config/kafka_jaas.conf'
+    volumes:
+      - ./secrets/broker_keystore_credentials:/etc/kafka/secrets/broker_keystore_credentials
+      - ./secrets/broker_ssl_key_credentials:/etc/kafka/secrets/broker_ssl_key_credentials
+      - ./secrets/broker_truststore_credentials:/etc/kafka/secrets/broker_truststore_credentials
+      - ./keystore/keystore.jks:/etc/kafka/secrets/kafka.broker.keystore.jks
+      - ./keystore/truststore.jks:/etc/kafka/secrets/kafka.broker.truststore.jks
+      - ./kafka_jaas.conf:/opt/confluentinc/kafka/config/kafka_jaas.conf
+</code></pre>
+<p><em>kafka_jaas.conf</em></p>
+<pre><code class="language-yaml">KafkaServer {
+    org.apache.kafka.common.security.plain.PlainLoginModule required
+    serviceName=&quot;test-service&quot;
+    username=&quot;alice&quot;
+    password=&quot;alice@123&quot;
+    user_alice=&quot;alice@123&quot;;
+};
+
+Client {
+    org.apache.zookeeper.server.auth.DigestLoginModule required
+    username=&quot;alice&quot;
+    password=&quot;alice@123&quot;;
+};
+</code></pre>
+<p><em>zookeeper_jaas.conf</em></p>
+<pre><code class="language-yaml">Server {
+    org.apache.zookeeper.server.auth.DigestLoginModule required
+    username=&quot;alice&quot;
+    password=&quot;alice@123&quot;
+    user_alice=&quot;alice@123&quot;;
+};
+</code></pre>
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+</code></pre>
+<h3><a class="header" href="#consumer" id="consumer">Consumer</a></h3>
+<p><em>kafka_consumer_sasl_plain_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/kafka;
 
@@ -1128,7 +1211,10 @@ isolated service kafka:Service on securedEP {
     }
 }
 </code></pre>
-<p><strong>Producer</strong></p>
+<pre><code class="language-ballerina">$ bal run kafka_consumer_sasl_plain_auth.bal
+</code></pre>
+<h3><a class="header" href="#producer" id="producer">Producer</a></h3>
+<p><em>kafka_producer_sasl_plain_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/kafka;
 
@@ -1160,8 +1246,171 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
+<pre><code class="language-ballerina">$ bal run kafka_producer_sasl_plain_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-5" id="resources-5">Resources</a></h4>
+<p><em>ca.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
+SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
+QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
+MjU2NTBaFw0zMTA2MjgxMjU2NTBaMGExCzAJBgNVBAYTAkxLMRAwDgYDVQQIDAdX
+ZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYDVQQKDARBVklYMQswCQYDVQQL
+DAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEA0SlFT4SbEx2zGyzPTrdJSHOPdCEd7gsy6nheyIsjHECngqVVKYwH
+Jq4c3RByWJfggvy/NP+mSqi7zCn+lZY1i39TpBmYxF/rhFYIEFNDB8d8pgvZ+0AR
+3eB0baaYkkKsMokTjnX43AUm1i+nMTWTTy6thIvabEyT+YgdvoFEPOzQ9UsyeaQ2
+bhryuZtQFYi4k3FjSONr8eKxdpjNjOgY03yi8BRW69e+s9Sa8jOMGhhphRpPeuSf
+mJMEiRMtBlHsl1QkBRJs/l/rhr9M56CkDEsevG9EQaYsvW7hb1ChU13PksJ9uFWV
+mclkwxFFvGXIwV3DJqR9qe/o43usO443XQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+AQCwzA0H0FCCIuO09gMrdtZIglbsGLRRRqmfXXRWNg63vOUSqSy50JucZtijRMTA
+6lKDG1xZopBtI2G5P2SVDmVgwBiJYFxWGMlkF3k6Urid3HO1fQ6ljtmx21kOCtK+
+0t++t2oRSpL1qXZkaTK29H4ExpHjlaxQSi9dYvnnPa/1RiIgjzUVt4SSwSI4x8LH
+KLll0aRYel/nth7+K8Ld5v56isIv1nwMCG/V/iiN60Eeho9VxXcTemWCgwsEpy0J
+arX2HPHvHXGV750FS9iyPNVDRpG60XsBb0Rq3sVPfJ7yEJ8TMgGRe1ab7aE6CEnl
+hMhVGtBdnjJNOHcOaGPDZJru
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzIxOFoXDTMxMDYyODEzMzIxOFowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBkNsaWVudDESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAq8s322duVHHrAwZJe8mHiyeZyrb3LzQUkuKA+LbN
+IiDt+pKWZilrDo4bIbByV/X89/c9GYherEqgsBuyuZHIBAZBNZ2p/VC0eRT5GjhX
+bwliMzLcMrAQr3vXy8iIgJvOWN2ABksWVmORaIIlvzhmji47O7J8LePHWqoupCCE
+7jkKOk5wvpsZdKUDzFSteis7YkS4rI9+jvaNTensXYlJ80rKr30fSB2RsN3Jgo/c
+GXXeovW9a6CID9Fg904g6Uwt5ioVM0owbLUkS8J5mezZQBHUxb4UzX8wC8PUcO3q
+qn1JEats+kuYT90qrmVaBdNBEUlSa+T8o6QgyCXJ/h5JGwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEATNh/qOMm71Y0Thjq2hguIaix/3AC5bU2AjKt
+OObJf8fNsUoFZwMrg5kRkxBEnHF0tAiMBW1vBBKK93pEAp0K4XBA0mgb1n9LgqOf
+oDIgOKKiymm3AqhmBytjDQ1yrQRvVb8eIary0YoCCyYFAqox7hNrLkaV0x42BYJ0
+BQRBj1iorJ+tog/2Bw2vt7cFv9Mm1quaiyEgmk1yMoaEtsZqbvIS1xFjmrjM+1iR
+mhKa6NyPXiXracKEWo5cjm95QT7SPZ/guctdeijKOrNz/y0+LO/jTWrRozp7lwhp
+IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>server.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzMwNloXDTMxMDYyODEzMzMwNlowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBlNlcnZlcjESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAvIIidvnwytSjDrjMsmeXtyN7BtHOdSXZ99rqpfog
+vVN8nlAy2YGRXk5XK4qZFuZYMDD0J86BTRbHLb8uFlZ8YywScyiM9g+UwcSGr2+Z
+35PnB7C/sBJAbPQpK7XCn4v24Tfe5yLRaaJVdg3fmpf1TNe5Sfq+vwBsI9XSkh2A
+A8gZupZcDqkVFNpaxwc/9eVpF957tJLn9Qnr9R0wTKUtKrJP1GUZUD2OZhLWpJDA
+UNKnUhm1rD4e0CS8z5OtN73NiUi4nmzkOOs0G3IIcz7ZpHU2hk7Y802Xmnbv9RI2
+fvPk5BSshDhhw7oqaT7tTed7QTbWb+iOB4UuP9ukZSM8QwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEAWlr/+wq1CuVz8TKXV5pSyFEE2aGxnGPYbAWa
+czuYxC0nMMQUZvPULsRixFBO+MQnYHqND3YTAxUW0qJLrb+SZhF60Q/3rlgU4tKb
+bolUlaRwgvoJkOnWK777yKoHC+bNTv3NKOsRLB0J5zsjhHZu3AnooTgKmQP3Y6ks
+E1gDEhYCZf9+djxzQ0n/PH1xgPXpFSOZwiiUrbxBCmqjID3C3jZsf87zJv+pMFZJ
+xCiJ0QCc3D34x+DE1t2XIAc1hwu/XaXGabDVXf/yz3Hq5nEFdSrzDzmVRcBpkJUy
+p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
+Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
+G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
+giW/OGaOLjs7snwt48daqi6kIITuOQo6TnC+mxl0pQPMVK16KztiRLisj36O9o1N
+6exdiUnzSsqvfR9IHZGw3cmCj9wZdd6i9b1roIgP0WD3TiDpTC3mKhUzSjBstSRL
+wnmZ7NlAEdTFvhTNfzALw9Rw7eqqfUkRq2z6S5hP3SquZVoF00ERSVJr5PyjpCDI
+Jcn+HkkbAgMBAAECggEAG5bmYJEK0fr9kB3JXVzvLLTuaPTbW7RUfYZsygSpiwqY
+zX4PM1cBf3Po/Y8VvfSebMBDCr+w3KCbj8zS9iRoZ+UNQewRKcJ1SWDJ5KEZwZZT
+M/++B1HpTBVqgaqx6V2cVP81mU0jyDnzV0JXh48qQTlBgAPZF5GWKYRdOzSRxKQX
+Cd1wDOkvWcsfb4u4JkMFftHDt0F1j8w28FXzJZvLOmGWL1W9QN+Pw5ybB6tVjlcH
+62x59r5fdsSVJmz4lPc3oPljvw4ldZrbtyjMNl3cmpAry+L2yETFof2/e+v6kS0N
+zwf7QqphWp2YI9ocp6Q0A2iJeUtrMsWMzmfMFk4+OQKBgQDa1QgdAEHMqBTHJoEP
+3g9r4XgrfsUnwldJRMlDwUUFxfclYQZM4qR5Sh6wsNOgK86OQhxVB3XmWiKGlI9Q
+PBnTycwnx9U4yuKQaIAKHA81F7ypZiaMsyT4lO0yszHSdamP7kWmt6zSG7Ymh8ez
+rZSUL/dPTwFmGkTkE+JorUVslQKBgQDI+O2lumDh5lvQr5OOYlAcapwvK3m2bmZt
+4dk8BM78DhN9+mGZDVSxSrFpa01XAf9n3QI8mr0+9Gk32+U+0BSwEFOY0DrY2F8V
+h3OuPblgVabpEUDT/DPizS0KPa/fXBG/UHLtFqDqCBrJpKCa2I1koDfw03Xa1MFX
+m0TNn7HC7wKBgQCuGiFLWYIAPpXRYEv8gNLKJOeDy2c2W8MwUt7B3kl472jTP19Q
+2ly69wJ11yl33IKI4gZCjB38OCgR5K4kyrxNqNaZq75zYc9hzxJXeL2MoycBq3ju
+JjU65NnWpYT1CZHvJkYZ/zYrL8r62rpCtM5qG8NqQNQ/FJVM1JkkaP68BQKBgDUJ
+NDXrJIwY7Zv56bfGjBujqsnr8DfLlK5kzp4/Kpxr3or9W2o3kWUkMAOA9K0EcvFm
+6qMxtsV5XJcIKcxUv1DjThxiv1TgbN9Smp2d3mDk2aJiEjifMtYkjUFJnDMWqfxR
+77JPqXF5aBBUqKmUgmPOwFSGiXCReuByskqNXSzzAoGBAKAC6xRGW+mgSq/GlUI6
+ltbKjkzLkfY3M7eflUHtedLRpID0DRMgQPMCWlUefcK8qb7HvivhryWyZDHTnI/+
+1KvgHhfUwFvrGtG7/omf+x+weav5cYevs1+pJt2PJMHFlFHeBJbh2tBCvEv9DgXM
+OtjyRXr703tZjlsqHM/MvRnL
+-----END PRIVATE KEY-----
+</code></pre>
+<p><em>server.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
+uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
+vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
+Dd+al/VM17lJ+r6/AGwj1dKSHYADyBm6llwOqRUU2lrHBz/15WkX3nu0kuf1Cev1
+HTBMpS0qsk/UZRlQPY5mEtakkMBQ0qdSGbWsPh7QJLzPk603vc2JSLiebOQ46zQb
+cghzPtmkdTaGTtjzTZeadu/1EjZ+8+TkFKyEOGHDuippPu1N53tBNtZv6I4HhS4/
+26RlIzxDAgMBAAECggEADV6NYzLGyRvblKe2nNCMCgkSKKGoqtZMZy+3hJ4AxGyv
+Yer+MD7oOHAF7qidwuoDRyexqUEUGouLBMuSUTNBDyeJB3HQzYK9YiC2DKs1lo2+
+zOTUM4CX4SJP6TGy4+3hTIfR30Kw53UD6qOBQE2WsCR8l6qY7KLzCHeZv5MoCRyA
+zH5BLRscqWrqTLCaXl1ucrxBDy6MjFHdcaDNg6E6wawd+CCKEO9SUc4HpFu3a1F3
+/XnBCdRZvhMssSL4n89u14a+wjhGBs1fSEv9uelYhE2u1nPz2PTwwb/4Kphkswq6
+OlPlH+MyA6VHOKZaHyoSvsx8oY8KpUiZNaTXs8hJAQKBgQDfX1POfvgDS21k0m4C
+yW4vvunF0pwDj29elcQeOh6VYLNuUXCA/G4s3WwyD2HBL99uyfHFtZAqmV+UPV1B
+TkkdVvvKMRS9OVJdZ6El+0S/Om5jGKtpqBdgojIu6JCPg/4DXOnyO+MP58SRN9Fv
+aClNP97mR85rsJhhNyyLN8Q20wKBgQDYCx6M74K1AdkmATd5J6FCJpOQrm751Elh
+jwgLOAwwhjPGZmW2piEoMPLKWDFuqJytWq0WGaHcSXIrawQYCn/HKoCUDAVNYhvO
+5k6R82bNb2nK1CYsDJmzS/JAr/IMkwF8yc3JfvPWjK/SlnaXlxTgaH2kekuxTX5J
+03nt9kte0QKBgHUVUqh6hSW087JVWrS7QLZmK8M1kfGLzaSWfCYb8Mv71BGPPpld
+t6JsrbnPtj29CjDYSZKIiPjLS/437Bm/HzPx1Ck3cNd+pF2xZBa0jmRuDE6FL9RB
+937/ha5w2NVhKlQ476e5HFvJ8I7t4ymyP3PudrfeC6UG+9h5Qy/2GzNhAoGBAJ0G
+p/Pj+eq6Jyy6YamLpmfARi04u6yWIafpH/2XhTSXtnYT4wX4hc0CltV/eJ5nq0lM
+yNVxV/YW5Aaux9D5gJowSDhS7F+sWW3uc1kdwrC6s/gaboxBtE1fe/qMZ6/AAarD
+uvEjdvOQWhMEDbpss13QVNIBmZaLLqlWLh9JjsqhAoGAWs/VIQ3pxf8X6HHEDkWH
+NL9mClNT3xfMTvZsndMUjHge6rbqgrsipGgbiz9UHD7ftCG13bWEJNor7WsucWEK
+H40WeHpKCXUJR85Hng4olJ2kbGGVeRJNqIbyCFw9JTRgS6ZMG+U9SacfCV8uGxRt
+JnU71wydqJBv9xqPeEyrbQs=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#rabbitmq" id="rabbitmq">RabbitMQ</a></h1>
-<p><strong>Consumer</strong></p>
+<h3><a class="header" href="#rabbitmq-server" id="rabbitmq-server">RabbitMQ Server</a></h3>
+<p><em>docker-compose.yml</em></p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-server
+    volumes:
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./cert/ca.crt:/cert/ca.crt
+      - ./cert/server.crt:/cert/server.crt
+      - ./key/server.key:/key/server.key
+    ports:
+      - 5671:5671
+      - 5672:5672
+      - 15672:15672
+</code></pre>
+<p><em>rabbitmq.conf</em></p>
+<pre><code class="language-yaml">listeners.ssl.default = 5671
+
+default_user = alice
+default_pass = alice@123
+ssl_options.cacertfile = ./cert/ca.crt
+ssl_options.certfile = ./cert/server.crt
+ssl_options.keyfile = ./key/server.key
+ssl_options.verify = verify_peer
+ssl_options.fail_if_no_peer_cert = true
+</code></pre>
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
+</code></pre>
+<h3><a class="header" href="#consumer-1" id="consumer-1">Consumer</a></h3>
+<p><em>rabbitmq_consumer_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
@@ -1194,7 +1443,10 @@ isolated service rabbitmq:Service on securedEP {
     }
 }
 </code></pre>
-<p><strong>Producer</strong></p>
+<pre><code class="language-ballerina">$ bal run rabbitmq_consumer_credentials_auth.bal
+</code></pre>
+<h3><a class="header" href="#producer-1" id="producer-1">Producer</a></h3>
+<p><em>rabbitmq_producer_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/rabbitmq;
 
@@ -1226,8 +1478,176 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
+<pre><code class="language-ballerina">$ bal run rabbitmq_producer_credentials_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-6" id="resources-6">Resources</a></h4>
+<p><em>ca.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
+SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
+QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
+MjU2NTBaFw0zMTA2MjgxMjU2NTBaMGExCzAJBgNVBAYTAkxLMRAwDgYDVQQIDAdX
+ZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYDVQQKDARBVklYMQswCQYDVQQL
+DAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEA0SlFT4SbEx2zGyzPTrdJSHOPdCEd7gsy6nheyIsjHECngqVVKYwH
+Jq4c3RByWJfggvy/NP+mSqi7zCn+lZY1i39TpBmYxF/rhFYIEFNDB8d8pgvZ+0AR
+3eB0baaYkkKsMokTjnX43AUm1i+nMTWTTy6thIvabEyT+YgdvoFEPOzQ9UsyeaQ2
+bhryuZtQFYi4k3FjSONr8eKxdpjNjOgY03yi8BRW69e+s9Sa8jOMGhhphRpPeuSf
+mJMEiRMtBlHsl1QkBRJs/l/rhr9M56CkDEsevG9EQaYsvW7hb1ChU13PksJ9uFWV
+mclkwxFFvGXIwV3DJqR9qe/o43usO443XQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+AQCwzA0H0FCCIuO09gMrdtZIglbsGLRRRqmfXXRWNg63vOUSqSy50JucZtijRMTA
+6lKDG1xZopBtI2G5P2SVDmVgwBiJYFxWGMlkF3k6Urid3HO1fQ6ljtmx21kOCtK+
+0t++t2oRSpL1qXZkaTK29H4ExpHjlaxQSi9dYvnnPa/1RiIgjzUVt4SSwSI4x8LH
+KLll0aRYel/nth7+K8Ld5v56isIv1nwMCG/V/iiN60Eeho9VxXcTemWCgwsEpy0J
+arX2HPHvHXGV750FS9iyPNVDRpG60XsBb0Rq3sVPfJ7yEJ8TMgGRe1ab7aE6CEnl
+hMhVGtBdnjJNOHcOaGPDZJru
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzIxOFoXDTMxMDYyODEzMzIxOFowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBkNsaWVudDESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAq8s322duVHHrAwZJe8mHiyeZyrb3LzQUkuKA+LbN
+IiDt+pKWZilrDo4bIbByV/X89/c9GYherEqgsBuyuZHIBAZBNZ2p/VC0eRT5GjhX
+bwliMzLcMrAQr3vXy8iIgJvOWN2ABksWVmORaIIlvzhmji47O7J8LePHWqoupCCE
+7jkKOk5wvpsZdKUDzFSteis7YkS4rI9+jvaNTensXYlJ80rKr30fSB2RsN3Jgo/c
+GXXeovW9a6CID9Fg904g6Uwt5ioVM0owbLUkS8J5mezZQBHUxb4UzX8wC8PUcO3q
+qn1JEats+kuYT90qrmVaBdNBEUlSa+T8o6QgyCXJ/h5JGwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEATNh/qOMm71Y0Thjq2hguIaix/3AC5bU2AjKt
+OObJf8fNsUoFZwMrg5kRkxBEnHF0tAiMBW1vBBKK93pEAp0K4XBA0mgb1n9LgqOf
+oDIgOKKiymm3AqhmBytjDQ1yrQRvVb8eIary0YoCCyYFAqox7hNrLkaV0x42BYJ0
+BQRBj1iorJ+tog/2Bw2vt7cFv9Mm1quaiyEgmk1yMoaEtsZqbvIS1xFjmrjM+1iR
+mhKa6NyPXiXracKEWo5cjm95QT7SPZ/guctdeijKOrNz/y0+LO/jTWrRozp7lwhp
+IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>server.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzMwNloXDTMxMDYyODEzMzMwNlowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBlNlcnZlcjESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAvIIidvnwytSjDrjMsmeXtyN7BtHOdSXZ99rqpfog
+vVN8nlAy2YGRXk5XK4qZFuZYMDD0J86BTRbHLb8uFlZ8YywScyiM9g+UwcSGr2+Z
+35PnB7C/sBJAbPQpK7XCn4v24Tfe5yLRaaJVdg3fmpf1TNe5Sfq+vwBsI9XSkh2A
+A8gZupZcDqkVFNpaxwc/9eVpF957tJLn9Qnr9R0wTKUtKrJP1GUZUD2OZhLWpJDA
+UNKnUhm1rD4e0CS8z5OtN73NiUi4nmzkOOs0G3IIcz7ZpHU2hk7Y802Xmnbv9RI2
+fvPk5BSshDhhw7oqaT7tTed7QTbWb+iOB4UuP9ukZSM8QwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEAWlr/+wq1CuVz8TKXV5pSyFEE2aGxnGPYbAWa
+czuYxC0nMMQUZvPULsRixFBO+MQnYHqND3YTAxUW0qJLrb+SZhF60Q/3rlgU4tKb
+bolUlaRwgvoJkOnWK777yKoHC+bNTv3NKOsRLB0J5zsjhHZu3AnooTgKmQP3Y6ks
+E1gDEhYCZf9+djxzQ0n/PH1xgPXpFSOZwiiUrbxBCmqjID3C3jZsf87zJv+pMFZJ
+xCiJ0QCc3D34x+DE1t2XIAc1hwu/XaXGabDVXf/yz3Hq5nEFdSrzDzmVRcBpkJUy
+p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
+Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
+G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
+giW/OGaOLjs7snwt48daqi6kIITuOQo6TnC+mxl0pQPMVK16KztiRLisj36O9o1N
+6exdiUnzSsqvfR9IHZGw3cmCj9wZdd6i9b1roIgP0WD3TiDpTC3mKhUzSjBstSRL
+wnmZ7NlAEdTFvhTNfzALw9Rw7eqqfUkRq2z6S5hP3SquZVoF00ERSVJr5PyjpCDI
+Jcn+HkkbAgMBAAECggEAG5bmYJEK0fr9kB3JXVzvLLTuaPTbW7RUfYZsygSpiwqY
+zX4PM1cBf3Po/Y8VvfSebMBDCr+w3KCbj8zS9iRoZ+UNQewRKcJ1SWDJ5KEZwZZT
+M/++B1HpTBVqgaqx6V2cVP81mU0jyDnzV0JXh48qQTlBgAPZF5GWKYRdOzSRxKQX
+Cd1wDOkvWcsfb4u4JkMFftHDt0F1j8w28FXzJZvLOmGWL1W9QN+Pw5ybB6tVjlcH
+62x59r5fdsSVJmz4lPc3oPljvw4ldZrbtyjMNl3cmpAry+L2yETFof2/e+v6kS0N
+zwf7QqphWp2YI9ocp6Q0A2iJeUtrMsWMzmfMFk4+OQKBgQDa1QgdAEHMqBTHJoEP
+3g9r4XgrfsUnwldJRMlDwUUFxfclYQZM4qR5Sh6wsNOgK86OQhxVB3XmWiKGlI9Q
+PBnTycwnx9U4yuKQaIAKHA81F7ypZiaMsyT4lO0yszHSdamP7kWmt6zSG7Ymh8ez
+rZSUL/dPTwFmGkTkE+JorUVslQKBgQDI+O2lumDh5lvQr5OOYlAcapwvK3m2bmZt
+4dk8BM78DhN9+mGZDVSxSrFpa01XAf9n3QI8mr0+9Gk32+U+0BSwEFOY0DrY2F8V
+h3OuPblgVabpEUDT/DPizS0KPa/fXBG/UHLtFqDqCBrJpKCa2I1koDfw03Xa1MFX
+m0TNn7HC7wKBgQCuGiFLWYIAPpXRYEv8gNLKJOeDy2c2W8MwUt7B3kl472jTP19Q
+2ly69wJ11yl33IKI4gZCjB38OCgR5K4kyrxNqNaZq75zYc9hzxJXeL2MoycBq3ju
+JjU65NnWpYT1CZHvJkYZ/zYrL8r62rpCtM5qG8NqQNQ/FJVM1JkkaP68BQKBgDUJ
+NDXrJIwY7Zv56bfGjBujqsnr8DfLlK5kzp4/Kpxr3or9W2o3kWUkMAOA9K0EcvFm
+6qMxtsV5XJcIKcxUv1DjThxiv1TgbN9Smp2d3mDk2aJiEjifMtYkjUFJnDMWqfxR
+77JPqXF5aBBUqKmUgmPOwFSGiXCReuByskqNXSzzAoGBAKAC6xRGW+mgSq/GlUI6
+ltbKjkzLkfY3M7eflUHtedLRpID0DRMgQPMCWlUefcK8qb7HvivhryWyZDHTnI/+
+1KvgHhfUwFvrGtG7/omf+x+weav5cYevs1+pJt2PJMHFlFHeBJbh2tBCvEv9DgXM
+OtjyRXr703tZjlsqHM/MvRnL
+-----END PRIVATE KEY-----
+</code></pre>
+<p><em>server.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
+uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
+vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
+Dd+al/VM17lJ+r6/AGwj1dKSHYADyBm6llwOqRUU2lrHBz/15WkX3nu0kuf1Cev1
+HTBMpS0qsk/UZRlQPY5mEtakkMBQ0qdSGbWsPh7QJLzPk603vc2JSLiebOQ46zQb
+cghzPtmkdTaGTtjzTZeadu/1EjZ+8+TkFKyEOGHDuippPu1N53tBNtZv6I4HhS4/
+26RlIzxDAgMBAAECggEADV6NYzLGyRvblKe2nNCMCgkSKKGoqtZMZy+3hJ4AxGyv
+Yer+MD7oOHAF7qidwuoDRyexqUEUGouLBMuSUTNBDyeJB3HQzYK9YiC2DKs1lo2+
+zOTUM4CX4SJP6TGy4+3hTIfR30Kw53UD6qOBQE2WsCR8l6qY7KLzCHeZv5MoCRyA
+zH5BLRscqWrqTLCaXl1ucrxBDy6MjFHdcaDNg6E6wawd+CCKEO9SUc4HpFu3a1F3
+/XnBCdRZvhMssSL4n89u14a+wjhGBs1fSEv9uelYhE2u1nPz2PTwwb/4Kphkswq6
+OlPlH+MyA6VHOKZaHyoSvsx8oY8KpUiZNaTXs8hJAQKBgQDfX1POfvgDS21k0m4C
+yW4vvunF0pwDj29elcQeOh6VYLNuUXCA/G4s3WwyD2HBL99uyfHFtZAqmV+UPV1B
+TkkdVvvKMRS9OVJdZ6El+0S/Om5jGKtpqBdgojIu6JCPg/4DXOnyO+MP58SRN9Fv
+aClNP97mR85rsJhhNyyLN8Q20wKBgQDYCx6M74K1AdkmATd5J6FCJpOQrm751Elh
+jwgLOAwwhjPGZmW2piEoMPLKWDFuqJytWq0WGaHcSXIrawQYCn/HKoCUDAVNYhvO
+5k6R82bNb2nK1CYsDJmzS/JAr/IMkwF8yc3JfvPWjK/SlnaXlxTgaH2kekuxTX5J
+03nt9kte0QKBgHUVUqh6hSW087JVWrS7QLZmK8M1kfGLzaSWfCYb8Mv71BGPPpld
+t6JsrbnPtj29CjDYSZKIiPjLS/437Bm/HzPx1Ck3cNd+pF2xZBa0jmRuDE6FL9RB
+937/ha5w2NVhKlQ476e5HFvJ8I7t4ymyP3PudrfeC6UG+9h5Qy/2GzNhAoGBAJ0G
+p/Pj+eq6Jyy6YamLpmfARi04u6yWIafpH/2XhTSXtnYT4wX4hc0CltV/eJ5nq0lM
+yNVxV/YW5Aaux9D5gJowSDhS7F+sWW3uc1kdwrC6s/gaboxBtE1fe/qMZ6/AAarD
+uvEjdvOQWhMEDbpss13QVNIBmZaLLqlWLh9JjsqhAoGAWs/VIQ3pxf8X6HHEDkWH
+NL9mClNT3xfMTvZsndMUjHge6rbqgrsipGgbiz9UHD7ftCG13bWEJNor7WsucWEK
+H40WeHpKCXUJR85Hng4olJ2kbGGVeRJNqIbyCFw9JTRgS6ZMG+U9SacfCV8uGxRt
+JnU71wydqJBv9xqPeEyrbQs=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#nats" id="nats">NATS</a></h1>
-<p><strong>Subscriber</strong></p>
+<h3><a class="header" href="#nats-server" id="nats-server">NATS Server</a></h3>
+<p><em>docker-compose.yml</em></p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  nats:
+    image: nats:latest
+    container_name: nats-server
+    command: &quot;-c /server.conf&quot;
+    volumes:
+      - &quot;./server.conf:/server.conf&quot;
+      - &quot;./cert/server.crt:/cert/server.crt&quot;
+      - &quot;./key/server.key:/key/server.key&quot;
+      - &quot;./cert/ca.crt:/cert/ca.crt&quot;
+    ports:
+      - &quot;4222:4222&quot;
+      - &quot;8222:8222&quot;
+</code></pre>
+<p><em>server.conf</em></p>
+<pre><code class="language-yaml">listen: 0.0.0.0:4222
+
+tls: {
+  cert_file: './cert/server.crt'
+  key_file: './key/server.key'
+  ca_file: './cert/ca.crt'
+  verify: true
+}
+// Use one of the methods (username/password and token)
+authorization: {
+  user: &quot;alice&quot;,
+  password: &quot;alice@123&quot;
+  //token: &quot;s3cr3t&quot;
+}
+</code></pre>
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
+</code></pre>
+<h3><a class="header" href="#subscriber-1" id="subscriber-1">Subscriber</a></h3>
+<p><em>nats_subscriber_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
@@ -1258,7 +1678,10 @@ isolated service nats:Service on securedEP {
     }
 }
 </code></pre>
-<p><strong>Publisher</strong></p>
+<pre><code class="language-ballerina">$ bal run nats_subscriber_credentials_auth.bal
+</code></pre>
+<h3><a class="header" href="#publisher-1" id="publisher-1">Publisher</a></h3>
+<p><em>nats_publisher_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/nats;
 
@@ -1287,8 +1710,188 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
+<pre><code class="language-ballerina">$ bal run nats_publisher_credentials_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-7" id="resources-7">Resources</a></h4>
+<p><em>ca.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
+SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
+QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
+MjU2NTBaFw0zMTA2MjgxMjU2NTBaMGExCzAJBgNVBAYTAkxLMRAwDgYDVQQIDAdX
+ZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYDVQQKDARBVklYMQswCQYDVQQL
+DAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEA0SlFT4SbEx2zGyzPTrdJSHOPdCEd7gsy6nheyIsjHECngqVVKYwH
+Jq4c3RByWJfggvy/NP+mSqi7zCn+lZY1i39TpBmYxF/rhFYIEFNDB8d8pgvZ+0AR
+3eB0baaYkkKsMokTjnX43AUm1i+nMTWTTy6thIvabEyT+YgdvoFEPOzQ9UsyeaQ2
+bhryuZtQFYi4k3FjSONr8eKxdpjNjOgY03yi8BRW69e+s9Sa8jOMGhhphRpPeuSf
+mJMEiRMtBlHsl1QkBRJs/l/rhr9M56CkDEsevG9EQaYsvW7hb1ChU13PksJ9uFWV
+mclkwxFFvGXIwV3DJqR9qe/o43usO443XQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+AQCwzA0H0FCCIuO09gMrdtZIglbsGLRRRqmfXXRWNg63vOUSqSy50JucZtijRMTA
+6lKDG1xZopBtI2G5P2SVDmVgwBiJYFxWGMlkF3k6Urid3HO1fQ6ljtmx21kOCtK+
+0t++t2oRSpL1qXZkaTK29H4ExpHjlaxQSi9dYvnnPa/1RiIgjzUVt4SSwSI4x8LH
+KLll0aRYel/nth7+K8Ld5v56isIv1nwMCG/V/iiN60Eeho9VxXcTemWCgwsEpy0J
+arX2HPHvHXGV750FS9iyPNVDRpG60XsBb0Rq3sVPfJ7yEJ8TMgGRe1ab7aE6CEnl
+hMhVGtBdnjJNOHcOaGPDZJru
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzIxOFoXDTMxMDYyODEzMzIxOFowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBkNsaWVudDESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAq8s322duVHHrAwZJe8mHiyeZyrb3LzQUkuKA+LbN
+IiDt+pKWZilrDo4bIbByV/X89/c9GYherEqgsBuyuZHIBAZBNZ2p/VC0eRT5GjhX
+bwliMzLcMrAQr3vXy8iIgJvOWN2ABksWVmORaIIlvzhmji47O7J8LePHWqoupCCE
+7jkKOk5wvpsZdKUDzFSteis7YkS4rI9+jvaNTensXYlJ80rKr30fSB2RsN3Jgo/c
+GXXeovW9a6CID9Fg904g6Uwt5ioVM0owbLUkS8J5mezZQBHUxb4UzX8wC8PUcO3q
+qn1JEats+kuYT90qrmVaBdNBEUlSa+T8o6QgyCXJ/h5JGwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEATNh/qOMm71Y0Thjq2hguIaix/3AC5bU2AjKt
+OObJf8fNsUoFZwMrg5kRkxBEnHF0tAiMBW1vBBKK93pEAp0K4XBA0mgb1n9LgqOf
+oDIgOKKiymm3AqhmBytjDQ1yrQRvVb8eIary0YoCCyYFAqox7hNrLkaV0x42BYJ0
+BQRBj1iorJ+tog/2Bw2vt7cFv9Mm1quaiyEgmk1yMoaEtsZqbvIS1xFjmrjM+1iR
+mhKa6NyPXiXracKEWo5cjm95QT7SPZ/guctdeijKOrNz/y0+LO/jTWrRozp7lwhp
+IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>server.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzMwNloXDTMxMDYyODEzMzMwNlowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBlNlcnZlcjESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAvIIidvnwytSjDrjMsmeXtyN7BtHOdSXZ99rqpfog
+vVN8nlAy2YGRXk5XK4qZFuZYMDD0J86BTRbHLb8uFlZ8YywScyiM9g+UwcSGr2+Z
+35PnB7C/sBJAbPQpK7XCn4v24Tfe5yLRaaJVdg3fmpf1TNe5Sfq+vwBsI9XSkh2A
+A8gZupZcDqkVFNpaxwc/9eVpF957tJLn9Qnr9R0wTKUtKrJP1GUZUD2OZhLWpJDA
+UNKnUhm1rD4e0CS8z5OtN73NiUi4nmzkOOs0G3IIcz7ZpHU2hk7Y802Xmnbv9RI2
+fvPk5BSshDhhw7oqaT7tTed7QTbWb+iOB4UuP9ukZSM8QwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEAWlr/+wq1CuVz8TKXV5pSyFEE2aGxnGPYbAWa
+czuYxC0nMMQUZvPULsRixFBO+MQnYHqND3YTAxUW0qJLrb+SZhF60Q/3rlgU4tKb
+bolUlaRwgvoJkOnWK777yKoHC+bNTv3NKOsRLB0J5zsjhHZu3AnooTgKmQP3Y6ks
+E1gDEhYCZf9+djxzQ0n/PH1xgPXpFSOZwiiUrbxBCmqjID3C3jZsf87zJv+pMFZJ
+xCiJ0QCc3D34x+DE1t2XIAc1hwu/XaXGabDVXf/yz3Hq5nEFdSrzDzmVRcBpkJUy
+p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
+Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
+G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
+giW/OGaOLjs7snwt48daqi6kIITuOQo6TnC+mxl0pQPMVK16KztiRLisj36O9o1N
+6exdiUnzSsqvfR9IHZGw3cmCj9wZdd6i9b1roIgP0WD3TiDpTC3mKhUzSjBstSRL
+wnmZ7NlAEdTFvhTNfzALw9Rw7eqqfUkRq2z6S5hP3SquZVoF00ERSVJr5PyjpCDI
+Jcn+HkkbAgMBAAECggEAG5bmYJEK0fr9kB3JXVzvLLTuaPTbW7RUfYZsygSpiwqY
+zX4PM1cBf3Po/Y8VvfSebMBDCr+w3KCbj8zS9iRoZ+UNQewRKcJ1SWDJ5KEZwZZT
+M/++B1HpTBVqgaqx6V2cVP81mU0jyDnzV0JXh48qQTlBgAPZF5GWKYRdOzSRxKQX
+Cd1wDOkvWcsfb4u4JkMFftHDt0F1j8w28FXzJZvLOmGWL1W9QN+Pw5ybB6tVjlcH
+62x59r5fdsSVJmz4lPc3oPljvw4ldZrbtyjMNl3cmpAry+L2yETFof2/e+v6kS0N
+zwf7QqphWp2YI9ocp6Q0A2iJeUtrMsWMzmfMFk4+OQKBgQDa1QgdAEHMqBTHJoEP
+3g9r4XgrfsUnwldJRMlDwUUFxfclYQZM4qR5Sh6wsNOgK86OQhxVB3XmWiKGlI9Q
+PBnTycwnx9U4yuKQaIAKHA81F7ypZiaMsyT4lO0yszHSdamP7kWmt6zSG7Ymh8ez
+rZSUL/dPTwFmGkTkE+JorUVslQKBgQDI+O2lumDh5lvQr5OOYlAcapwvK3m2bmZt
+4dk8BM78DhN9+mGZDVSxSrFpa01XAf9n3QI8mr0+9Gk32+U+0BSwEFOY0DrY2F8V
+h3OuPblgVabpEUDT/DPizS0KPa/fXBG/UHLtFqDqCBrJpKCa2I1koDfw03Xa1MFX
+m0TNn7HC7wKBgQCuGiFLWYIAPpXRYEv8gNLKJOeDy2c2W8MwUt7B3kl472jTP19Q
+2ly69wJ11yl33IKI4gZCjB38OCgR5K4kyrxNqNaZq75zYc9hzxJXeL2MoycBq3ju
+JjU65NnWpYT1CZHvJkYZ/zYrL8r62rpCtM5qG8NqQNQ/FJVM1JkkaP68BQKBgDUJ
+NDXrJIwY7Zv56bfGjBujqsnr8DfLlK5kzp4/Kpxr3or9W2o3kWUkMAOA9K0EcvFm
+6qMxtsV5XJcIKcxUv1DjThxiv1TgbN9Smp2d3mDk2aJiEjifMtYkjUFJnDMWqfxR
+77JPqXF5aBBUqKmUgmPOwFSGiXCReuByskqNXSzzAoGBAKAC6xRGW+mgSq/GlUI6
+ltbKjkzLkfY3M7eflUHtedLRpID0DRMgQPMCWlUefcK8qb7HvivhryWyZDHTnI/+
+1KvgHhfUwFvrGtG7/omf+x+weav5cYevs1+pJt2PJMHFlFHeBJbh2tBCvEv9DgXM
+OtjyRXr703tZjlsqHM/MvRnL
+-----END PRIVATE KEY-----
+</code></pre>
+<p><em>server.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
+uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
+vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
+Dd+al/VM17lJ+r6/AGwj1dKSHYADyBm6llwOqRUU2lrHBz/15WkX3nu0kuf1Cev1
+HTBMpS0qsk/UZRlQPY5mEtakkMBQ0qdSGbWsPh7QJLzPk603vc2JSLiebOQ46zQb
+cghzPtmkdTaGTtjzTZeadu/1EjZ+8+TkFKyEOGHDuippPu1N53tBNtZv6I4HhS4/
+26RlIzxDAgMBAAECggEADV6NYzLGyRvblKe2nNCMCgkSKKGoqtZMZy+3hJ4AxGyv
+Yer+MD7oOHAF7qidwuoDRyexqUEUGouLBMuSUTNBDyeJB3HQzYK9YiC2DKs1lo2+
+zOTUM4CX4SJP6TGy4+3hTIfR30Kw53UD6qOBQE2WsCR8l6qY7KLzCHeZv5MoCRyA
+zH5BLRscqWrqTLCaXl1ucrxBDy6MjFHdcaDNg6E6wawd+CCKEO9SUc4HpFu3a1F3
+/XnBCdRZvhMssSL4n89u14a+wjhGBs1fSEv9uelYhE2u1nPz2PTwwb/4Kphkswq6
+OlPlH+MyA6VHOKZaHyoSvsx8oY8KpUiZNaTXs8hJAQKBgQDfX1POfvgDS21k0m4C
+yW4vvunF0pwDj29elcQeOh6VYLNuUXCA/G4s3WwyD2HBL99uyfHFtZAqmV+UPV1B
+TkkdVvvKMRS9OVJdZ6El+0S/Om5jGKtpqBdgojIu6JCPg/4DXOnyO+MP58SRN9Fv
+aClNP97mR85rsJhhNyyLN8Q20wKBgQDYCx6M74K1AdkmATd5J6FCJpOQrm751Elh
+jwgLOAwwhjPGZmW2piEoMPLKWDFuqJytWq0WGaHcSXIrawQYCn/HKoCUDAVNYhvO
+5k6R82bNb2nK1CYsDJmzS/JAr/IMkwF8yc3JfvPWjK/SlnaXlxTgaH2kekuxTX5J
+03nt9kte0QKBgHUVUqh6hSW087JVWrS7QLZmK8M1kfGLzaSWfCYb8Mv71BGPPpld
+t6JsrbnPtj29CjDYSZKIiPjLS/437Bm/HzPx1Ck3cNd+pF2xZBa0jmRuDE6FL9RB
+937/ha5w2NVhKlQ476e5HFvJ8I7t4ymyP3PudrfeC6UG+9h5Qy/2GzNhAoGBAJ0G
+p/Pj+eq6Jyy6YamLpmfARi04u6yWIafpH/2XhTSXtnYT4wX4hc0CltV/eJ5nq0lM
+yNVxV/YW5Aaux9D5gJowSDhS7F+sWW3uc1kdwrC6s/gaboxBtE1fe/qMZ6/AAarD
+uvEjdvOQWhMEDbpss13QVNIBmZaLLqlWLh9JjsqhAoGAWs/VIQ3pxf8X6HHEDkWH
+NL9mClNT3xfMTvZsndMUjHge6rbqgrsipGgbiz9UHD7ftCG13bWEJNor7WsucWEK
+H40WeHpKCXUJR85Hng4olJ2kbGGVeRJNqIbyCFw9JTRgS6ZMG+U9SacfCV8uGxRt
+JnU71wydqJBv9xqPeEyrbQs=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#stan" id="stan">STAN</a></h1>
-<p><strong>Subscriber</strong></p>
+<h3><a class="header" href="#stan-server" id="stan-server">STAN Server</a></h3>
+<p><em>docker-compose.yml</em></p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  nats-streaming:
+    image: nats-streaming:latest
+    container_name: nats-streaming-server
+    command: &quot;-c /server.conf&quot;
+    volumes:
+      - &quot;./server.conf:/server.conf&quot;
+      - &quot;./cert/server.crt:/cert/server.crt&quot;
+      - &quot;./key/server.key:/key/server.key&quot;
+      - &quot;./cert/client.crt:/cert/client.crt&quot;
+      - &quot;./key/client.key:/key/client.key&quot;
+      - &quot;./cert/ca.crt:/cert/ca.crt&quot;
+    ports:
+      - &quot;4222:4222&quot;
+      - &quot;8222:8222&quot;
+</code></pre>
+<p><em>server.conf</em></p>
+<pre><code class="language-yaml">listen: 0.0.0.0:4222
+
+tls: {
+    cert_file: './cert/server.crt'
+    key_file: './key/server.key'
+    ca_file: './cert/ca.crt'
+    verify: true
+}
+
+streaming: {
+    cluster_id: b7a_cluster
+    tls: {
+        client_cert: './cert/client.crt'
+        client_key: './key/client.key'
+        client_ca: './cert/ca.crt'
+    }
+}
+
+// Use one of the methods (username/password and token)
+authorization: {
+    user: &quot;alice&quot;,
+    password: &quot;alice@123&quot;
+    //token: &quot;s3cr3t&quot;
+}
+</code></pre>
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
+</code></pre>
+<h3><a class="header" href="#subscriber-2" id="subscriber-2">Subscriber</a></h3>
+<p><em>stan_subscriber_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
@@ -1320,7 +1923,10 @@ isolated service stan:Service on securedEP {
     }
 }
 </code></pre>
-<p><strong>Publisher</strong></p>
+<pre><code class="language-ballerina">$ bal run stan_subscriber_credentials_auth.bal
+</code></pre>
+<h3><a class="header" href="#publisher-2" id="publisher-2">Publisher</a></h3>
+<p><em>stan_publisher_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerinax/stan;
 
@@ -1350,6 +1956,138 @@ public function main() returns error? {
     io:println(&quot;NUID: &quot;, nuid);
     io:println(&quot;Message published successfully.&quot;);
 }
+</code></pre>
+<pre><code class="language-ballerina">$ bal run stan_publisher_credentials_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-8" id="resources-8">Resources</a></h4>
+<p><em>ca.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
+SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
+QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
+MjU2NTBaFw0zMTA2MjgxMjU2NTBaMGExCzAJBgNVBAYTAkxLMRAwDgYDVQQIDAdX
+ZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYDVQQKDARBVklYMQswCQYDVQQL
+DAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+MIIBCgKCAQEA0SlFT4SbEx2zGyzPTrdJSHOPdCEd7gsy6nheyIsjHECngqVVKYwH
+Jq4c3RByWJfggvy/NP+mSqi7zCn+lZY1i39TpBmYxF/rhFYIEFNDB8d8pgvZ+0AR
+3eB0baaYkkKsMokTjnX43AUm1i+nMTWTTy6thIvabEyT+YgdvoFEPOzQ9UsyeaQ2
+bhryuZtQFYi4k3FjSONr8eKxdpjNjOgY03yi8BRW69e+s9Sa8jOMGhhphRpPeuSf
+mJMEiRMtBlHsl1QkBRJs/l/rhr9M56CkDEsevG9EQaYsvW7hb1ChU13PksJ9uFWV
+mclkwxFFvGXIwV3DJqR9qe/o43usO443XQIDAQABMA0GCSqGSIb3DQEBCwUAA4IB
+AQCwzA0H0FCCIuO09gMrdtZIglbsGLRRRqmfXXRWNg63vOUSqSy50JucZtijRMTA
+6lKDG1xZopBtI2G5P2SVDmVgwBiJYFxWGMlkF3k6Urid3HO1fQ6ljtmx21kOCtK+
+0t++t2oRSpL1qXZkaTK29H4ExpHjlaxQSi9dYvnnPa/1RiIgjzUVt4SSwSI4x8LH
+KLll0aRYel/nth7+K8Ld5v56isIv1nwMCG/V/iiN60Eeho9VxXcTemWCgwsEpy0J
+arX2HPHvHXGV750FS9iyPNVDRpG60XsBb0Rq3sVPfJ7yEJ8TMgGRe1ab7aE6CEnl
+hMhVGtBdnjJNOHcOaGPDZJru
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzIxOFoXDTMxMDYyODEzMzIxOFowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBkNsaWVudDESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAq8s322duVHHrAwZJe8mHiyeZyrb3LzQUkuKA+LbN
+IiDt+pKWZilrDo4bIbByV/X89/c9GYherEqgsBuyuZHIBAZBNZ2p/VC0eRT5GjhX
+bwliMzLcMrAQr3vXy8iIgJvOWN2ABksWVmORaIIlvzhmji47O7J8LePHWqoupCCE
+7jkKOk5wvpsZdKUDzFSteis7YkS4rI9+jvaNTensXYlJ80rKr30fSB2RsN3Jgo/c
+GXXeovW9a6CID9Fg904g6Uwt5ioVM0owbLUkS8J5mezZQBHUxb4UzX8wC8PUcO3q
+qn1JEats+kuYT90qrmVaBdNBEUlSa+T8o6QgyCXJ/h5JGwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEATNh/qOMm71Y0Thjq2hguIaix/3AC5bU2AjKt
+OObJf8fNsUoFZwMrg5kRkxBEnHF0tAiMBW1vBBKK93pEAp0K4XBA0mgb1n9LgqOf
+oDIgOKKiymm3AqhmBytjDQ1yrQRvVb8eIary0YoCCyYFAqox7hNrLkaV0x42BYJ0
+BQRBj1iorJ+tog/2Bw2vt7cFv9Mm1quaiyEgmk1yMoaEtsZqbvIS1xFjmrjM+1iR
+mhKa6NyPXiXracKEWo5cjm95QT7SPZ/guctdeijKOrNz/y0+LO/jTWrRozp7lwhp
+IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>server.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
+BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
+VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
+MDYzMDEzMzMwNloXDTMxMDYyODEzMzMwNlowZTELMAkGA1UEBhMCTEsxEDAOBgNV
+BAgMB1dlc3Rlcm4xEDAOBgNVBAcMB0NvbG9tYm8xDTALBgNVBAoMBEFWSVgxDzAN
+BgNVBAsMBlNlcnZlcjESMBAGA1UEAwwJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAvIIidvnwytSjDrjMsmeXtyN7BtHOdSXZ99rqpfog
+vVN8nlAy2YGRXk5XK4qZFuZYMDD0J86BTRbHLb8uFlZ8YywScyiM9g+UwcSGr2+Z
+35PnB7C/sBJAbPQpK7XCn4v24Tfe5yLRaaJVdg3fmpf1TNe5Sfq+vwBsI9XSkh2A
+A8gZupZcDqkVFNpaxwc/9eVpF957tJLn9Qnr9R0wTKUtKrJP1GUZUD2OZhLWpJDA
+UNKnUhm1rD4e0CS8z5OtN73NiUi4nmzkOOs0G3IIcz7ZpHU2hk7Y802Xmnbv9RI2
+fvPk5BSshDhhw7oqaT7tTed7QTbWb+iOB4UuP9ukZSM8QwIDAQABozgwNjA0BgNV
+HREELTArgglsb2NhbGhvc3SCBzAuMC4wLjCCCTEyNy4wLjAuMYcEAAAAAIcEfwAA
+ATANBgkqhkiG9w0BAQsFAAOCAQEAWlr/+wq1CuVz8TKXV5pSyFEE2aGxnGPYbAWa
+czuYxC0nMMQUZvPULsRixFBO+MQnYHqND3YTAxUW0qJLrb+SZhF60Q/3rlgU4tKb
+bolUlaRwgvoJkOnWK777yKoHC+bNTv3NKOsRLB0J5zsjhHZu3AnooTgKmQP3Y6ks
+E1gDEhYCZf9+djxzQ0n/PH1xgPXpFSOZwiiUrbxBCmqjID3C3jZsf87zJv+pMFZJ
+xCiJ0QCc3D34x+DE1t2XIAc1hwu/XaXGabDVXf/yz3Hq5nEFdSrzDzmVRcBpkJUy
+p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>client.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
+Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
+G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
+giW/OGaOLjs7snwt48daqi6kIITuOQo6TnC+mxl0pQPMVK16KztiRLisj36O9o1N
+6exdiUnzSsqvfR9IHZGw3cmCj9wZdd6i9b1roIgP0WD3TiDpTC3mKhUzSjBstSRL
+wnmZ7NlAEdTFvhTNfzALw9Rw7eqqfUkRq2z6S5hP3SquZVoF00ERSVJr5PyjpCDI
+Jcn+HkkbAgMBAAECggEAG5bmYJEK0fr9kB3JXVzvLLTuaPTbW7RUfYZsygSpiwqY
+zX4PM1cBf3Po/Y8VvfSebMBDCr+w3KCbj8zS9iRoZ+UNQewRKcJ1SWDJ5KEZwZZT
+M/++B1HpTBVqgaqx6V2cVP81mU0jyDnzV0JXh48qQTlBgAPZF5GWKYRdOzSRxKQX
+Cd1wDOkvWcsfb4u4JkMFftHDt0F1j8w28FXzJZvLOmGWL1W9QN+Pw5ybB6tVjlcH
+62x59r5fdsSVJmz4lPc3oPljvw4ldZrbtyjMNl3cmpAry+L2yETFof2/e+v6kS0N
+zwf7QqphWp2YI9ocp6Q0A2iJeUtrMsWMzmfMFk4+OQKBgQDa1QgdAEHMqBTHJoEP
+3g9r4XgrfsUnwldJRMlDwUUFxfclYQZM4qR5Sh6wsNOgK86OQhxVB3XmWiKGlI9Q
+PBnTycwnx9U4yuKQaIAKHA81F7ypZiaMsyT4lO0yszHSdamP7kWmt6zSG7Ymh8ez
+rZSUL/dPTwFmGkTkE+JorUVslQKBgQDI+O2lumDh5lvQr5OOYlAcapwvK3m2bmZt
+4dk8BM78DhN9+mGZDVSxSrFpa01XAf9n3QI8mr0+9Gk32+U+0BSwEFOY0DrY2F8V
+h3OuPblgVabpEUDT/DPizS0KPa/fXBG/UHLtFqDqCBrJpKCa2I1koDfw03Xa1MFX
+m0TNn7HC7wKBgQCuGiFLWYIAPpXRYEv8gNLKJOeDy2c2W8MwUt7B3kl472jTP19Q
+2ly69wJ11yl33IKI4gZCjB38OCgR5K4kyrxNqNaZq75zYc9hzxJXeL2MoycBq3ju
+JjU65NnWpYT1CZHvJkYZ/zYrL8r62rpCtM5qG8NqQNQ/FJVM1JkkaP68BQKBgDUJ
+NDXrJIwY7Zv56bfGjBujqsnr8DfLlK5kzp4/Kpxr3or9W2o3kWUkMAOA9K0EcvFm
+6qMxtsV5XJcIKcxUv1DjThxiv1TgbN9Smp2d3mDk2aJiEjifMtYkjUFJnDMWqfxR
+77JPqXF5aBBUqKmUgmPOwFSGiXCReuByskqNXSzzAoGBAKAC6xRGW+mgSq/GlUI6
+ltbKjkzLkfY3M7eflUHtedLRpID0DRMgQPMCWlUefcK8qb7HvivhryWyZDHTnI/+
+1KvgHhfUwFvrGtG7/omf+x+weav5cYevs1+pJt2PJMHFlFHeBJbh2tBCvEv9DgXM
+OtjyRXr703tZjlsqHM/MvRnL
+-----END PRIVATE KEY-----
+</code></pre>
+<p><em>server.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
+uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
+vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
+Dd+al/VM17lJ+r6/AGwj1dKSHYADyBm6llwOqRUU2lrHBz/15WkX3nu0kuf1Cev1
+HTBMpS0qsk/UZRlQPY5mEtakkMBQ0qdSGbWsPh7QJLzPk603vc2JSLiebOQ46zQb
+cghzPtmkdTaGTtjzTZeadu/1EjZ+8+TkFKyEOGHDuippPu1N53tBNtZv6I4HhS4/
+26RlIzxDAgMBAAECggEADV6NYzLGyRvblKe2nNCMCgkSKKGoqtZMZy+3hJ4AxGyv
+Yer+MD7oOHAF7qidwuoDRyexqUEUGouLBMuSUTNBDyeJB3HQzYK9YiC2DKs1lo2+
+zOTUM4CX4SJP6TGy4+3hTIfR30Kw53UD6qOBQE2WsCR8l6qY7KLzCHeZv5MoCRyA
+zH5BLRscqWrqTLCaXl1ucrxBDy6MjFHdcaDNg6E6wawd+CCKEO9SUc4HpFu3a1F3
+/XnBCdRZvhMssSL4n89u14a+wjhGBs1fSEv9uelYhE2u1nPz2PTwwb/4Kphkswq6
+OlPlH+MyA6VHOKZaHyoSvsx8oY8KpUiZNaTXs8hJAQKBgQDfX1POfvgDS21k0m4C
+yW4vvunF0pwDj29elcQeOh6VYLNuUXCA/G4s3WwyD2HBL99uyfHFtZAqmV+UPV1B
+TkkdVvvKMRS9OVJdZ6El+0S/Om5jGKtpqBdgojIu6JCPg/4DXOnyO+MP58SRN9Fv
+aClNP97mR85rsJhhNyyLN8Q20wKBgQDYCx6M74K1AdkmATd5J6FCJpOQrm751Elh
+jwgLOAwwhjPGZmW2piEoMPLKWDFuqJytWq0WGaHcSXIrawQYCn/HKoCUDAVNYhvO
+5k6R82bNb2nK1CYsDJmzS/JAr/IMkwF8yc3JfvPWjK/SlnaXlxTgaH2kekuxTX5J
+03nt9kte0QKBgHUVUqh6hSW087JVWrS7QLZmK8M1kfGLzaSWfCYb8Mv71BGPPpld
+t6JsrbnPtj29CjDYSZKIiPjLS/437Bm/HzPx1Ck3cNd+pF2xZBa0jmRuDE6FL9RB
+937/ha5w2NVhKlQ476e5HFvJ8I7t4ymyP3PudrfeC6UG+9h5Qy/2GzNhAoGBAJ0G
+p/Pj+eq6Jyy6YamLpmfARi04u6yWIafpH/2XhTSXtnYT4wX4hc0CltV/eJ5nq0lM
+yNVxV/YW5Aaux9D5gJowSDhS7F+sWW3uc1kdwrC6s/gaboxBtE1fe/qMZ6/AAarD
+uvEjdvOQWhMEDbpss13QVNIBmZaLLqlWLh9JjsqhAoGAWs/VIQ3pxf8X6HHEDkWH
+NL9mClNT3xfMTvZsndMUjHge6rbqgrsipGgbiz9UHD7ftCG13bWEJNor7WsucWEK
+H40WeHpKCXUJR85Hng4olJ2kbGGVeRJNqIbyCFw9JTRgS6ZMG+U9SacfCV8uGxRt
+JnU71wydqJBv9xqPeEyrbQs=
+-----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#email" id="email">Email</a></h1>
 <h3><a class="header" href="#email-server" id="email-server">Email Server</a></h3>
@@ -1427,7 +2165,7 @@ public function main() returns error? {
 <pre><code class="language-shell">$ bal run smtp_email_client_tls.bal
 </code></pre>
 <hr />
-<h4><a class="header" href="#resources-5" id="resources-5">Resources</a></h4>
+<h4><a class="header" href="#resources-9" id="resources-9">Resources</a></h4>
 <p><em>server.crt</em></p>
 <pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
@@ -1452,7 +2190,21 @@ Ab3OXqK9HS8xvVNvrWzls1ItydCQtYqSBtNFw3hx67Q2LLcsHMjjFvUY73m8dL54
 -----END CERTIFICATE-----
 </code></pre>
 <h1><a class="header" href="#ftp" id="ftp">FTP</a></h1>
-<p><strong>SFTP Listener</strong></p>
+<h3><a class="header" href="#ftp-server" id="ftp-server">FTP Server</a></h3>
+<p><em>docker-compose.yml</em></p>
+<pre><code class="language-yaml">version: &quot;3&quot;
+services:
+  nats:
+    image: atmoz/sftp
+    container_name: sftp-server
+    command: foo:pass:1001
+    volumes:
+      - &quot;./upload:/home/foo/upload&quot;
+    ports:
+      - &quot;2222:22&quot;
+</code></pre>
+<h3><a class="header" href="#sftp-listener" id="sftp-listener">SFTP Listener</a></h3>
+<p><em>sftp_listener_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
@@ -1482,7 +2234,10 @@ isolated service on securedEP {
     }
 }
 </code></pre>
-<p><strong>SFTP Client</strong></p>
+<pre><code class="language-shell">$ bal run sftp_listener_credentials_auth.bal
+</code></pre>
+<h3><a class="header" href="#sftp-client" id="sftp-client">SFTP Client</a></h3>
+<p><em>sftp_client_credentials_auth.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/ftp;
 import ballerina/io;
 
@@ -1505,8 +2260,43 @@ public function main() returns error? {
     }
 }
 </code></pre>
+<pre><code class="language-shell">$ bal run sftp_client_credentials_auth.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-10" id="resources-10">Resources</a></h4>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#tcp" id="tcp">TCP</a></h1>
-<p><strong>Service</strong></p>
+<h3><a class="header" href="#service-4" id="service-4">Service</a></h3>
+<p><em>tcp_listener_tls.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
@@ -1536,7 +2326,10 @@ isolated service class EchoService {
     }
 }
 </code></pre>
-<p><strong>Client</strong></p>
+<pre><code class="language-shell">$ bal run tcp_listener_tls.bal
+</code></pre>
+<h3><a class="header" href="#client-4" id="client-4">Client</a></h3>
+<p><em>tcp_client_tls.bal</em></p>
 <pre><code class="language-ballerina">import ballerina/io;
 import ballerina/tcp;
 
@@ -1552,6 +2345,63 @@ public function main() returns error? {
     io:println(&quot;Received message: &quot;, string:fromBytes(receivedData));
     check securedEP-&gt;close();
 }
+</code></pre>
+<pre><code class="language-shell">$ bal run tcp_client_tls.bal
+</code></pre>
+<hr />
+<h4><a class="header" href="#resources-11" id="resources-11">Resources</a></h4>
+<p><em>public.crt</em></p>
+<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
+BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
+MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
+EwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzENMAsGA1UEChMEV1NPMjENMAsG
+A1UECxMEV1NPMjESMBAGA1UEAxMJbG9jYWxob3N0MIIBIjANBgkqhkiG9w0BAQEF
+AAOCAQ8AMIIBCgKCAQEAgVyi6fViVLiZKEnw59xzNi1lcYh6z9dZnug+F9gKqFIg
+mdcPe+qtS7gZc1jYTjWMCbx13sFLkZqNHeDUadpmtKo3TDduOl1sqM6cz3yXb6L3
+4k/leh50mzIPNmaaXxd3vOQoK4OpkgO1n32mh6+tkp3sbHmfYqDQrkVK1tmYNtPJ
+ffSCLT+CuIhnJUJco7N0unax+ySZN67/AX++sJpqAhAIZJzrRi6ueN3RFCIxYDXS
+MvxrEmOdn4gOC0o1Ar9u5Bp9N52sqqGbN1x6jNKi3bfUj122Hu5e+Y9KOmfbchhQ
+il2P81cIi30VKgyDn5DeWEuDoYredk4+6qAZrxMw+wIDAQABozEwLzAOBgNVHQ8B
+Af8EBAMCBaAwHQYDVR0OBBYEFNmtrQ36j6tUGhKrfW9qWWE7KFzMMA0GCSqGSIb3
+DQEBCwUAA4IBAQAv3yOwgbtOu76eJMl1BCcgTFgaMUBZoUjK9Un6HGjKEgYz/YWS
+ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
+1ZMp1lvBHABi7wcA+5nbV6zQ7HDmBXFhJfbgH1iVmA1KcvDeBPSJ/scRGasZ5q2W
+3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
+gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
+YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
+-----END CERTIFICATE-----
+</code></pre>
+<p><em>private.key</em></p>
+<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
 </code></pre>
 <h1><a class="header" href="#scenarios-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsscenariosymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securityscenarioslogogithublabelstatus-altscenarios-a" id="scenarios-a-hrefhttpsgithubcomldclakmalballerina-securityactionsworkflowsscenariosymlimg-srchttpsimgshieldsiogithubworkflowstatusldclakmalballerina-securityscenarioslogogithublabelstatus-altscenarios-a">Scenarios <a href="https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml"><img src="https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&amp;label=Status" alt="Scenarios" /></a></a></h1>
 <p>This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.</p>
@@ -1633,7 +2483,7 @@ by the <strong>Order Service</strong> of the left side trust domain only to proc
 OAuth2, TLS, mTLS etc.</p>
 <h3><a class="header" href="#design" id="design">Design</a></h3>
 <p><img src="scenarios/./e-commerce-system.png" alt="figure-1" /></p>
-<h3><a class="header" href="#resources-6" id="resources-6">Resources</a></h3>
+<h3><a class="header" href="#resources-12" id="resources-12">Resources</a></h3>
 <ul>
 <li>Customer Alice &amp; Bob</li>
 <li>API Gateway</li>
