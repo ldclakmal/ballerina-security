@@ -289,7 +289,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources" id="resources">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
@@ -312,7 +312,7 @@ YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -421,7 +421,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-1" id="resources-1">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
@@ -444,7 +444,7 @@ YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -695,13 +695,10 @@ public function main() returns error? {
 <pre><code class="language-shell">$ bal build
 </code></pre>
 <hr />
-<blockquote>
 <h4><a class="header" href="#resources-3" id="resources-3">Resources</a></h4>
 <p><em>public.crt</em></p>
 <pre><code>-----BEGIN CERTIFICATE-----
-</code></pre>
-</blockquote>
-<p>MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
 MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
@@ -720,12 +717,10 @@ ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
 3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
 gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
 YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
------END CERTIFICATE-----</p>
-<blockquote>
-<pre><code>
-_private.key_
+-----END CERTIFICATE-----
 </code></pre>
-<p>-----BEGIN PRIVATE KEY-----
+<p><em>private.key</em></p>
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -752,9 +747,8 @@ RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
 lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
 LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
 JQdp3KBU9S8CmBjGrRpJ2qw=
------END PRIVATE KEY-----</p>
-<pre><code></code></pre>
-</blockquote>
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#websub" id="websub">WebSub</a></h1>
 <h3><a class="header" href="#hub" id="hub">Hub</a></h3>
 <p><em>websub_hub_service_jwt_auth.bal</em></p>
@@ -1047,7 +1041,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-4" id="resources-4">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
@@ -1070,7 +1064,7 @@ YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -1257,7 +1251,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-5" id="resources-5">Resources</a></h4>
 <p><em>ca.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
 SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
 QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
@@ -1279,7 +1273,7 @@ hMhVGtBdnjJNOHcOaGPDZJru
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1302,7 +1296,7 @@ IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1325,7 +1319,7 @@ p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
 Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
 G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
@@ -1355,7 +1349,7 @@ OtjyRXr703tZjlsqHM/MvRnL
 -----END PRIVATE KEY-----
 </code></pre>
 <p><em>server.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
 uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
 vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
@@ -1489,7 +1483,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-6" id="resources-6">Resources</a></h4>
 <p><em>ca.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
 SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
 QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
@@ -1511,7 +1505,7 @@ hMhVGtBdnjJNOHcOaGPDZJru
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1534,7 +1528,7 @@ IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1557,7 +1551,7 @@ p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
 Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
 G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
@@ -1587,7 +1581,7 @@ OtjyRXr703tZjlsqHM/MvRnL
 -----END PRIVATE KEY-----
 </code></pre>
 <p><em>server.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
 uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
 vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
@@ -1721,7 +1715,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-7" id="resources-7">Resources</a></h4>
 <p><em>ca.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
 SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
 QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
@@ -1743,7 +1737,7 @@ hMhVGtBdnjJNOHcOaGPDZJru
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1766,7 +1760,7 @@ IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -1789,7 +1783,7 @@ p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
 Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
 G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
@@ -1819,7 +1813,7 @@ OtjyRXr703tZjlsqHM/MvRnL
 -----END PRIVATE KEY-----
 </code></pre>
 <p><em>server.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
 uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
 vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
@@ -1968,7 +1962,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-8" id="resources-8">Resources</a></h4>
 <p><em>ca.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDPjCCAiYCCQDiEWXPiJfzKjANBgkqhkiG9w0BAQsFADBhMQswCQYDVQQGEwJM
 SzEQMA4GA1UECAwHV2VzdGVybjEQMA4GA1UEBwwHQ29sb21ibzENMAsGA1UECgwE
 QVZJWDELMAkGA1UECwwCQ0ExEjAQBgNVBAMMCWxvY2FsaG9zdDAeFw0yMTA2MzAx
@@ -1990,7 +1984,7 @@ hMhVGtBdnjJNOHcOaGPDZJru
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU6MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -2013,7 +2007,7 @@ IBzOaHLWGzR7SWpRRajeqZxhnRo3bzH/EuqP+JWhRz88HXBUPA==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIJAKD3AgGoknU7MA0GCSqGSIb3DQEBCwUAMGExCzAJBgNV
 BAYTAkxLMRAwDgYDVQQIDAdXZXN0ZXJuMRAwDgYDVQQHDAdDb2xvbWJvMQ0wCwYD
 VQQKDARBVklYMQswCQYDVQQLDAJDQTESMBAGA1UEAwwJbG9jYWxob3N0MB4XDTIx
@@ -2036,7 +2030,7 @@ p4KAKYJ9ghXAcgTKAzQAjqhCoEuc1M4OKx9uTKnBZyzpoKGy3g==
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>client.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCryzfbZ25UcesD
 Bkl7yYeLJ5nKtvcvNBSS4oD4ts0iIO36kpZmKWsOjhshsHJX9fz39z0ZiF6sSqCw
 G7K5kcgEBkE1nan9ULR5FPkaOFdvCWIzMtwysBCve9fLyIiAm85Y3YAGSxZWY5Fo
@@ -2066,7 +2060,7 @@ OtjyRXr703tZjlsqHM/MvRnL
 -----END PRIVATE KEY-----
 </code></pre>
 <p><em>server.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC8giJ2+fDK1KMO
 uMyyZ5e3I3sG0c51Jdn32uql+iC9U3yeUDLZgZFeTlcripkW5lgwMPQnzoFNFsct
 vy4WVnxjLBJzKIz2D5TBxIavb5nfk+cHsL+wEkBs9CkrtcKfi/bhN97nItFpolV2
@@ -2273,12 +2267,35 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-10" id="resources-10">Resources</a></h4>
 <p><em>private.key</em></p>
-<pre><pre class="playground"><code class="language-rust">
-<span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
-<span class="boring">}
-</span></code></pre></pre>
+<pre><code>-----BEGIN PRIVATE KEY-----
+MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
+4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
+faaHr62SnexseZ9ioNCuRUrW2Zg208l99IItP4K4iGclQlyjs3S6drH7JJk3rv8B
+f76wmmoCEAhknOtGLq543dEUIjFgNdIy/GsSY52fiA4LSjUCv27kGn03nayqoZs3
+XHqM0qLdt9SPXbYe7l75j0o6Z9tyGFCKXY/zVwiLfRUqDIOfkN5YS4Ohit52Tj7q
+oBmvEzD7AgMBAAECggEAXM/F4u23OummmQ1T1kaIMpqnaalt06jCGAywYBMUsmca
+FMYDyfg5lVXkjKl1p8crTeD1AHjWawTjskgYnkmf3ocxXXF3mFBnIUX7o7HURLg7
++RcxoUgwiRiFaZZ7szX3JoLbfzzbcHNQ37kavccBVWwQsFMiU3Tlw+LbKwK6/row
+LYsQPx7gT4u7hViat4vQDTYcgyjvvFCiek4ndL6O9K49MxIMU678UXB6ia5iUevy
+vgEfcYkKQ5EQ38qS3ZwsubPvj4633jvAJRr/hJD8XINZC74kTXeV3BGH2LlpQOEq
+kWkOypwYNjnXtt1JO8+Iu6mEXKUoiIBPfGrJ3vDSQQKBgQDmYPc7kfYan/LHjJRv
+iE2CwbC26yVA6+BEPQv9z7jChO9Q6cUbGvM8EEVNpC9nmFogkslzJhz55HP84QZL
+u3ptU+D96ncq6zkBqxBfRnZG++D36+XRXIwzz3h+g1Nwrl0y0MFbwlkMm3ZqJdd6
+pZz1FZGd6zvQftW8m7jPSKHuswKBgQCPv6czFOZR6bI+qCQdaORpe9JGoAduOD+4
+YKl96s0eiAKhkGhFCrMd6GJwWRkpNcfwB+J9sMahORbfvwiYanI56h7Vi30DFPRb
+m1m8dLkr6z+8bxMxKJaMXIIjy3UDamgDr7QHInNUih2iGvtB8QqZ0aobsB2XIxZg
+qESTMcpYmQKBgHSwSqneraQgvgz7FLhFdtUzHDoacr0mfGqz7R37F99XDAyUy+SF
+ywvyRdgkwGodjhEPqH/tnyGn6GP+6nxzknhL0xtppkCT8kT5C4rmmsQrknChCL/5
+u34GqUaTaDEb8FLrz/SVRRuQpvLvBey2dADjkuVFH//kLoig64P6iyLnAoGBAIlF
+g+2L78YZXVXoS1SqbjUtQUigWXgvzunLpQ/Rwb9+MsUGmgwUg6fz2s1eyGBKM3xM
+i0VsIsKjOezBCPxD6oDTyk4yvlbLE+7HE5KcBJikNmFD0RgIonu3e6+jA0MXweyD
+RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
+lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
+LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
+JQdp3KBU9S8CmBjGrRpJ2qw=
+-----END PRIVATE KEY-----
+</code></pre>
 <h1><a class="header" href="#tcp" id="tcp">TCP</a></h1>
 <h3><a class="header" href="#service-4" id="service-4">Service</a></h3>
 <p><em>tcp_listener_tls.bal</em></p>
@@ -2336,7 +2353,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-11" id="resources-11">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
@@ -2359,7 +2376,7 @@ YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
