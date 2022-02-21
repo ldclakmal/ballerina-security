@@ -1211,7 +1211,7 @@ isolated service kafka:Service on securedEP {
     }
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run kafka_consumer_sasl_plain_auth.bal
+<pre><code class="language-shell">$ bal run kafka_consumer_sasl_plain_auth.bal
 </code></pre>
 <h3><a class="header" href="#producer" id="producer">Producer</a></h3>
 <p><em>kafka_producer_sasl_plain_auth.bal</em></p>
@@ -1246,7 +1246,7 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run kafka_producer_sasl_plain_auth.bal
+<pre><code class="language-shell">$ bal run kafka_producer_sasl_plain_auth.bal
 </code></pre>
 <hr />
 <h4><a class="header" href="#resources-5" id="resources-5">Resources</a></h4>
@@ -1443,7 +1443,7 @@ isolated service rabbitmq:Service on securedEP {
     }
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run rabbitmq_consumer_credentials_auth.bal
+<pre><code class="language-shell">$ bal run rabbitmq_consumer_credentials_auth.bal
 </code></pre>
 <h3><a class="header" href="#producer-1" id="producer-1">Producer</a></h3>
 <p><em>rabbitmq_producer_credentials_auth.bal</em></p>
@@ -1478,7 +1478,7 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run rabbitmq_producer_credentials_auth.bal
+<pre><code class="language-shell">$ bal run rabbitmq_producer_credentials_auth.bal
 </code></pre>
 <hr />
 <h4><a class="header" href="#resources-6" id="resources-6">Resources</a></h4>
@@ -1678,7 +1678,7 @@ isolated service nats:Service on securedEP {
     }
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run nats_subscriber_credentials_auth.bal
+<pre><code class="language-shell">$ bal run nats_subscriber_credentials_auth.bal
 </code></pre>
 <h3><a class="header" href="#publisher-1" id="publisher-1">Publisher</a></h3>
 <p><em>nats_publisher_credentials_auth.bal</em></p>
@@ -1710,7 +1710,7 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run nats_publisher_credentials_auth.bal
+<pre><code class="language-shell">$ bal run nats_publisher_credentials_auth.bal
 </code></pre>
 <hr />
 <h4><a class="header" href="#resources-7" id="resources-7">Resources</a></h4>
@@ -1923,7 +1923,7 @@ isolated service stan:Service on securedEP {
     }
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run stan_subscriber_credentials_auth.bal
+<pre><code class="language-shell">$ bal run stan_subscriber_credentials_auth.bal
 </code></pre>
 <h3><a class="header" href="#publisher-2" id="publisher-2">Publisher</a></h3>
 <p><em>stan_publisher_credentials_auth.bal</em></p>
@@ -1957,7 +1957,7 @@ public function main() returns error? {
     io:println(&quot;Message published successfully.&quot;);
 }
 </code></pre>
-<pre><code class="language-ballerina">$ bal run stan_publisher_credentials_auth.bal
+<pre><code class="language-shell">$ bal run stan_publisher_credentials_auth.bal
 </code></pre>
 <hr />
 <h4><a class="header" href="#resources-8" id="resources-8">Resources</a></h4>
