@@ -181,7 +181,7 @@ services:
       - &quot;3465:3465&quot; # SMTPs
       - &quot;3993:3993&quot; # IMAPs
 </code></pre>
-<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
 </code></pre>
 <h3><a class="header" href="#imap-listener" id="imap-listener">IMAP Listener</a></h3>
 <p><em>imap_email_listener_tls.bal</em></p>
@@ -245,7 +245,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources" id="resources">Resources</a></h4>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
 UzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlHcmVl
 bk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2VydGlm

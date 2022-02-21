@@ -546,7 +546,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-2" id="resources-2">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
@@ -569,7 +569,7 @@ YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
 -----END CERTIFICATE-----
 </code></pre>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<pre><code>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -695,10 +695,13 @@ public function main() returns error? {
 <pre><code class="language-shell">$ bal build
 </code></pre>
 <hr />
+<blockquote>
 <h4><a class="header" href="#resources-3" id="resources-3">Resources</a></h4>
 <p><em>public.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
-MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
+<pre><code>-----BEGIN CERTIFICATE-----
+</code></pre>
+</blockquote>
+<p>MIIDdzCCAl+gAwIBAgIEfP3e8zANBgkqhkiG9w0BAQsFADBkMQswCQYDVQQGEwJV
 UzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxDTALBgNVBAoT
 BFdTTzIxDTALBgNVBAsTBFdTTzIxEjAQBgNVBAMTCWxvY2FsaG9zdDAeFw0xNzEw
 MjQwNTQ3NThaFw0zNzEwMTkwNTQ3NThaMGQxCzAJBgNVBAYTAlVTMQswCQYDVQQI
@@ -717,10 +720,12 @@ ZFlY/qH5rT01DWQevUZB626d5ZNdzSBZRlpsxbf9IE/ursNHwHx9ua6fB7yHUCzC
 3IenDNrfPIUhD74tFiCiqNJO91qD/LO+++3XeZzfPh8NRKkiPX7dB8WJ3YNBuQAv
 gRWTISpSSXLmqMb+7MPQVgecsepZdk8CwkRLxh3RKPJMjigmCgyvkSaoDMKAYC3i
 YjfUTiJ57UeqoSl0IaOFJ0wfZRFh+UytlDZa
------END CERTIFICATE-----
+-----END CERTIFICATE-----</p>
+<blockquote>
+<pre><code>
+_private.key_
 </code></pre>
-<p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
+<p>-----BEGIN PRIVATE KEY-----
 MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
 SfDn3HM2LWVxiHrP11me6D4X2AqoUiCZ1w976q1LuBlzWNhONYwJvHXewUuRmo0d
 4NRp2ma0qjdMN246XWyozpzPfJdvovfiT+V6HnSbMg82ZppfF3e85Cgrg6mSA7Wf
@@ -747,8 +752,9 @@ RW/qviflHRdInNgDzxPE3KVEMX26zAvRpGrMCWdBAoGAdQ5SvX+mAC3cKqoQ9Zal
 lSqWoyjfzP5EaVRG8dtoLxbznQGTTvtHXc65/MznX/L9qkWCS6Eb4HH5M3hFNY46
 LNIzGQLznE1odwv7H5B8c0/m3DrKTxbh8bYcrR1BW5/nKZNNW7k1O6OjEozvAajK
 JQdp3KBU9S8CmBjGrRpJ2qw=
------END PRIVATE KEY-----
-</code></pre>
+-----END PRIVATE KEY-----</p>
+<pre><code></code></pre>
+</blockquote>
 <h1><a class="header" href="#websub" id="websub">WebSub</a></h1>
 <h3><a class="header" href="#hub" id="hub">Hub</a></h3>
 <p><em>websub_hub_service_jwt_auth.bal</em></p>
@@ -1174,7 +1180,7 @@ Client {
     user_alice=&quot;alice@123&quot;;
 };
 </code></pre>
-<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
 </code></pre>
 <h3><a class="header" href="#consumer" id="consumer">Consumer</a></h3>
 <p><em>kafka_consumer_sasl_plain_auth.bal</em></p>
@@ -2103,7 +2109,7 @@ services:
       - &quot;3465:3465&quot; # SMTPs
       - &quot;3993:3993&quot; # IMAPs
 </code></pre>
-<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
 </code></pre>
 <h3><a class="header" href="#imap-listener" id="imap-listener">IMAP Listener</a></h3>
 <p><em>imap_email_listener_tls.bal</em></p>
@@ -2167,7 +2173,7 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-9" id="resources-9">Resources</a></h4>
 <p><em>server.crt</em></p>
-<pre><code class="language-yaml">-----BEGIN CERTIFICATE-----
+<pre><code>-----BEGIN CERTIFICATE-----
 MIIDgTCCAmmgAwIBAgIEB9RhrzANBgkqhkiG9w0BAQsFADBxMQswCQYDVQQGEwJV
 UzEeMBwGA1UEChMVSWNlZ3JlZW4gVGVjaG5vbG9naWVzMRIwEAYDVQQLEwlHcmVl
 bk1haWwxLjAsBgNVBAMTJUdyZWVuTWFpbCBzZWxmc2lnbmVkIFRlc3QgQ2VydGlm
@@ -2203,7 +2209,7 @@ services:
     ports:
       - &quot;2222:22&quot;
 </code></pre>
-<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
 </code></pre>
 <h3><a class="header" href="#sftp-listener" id="sftp-listener">SFTP Listener</a></h3>
 <p><em>sftp_listener_credentials_auth.bal</em></p>
@@ -2267,8 +2273,12 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources-10" id="resources-10">Resources</a></h4>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
-</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+<span class="boring">}
+</span></code></pre></pre>
 <h1><a class="header" href="#tcp" id="tcp">TCP</a></h1>
 <h3><a class="header" href="#service-4" id="service-4">Service</a></h3>
 <p><em>tcp_listener_tls.bal</em></p>

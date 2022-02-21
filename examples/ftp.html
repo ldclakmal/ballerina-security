@@ -181,7 +181,7 @@ services:
     ports:
       - &quot;2222:22&quot;
 </code></pre>
-<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up &amp;
+<pre><code class="language-shell">$ docker-compose -f docker-compose.yml up
 </code></pre>
 <h3><a class="header" href="#sftp-listener" id="sftp-listener">SFTP Listener</a></h3>
 <p><em>sftp_listener_credentials_auth.bal</em></p>
@@ -245,8 +245,12 @@ public function main() returns error? {
 <hr />
 <h4><a class="header" href="#resources" id="resources">Resources</a></h4>
 <p><em>private.key</em></p>
-<pre><code class="language-yaml">-----BEGIN PRIVATE KEY-----
-</code></pre>
+<pre><pre class="playground"><code class="language-rust">
+<span class="boring">#![allow(unused)]
+</span><span class="boring">fn main() {
+</span>MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCBXKLp9WJUuJko
+<span class="boring">}
+</span></code></pre></pre>
 
                     </main>
 
