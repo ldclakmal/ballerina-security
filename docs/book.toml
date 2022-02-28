@@ -14,3 +14,6 @@ site-url = "/ballerina-security/"
 
 [output.html.fold]
 enable = true
+
+[output.html.print]
+enable = false
