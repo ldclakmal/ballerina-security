@@ -1,8 +1,4 @@
-# Examples [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
-
-This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
-
-> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
+{{#include ../../README.md:51:55}}
 
 1. [HTTP](./examples/http.md)
 2. [WebSocket](./examples/websocket.md)
