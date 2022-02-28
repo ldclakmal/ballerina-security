@@ -5,7 +5,6 @@ The examples, use-cases, demos, and resources related to microservices security 
 [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
-[![Integrations](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Integrations?logo=github&label=Integrations)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml)
 
 ## Summary
 
@@ -73,10 +72,6 @@ This section demonstrates the real-world scenarios which have authentication and
 2. [E-Commerce system](./scenarios/e-commerce-system)
 3. [Secured Order Management Service with JWT Auth](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/examples/order-management-service/README.md)
 4. [Secured Order Management Service with OAuth2](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/examples/order-management-service/README.md)
-
-## Integrations [![Integrations](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Integrations?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/integrations.yml)
-
-This section demonstrates an automated Ballerina security test-suite which contains authentication and authorization related integration scenarios. These tests run on-demand with the provided Ballerina version in GitHub secrets.
 
 ## Issues/Tasks
 
