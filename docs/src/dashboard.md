@@ -1,6 +1,6 @@
 # Dashboard
 
-This section demonstrates the current status of the security modules of the Ballerina standard library.
+This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
 | Module | Latest Release | Status | ![docs][ballerina-docs-logo] & ![package][ballerina-central-logo] |
 |---|---|---|---|

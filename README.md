@@ -18,7 +18,7 @@ This repository contains all the examples, use-cases, demos, and resources relat
 
 ## Dashboard
 
-This section demonstrates the current status of the security modules of the Ballerina standard library.
+This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
 | Module | Latest Release | Status | ![docs][ballerina-docs-logo] & ![package][ballerina-central-logo] |
 |---|---|---|---|
@@ -30,7 +30,9 @@ This section demonstrates the current status of the security modules of the Ball
 
 ## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
-This section demonstrates an automated Ballerina security test-suite which integrate the Ballerina by examples (BBEs). These tests run on-demand with the provided Ballerina version in GitHub secrets.
+This section demonstrates the security related Ballerina by examples (BBEs).
+
+> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
 
 | Category | ![BBE][ballerina-bbe-logo] | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|---|---|
@@ -43,7 +45,9 @@ This section demonstrates an automated Ballerina security test-suite which integ
 
 ## Examples [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
-This section demonstrates the examples with authentication and authorization for different protocols supported by Ballerina.
+This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
+
+> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -63,6 +67,8 @@ This section demonstrates the examples with authentication and authorization for
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
+> NOTE: These scenarios are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
+
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)
 3. [Secured Order Management Service with JWT Auth](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/examples/order-management-service/README.md)
@@ -74,10 +80,7 @@ This section demonstrates an automated Ballerina security test-suite which conta
 
 ## Issues/Tasks
 
-This section summarizes the issues/tasks related to the security aspects of Ballerina.
-- Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
-- The Ballerina standard library issues/tasks are further categorized as bugs, improvements, new features, and tasks.
-  Refer to the [this](./issues) page for more information.
+This section summarizes the issues/tasks related to the security aspects of Ballerina. Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
 
 ---
 
