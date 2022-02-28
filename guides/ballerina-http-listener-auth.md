@@ -91,7 +91,7 @@ service /foo on securedEP {
 
 Also, the security enforcement that is done for the service using the `http:ServiceConfig` can be overridden by the `http:ResourceConfig` annotation for a specific API(s).
 
-> **Note:** It is required to use HTTPS when enforcing authentication and authorization checks to ensure the confidentiality of sensitive authentication data.
+> **NOTE**: It is required to use HTTPS when enforcing authentication and authorization checks to ensure the confidentiality of sensitive authentication data.
 
 ### 1.1. Declarative Approach
 

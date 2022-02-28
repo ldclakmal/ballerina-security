@@ -46,7 +46,7 @@ The followings are standards that govern the use of particular cryptographic pri
 - **PKCS8** - A standard for handling private keys for all algorithms, not just RSA algorithm. Available as RFC 5208. Also provides an option to encrypt the private key, using password-based encryption.
 - **PKCS12** - A Microsoft private standard that was later defined in an RFC 7292 that provides enhanced security. The 'keystore' may contain both private keys and their corresponding certificates with or without a complete chain.
 
-> NOTE: Since most systems, today need to support multiple algorithms, and wish to be able to adapt to new algorithms as they are developed, PKCS8 is preferred for private keys, and a similar any-algorithm scheme defined by X.509 for public keys. Also, PKCS12/PFX is often preferred to both.
+> **NOTE**: Since most systems, today need to support multiple algorithms, and wish to be able to adapt to new algorithms as they are developed, PKCS8 is preferred for private keys, and a similar any-algorithm scheme defined by X.509 for public keys. Also, PKCS12/PFX is often preferred to both.
 
 > A sample set of keys and certs can be found [here](https://github.com/ldclakmal/ballerina-security/tree/master/guides/resources/keys-certs/sample-types).
 

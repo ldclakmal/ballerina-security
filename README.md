@@ -31,7 +31,7 @@ This section demonstrates the current status of the security modules of the [Bal
 
 This section demonstrates the security related Ballerina by examples (BBEs).
 
-> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
+> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
 
 | Category | ![BBE][ballerina-bbe-logo] | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|---|---|
@@ -46,7 +46,7 @@ This section demonstrates the security related Ballerina by examples (BBEs).
 
 This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
 
-> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
+> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -66,7 +66,7 @@ This section demonstrates the security examples with authentication and authoriz
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
-> NOTE: These scenarios are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
+> **NOTE**: These scenarios are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
 
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)

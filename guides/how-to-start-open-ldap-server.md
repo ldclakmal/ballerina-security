@@ -16,7 +16,7 @@ Now, execute the following command to start the Docker container.
 $ docker-compose up
 ```
 
-**NOTE:** Since we have named the container as `openldap-server` in `docker-compose.yml` file the following commands will refer to that name.
+**NOTE**: Since we have named the container as `openldap-server` in `docker-compose.yml` file the following commands will refer to that name.
 
 Execute the following commands with `ldapsearch` to query the DIT and lookup entries.
 ```bash
@@ -37,7 +37,7 @@ $ docker exec openldap-server ldapadd -x -H ldap://localhost -D "cn=admin,dc=avi
 ```
 
 ---
-**NOTE:** Experimental stage.
+**NOTE**: Experimental stage.
 
 An alternative way to start the container without `docker-compose.yml`.
 ```bash

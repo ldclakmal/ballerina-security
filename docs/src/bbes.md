@@ -2,7 +2,7 @@
 
 This section demonstrates the security related Ballerina by examples (BBEs).
 
-> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
+> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
 
 | Category | ![BBE][ballerina-bbe-logo] |
 |---|---|

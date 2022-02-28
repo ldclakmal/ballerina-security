@@ -2,7 +2,7 @@
 
 This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
 
-> NOTE: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
+> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
 
 1. [HTTP](./examples/http.md)
 2. [WebSocket](./examples/websocket.md)
