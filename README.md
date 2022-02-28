@@ -79,10 +79,6 @@ This section demonstrates the real-world scenarios which have authentication and
 3. [Secured Order Management Service with JWT Auth](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/examples/order-management-service/README.md)
 4. [Secured Order Management Service with OAuth2](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/examples/order-management-service/README.md)
 
-## Issues/Tasks
-
-This section summarizes the issues/tasks related to the security aspects of Ballerina. Ballerina platform security issues/tasks are managed with the [Project Board](https://github.com/users/ldclakmal/projects/1/views/10).
-
 ---
 
 ## References

@@ -24,8 +24,7 @@
   - [E-Commerce System](./scenarios/e-commerce-system.md)
   - [Secured Order Management Service with JWT Auth](./scenarios/secured-order-management-service-with-jwt-auth.md)
   - [Secured Order Management Service with OAuth2](./scenarios/secured-order-management-service-with-oauth2.md)
-- [Issues](./issues.md)
-  
+
 # References
 
 - [References](./references.md)
