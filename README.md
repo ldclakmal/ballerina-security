@@ -19,13 +19,13 @@ This repository contains all the examples, use-cases, demos, and resources relat
 
 This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
-| Module | Latest Release | Status | ![docs][ballerina-docs-logo] & ![package][ballerina-central-logo] |
-|---|---|---|---|
-| [**auth**][auth] | [![tag][auth-badge-tags]][auth-tags] | [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov] | [lib.ballerina.io/ballerina/auth][auth-docs] <br/> [central.ballerina.io/ballerina/auth][auth-package] |
-| [**jwt**][jwt] | [![tag][jwt-badge-tags]][jwt-tags] | [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov] | [lib.ballerina.io/ballerina/jwt][jwt-docs] <br/> [central.ballerina.io/ballerina/jwt][jwt-package] |
-| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [lib.ballerina.io/ballerina/oauth2][oauth2-docs] <br/> [central.ballerina.io/ballerina/oauth2][oauth2-package] |
-| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [lib.ballerina.io/ballerina/crypto][crypto-docs] <br/> [central.ballerina.io/ballerina/crypto][crypto-package] |
-| [**url**][url] | [![tag][url-badge-tags]][url-tags] | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov] | [lib.ballerina.io/ballerina/url][url-docs] <br/> [central.ballerina.io/ballerina/url][url-package] |
+| Module               | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
+|----------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| [**auth**][auth]     | [![tag][auth-badge-tags]][auth-tags]     | [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov]         | [![trivy][auth-badge-trivy]][auth-trivy] <br/> [![loadtest][auth-badge-loadtest]][auth-loadtest]         | [![bugs][auth-badge-bugs]][auth-bugs]     | [![pulls][auth-badge-pulls]][auth-pulls]     | [![docs][ballerina-docs-logo]][auth-docs] <br/> [![package][ballerina-central-logo]][auth-package]     |
+| [**jwt**][jwt]       | [![tag][jwt-badge-tags]][jwt-tags]       | [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov]             | [![trivy][jwt-badge-trivy]][jwt-trivy] <br/> [![loadtest][jwt-badge-loadtest]][jwt-loadtest]             | [![bugs][jwt-badge-bugs]][jwt-bugs]       | [![pulls][jwt-badge-pulls]][jwt-pulls]       | [![docs][ballerina-docs-logo]][jwt-docs] <br/> [![package][ballerina-central-logo]][jwt-package]       |
+| [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [![trivy][oauth2-badge-trivy]][oauth2-trivy] <br/> [![loadtest][oauth2-badge-loadtest]][oauth2-loadtest] | [![bugs][oauth2-badge-bugs]][oauth2-bugs] | [![pulls][oauth2-badge-pulls]][oauth2-pulls] | [![docs][ballerina-docs-logo]][oauth2-docs] <br/> [![package][ballerina-central-logo]][oauth2-package] |
+| [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![trivy][crypto-badge-trivy]][crypto-trivy]                                                             | [![bugs][crypto-badge-bugs]][crypto-bugs] | [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
+| [**url**][url]       | [![tag][url-badge-tags]][url-tags]       | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov]             | [![trivy][url-badge-trivy]][url-trivy]                                                                   | [![bugs][url-badge-bugs]][url-bugs]       | [![pulls][url-badge-pulls]][url-pulls]       | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package]       |
 
 ## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
@@ -170,72 +170,88 @@ The following sections have important references which were used for the design 
 [auth]: https://github.com/ballerina-platform/module-ballerina-auth
 [auth-tags]: https://github.com/ballerina-platform/module-ballerina-auth/tags
 [auth-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml
+[auth-trivy]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/trivy-scan.yml
+[auth-loadtest]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/process-load-test-result.yml
 [auth-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth
-[auth-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fauth
+[auth-bugs]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fauth+label%3Atype%2Fbug
 [auth-pulls]: https://github.com/ballerina-platform/module-ballerina-auth/pulls
 [auth-docs]: https://lib.ballerina.io/ballerina/auth/latest
 [auth-package]: https://central.ballerina.io/ballerina/auth
 [auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
 [auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
+[auth-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/trivy-scan.yml/badge.svg
+[auth-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-auth/Process%20load%20test%20results?label=Load%20Test&logo=github
 [auth-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg
-[auth-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/auth.svg?label=Issues
-[auth-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-auth?label=PRs
+[auth-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fauth+label%3AType%2FBug&label=&color=30c955
+[auth-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-auth?label=
 
 [jwt]: https://github.com/ballerina-platform/module-ballerina-jwt
 [jwt-tags]: https://github.com/ballerina-platform/module-ballerina-jwt/tags
 [jwt-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml
+[jwt-trivy]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/trivy-scan.yml
+[jwt-loadtest]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/process-load-test-result.yml
 [jwt-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt
-[jwt-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fjwt
+[jwt-bugs]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fjwt+label%3Atype%2Fbug
 [jwt-pulls]: https://github.com/ballerina-platform/module-ballerina-jwt/pulls
 [jwt-docs]: https://lib.ballerina.io/ballerina/jwt/latest
 [jwt-package]: https://central.ballerina.io/ballerina/jwt
 [jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
 [jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
+[jwt-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/trivy-scan.yml/badge.svg
+[jwt-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-jwt/Process%20load%20test%20results?label=Load%20Test&logo=github
 [jwt-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg
-[jwt-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/jwt.svg?label=Issues
-[jwt-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-jwt?label=PRs
+[jwt-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fjwt+label%3AType%2FBug&label=&color=30c955
+[jwt-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-jwt?label=
 
 [oauth2]: https://github.com/ballerina-platform/module-ballerina-oauth2
 [oauth2-tags]: https://github.com/ballerina-platform/module-ballerina-oauth2/tags
 [oauth2-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml
+[oauth2-trivy]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/trivy-scan.yml
+[oauth2-loadtest]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/process-load-test-result.yml
 [oauth2-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2
-[oauth2-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Foauth2
+[oauth2-bugs]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Foauth2+label%3Atype%2Fbug
 [oauth2-pulls]: https://github.com/ballerina-platform/module-ballerina-oauth2/pulls
 [oauth2-docs]: https://lib.ballerina.io/ballerina/oauth2/latest
 [oauth2-package]: https://central.ballerina.io/ballerina/oauth2
 [oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
 [oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
+[oauth2-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/trivy-scan.yml/badge.svg
+[oauth2-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-oauth2/Process%20load%20test%20results?label=Load%20Test&logo=github
 [oauth2-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg
-[oauth2-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/oauth2.svg?label=Issues
-[oauth2-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-oauth2?label=PRs
+[oauth2-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Foauth2+label%3AType%2FBug&label=&color=30c955
+[oauth2-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-oauth2?label=
 
 [crypto]: https://github.com/ballerina-platform/module-ballerina-crypto
 [crypto-tags]: https://github.com/ballerina-platform/module-ballerina-crypto/tags
 [crypto-build]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml
+[crypto-trivy]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/trivy-scan.yml
 [crypto-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-crypto
-[crypto-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fcrypto
+[crypto-bugs]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Fcrypto+label%3Atype%2Fbug
 [crypto-pulls]: https://github.com/ballerina-platform/module-ballerina-crypto/pulls
 [crypto-docs]: https://lib.ballerina.io/ballerina/crypto/latest
 [crypto-package]: https://central.ballerina.io/ballerina/crypto
 [crypto-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-crypto?label=
 [crypto-badge-build]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/build-timestamped-master.yml/badge.svg
+[crypto-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-crypto/actions/workflows/trivy-scan.yml/badge.svg
 [crypto-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-crypto/branch/master/graph/badge.svg
-[crypto-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/crypto.svg?label=Issues
-[crypto-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-crypto?label=PRs
+[crypto-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fcrypto+label%3AType%2FBug&label=&color=30c955
+[crypto-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-crypto?label=
 
 [url]: https://github.com/ballerina-platform/module-ballerina-url
 [url-tags]: https://github.com/ballerina-platform/module-ballerina-url/tags
 [url-build]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml
+[url-trivy]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/trivy-scan.yml
 [url-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-url
-[url-issues]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Furl
+[url-bugs]: https://github.com/ballerina-platform/ballerina-standard-library/issues?q=is%3Aopen+is%3Aissue+label%3Amodule%2Furl+label%3Atype%2Fbug
 [url-pulls]: https://github.com/ballerina-platform/module-ballerina-url/pulls
 [url-docs]: https://lib.ballerina.io/ballerina/url/latest
 [url-package]: https://central.ballerina.io/ballerina/url
 [url-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-url?label=
 [url-badge-build]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/build-timestamped-master.yml/badge.svg
+[url-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-url/actions/workflows/trivy-scan.yml/badge.svg
 [url-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-url/branch/master/graph/badge.svg
-[url-badge-issues]: https://img.shields.io/github/issues/ballerina-platform/ballerina-standard-library/module/url.svg?label=Issues
-[url-badge-pulls]: https://img.shields.io/github/issues-pr/ballerina-platform/module-ballerina-url?label=PRs
+[url-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Furl+label%3AType%2FBug&label=&color=30c955
+[url-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-url?label=
 
 [stdlib]: https://github.com/ballerina-platform/ballerina-standard-library
 [http]: https://github.com/ballerina-platform/module-ballerina-http
