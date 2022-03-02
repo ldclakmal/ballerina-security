@@ -1,6 +1,6 @@
 [![Ballerina-Security][ballerina-security-logo]](https://github.com/ldclakmal/ballerina-security)
 
-The examples, use-cases, demos, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
+The examples, use-cases, demonstrations, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
 [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
@@ -8,12 +8,12 @@ The examples, use-cases, demos, and resources related to microservices security 
 
 ## Summary
 
-Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
+[Ballerina](https://ballerina.io/) is an open-source programming language for the cloud that makes it easier to use, combine, and create network services. Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
 
 Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
 The [Kafka][kafka], [RabbitMQ][rabbitmq], [NATS][nats], [STAN][stan], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
 
-This repository contains all the examples, use-cases, demos, and resources related to Ballerina Security in one place.
+This [repository](https://github.com/ldclakmal/ballerina-security) contains all the examples, use-cases, demonstrations, and resources related to Ballerina Security in one place.
 
 ## Dashboard
 
@@ -31,7 +31,7 @@ This section demonstrates the current status of the security modules of the [Bal
 
 This section demonstrates the security related Ballerina by examples (BBEs).
 
-> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
 
 | Category           | ![BBE][ballerina-bbe-logo]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -52,7 +52,7 @@ This section demonstrates the security related Ballerina by examples (BBEs).
 
 This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
 
-> **NOTE**: These examples are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -72,7 +72,7 @@ This section demonstrates the security examples with authentication and authoriz
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
-> **NOTE**: These scenarios are validated against a provided Ballerina version (latest version) with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
+> **NOTE**: These scenarios are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
 
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)
@@ -95,7 +95,7 @@ The following sections have important references which were used for the design 
 
 ### Security Blogs
 
-- 2022 Mar - [Securing Microservices with OAuth2](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
+- 2022 Feb - [Securing Microservices with OAuth2](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
 - 2021 Oct - [Securing Microservices with JWT](https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f)
 - 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
 - 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
