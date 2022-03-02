@@ -95,6 +95,7 @@ The following sections have important references which were used for the design 
 
 ### Security Blogs
 
+- 2022 Mar - [Securing Microservices with OAuth2](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
 - 2021 Oct - [Securing Microservices with JWT](https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f)
 - 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
 - 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)

@@ -2,6 +2,7 @@
 
 #### Important Links
 - [**Source Code**](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service)
+- [**Blog**](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
 
 ## Overview
 
