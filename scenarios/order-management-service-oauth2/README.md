@@ -59,7 +59,7 @@ Backend' and 'Mobile Client Backend').
 - The client authentication is enabled by setting the `auth` client configuration of the Ballerina HTTP client. It is
   configured with the client credentials grant configurations so that the Ballerina HTTP client knows how to get the
   access token and proceed with the actual API call.
-  Refer to [`examples/order-management-service/app_backend`](./app_backend) for the implementation.
+  Refer to [`examples/order-management-service/app_backend`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend) for the implementation.
 
 - Now, we can get started with the 'Mobile Client Backend', which is also responsible to invoke an API on behalf of
   the logged-in end-user. It talks to the 'OAuth Authorization Server', trusted by the API, and using the JWT grant
@@ -70,7 +70,7 @@ Backend' and 'Mobile Client Backend').
 - The client authentication is enabled by setting the `auth` client configuration of the Ballerina HTTP client. It is
   configured with the JWT bearer grant configurations so that the Ballerina HTTP client knows how to get the access
   token and proceed with the actual API call.
-  Refer to [`examples/order-management-service/app_backend`](./app_backend) for the implementation.
+  Refer to [`examples/order-management-service/app_backend`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend) for the implementation.
 
 - Now, we can get started with the 'API Gateway', which is responsible to authorize the requests using OAuth2 and
   forward the request to the actual microservice via mTLS (mutual TLS). In this scenario, it is 'Order Service'. The
@@ -93,7 +93,7 @@ Open the terminal and execute the following command. This will take few seconds 
 $ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
 ```
 
-Now, navigate to [`examples/order-management-service/api_gateway`](./api_gateway) directory and execute the following command.
+Now, navigate to [`examples/order-management-service/api_gateway`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/api_gateway) directory and execute the following command.
 ```shell
 $ bal run
 ```
@@ -106,7 +106,7 @@ Compiling source
 Running executable
 ```
 
-Now, navigate to [`examples/order-management-service/app_backend`](./app_backend) directory and execute the same command.
+Now, navigate to [`examples/order-management-service/app_backend`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend) directory and execute the same command.
 The successful execution of the service should show us the following output.
 ```shell
 Compiling source
@@ -171,8 +171,8 @@ $ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
 ```
 
 Now, we can build Ballerina executable files (.jar) of the components that we developed above. Open the terminal and
-navigate to [`examples/order-management-service/api_gateway`](./api_gateway), and
-[`examples/order-management-service/app_backend`](./app_backend) directories, and execute the following command for
+navigate to [`examples/order-management-service/api_gateway`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/api_gateway), and
+[`examples/order-management-service/app_backend`](https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend) directories, and execute the following command for
 each of them.
 ```shell
 $ bal build
