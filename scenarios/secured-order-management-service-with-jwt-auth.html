@@ -195,7 +195,7 @@ microservice rejects any request without a valid JWT.</p>
 <h2><a class="header" href="#implementation" id="implementation">Implementation</a></h2>
 <p><strong>NOTE</strong>: To get started with the implementation we need to have the 'Inventory Service' to be ready. But, since we are
 focussing only on the 'Order Service' by this guide, the implementation details of the 'Inventory Service' are not
-explained. Refer to <a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a> for the implementation.</p>
+explained. Refer to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/inventory_service"><code>examples/order-management-service/inventory_service</code></a> for the implementation.</p>
 <ul>
 <li>
 <p>Now, we can get started with the Ballerina service; 'Order Service', which is a RESTful service that serves the
@@ -229,11 +229,11 @@ require a scope, we have used the <code>scopes</code> annotation attribute of th
 </li>
 </ul>
 <p><strong>NOTE</strong>: For the simplicity of the article, we use an in-memory map for storing order data, and a 'Mock STS' is used
-for validating the JWT signature using JWKs. Refer to <a href="./sts"><code>examples/order-management-service/sts</code></a> for the implementation.</p>
+for validating the JWT signature using JWKs. Refer to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/sts"><code>examples/order-management-service/sts</code></a> for the implementation.</p>
 <h2><a class="header" href="#testing" id="testing">Testing</a></h2>
 <p>We can run the 'Order Service' that we developed above, in our local environment. To complete the design diagram
 illustrated above, we have to run the 'Mock STS', and the 'Inventory Service' first.</p>
-<p>Open the terminal and navigate to <a href="./sts"><code>examples/order-management-service/sts</code></a> directory and execute the following command.</p>
+<p>Open the terminal and navigate to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/sts"><code>examples/order-management-service/sts</code></a> directory and execute the following command.</p>
 <pre><code class="language-shell">$ bal run
 </code></pre>
 <p>The successful execution of the service should show us the following output.</p>
@@ -242,14 +242,14 @@ illustrated above, we have to run the 'Mock STS', and the 'Inventory Service' fi
 
 Running executable
 </code></pre>
-<p>Now, navigate to <a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a> directory and execute the same command.
+<p>Now, navigate to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/inventory_service"><code>examples/order-management-service/inventory_service</code></a> directory and execute the same command.
 The successful execution of the service should show us the following output.</p>
 <pre><code class="language-shell">Compiling source
         jwt/inventory_service:1.0.0
 
 Running executable
 </code></pre>
-<p>Now, navigate to <a href="./order_service"><code>examples/order-management-service/order_service</code></a> directory and execute the same command.
+<p>Now, navigate to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/order_service"><code>examples/order-management-service/order_service</code></a> directory and execute the same command.
 The successful execution of the service should show us the following output.</p>
 <pre><code class="language-shell">Compiling source
         jwt/order_service:1.0.0
@@ -357,9 +357,9 @@ follows.</p>
 <p>Once we are done with the development, we can deploy the service using any of the methods that are listed below.</p>
 <h3><a class="header" href="#deploying-locally" id="deploying-locally">Deploying Locally</a></h3>
 <p>As the first step, we can build Ballerina executable files (.jar) of the microservices that we developed above. Open the
-terminal and navigate to <a href="./sts"><code>examples/order-management-service/sts</code></a>,
-<a href="./inventory_service"><code>examples/order-management-service/inventory_service</code></a>
-and <a href="./order_service"><code>examples/order-management-service/order_service</code></a> directories, and execute the following command
+terminal and navigate to <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/sts"><code>examples/order-management-service/sts</code></a>,
+<a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/inventory_service"><code>examples/order-management-service/inventory_service</code></a>
+and <a href="https://github.com/ballerina-platform/module-ballerina-jwt/tree/master/examples/order-management-service/order_service"><code>examples/order-management-service/order_service</code></a> directories, and execute the following command
 for each of them.</p>
 <pre><code class="language-shell">$ bal build
 </code></pre>

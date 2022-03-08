@@ -220,7 +220,7 @@ grant type, to get an access token.</p>
 <p>The client authentication is enabled by setting the <code>auth</code> client configuration of the Ballerina HTTP client. It is
 configured with the client credentials grant configurations so that the Ballerina HTTP client knows how to get the
 access token and proceed with the actual API call.
-Refer to <a href="./app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
+Refer to <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
 </li>
 <li>
 <p>Now, we can get started with the 'Mobile Client Backend', which is also responsible to invoke an API on behalf of
@@ -233,7 +233,7 @@ trusts the OpenID Connect (OIDC) identity provider.</p>
 <p>The client authentication is enabled by setting the <code>auth</code> client configuration of the Ballerina HTTP client. It is
 configured with the JWT bearer grant configurations so that the Ballerina HTTP client knows how to get the access
 token and proceed with the actual API call.
-Refer to <a href="./app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
+Refer to <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend"><code>examples/order-management-service/app_backend</code></a> for the implementation.</p>
 </li>
 <li>
 <p>Now, we can get started with the 'API Gateway', which is responsible to authorize the requests using OAuth2 and
@@ -254,7 +254,7 @@ environment. To complete the design diagram illustrated above, we have to run th
 Open the terminal and execute the following command. This will take few seconds to start and run.</p>
 <pre><code class="language-shell">$ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
 </code></pre>
-<p>Now, navigate to <a href="./api_gateway"><code>examples/order-management-service/api_gateway</code></a> directory and execute the following command.</p>
+<p>Now, navigate to <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/api_gateway"><code>examples/order-management-service/api_gateway</code></a> directory and execute the following command.</p>
 <pre><code class="language-shell">$ bal run
 </code></pre>
 <p>The successful execution of the service should show us the following output.</p>
@@ -263,7 +263,7 @@ Open the terminal and execute the following command. This will take few seconds 
 
 Running executable
 </code></pre>
-<p>Now, navigate to <a href="./app_backend"><code>examples/order-management-service/app_backend</code></a> directory and execute the same command.
+<p>Now, navigate to <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend"><code>examples/order-management-service/app_backend</code></a> directory and execute the same command.
 The successful execution of the service should show us the following output.</p>
 <pre><code class="language-shell">Compiling source
         oauth2/app_backend:1.0.0
@@ -310,8 +310,8 @@ command. This will take few seconds to start and run.</p>
 <pre><code class="language-shell">$ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
 </code></pre>
 <p>Now, we can build Ballerina executable files (.jar) of the components that we developed above. Open the terminal and
-navigate to <a href="./api_gateway"><code>examples/order-management-service/api_gateway</code></a>, and
-<a href="./app_backend"><code>examples/order-management-service/app_backend</code></a> directories, and execute the following command for
+navigate to <a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/api_gateway"><code>examples/order-management-service/api_gateway</code></a>, and
+<a href="https://github.com/ballerina-platform/module-ballerina-oauth2/tree/master/examples/order-management-service/app_backend"><code>examples/order-management-service/app_backend</code></a> directories, and execute the following command for
 each of them.</p>
 <pre><code class="language-shell">$ bal build
 </code></pre>
