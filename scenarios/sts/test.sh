@@ -2,7 +2,7 @@ source assert.sh
 
 echo -e "\n--- Starting Ballerina STS ---"
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Get access token with client credentials grant type ---"
 response=$(curl -k -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
