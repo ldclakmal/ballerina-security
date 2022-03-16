@@ -9,3 +9,6 @@ target/
 *.lock
 *.lck
 Dependencies.toml
+
+# OS files
+.DS_Store
