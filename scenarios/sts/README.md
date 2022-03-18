@@ -38,7 +38,7 @@ https://localhost:9445/oauth2/token
 ```shell
 $ curl -k -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
 -H "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" \
--d "grant_type=refresh_token&refresh_token=<ACCESS_TOKEN>&scope=view-order" \
+-d "grant_type=refresh_token&refresh_token=<REFRESH_TOKEN>&scope=view-order" \
 https://localhost:9445/oauth2/token
 ```
 
