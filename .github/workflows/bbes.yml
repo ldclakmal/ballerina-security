@@ -5,6 +5,10 @@ on:
     paths:
       - 'bbes/**'
       - '.github/workflows/bbes.yml'
+  workflow_run:
+    workflows: [ "Validate Ballerina Version" ]
+    types:
+      - completed
   workflow_dispatch:
     inputs:
       artifact_id:
