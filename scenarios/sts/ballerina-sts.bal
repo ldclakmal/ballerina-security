@@ -1,9 +1,11 @@
 import ballerina/http;
+import ballerina/log;
 import ballerina/regex;
 import ballerina/uuid;
 
 // Default values of mock authorization server.
-configurable int SERVER_PORT = 9445;
+configurable int HTTPS_SERVER_PORT = 9445;
+configurable int HTTP_SERVER_PORT = 9444;
 configurable int TOKEN_VALIDITY_PERIOD = 2; // in seconds
 
 // Credentials of the mock authorization server.
@@ -23,7 +25,7 @@ string[] refreshTokenStore = ["24f19603-8565-4b5f-a036-88a945e1f272"];
 
 // The mock authorization server, which is capable of issuing access tokens with related to the grant type and
 // also of refreshing the already-issued access tokens. Also, capable of introspection the access tokens.
-listener http:Listener sts = new (SERVER_PORT, {
+listener http:Listener sts1 = new (HTTPS_SERVER_PORT, {
     secureSocket: {
         key: {
             certFile: "./cert/public.crt",
@@ -32,7 +34,13 @@ listener http:Listener sts = new (SERVER_PORT, {
     }
 });
 
-service /oauth2 on sts {
+listener http:Listener sts2 = new (HTTP_SERVER_PORT);
+
+service /oauth2 on sts1, sts2 {
+
+    function init() {
+        log:printInfo("STS started on port: " + HTTPS_SERVER_PORT.toString() + " (HTTPS) & " + HTTP_SERVER_PORT.toString() + " (HTTP)");
+    }
 
     // This issues an access token with reference to the received grant type (client credentials, password and refresh token grant type).
     resource function post token(http:Request req) returns json|http:Unauthorized|http:BadRequest|http:InternalServerError {
