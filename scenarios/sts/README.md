@@ -5,8 +5,8 @@
 
 ## Overview
 
-Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation.
-This is published into Docker Hub as well.
+Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation. This supports both HTTPS and 
+HTTP on port 9445 and 9444 in order. This is published into Docker Hub as well.
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts)](https://hub.docker.com/r/ldclakmal/ballerina-sts)
 
@@ -15,9 +15,11 @@ This is published into Docker Hub as well.
 As the first step, we have to run the 'STS' first. Open the terminal and execute the following command to run as a 
 container.
 ```shell
-$ docker run -p 9445:9445 ldclakmal/ballerina-sts:latest
+$ docker run -p 9445:9445 -p 9444:9444 ldclakmal/ballerina-sts:latest
 ```
-  
+
+-- OR --
+
 Navigate to [`scenarios/sts`](https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/sts) and execute the 
 following command to run in the local machine.
 ```shell
@@ -42,7 +44,7 @@ $ curl -k -u FlfJYKBD2c925h4lkycqNZlC2l4a:PJz0UhTJMrHOo68QQNpvnqAY_3Aa \
 https://localhost:9445/oauth2/token
 ```
 
-#### Validate an access token
+#### Validate access token
 
 ```shell
 $ curl -k -u admin:admin -H 'Content-Type: application/x-www-form-urlencoded' \
