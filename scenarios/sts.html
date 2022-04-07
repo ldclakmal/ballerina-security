@@ -167,14 +167,15 @@
 <li><a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/sts/ballerina-sts.bal"><strong>Source Code</strong></a></li>
 </ul>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
-<p>Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation.
-This is published into Docker Hub as well.</p>
+<p>Ballerina Secure Token Service (STS) which supports OAuth2 token issuing and validation. This supports both HTTP and 
+HTTPS on port 9445 and 9444 in order. This is published into Docker Hub as well.</p>
 <p><a href="https://hub.docker.com/r/ldclakmal/ballerina-sts"><img src="https://img.shields.io/docker/pulls/ldclakmal/ballerina-sts" alt="Docker Pulls" /></a></p>
 <h2><a class="header" href="#testing" id="testing">Testing</a></h2>
 <p>As the first step, we have to run the 'STS' first. Open the terminal and execute the following command to run as a 
 container.</p>
-<pre><code class="language-shell">$ docker run -p 9445:9445 ldclakmal/ballerina-sts:latest
+<pre><code class="language-shell">$ docker run -p 9445:9445 -p 9444:9444 ldclakmal/ballerina-sts:latest
 </code></pre>
+<p>-- OR --</p>
 <p>Navigate to <a href="https://github.com/ldclakmal/ballerina-security/tree/master/scenarios/sts"><code>scenarios/sts</code></a> and execute the 
 following command to run in the local machine.</p>
 <pre><code class="language-shell">$ bal run
@@ -191,7 +192,7 @@ https://localhost:9445/oauth2/token
 -d &quot;grant_type=refresh_token&amp;refresh_token=&lt;REFRESH_TOKEN&gt;&amp;scope=view-order&quot; \
 https://localhost:9445/oauth2/token
 </code></pre>
-<h4><a class="header" href="#validate-an-access-token" id="validate-an-access-token">Validate an access token</a></h4>
+<h4><a class="header" href="#validate-access-token" id="validate-access-token">Validate access token</a></h4>
 <pre><code class="language-shell">$ curl -k -u admin:admin -H 'Content-Type: application/x-www-form-urlencoded' \
 -d 'token=&lt;ACCESS_TOKEN&gt;' \
 https://localhost:9445/oauth2/introspect
