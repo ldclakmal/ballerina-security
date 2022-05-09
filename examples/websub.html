@@ -412,7 +412,7 @@ import ballerina/log;
 import ballerina/websubhub;
 
 public function main() returns error? {
-    websubhub:PublisherClient publsherClient = check new (&quot;https://localhost:9090/websubhub&quot;,
+    websubhub:PublisherClient publisherClient = check new (&quot;https://localhost:9090/websubhub&quot;,
         auth = {
             username: &quot;ballerina&quot;,
             issuer: &quot;wso2&quot;,
@@ -432,7 +432,7 @@ public function main() returns error? {
         }
     );
 
-    websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publsherClient-&gt;registerTopic(&quot;Ballerina&quot;);
+    websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError registrationResponse = publisherClient-&gt;registerTopic(&quot;Ballerina&quot;);
     if registrationResponse is websubhub:TopicRegistrationSuccess {
         io:println(&quot;Topic registration successful.&quot;);
     } else {
@@ -440,7 +440,7 @@ public function main() returns error? {
     }
 
     string payload = &quot;Swan Lake GA Released!&quot;;
-    websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publsherClient-&gt;publishUpdate(&quot;Ballerina&quot;, payload);
+    websubhub:Acknowledgement|websubhub:UpdateMessageError publishResponse = publisherClient-&gt;publishUpdate(&quot;Ballerina&quot;, payload);
     if publishResponse is websubhub:Acknowledgement {
         io:println(&quot;Publish update successful.&quot;);
     } else {
