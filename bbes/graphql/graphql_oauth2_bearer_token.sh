@@ -14,7 +14,7 @@ sleep 30s
 
 echo -e "\n--- Testing BBE ---"
 bal run bbe/service.bal &
-sleep 10s
+sleep 20s
 response=$(bal run bbe/client.bal 2>&1 | tail -n 1)
 assertNotEmpty "$response"
 assertEquals "$response" "{\"data\":{\"greeting\":\"Hello, World!\"}}"
