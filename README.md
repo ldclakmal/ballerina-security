@@ -17,7 +17,7 @@ This [repository](https://github.com/ldclakmal/ballerina-security) contains all 
 
 ## Dashboard
 
-This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
+This section demonstrates the status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
 | Module               | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
 |----------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -85,6 +85,31 @@ This section demonstrates the real-world scenarios which have authentication and
 
 The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
 
+### Specifications
+
+- [Specification: Ballerina Auth Library](https://github.com/ballerina-platform/module-ballerina-auth/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina JWT Library](https://github.com/ballerina-platform/module-ballerina-jwt/blob/master/docs/spec/spec.md)
+- [Specification: Ballerina OAuth2 Library](https://github.com/ballerina-platform/module-ballerina-oauth2/blob/master/docs/spec/spec.md)
+
+### IETF RFCs
+
+- [RFC 8693 - OAuth 2.0 Token Exchange](https://tools.ietf.org/html/rfc8693)
+- [RFC 7662 - OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662)
+- [RFC 7519 - JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
+- [RFC 7518 - JSON Web Algorithms (JWA)](https://tools.ietf.org/html/rfc7518)
+- [RFC 7517 - JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
+- [RFC 7516 - JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
+- [RFC 7515 - JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
+- [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
+- [RFC 7617 - The 'Basic' HTTP Authentication Scheme](https://tools.ietf.org/html/rfc7617)
+
+### Blogs
+
+- 2022 Feb - [Securing Microservices with OAuth2](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
+- 2021 Oct - [Securing Microservices with JWT](https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f)
+- 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
+- 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
+
 ### Research & Design
 
 - 2021 Sep - [[Design] Ballerina GraphQL Authentication and Authorization](https://docs.google.com/document/d/1ebwR5qXosyKjT7tSr4HgcYDq1vFsuzQxtiMgdET1G0o/edit?usp=sharing)
@@ -92,13 +117,6 @@ The following sections have important references which were used for the design 
 - 2021 Feb - [[Re-Design] Ballerina SecureSocket API](https://docs.google.com/document/d/1Y2kLTOw9-sRK1vSEzw5NYdWSA4nwVCvPf3wrbwNDA4s/edit?usp=sharing)
 - 2020 Nov - [[Design] Ballerina Authentication & Authorization Framework](https://docs.google.com/document/d/1dGw5uUP6kqZNTwMfQ_Ik-k0HTMKhX70XpEA3tys9_kk/edit?usp=sharing)
 - 2020 Oct - [[Research] Comparison on Ballerina Security Features/APIs with Programming Languages](https://docs.google.com/spreadsheets/d/1PyMAlAvgkEL0RpW8CVUj1ccW_61Vm6SMbvadFVYRpSA/edit?usp=sharing)
-
-### Security Blogs
-
-- 2022 Feb - [Securing Microservices with OAuth2](https://medium.com/@ldclakmal/securing-microservices-with-oauth2-475a72bd5ddd)
-- 2021 Oct - [Securing Microservices with JWT](https://medium.com/@ldclakmal/securing-microservices-with-jwt-a16b738b110f)
-- 2021 Aug - [Microservices Security with Ballerina](https://medium.com/@ldclakmal/microservices-security-with-ballerina-e9d430f05373)
-- 2021 Aug - [HTTP Security in Ballerina](https://medium.com/@ldclakmal/http-security-in-ballerina-b0b5927866f9)
 
 ### GitHub Pull Requests
 
@@ -134,17 +152,10 @@ The following sections have important references which were used for the design 
 - 2018 Feb - [OAuth 2.0 and OpenID Connect at *OktaDev*](https://youtu.be/QrEOvHdH2Cg)
 - 2017 Nov - [Handling Authentication and Authorization in GraphQL at *GraphQL Summit 2017*](https://youtu.be/4_Bcw7BULC8)
 
-### Specifications
+### Books
 
-- [RFC 8693 - OAuth 2.0 Token Exchange](https://tools.ietf.org/html/rfc8693)
-- [RFC 7662 - OAuth 2.0 Token Introspection](https://tools.ietf.org/html/rfc7662)
-- [RFC 7519 - JSON Web Token (JWT)](https://tools.ietf.org/html/rfc7519)
-- [RFC 7518 - JSON Web Algorithms (JWA)](https://tools.ietf.org/html/rfc7518)
-- [RFC 7517 - JSON Web Key (JWK)](https://tools.ietf.org/html/rfc7517)
-- [RFC 7516 - JSON Web Encryption (JWE)](https://tools.ietf.org/html/rfc7516)
-- [RFC 7515 - JSON Web Signature (JWS)](https://tools.ietf.org/html/rfc7515)
-- [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)
-- [RFC 7617 - The 'Basic' HTTP Authentication Scheme](https://tools.ietf.org/html/rfc7617)
+- [Advanced API Security: OAuth 2.0 and Beyond - 2nd Edition _by Prabath Siriwardena_](https://www.amazon.com/gp/product/1484220498/)
+- [Microservices Security in Action _by Prabath Siriwardena and Nuwan Dias_](https://www.amazon.com/gp/product/1617295957/)
 
 ### Guides
 
@@ -154,6 +165,16 @@ The following sections have important references which were used for the design 
 - [How to obtain Twilio Credentials](https://github.com/ldclakmal/ballerina-security/blob/master/guides/how-to-obtain-twilio-credentials.md)
 - [How to Start OpenLDAP Server with User Data](https://github.com/ldclakmal/ballerina-security/blob/master/guides/how-to-start-open-ldap-server.md)
 - [Cryptography](https://github.com/ldclakmal/ballerina-security/blob/master/guides/cryptography.md)
+
+### Policies
+
+- [Ballerina Security Policy](https://ballerina.io/security-policy/)
+
+### [Internal]
+
+- [Scope of the Ballerina Security Domain](https://github.com/ldclakmal/ballerina-security/blob/master/guides/ballerina-security-scope.md)
+- [Security Vulnerability Management Process](https://github.com/wso2-enterprise/internal-support-ballerina/blob/main/docs/security_vulnerability_management_process.md)
+- [Open Issues/Tasks](https://github.com/wso2-enterprise/internal-support-ballerina/labels/Type%2FSecurity)
 
 ---
 

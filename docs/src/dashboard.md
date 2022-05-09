@@ -1,5 +1,9 @@
 {{#include ../../README.md:18:28}}
 
+<br/><br/>
+
+{{#include ../../Trivy.md:1:59}}
+
 [ballerina-central-logo]: img/logos/ballerina-central-logo.svg
 [ballerina-docs-logo]: img/logos/ballerina-docs-logo.svg
 
