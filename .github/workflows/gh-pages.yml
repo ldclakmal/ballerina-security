@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'docs/**'
+      - 'README.md'
+      - '.github/workflows/gh-pages.yml'
 
 jobs:
   deploy:
