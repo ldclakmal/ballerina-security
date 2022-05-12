@@ -5,8 +5,8 @@ on:
     paths:
     - 'issues/**'
     - '.github/workflows/issues.yml'
-  schedule:
-    - cron: '30 0,6,12 * * *' # Run daily at 6:00AM, 12:00Noon, 6:00PM IST (12:30AM, 6.30AM, 12.30PM UTC)
+#  schedule:
+#    - cron: '30 0,6,12 * * *' # Run daily at 6:00AM, 12:00Noon, 6:00PM IST (12:30AM, 6.30AM, 12.30PM UTC)
   workflow_dispatch:
 
 jobs:
