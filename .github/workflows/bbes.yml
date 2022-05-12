@@ -1,4 +1,4 @@
-name: Security BBEs
+name: BBEs
 
 on:
   push:
