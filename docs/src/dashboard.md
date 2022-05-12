@@ -1,8 +1,8 @@
-{{#include ../../README.md:18:28}}
+{{#include ../../README.md:18:30}}
 
 <br/><br/>
 
-{{#include ../../Trivy.md:1:59}}
+{{#include ../../Trivy.md:1:75}}
 
 [ballerina-central-logo]: img/logos/ballerina-central-logo.svg
 [ballerina-docs-logo]: img/logos/ballerina-docs-logo.svg

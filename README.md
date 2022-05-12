@@ -2,10 +2,6 @@
 
 The examples, use-cases, demonstrations, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
-[![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
-[![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
-[![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
-
 ## Summary
 
 [Ballerina](https://ballerina.io/) is an open-source programming language for the cloud that makes it easier to use, combine, and create network services. Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
@@ -17,7 +13,7 @@ This [repository](https://github.com/ldclakmal/ballerina-security) contains all 
 
 ## Dashboard
 
-This section demonstrates the status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
+This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
 | Module               | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
 |----------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------------------------------|
@@ -26,6 +22,12 @@ This section demonstrates the status of the security modules of the [Ballerina s
 | [**oauth2**][oauth2] | [![tag][oauth2-badge-tags]][oauth2-tags] | [![build][oauth2-badge-build]][oauth2-build] <br/> [![codecov][oauth2-badge-codecov]][oauth2-codecov] | [![trivy][oauth2-badge-trivy]][oauth2-trivy] <br/> [![loadtest][oauth2-badge-loadtest]][oauth2-loadtest] | [![bugs][oauth2-badge-bugs]][oauth2-bugs] | [![pulls][oauth2-badge-pulls]][oauth2-pulls] | [![docs][ballerina-docs-logo]][oauth2-docs] <br/> [![package][ballerina-central-logo]][oauth2-package] |
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![trivy][crypto-badge-trivy]][crypto-trivy]                                                             | [![bugs][crypto-badge-bugs]][crypto-bugs] | [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url]       | [![tag][url-badge-tags]][url-tags]       | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov]             | [![trivy][url-badge-trivy]][url-trivy]                                                                   | [![bugs][url-badge-bugs]][url-bugs]       | [![pulls][url-badge-pulls]][url-pulls]       | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package]       |
+
+This section demonstrates the status of the Ballerina programs against the latest (pre-release) Ballerina version.
+
+[![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+[![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
+[![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
 ## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
