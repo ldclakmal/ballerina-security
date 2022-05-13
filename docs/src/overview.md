@@ -1,4 +1,4 @@
-{{#include ../../README.md:1:12}}
+{{#include ../../README.md:3:14}}
 
 [ballerina-security-logo]: img/logos/ballerina-security.png
 

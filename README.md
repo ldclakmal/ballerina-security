@@ -1,3 +1,5 @@
+**Official Website**: <https://ldclakmal.me/ballerina-security>
+
 [![Ballerina-Security][ballerina-security-logo]](https://github.com/ldclakmal/ballerina-security)
 
 The examples, use-cases, demonstrations, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
@@ -13,6 +15,8 @@ This [repository](https://github.com/ldclakmal/ballerina-security) contains all 
 
 ## Dashboard
 
+### Security Modules
+
 This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
 
 | Module               | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
@@ -23,17 +27,19 @@ This section demonstrates the current status of the security modules of the [Bal
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![trivy][crypto-badge-trivy]][crypto-trivy]                                                             | [![bugs][crypto-badge-bugs]][crypto-bugs] | [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url]       | [![tag][url-badge-tags]][url-tags]       | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov]             | [![trivy][url-badge-trivy]][url-trivy]                                                                   | [![bugs][url-badge-bugs]][url-bugs]       | [![pulls][url-badge-pulls]][url-pulls]       | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package]       |
 
+### Ballerina Programs
+
 This section demonstrates the status of the Ballerina programs against the latest (pre-release) Ballerina version.
 
 [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
-## Ballerina by Examples (BBEs) [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+## Ballerina by Examples (BBEs)
 
 This section demonstrates the security related Ballerina by examples (BBEs).
 
-> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml).
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml). [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
 | Category           | ![BBE][ballerina-bbe-logo]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -50,11 +56,11 @@ This section demonstrates the security related Ballerina by examples (BBEs).
 | Security           | [Cryptographic Operations][bbe-cryptography] <br/> [JWT Issue & Validate][bbe-jwt-issue-validate]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | URL                | [URL Encode & Decode][bbe-url-encode-decode]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
-## Examples [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
+## Examples
 
 This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
 
-> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml).
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml). [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -70,11 +76,11 @@ This section demonstrates the security examples with authentication and authoriz
 12. [TCP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/tcp)
 13. UDP _(Pending)_
 
-## Scenarios [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
+## Scenarios
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
-> **NOTE**: These scenarios are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml).
+> **NOTE**: These scenarios are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml). [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)

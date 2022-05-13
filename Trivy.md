@@ -1,4 +1,6 @@
-### 2201.0.0 (Swan Lake)
+### Trivy Scan Status
+
+#### 2201.0.0 (Swan Lake)
 
 This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `master` branch of the modules.
 
@@ -60,7 +62,7 @@ This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy
 |       | [stan](https://github.com/ballerina-platform/module-ballerinax-stan)                                    | [![Trivy](https://github.com/ballerina-platform/module-ballerinax-stan/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/module-ballerinax-stan/actions/workflows/trivy-scan.yml)                                   |
 |   -   | [ballerina-dev-website](https://github.com/ballerina-platform/ballerina-dev-website)                    | [![Trivy](https://github.com/ballerina-platform/ballerina-dev-website/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/ballerina-platform/ballerina-dev-website/actions/workflows/trivy-scan.yml)                                     |
 
-### 1.2.x
+#### 1.2.x
 
 This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `ballerina-1.2.x` branch of the modules.
 
