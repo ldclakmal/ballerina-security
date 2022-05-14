@@ -6,6 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'README.md'
+      - 'Trivy.md'
       - '.github/workflows/gh-pages.yml'
 
 jobs:
