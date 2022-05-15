@@ -2,7 +2,7 @@
 
 #### 2201.0.0 (Swan Lake)
 
-This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `master` branch of the modules.
+This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `master` branch (which is used for `2201.x.x` latest release) of the packages. These GitHub actions are used to proactively identify the vulnerabilities of the 3rd party dependencies used for a package.
 
  | Modules                                                                                    | Trivy                                                                                                                                                                                                                                    | Standard Library Modules                                                                                | Trivy                                                                                                                                                                                                                                                |
 |:-------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -49,7 +49,7 @@ This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy
 
 #### 1.2.x
 
-This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `ballerina-1.2.x` branch of the modules.
+This section demonstrates the daily [Trivy](https://aquasecurity.github.io/trivy) scan status of the `ballerina-1.2.x` branch (which is used for `1.2.x` release) of the packages. These GitHub actions are used to proactively identify the vulnerabilities of the 3rd party dependencies used for a package.
 
 | Module                                                                                                          | Trivy                                                                                                                                                                                                                                                           |
 |:----------------------------------------------------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

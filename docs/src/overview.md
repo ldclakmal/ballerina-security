@@ -1,5 +1,7 @@
 {{#include ../../README.md:3:14}}
 
+**NOTE:** If you have any questions, comments, or suggestions, please feel free to create a [GitHub Issue](https://github.com/ldclakmal/ballerina-security/issues) or to open a [GitHub Pull Request](https://github.com/ldclakmal/ballerina-security/pulls). As an open-source project, we welcome the contributions from the community to make this project better.
+
 [ballerina-security-logo]: img/logos/ballerina-security.png
 
 [stdlib]: https://github.com/ballerina-platform/ballerina-standard-library

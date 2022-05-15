@@ -2,24 +2,24 @@
 
 [![Ballerina-Security][ballerina-security-logo]](https://github.com/ldclakmal/ballerina-security)
 
-The examples, use-cases, demonstrations, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
+The one-stop place to learn/experience the examples, use-cases, demonstrations, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
 
 ## Summary
 
 [Ballerina](https://ballerina.io/) is an open-source programming language for the cloud that makes it easier to use, combine, and create network services. Ballerina has first-class support for a whole bunch of security features from transport layer security like SSL/TLS, mTLS to application layer security like Basic Auth, JWT Auth, OAuth2, etc.
 
-Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] modules which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] module facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
-The [Kafka][kafka], [RabbitMQ][rabbitmq], [NATS][nats], [STAN][stan], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] modules have their ways of securing APIs which are protocol-dependent.
+Ballerina [standard library][stdlib] has [Auth][auth], [JWT][jwt], and [OAuth2][oauth2] packages which provide the authentication and authorization framework to secure the APIs of microservices written with [HTTP][http], [WebSocket][websocket], [GraphQL][graphql], [gRPC][grpc], and [WebSub][websub] protocols. The [Crypto][crypto] package facilitates APIs to perform cryptographic operations like hashing, HMAC generation, checksum generation, encryption, decryption, signing data digitally, verifying digitally signed data, etc., with different cryptographic algorithms. The [URL][url] module facilitates APIs to encode and decode a URL or part of a URL.
+The [Kafka][kafka], [RabbitMQ][rabbitmq], [NATS][nats], [STAN][stan], [Email][email], [FTP][ftp], [TCP][tcp], and [UDP][udp] packages have their ways of securing APIs which are protocol-dependent.
 
-This [repository](https://github.com/ldclakmal/ballerina-security) contains all the examples, use-cases, demonstrations, and resources related to Ballerina Security in one place.
+This website is the latest deployed version of this [Ballerina Security GitHub Repository](https://github.com/ldclakmal/ballerina-security), which contains all the examples, use-cases, demonstrations, and resources related to Ballerina Security in one place. So, this is the one-stop place to learn/experience Ballerina Security.
 
 ## Dashboard
 
-### Security Modules
+### Security Packages Status
 
-This section demonstrates the current status of the security modules of the [Ballerina standard library](https://github.com/ballerina-platform/ballerina-standard-library).
+This section demonstrates the current status of the security-specific packages of the [Ballerina Platform](https://github.com/ballerina-platform). All of these repositories are categorized under the [Ballerina Standard Library](https://github.com/ballerina-platform/ballerina-standard-library) packages.
 
-| Module               | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
+| Package              | Latest <br/> Release                     | Package Status                                                                                        | Test Status                                                                                              | Bugs                                      | Open <br/> PRs                               | API Docs & Package                                                                                     |
 |----------------------|------------------------------------------|-------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------|----------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | [**auth**][auth]     | [![tag][auth-badge-tags]][auth-tags]     | [![build][auth-badge-build]][auth-build] <br/> [![codecov][auth-badge-codecov]][auth-codecov]         | [![trivy][auth-badge-trivy]][auth-trivy] <br/> [![loadtest][auth-badge-loadtest]][auth-loadtest]         | [![bugs][auth-badge-bugs]][auth-bugs]     | [![pulls][auth-badge-pulls]][auth-pulls]     | [![docs][ballerina-docs-logo]][auth-docs] <br/> [![package][ballerina-central-logo]][auth-package]     |
 | [**jwt**][jwt]       | [![tag][jwt-badge-tags]][jwt-tags]       | [![build][jwt-badge-build]][jwt-build] <br/> [![codecov][jwt-badge-codecov]][jwt-codecov]             | [![trivy][jwt-badge-trivy]][jwt-trivy] <br/> [![loadtest][jwt-badge-loadtest]][jwt-loadtest]             | [![bugs][jwt-badge-bugs]][jwt-bugs]       | [![pulls][jwt-badge-pulls]][jwt-pulls]       | [![docs][ballerina-docs-logo]][jwt-docs] <br/> [![package][ballerina-central-logo]][jwt-package]       |
@@ -27,9 +27,9 @@ This section demonstrates the current status of the security modules of the [Bal
 | [**crypto**][crypto] | [![tag][crypto-badge-tags]][crypto-tags] | [![build][crypto-badge-build]][crypto-build] <br/> [![codecov][crypto-badge-codecov]][crypto-codecov] | [![trivy][crypto-badge-trivy]][crypto-trivy]                                                             | [![bugs][crypto-badge-bugs]][crypto-bugs] | [![pulls][crypto-badge-pulls]][crypto-pulls] | [![docs][ballerina-docs-logo]][crypto-docs] <br/> [![package][ballerina-central-logo]][crypto-package] |
 | [**url**][url]       | [![tag][url-badge-tags]][url-tags]       | [![build][url-badge-build]][url-build] <br/> [![codecov][url-badge-codecov]][url-codecov]             | [![trivy][url-badge-trivy]][url-trivy]                                                                   | [![bugs][url-badge-bugs]][url-bugs]       | [![pulls][url-badge-pulls]][url-pulls]       | [![docs][ballerina-docs-logo]][url-docs] <br/> [![package][ballerina-central-logo]][url-package]       |
 
-### Ballerina Programs
+### Release Compatibility Status
 
-This section demonstrates the status of the Ballerina programs against the latest (pre-release) Ballerina version.
+This section demonstrates the current status of the Ballerina programs that are executed against the latest (pre-release/release) Ballerina version which is configurable with individual GitHub actions. Mostly, these actions are used to test the compatibility of existing programs during the RC period of a release.
 
 [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
@@ -91,7 +91,7 @@ This section demonstrates the real-world scenarios which have authentication and
 
 ## References
 
-The following sections have important references which were used for the design and implementation of the current Ballerina Security model and its related components. All the references are open source and publicly available.
+This section has a collection of important resources which were created/referred for the design and implementation of the current Ballerina Security architecture and its related components. All the resources are open source and publicly available.
 
 ### Specifications
 
@@ -177,10 +177,10 @@ The following sections have important references which were used for the design 
 ### Policies
 
 - [Ballerina Security Policy](https://ballerina.io/security-policy/)
+- [Scope of the Ballerina Security Domain](https://github.com/ldclakmal/ballerina-security/blob/master/guides/ballerina-security-scope.md)
 
 ### [Internal]
 
-- [Scope of the Ballerina Security Domain](https://github.com/ldclakmal/ballerina-security/blob/master/guides/ballerina-security-scope.md)
 - [Security Vulnerability Management Process](https://github.com/wso2-enterprise/internal-support-ballerina/blob/main/docs/security_vulnerability_management_process.md)
 - [Open Issues/Tasks](https://github.com/wso2-enterprise/internal-support-ballerina/labels/Type%2FSecurity)
 
