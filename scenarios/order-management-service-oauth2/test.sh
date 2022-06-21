@@ -10,12 +10,12 @@ sleep 90s
 echo -e "\n--- Starting API Gateway ---"
 cd module-ballerina-oauth2/examples/order-management-service/api_gateway
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting App Backend ---"
 cd ../app_backend
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Test - Scenario 1 - Web App ---"
 response=$(curl -k "https://localhost:8080/order/web?orderId=100500")

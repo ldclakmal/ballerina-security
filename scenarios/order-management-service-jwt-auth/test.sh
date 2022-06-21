@@ -6,17 +6,17 @@ git clone https://github.com/ballerina-platform/module-ballerina-jwt.git
 echo -e "\n--- Starting STS ---"
 cd module-ballerina-jwt/examples/order-management-service/sts
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Inventory Service ---"
 cd ../inventory_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Order Service ---"
 cd ../order_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Test - Create Order (without authentication) ---"
 response=$(curl -k -i -H "Content-Type: application/json" \

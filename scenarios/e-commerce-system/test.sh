@@ -7,27 +7,27 @@ sleep 90s
 echo -e "\n--- Starting Payment Service ---"
 cd payment_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Delivery Service ---"
 cd ../delivery_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Inventory Service ---"
 cd ../inventory_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Order Service ---"
 cd ../order_service
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting API Gateway ---"
 cd ../api_gateway
 bal run &
-sleep 15s
+sleep 20s
 
 echo -e "\n--- Starting Client ---"
 cd ../client
