@@ -1,10 +1,6 @@
 name: BBEs
 
 on:
-  push:
-    paths:
-      - 'bbes/**'
-      - '.github/workflows/bbes.yml'
   workflow_run:
     workflows: [ "Validate Ballerina Version" ]
     types:
@@ -17,6 +13,15 @@ on:
       artifact_id:
         description: 'GitHub Artifact ID of the Ballerina ZIP produced during Ballerina daily build'
         required: false
+      active_branch:
+        description: 'The relevant branch of the ballerina-distribution repository'
+        required: true
+        default: 'master'
+        type: choice
+        options:
+          - master
+          - 2201.1.x
+          - 2201.0.x
 
 jobs:
   general:
@@ -26,6 +31,7 @@ jobs:
       RELEASED_BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       BALLERINA_DEB_URL: ${{ github.event.inputs.deb_url }}
       BALLERINA_ARTIFACT_ID: ${{ github.event.inputs.artifact_id }}
+      ACTIVE_BRANCH: ${{ github.event.inputs.active_branch }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     strategy:
       matrix:
@@ -48,6 +54,7 @@ jobs:
       RELEASED_BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       BALLERINA_DEB_URL: ${{ github.event.inputs.deb_url }}
       BALLERINA_ARTIFACT_ID: ${{ github.event.inputs.artifact_id }}
+      ACTIVE_BRANCH: ${{ github.event.inputs.active_branch }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     strategy:
       matrix:
@@ -72,6 +79,7 @@ jobs:
       RELEASED_BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       BALLERINA_DEB_URL: ${{ github.event.inputs.deb_url }}
       BALLERINA_ARTIFACT_ID: ${{ github.event.inputs.artifact_id }}
+      ACTIVE_BRANCH: ${{ github.event.inputs.active_branch }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     strategy:
       matrix:
@@ -95,6 +103,7 @@ jobs:
       RELEASED_BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       BALLERINA_DEB_URL: ${{ github.event.inputs.deb_url }}
       BALLERINA_ARTIFACT_ID: ${{ github.event.inputs.artifact_id }}
+      ACTIVE_BRANCH: ${{ github.event.inputs.active_branch }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     strategy:
       matrix:
@@ -119,6 +128,7 @@ jobs:
       RELEASED_BALLERINA_DEB_URL: ${{ secrets.BALLERINA_DEB_URL }}
       BALLERINA_DEB_URL: ${{ github.event.inputs.deb_url }}
       BALLERINA_ARTIFACT_ID: ${{ github.event.inputs.artifact_id }}
+      ACTIVE_BRANCH: ${{ github.event.inputs.active_branch }}
       GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
     strategy:
       matrix:

@@ -6,10 +6,10 @@ mkdir bbe/client
 touch bbe/service/Ballerina.toml
 touch bbe/client/Ballerina.toml
 
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-mutual-ssl/grpc_service_mutual_ssl.bal -o bbe/service/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-mutual-ssl/grpc_service.proto -o bbe/service/grpc_service.proto
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-mutual-ssl/grpc_client_mutual_ssl.bal -o bbe/client/client.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-mutual-ssl/grpc_client.proto -o bbe/client/grpc_client.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-service-mutual-ssl/grpc_service_mutual_ssl.bal -o bbe/service/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-service-mutual-ssl/grpc_service.proto -o bbe/service/grpc_service.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-client-mutual-ssl/grpc_client_mutual_ssl.bal -o bbe/client/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-client-mutual-ssl/grpc_client.proto -o bbe/client/grpc_client.proto
 
 bal grpc --input bbe/service/grpc_service.proto --output bbe/service/
 bal grpc --input bbe/client/grpc_client.proto --output bbe/client/

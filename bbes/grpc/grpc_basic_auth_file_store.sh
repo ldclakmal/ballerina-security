@@ -6,11 +6,11 @@ mkdir bbe/client
 touch bbe/service/Ballerina.toml
 touch bbe/client/Ballerina.toml
 
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-basic-auth-file-user-store/grpc_service_basic_auth_file_user_store.bal -o bbe/service/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-basic-auth-file-user-store/grpc_service.proto -o bbe/service/grpc_service.proto
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-basic-auth/grpc_client_basic_auth.bal -o bbe/client/client.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-client-basic-auth/grpc_client.proto -o bbe/client/grpc_client.proto
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/grpc-service-basic-auth-file-user-store/Config.toml -o bbe/service/Config.toml
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-service-basic-auth-file-user-store/grpc_service_basic_auth_file_user_store.bal -o bbe/service/service.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-service-basic-auth-file-user-store/grpc_service.proto -o bbe/service/grpc_service.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-client-basic-auth/grpc_client_basic_auth.bal -o bbe/client/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-client-basic-auth/grpc_client.proto -o bbe/client/grpc_client.proto
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/$ACTIVE_BRANCH/examples/grpc-service-basic-auth-file-user-store/Config.toml -o bbe/service/Config.toml
 
 
 bal grpc --input bbe/service/grpc_service.proto --output bbe/service/
