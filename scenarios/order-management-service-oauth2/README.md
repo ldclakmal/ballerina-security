@@ -87,7 +87,7 @@ will be returning a successful mock response from the 'API Gateway'.
 
 We can run the 'API Gateway', 'Web Client Backend' and 'Mobile Client Backend' that we developed above, in our local
 environment. To complete the design diagram illustrated above, we have to run the
-['OAuth Authorization Server'](https://hub.docker.com/repository/docker/ldclakmal/wso2is-sts) first.
+['OAuth Authorization Server'](https://hub.docker.com/r/ldclakmal/wso2is-sts) first.
 Open the terminal and execute the following command. This will take few seconds to start and run.
 ```shell
 $ docker run -d -p 9443:9443 ldclakmal/wso2is-sts:latest
