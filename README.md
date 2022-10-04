@@ -1,8 +1,5 @@
-[![Ballerina-Security](./_resources/images/ballerina-security.png)](https://github.com/ldclakmal/ballerina-security)
 
-The examples, use-cases, demos, and resources related to microservices security patterns with [Ballerina](https://ballerina.io/), which is an open-source programming language for the cloud that makes it easier to use, combine, and create network services.
-
-> **GitHub**: <https://github.com/ldclakmal/ballerina-security>
+> **GitHub**: <https://github.com/gigara/ballerina-security>
 
 ## Summary
 
@@ -155,15 +152,11 @@ The following sections have important references which were used for the design 
 
 ---
 
-### About me - <https://ldclakmal.me>
+### About me - <https://gigara.info>
 
-<a href="https://linkedin.com/in/ldclakmal" target="_blank"><img src="./_resources/icons/32x/linkedin.png" alt="linkedin"></a>&nbsp;&nbsp;
-<a href="https://github.com/ldclakmal" target="_blank"><img src="./_resources/icons/32x/github.png" alt="github"></a>&nbsp;&nbsp;
-<a href="https://medium.com/@ldclakmal" target="_blank"><img src="./_resources/icons/32x/medium.png" alt="medium"></a>&nbsp;&nbsp;
-<a href="https://twitter.com/ldclakmal92" target="_blank"><img src="./_resources/icons/32x/twitter.png" alt="twitter"></a>&nbsp;&nbsp;
-<a href="https://stackoverflow.com/users/4314651/ldclakmal?tab=profile" target="_blank"><img src="./_resources/icons/32x/stack-overflow.png" alt="stackoverflow"></a>&nbsp;&nbsp;
-<a href="https://scholar.google.com/citations?user=64UY9M0AAAAJ" target="_blank"><img src="./_resources/icons/32x/google-scholar.png" alt="google-scholar"></a>&nbsp;&nbsp;
-<a href="https://www.flickr.com/people/ldclakmal" target="_blank"><img src="./_resources/icons/32x/flickr.png" alt="flickr"></a>
+<a href="https://linkedin.com/in/gigarahettige" target="_blank"><img src="./_resources/icons/32x/linkedin.png" alt="linkedin"></a>&nbsp;&nbsp;
+<a href="https://github.com/gigara" target="_blank"><img src="./_resources/icons/32x/github.png" alt="github"></a>&nbsp;&nbsp;
+<a href="https://twitter.com/gigarahettige" target="_blank"><img src="./_resources/icons/32x/twitter.png" alt="twitter"></a>&nbsp;&nbsp;
 
 [auth]: https://github.com/ballerina-platform/module-ballerina-auth
 [auth-tags]: https://github.com/ballerina-platform/module-ballerina-auth/tags
