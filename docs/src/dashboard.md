@@ -18,7 +18,7 @@
 [auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
 [auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
 [auth-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/trivy-scan.yml/badge.svg
-[auth-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-auth/Process%20load%20test%20results?label=Load%20Test&logo=github
+[auth-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-auth/process-load-test-result.yml?label=Load%20Test&logo=github
 [auth-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg
 [auth-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fauth+label%3AType%2FBug&label=&color=30c955
 [auth-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-auth?label=
@@ -36,7 +36,7 @@
 [jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
 [jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
 [jwt-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/trivy-scan.yml/badge.svg
-[jwt-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-jwt/Process%20load%20test%20results?label=Load%20Test&logo=github
+[jwt-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-jwt/process-load-test-result.yml?label=Load%20Test&logo=github
 [jwt-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg
 [jwt-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fjwt+label%3AType%2FBug&label=&color=30c955
 [jwt-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-jwt?label=
@@ -54,7 +54,7 @@
 [oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
 [oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
 [oauth2-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/trivy-scan.yml/badge.svg
-[oauth2-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-oauth2/Process%20load%20test%20results?label=Load%20Test&logo=github
+[oauth2-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-oauth2/process-load-test-result.yml?label=Load%20Test&logo=github
 [oauth2-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg
 [oauth2-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Foauth2+label%3AType%2FBug&label=&color=30c955
 [oauth2-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-oauth2?label=

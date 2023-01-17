@@ -31,15 +31,15 @@ This section demonstrates the current status of the security-specific packages o
 
 This section demonstrates the current status of the Ballerina programs that are executed against the latest (pre-release/release) Ballerina version which is configurable with individual GitHub actions. Mostly, these actions are used to test the compatibility of existing programs during the RC period of a release.
 
-[![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
-[![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
-[![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
+[![BBEs](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/bbes.yml?logo=github&label=BBEs)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+[![Examples](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/examples.yml?logo=github&label=Examples)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
+[![Scenarios](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/scenarios.yml?logo=github&label=Scenarios)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
 ## Ballerina by Examples (BBEs)
 
 This section demonstrates the security related Ballerina by examples (BBEs).
 
-> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml). [![BBEs](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/BBEs?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml). [![BBEs](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/bbes.yml?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/bbes.yml)
 
 | Category           | ![BBE][ballerina-bbe-logo]                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 |--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ This section demonstrates the security related Ballerina by examples (BBEs).
 
 This section demonstrates the security examples with authentication and authorization for different protocols supported by Ballerina.
 
-> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml). [![Examples](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Examples?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
+> **NOTE**: These examples are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml). [![Examples](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/examples.yml?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/examples.yml)
 
 1. [HTTP](https://github.com/ldclakmal/ballerina-security/tree/master/examples/http)
 2. [WebSocket](https://github.com/ldclakmal/ballerina-security/tree/master/examples/websocket)
@@ -80,7 +80,7 @@ This section demonstrates the security examples with authentication and authoriz
 
 This section demonstrates the real-world scenarios which have authentication and authorization requirements and how that can be supported with Ballerina.
 
-> **NOTE**: These scenarios are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml). [![Scenarios](https://img.shields.io/github/workflow/status/ldclakmal/ballerina-security/Scenarios?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
+> **NOTE**: These scenarios are validated against the provided latest Ballerina version with an automated [test-suite](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml). [![Scenarios](https://img.shields.io/github/actions/workflow/status/ldclakmal/ballerina-security/scenarios.yml?logo=github&label=Status)](https://github.com/ldclakmal/ballerina-security/actions/workflows/scenarios.yml)
 
 1. [Ballerina Secure Token Service (STS)](./scenarios/sts)
 2. [E-Commerce system](./scenarios/e-commerce-system)
@@ -209,7 +209,7 @@ This section has a collection of important resources which were created/referred
 [auth-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-auth?label=
 [auth-badge-build]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/build-timestamped-master.yml/badge.svg
 [auth-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-auth/actions/workflows/trivy-scan.yml/badge.svg
-[auth-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-auth/Process%20load%20test%20results?label=Load%20Test&logo=github
+[auth-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-auth/process-load-test-result.yml?label=Load%20Test&logo=github
 [auth-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-auth/branch/master/graph/badge.svg
 [auth-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fauth+label%3AType%2FBug&label=&color=30c955
 [auth-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-auth?label=
@@ -227,7 +227,7 @@ This section has a collection of important resources which were created/referred
 [jwt-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-jwt?label=
 [jwt-badge-build]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/build-timestamped-master.yml/badge.svg
 [jwt-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-jwt/actions/workflows/trivy-scan.yml/badge.svg
-[jwt-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-jwt/Process%20load%20test%20results?label=Load%20Test&logo=github
+[jwt-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-jwt/process-load-test-result.yml?label=Load%20Test&logo=github
 [jwt-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-jwt/branch/master/graph/badge.svg
 [jwt-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Fjwt+label%3AType%2FBug&label=&color=30c955
 [jwt-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-jwt?label=
@@ -245,7 +245,7 @@ This section has a collection of important resources which were created/referred
 [oauth2-badge-tags]: https://img.shields.io/github/v/tag/ballerina-platform/module-ballerina-oauth2?label=
 [oauth2-badge-build]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/build-timestamped-master.yml/badge.svg
 [oauth2-badge-trivy]: https://github.com/ballerina-platform/module-ballerina-oauth2/actions/workflows/trivy-scan.yml/badge.svg
-[oauth2-badge-loadtest]: https://img.shields.io/github/workflow/status/ballerina-platform/module-ballerina-oauth2/Process%20load%20test%20results?label=Load%20Test&logo=github
+[oauth2-badge-loadtest]: https://img.shields.io/github/actions/workflow/status/ballerina-platform/module-ballerina-oauth2/process-load-test-result.yml?label=Load%20Test&logo=github
 [oauth2-badge-codecov]: https://codecov.io/gh/ballerina-platform/module-ballerina-oauth2/branch/master/graph/badge.svg
 [oauth2-badge-bugs]: https://img.shields.io/github/issues-search/ballerina-platform/ballerina-standard-library?query=is%3Aopen+label%3Amodule%2Foauth2+label%3AType%2FBug&label=&color=30c955
 [oauth2-badge-pulls]: https://img.shields.io/github/issues-pr-raw/ballerina-platform/module-ballerina-oauth2?label=
