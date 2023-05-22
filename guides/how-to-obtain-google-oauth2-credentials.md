@@ -6,7 +6,7 @@
 4. Go to the **Credentials → OAuth consent screen**, enter a product name to be shown to users, and click **Save**.
 5. On the **Credentials** tab, click **Create credentials** and select **OAuth _Client ID_**.
 6. Select an application type, enter a name for the application, and specify a redirect URI.
-    - **NOTE**: Enter https://developers.google.com/oauthplayground if you want to use [OAuth 2.0 playground](https://developers.google.com/oauthplayground) to receive the _Authorization Code_, _Access Token_, and _Refresh Token_.
+   > **Note** Enter https://developers.google.com/oauthplayground if you want to use [OAuth 2.0 playground](https://developers.google.com/oauthplayground) to receive the _Authorization Code_, _Access Token_, and _Refresh Token_.
  vi. Click **Create**. Your _Client ID_ and _Client Secret_ will appear as a popup.
 
 7. Visit [OAuth 2.0 playground](https://developers.google.com/oauthplayground), in a separate browser window or tab.
