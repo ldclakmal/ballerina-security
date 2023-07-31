@@ -32,7 +32,7 @@ isolated service /websubhub on securedHub {
     isolated remote function onRegisterTopic(websubhub:TopicRegistration msg, http:Headers headers) returns websubhub:TopicRegistrationSuccess|websubhub:TopicRegistrationError {
         string? auth = doAuth(headers);
         if auth is string {
-            return error websubhub:TopicRegistrationError(auth);
+            return websubhub:TOPIC_REGISTRATION_ERROR;
         }
         log:printInfo("Registered topic: '" + msg.topic + "'.");
         websubhub:TopicRegistrationSuccess result = {
@@ -44,7 +44,7 @@ isolated service /websubhub on securedHub {
     isolated remote function onDeregisterTopic(websubhub:TopicDeregistration msg, http:Headers headers) returns websubhub:TopicDeregistrationSuccess|websubhub:TopicDeregistrationError {
         string? auth = doAuth(headers);
         if auth is string {
-            return error websubhub:TopicDeregistrationError(auth);
+            return websubhub:TOPIC_DEREGISTRATION_ERROR;
         }
         log:printInfo("Deregistered topic: '" + msg.topic + "'.");
         websubhub:TopicDeregistrationSuccess result = {
@@ -56,7 +56,7 @@ isolated service /websubhub on securedHub {
     isolated remote function onSubscription(websubhub:Subscription msg, http:Headers headers) returns websubhub:SubscriptionAccepted|websubhub:InternalSubscriptionError {
         string? auth = doAuth(headers);
         if auth is string {
-            return error websubhub:InternalSubscriptionError(auth);
+            return websubhub:INTERNAL_SUBSCRIPTION_ERROR;
         }
         log:printInfo("Subscription accepted for topic: '" + msg.hubTopic + "'.");
         websubhub:SubscriptionAccepted result = {
@@ -84,7 +84,7 @@ isolated service /websubhub on securedHub {
     isolated remote function onUpdateMessage(websubhub:UpdateMessage msg, http:Headers headers) returns websubhub:Acknowledgement|websubhub:UpdateMessageError {
         string? auth = doAuth(headers);
         if auth is string {
-            return error websubhub:UpdateMessageError(auth);
+            return websubhub:UPDATE_MESSAGE_ERROR;
         }
         log:printInfo("Message updated for message type: '" + msg.msgType.toString() + "', topic: '" + msg.hubTopic +
                         "', content-type: '" + msg.contentType + "', content: '" + msg.content.toString() + "'.");
