@@ -16,4 +16,4 @@ bal run bbe/service.bal &
 sleep 10s
 response=$(bal run bbe/client.bal 2>&1 | tail -n 1)
 assertNotEmpty "$response"
-assertEquals "$response" "Hello, World!"
+assertEquals "$response" "Hello, How are you?"
