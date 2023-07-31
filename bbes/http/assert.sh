@@ -5,7 +5,7 @@ assertNotEmpty() {
 }
 
 assertEquals() {
-  if [[ $1 != $2 ]]; then
+  if [[ "$1" != "$2" ]]; then
     echo "Expected: '$2'"
     echo "Actual: '$1'"
     exit 1
