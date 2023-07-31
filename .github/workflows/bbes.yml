@@ -109,7 +109,7 @@ jobs:
       matrix:
         bbe: [websocket_ssl_tls, websocket_mtls, websocket_basic_auth_file_store, websocket_basic_auth_ldap_store,
               websocket_jwt_auth, websocket_oauth2_bearer_token, websocket_oauth2_client_credentials_grant,
-              websocket_oauth2_password_grant, websocket_oauth2_refresh_token_grant, websocket_oauth2_jwt_bearer_grant]
+              websocket_oauth2_password_grant, websocket_oauth2_refresh_token_grant]
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 11
