@@ -2,7 +2,7 @@ source assert.sh
 
 mkdir bbe
 curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-service-oauth2/http_service_oauth2.bal -o bbe/service.bal
-curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-bearer-token-auth/http_client_bearer_token_auth.bal -o bbe/client.bal
+curl https://raw.githubusercontent.com/ballerina-platform/ballerina-distribution/master/examples/http-client-bearer-token-authentication/http_client_bearer_token_authentication.bal -o bbe/client.bal
 
 sed -i 's+../resource/path/to+resources+g' bbe/service.bal
 sed -i 's+../resource/path/to+resources+g' bbe/client.bal
