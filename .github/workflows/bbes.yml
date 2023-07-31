@@ -41,10 +41,11 @@ jobs:
       matrix:
         module: [url, crypto, jwt]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3.12.0
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Download & Install Ballerina
         run: ./_resources/scripts/install.sh
@@ -66,10 +67,11 @@ jobs:
               http_oauth2_bearer_token, http_oauth2_client_credentials_grant, http_oauth2_password_grant,
               http_oauth2_refresh_token_grant, http_oauth2_jwt_bearer_grant]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3.12.0
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Download & Install Ballerina
         run: ./_resources/scripts/install.sh
@@ -90,10 +92,11 @@ jobs:
         bbe: [graphql_ssl_tls, graphql_mtls, graphql_basic_auth_file_store, graphql_basic_auth_ldap_store,
               graphql_jwt_auth, graphql_oauth2_bearer_token]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3.12.0
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Download & Install Ballerina
         run: ./_resources/scripts/install.sh
@@ -115,10 +118,11 @@ jobs:
               websocket_jwt_auth, websocket_oauth2_bearer_token, websocket_oauth2_client_credentials_grant,
               websocket_oauth2_password_grant, websocket_oauth2_refresh_token_grant]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3.12.0
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Download & Install Ballerina
         run: ./_resources/scripts/install.sh
@@ -140,10 +144,11 @@ jobs:
               grpc_oauth2_bearer_token, grpc_oauth2_client_credentials_grant, grpc_oauth2_password_grant,
               grpc_oauth2_refresh_token_grant, grpc_oauth2_jwt_bearer_grant]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3.5.3
       - name: Set up JDK 11
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3.12.0
         with:
+          distribution: 'temurin'
           java-version: 11
       - name: Download & Install Ballerina
         run: ./_resources/scripts/install.sh
