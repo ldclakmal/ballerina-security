@@ -1,6 +1,10 @@
 name: BBEs
 
 on:
+  push:
+    paths:
+      - 'bbes/**'
+      - '.github/workflows/bbes.yml'
   workflow_run:
     workflows: [ "Validate Ballerina Version" ]
     types:
